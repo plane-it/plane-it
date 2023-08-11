@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <script src="cadastro.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="voltar">
+            <a href=""><img src="./IMG/icons8-voltar-96.png" ></a>
+        </div>
+
+        <div class="container-2">
+            <div class="foto">
+                <img src="./IMG/logo4.png" >
+            </div>  
+            
+            <div class="form">
+                <h1>CADASTRO</h1>
+
+                <input id="iptCnpj" class="cnpj" placeholder="CNPJ">
+                <span id="spanCnpj">Informe corretamente seu CNPJ!</span>
+                
+                <input id="iptNome" class="nome" placeholder="Nome">
+                <span id="spanNome">Informe seu nome!</span>
+                
+                <input id="iptSenha" class="senha" placeholder="Senha">
+                <span id="spanSenha">Insira corretamente sua senha!</span>
+
+                <input id="iptConfirmacao" class="confirmacao" placeholder="Confirmação de Senha">
+                <span id="spanConfirmacao">Insira corretamente sua senha!</span>
+
+                <button onclick="cadastrar()">CADASTRAR</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
