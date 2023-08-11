@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Orienta&display=swap');
+
+* {
+    font-family: "Inter";
+    background-repeat: no-repeat;
+}
+
+body {
+    background-color: #002C33;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    background-color: #F3F4F6;
+    width: 930px;
+    height: 550px;
+
+    border-radius: 40px;
+    margin-left: 15%;
+    margin-top: 4%;
+}
+
+.container-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 25%;
+    margin-bottom: 7%;
+}
+
+
+input {
+    box-sizing: border-box;
+    width: 240px;
+    height: 40px;
+  
+    border-radius: 5px;
+    border: 3px solid #002C33;
+  
+    padding-left: 40px;
+  
+  }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.form h1 {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 250px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 25px;
+    margin: 20px 0 10px 0;
+    cursor: pointer;
+    background-color: #002C33;
+    position: relative;
+   transition: all 0.3s ease-out;
+  }
+
+  button:hover{
+    transform: scale(1.1);
+  }
+
+.input {
+    display: flex;
+    border-radius: 30px;
+    width: 250px;
+    line-height: 30px;
+    
+}
+
+.cnpj{
+    background-image: url(./IMG/icons8-magnifying-glass-50.png);
+    background-size: 18px;
+    background-position: 8px;
+  }
+
+.nome{
+    background-image: url(./IMG/icons8-user-50.png);
+    background-size: 18px;
+    background-position: 8px;
+  }
+
+.senha{
+    background-image: url(./IMG/icons8-password-50.png);
+    background-size: 18px;
+    background-position: 8px;
+  }
+
+.confirmacao {
+    background-image: url(./IMG/icons8-password-50.png);
+    background-size: 18px;
+    background-position: 8px;
+}
+
+.foto img {
+  display: flex;
+  height: 300px;
+  margin-top: 33%;
+
+}
+.voltar {
+   background-color: #002C33;
+   width: 40px;
+   height: 40px;
+   border-radius: 50px;
+   margin: 2%;
+   position: relative;
+   transition: all 0.3s ease-out;
+   border: none;
+}
+
+.voltar img {
+    height: 40px;
+  }
+
+  .voltar:hover {
+    transform: scale(1.1);
+  }
+
+  span {
+    color: #ff0000;
+    display: none;
+  }
