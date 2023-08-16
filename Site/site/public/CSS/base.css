@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Oxanium:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,400;0,700;1,400&family=Oxanium:wght@400;500;600;700&display=swap');
+
+*{
+    font-family: "Be Vietnam Pro";
+}
+body{
+    margin: 0px;
+}
+div{
+    display: flex;
+}
+h1, h2, h3, h4, h5{
+    font-family: "Oxanium";
+    margin: 0px;
+}
+h1{
+    font-weight: bold;
+}
+h2{
+    font-weight: 700;
+}
+
+nav, nav div, nav ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+nav{
+    background: rgba(0, 0, 0, 0.70);
+    justify-content: stretch;
+    width: 100%;
+    color: white;
+    position: fixed;
+}
+nav div{
+    flex-direction: row;
+    width: 50%;
+    padding: 10px 40px;
+}
+nav div:last-child{
+    justify-content: center;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    margin: 0 30px;
+}
+nav img{
+    width: 50px;
+    margin: 0 10px;
+}
+nav h1{
+    letter-spacing: 5px;
+}
+nav button{
+    border-radius: 5px;
+    background: #B2611F;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+nav button, nav ul li{
+    letter-spacing: 2.5px;
+    font-weight: 200;
+    font-size: 16px;
+    color: white;
+}

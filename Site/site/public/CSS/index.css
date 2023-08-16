@@ -1,0 +1,27 @@
+#landing{
+    width: 100%;
+    height: 400px;
+    background-image: url("../assets/Data\ center\ azul.png");
+    background-position: center; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    color: white;
+    text-align: right;
+    font-size: 34px;
+}
+#landing h1{
+    margin: 0 50px;
+}
+
+#sobre{
+    width: 100%;
+    flex-direction: row;
+    background-color: #181D27;
+    color: #FFF;
+    flex-wrap: wrap;
+}
+#sobre div{
+    width: 45%;
+    text-align: justify;
+}
