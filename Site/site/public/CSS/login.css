@@ -3,6 +3,7 @@
 * {
     font-family: "Inter";
     background-repeat: no-repeat;
+    text-decoration: none;
 }
 
 body {
@@ -33,7 +34,7 @@ input {
     box-sizing: border-box;
     width: 240px;
     height: 40px;
-  
+    
     border-radius: 5px;
     border: 3px solid #002C33;
   
@@ -46,12 +47,20 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 2%;
+    margin-top: 7%;
 }
 
 .form h1 {
     display: flex;
     justify-content: center;
+}
+
+.esqueceu {
+  color: #002C33;
+  width: 240px;
+  margin-top: 10px;
+  text-align: end;
 }
 
 button {
@@ -118,6 +127,14 @@ button {
 
   .voltar:hover {
     transform: scale(1.1);
+  }
+
+  .nao-possui {
+    color: #002C33;
+    width: 290px;
+    margin-top: 10px;
+    text-align: center;
+
   }
 
   span {
