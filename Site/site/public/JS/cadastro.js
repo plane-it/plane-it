@@ -1,5 +1,6 @@
 function cadastrar() {
-    var cnpj = iptCnpj.value
+  
+  var cnpj = iptCnpj.value
     var nome = iptNome.value
     var email = iptEmail.value
     var tel = iptTel.value
@@ -19,7 +20,7 @@ function cadastrar() {
         iptCnpj.style.border = "solid 2px #ff0000"
         // spanCnpj.style.display = "block"
     } else {
-        // spanCnpj.style.display = "none"
+      // spanCnpj.style.display = "none"
     }
 
     if (nome == "") {
@@ -35,35 +36,38 @@ function cadastrar() {
       iptEmail.style.border = "solid 2px #ff0000"
       // spanEmail.style.display = "block"
   } else {
-      // spanEmail.style.display = "none"
+    // spanEmail.style.display = "none"
   }
-
+  
   if (tel == "" || tel.length == 0) {
     erro = true
     iptTel.style.border = "solid 2px #ff0000"
     // spanTel.style.display = "block"
 } else {
-    // spanTel.style.display = "none"
+  // spanTel.style.display = "none"
 }
 
-    if (senha == "" || senha.length < 8) {
+if (senha == "" || senha.length < 8) {
         erro = true
         iptSenha.style.border = "solid 2px #ff0000"
         // spanSenha.style.display = "block"
     } else {
-        // spanSenha.style.display = "none"
+      // spanSenha.style.display = "none"
     }
-
+    
     if (confirmacao == "" || confirmacao != senha) {
         erro = true
         iptConfirmacao.style.border = "solid 2px #ff0000"
         // spanConfirmacao.style.display = "block"
-    } else {
+      } else {
         // spanConfirmacao.style.display = "none"
     }
 
-    if (erro == false) {
-        fetch("/usuarios/cadastrar", {
+    if (erro == true) {
+      swal("Shii..", "Cheque suas informações!", "error");
+    } else if (erro == false) {
+      swal("Muito Bem!", "Você será redirecionado para o Login", "success");
+      fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -87,15 +91,15 @@ function cadastrar() {
               setTimeout(() => {
                 window.location = "./login.html";
               }, "1000")
-      
+              
             } else {
               throw ("Houve um erro ao tentar realizar o cadastro!");
             }
           }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
           });
-      
+          
           return false;
-      
+          
         }
 }

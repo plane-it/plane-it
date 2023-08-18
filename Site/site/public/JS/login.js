@@ -22,7 +22,10 @@ function entrar() {
         // spanSenha.style.display = "none"
     }
 
-    if (erro != true) {
+    if (erro == true) {
+      swal("Shii..", "Cheque suas informações!", "error");
+    } else if (erro != true) {
+      swal("Muito Bem!", "Seja Bem-Vindo!", "success");
         fetch("/usuarios/entrar", {
             method: "POST",
             headers: {
