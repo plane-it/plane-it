@@ -7,6 +7,7 @@ function cadastrar() {
     var senha = iptSenha.value
     var confirmacao = iptConfirmacao.value
     var erro = false
+    var contadorErro = 0
 
     iptCnpj.style.border = "solid 2px #000000";
     iptNome.style.border = "solid 2px #000000";
@@ -17,6 +18,7 @@ function cadastrar() {
 
     if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
         erro = true
+        contadorErro++
         iptCnpj.style.border = "solid 2px #ff0000"
         // spanCnpj.style.display = "block"
     } else {
@@ -25,6 +27,7 @@ function cadastrar() {
 
     if (nome == "") {
         erro = true
+        contadorErro++
         iptNome.style.border = "solid 2px #ff0000"
         // spanNome.style.display = "block"
     } else {
@@ -33,6 +36,7 @@ function cadastrar() {
 
     if (email == "" || !email.includes("@") || !email.includes(".com")) {
       erro = true
+      contadorErro++
       iptEmail.style.border = "solid 2px #ff0000"
       // spanEmail.style.display = "block"
   } else {
@@ -41,6 +45,7 @@ function cadastrar() {
   
   if (tel == "" || tel.length == 0) {
     erro = true
+    contadorErro++
     iptTel.style.border = "solid 2px #ff0000"
     // spanTel.style.display = "block"
 } else {
@@ -49,6 +54,7 @@ function cadastrar() {
 
 if (senha == "" || senha.length < 8) {
         erro = true
+        contadorErro++
         iptSenha.style.border = "solid 2px #ff0000"
         // spanSenha.style.display = "block"
     } else {
@@ -57,15 +63,16 @@ if (senha == "" || senha.length < 8) {
     
     if (confirmacao == "" || confirmacao != senha) {
         erro = true
+        contadorErro++
         iptConfirmacao.style.border = "solid 2px #ff0000"
         // spanConfirmacao.style.display = "block"
       } else {
         // spanConfirmacao.style.display = "none"
     }
 
-    if (erro == true) {
+    if (contadorErro <= 6 && contadorErro >= 1) {
       swal("Shii..", "Cheque suas informações!", "error");
-    } else if (erro == false) {
+    } else if (contadorErro == 0) {
       swal("Muito Bem!", "Você será redirecionado para o Login", "success");
       fetch("/usuarios/cadastrar", {
             method: "POST",

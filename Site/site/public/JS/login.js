@@ -1,6 +1,7 @@
 function entrar() {
     var cnpj = iptCnpj.value
     var senha = iptSenha.value
+    var contadorErro = 0
     var erro = false
 
     iptCnpj.style.border = "solid 2px #000000";
@@ -9,6 +10,7 @@ function entrar() {
     if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
         erro = true
         iptCnpj.style.border = "solid 2px #ff0000"
+        contadorErro++
         // spanCnpj.style.display = "block"
     } else {
         // spanCnpj.style.display = "none"
@@ -16,15 +18,16 @@ function entrar() {
 
     if (senha == "" || senha.length < 8) {
         erro = true
+        contadorErro++
         iptSenha.style.border = "solid 2px #ff0000"
         // spanSenha.style.display = "block"
     } else {
         // spanSenha.style.display = "none"
     }
 
-    if (erro == true) {
+    if (contadorErro == 2 || contadorErro == 1) {
       swal("Shii..", "Cheque suas informações!", "error");
-    } else if (erro != true) {
+    } else if (contadorErro == 0) {
       swal("Muito Bem!", "Seja Bem-Vindo!", "success");
         fetch("/usuarios/entrar", {
             method: "POST",
