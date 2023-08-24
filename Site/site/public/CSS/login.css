@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Orienta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Orienta&family=Oxanium&display=swap');
 
 * {
-    font-family: "Inter";
+    font-family: "Oxanium";
     background-repeat: no-repeat;
     text-decoration: none;
 }

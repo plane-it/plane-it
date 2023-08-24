@@ -1,12 +1,13 @@
 create database planeit;
 use planeit;
 
-create table cadastro (
+create table usuario (
 id int primary key auto_increment,
 cnpj char(14),
-nome varchar(60),
-email varchar(250),
+nomeGerente varchar(50),
 telefone char(11),
+nomeEmpresa varchar(75),
+emailEmpresa varchar(250),
 senha varchar(50),
 confirmacao varchar(50)
 );
