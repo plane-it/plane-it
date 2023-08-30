@@ -15,7 +15,7 @@ body {
     background-color: #EDF3F3;
     width: 930px;
     height: 550px;
-
+    box-shadow: 5px 10px 10px rgba(255, 255, 255, 0.212);
     border-radius: 40px;
     margin-left: 15%;
     margin-top: 4%;
@@ -25,6 +25,8 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10%;
+    
+   
 }
 
 
@@ -43,8 +45,9 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3%;
+    gap: 1.5%;
 }
+
 
 .form h1 {
     display: flex;
@@ -62,11 +65,12 @@ button {
     cursor: pointer;
     background-color: #002C33;
     position: relative;
-   transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
   }
 
   button:hover{
     transform: scale(1.1);
+    background-color: #001214;
   }
 
 .input {
@@ -141,6 +145,7 @@ button {
 
   .voltar:hover {
     transform: scale(1.1);
+    background-color: #001c20;
   }
 
   span {
@@ -148,42 +153,24 @@ button {
     
   }
 
-  @media only screen and (max-width: 1315px) {
-    header{
-        position: initial;
-        background: #141414;
+@media only screen and (max-width: 910px) {
+    .foto {
+      display: none;
     }
-    header div{
-        justify-content: center;
+
+    .container {
+      width: 50%;  
     }
-    header nav{
-        justify-content: center;
+
+    .form {
+      width: 100%;
     }
-}
-@media only screen and (max-width: 768px) {
-    header nav{
-        flex-direction: column;
-        margin: 0px;
+
+    body {
+      width: auto;
     }
 }
 
-[id*="col-"] {
 
-    width: 100%;
-    padding: 10px;
-}  
 
-@media only screen and (min-width: 768px) {
-    col-1 {width: 8.33%;}
-    col-2 {width: 16.66%;}
-    col-3 {width: 25%;}
-    col-4 {width: 33.33%;}
-    col-5 {width: 41.66%;}
-    col-6 {width: 50%;}
-    col-7 {width: 58.33%;}
-    col-8 {width: 66.66%;}
-    col-9 {width: 75%;}
-    col-10 {width: 83.33%;}
-    col-11 {width: 91.66%;}
-    col-12 {width: 100%;}
-}
+
