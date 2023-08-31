@@ -153,22 +153,123 @@ button {
     
   }
 
-@media only screen and (max-width: 910px) {
+@media only screen and (max-width: 768px) {
     .foto {
       display: none;
     }
 
     .container {
-      width: 50%;  
+      width: 80%;  
+      height: 600px;
+    }
+
+    .container-2 {
+      width: 80%;
     }
 
     .form {
       width: 100%;
+      margin-bottom: 30px;
     }
 
-    body {
-      width: auto;
+    .form h1 {
+      margin-bottom: 20%;
     }
+
+    @media only screen and (max-width: 425px) {
+      .foto {
+        display: none;
+      }
+
+      .container {
+        width: 80%;  
+        height: 600px;
+      }
+  
+      .container-2 {
+        width: 70%;
+      }
+  
+      .form {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+  
+      .form h1 {
+        margin-bottom: 20%;
+      }
+    }
+
+    @media only screen and (max-width: 375px) {
+      .foto {
+        display: none;
+      }
+
+      .container {
+        width: 80%;  
+        height: 600px;
+      }
+  
+      .container-2 {
+        width: 65%;
+      }
+  
+      .form {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+  
+      .form h1 {
+        margin-bottom: 20%;
+      }
+    }
+    
+
+    @media only screen and (max-width: 320px) {
+      .foto {
+        display: none;
+      }
+
+      .container {
+        width: 80%;  
+        height: 600px;
+      }
+  
+      .container-2 {
+        width: 65%;
+      }
+  
+      input {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .voltar img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .voltar {
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+      }
+
+      
+
+      .form {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+  
+      .form h1 {
+        margin-bottom: 20%;
+      }
+    }
+
 }
 
 
