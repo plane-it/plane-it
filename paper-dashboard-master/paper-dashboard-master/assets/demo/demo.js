@@ -14,9 +14,9 @@ demo = {
   },
 
   initDocChart: function() {
-    chartColor = "#FFFFFF";
+    chartColor = "#000000";
 
-    ctx = document.getElementById('chartHours').getContext("2d");
+    ctx = document.getElementById('chartHour').getContext("2d");
 
     myChart = new Chart(ctx, {
       type: 'line',
@@ -33,7 +33,7 @@ demo = {
           },
           {
             borderColor: "#f17e5d",
-            backgroundColor: "#f17e5d",
+            backgroundColor: "#000000",
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
@@ -94,6 +94,31 @@ demo = {
 
   },
 
+  initChartsPages: function(){
+    chartColor = "#FFFFFF";
+
+    ctx = document.getElementById('teste').getContext("2d");
+    myChart = new Chart(ctx, {
+    
+        type: 'line',
+        data: data,
+
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Meu teste 123',
+            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        },
+
+          
+      
+    })
+  },
+
   initChartsPages: function() {
     chartColor = "#FFFFFF";
 
@@ -103,41 +128,89 @@ demo = {
       type: 'line',
 
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+   
+        labels: [
+          '12:00',
+          '12:01',
+          '12:02',
+          '12:03',
+          '12:04',
+          '12:05',
+          '12:06',
+          '12:07',
+          '12:08',
+          '12:09',
+          '12:10',
+          '12:11',
+          '12:12',
+          '12:13',
+          '12:14',
+          '12:15',
+          '12:16',
+          '12:17',
+          '12:18',
+          '12:19',
+          '12:20',
+          '12:21',
+          '12:22',
+          '12:23',
+          '12:24',
+          '12:25',
+          '12:26',
+          '12:27',
+          '12:28',
+          '12:29',
+          '12:30',
+          '12:31',
+          '12:32',
+          '12:33',
+          '12:34',
+          '12:35',
+          '12:36',
+          '12:37',
+          '12:38',
+          '12:39',
+          '12:40',
+          '12:41',
+          '12:42',
+          '12:43',
+          '12:44',
+          '12:45',
+          '12:46',
+          '12:47',
+          '12:48',
+          '12:49',
+          '12:50',
+          '12:51',
+          '12:52',
+          '12:53',
+          '12:54',
+          '12:55',
+          '12:56',
+          '12:57',
+          '12:58',
+          '12:59',
+          '13:00'
+        ],
         datasets: [{
-            borderColor: "#6bd098",
+            label: 'Utilização da CPU em %',
+            borderColor: "#",
             backgroundColor: "#6bd098",
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-          },
-          {
-            borderColor: "#f17e5d",
-            backgroundColor: "#f17e5d",
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-          },
-          {
-            borderColor: "#fcc468",
-            backgroundColor: "#fcc468",
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+            pointRadius: 8,
+            pointHoverRadius: 15,
+            data: [12, 18, 23, 29, 34, 40, 45, 51, 56, 60, 56, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56, 60, 56, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56, 60,18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51]
           }
         ]
       },
       options: {
         legend: {
-          display: false
+          //display: false
+          position:'top'
         },
 
-        tooltips: {
+       /*  tooltips: {
           enabled: false
-        },
+        }, */
 
         scales: {
           yAxes: [{
@@ -182,6 +255,7 @@ demo = {
         labels: [1, 2, 3],
         datasets: [{
           label: "Emails",
+          fill: false,
           pointRadius: 0,
           pointHoverRadius: 0,
           backgroundColor: [
@@ -191,14 +265,14 @@ demo = {
             '#ef8157'
           ],
           borderWidth: 0,
-          data: [342, 480, 530, 120]
+          data: [342, 480, 530, 120,450,5785]
         }]
       },
 
       options: {
 
         legend: {
-          display: false
+          display: true
         },
 
         pieceLabel: {
@@ -207,9 +281,9 @@ demo = {
           precision: 2
         },
 
-        tooltips: {
+        /* tooltips: {
           enabled: false
-        },
+        }, */
 
         scales: {
           yAxes: [{
@@ -247,14 +321,14 @@ demo = {
       fill: false,
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
-      pointBorderColor: '#fbc658',
+      pointBorderColor: '#b803ff  ',
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
     };
 
     var dataSecond = {
-      data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+      data: [0, 5, 10, 13, 20, 27, 30, 34, 42, 45, 55, 63],
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
@@ -263,10 +337,20 @@ demo = {
       pointHoverRadius: 4,
       pointBorderWidth: 8
     };
+    var dataFirst1 = {
+      data: [10, 109, 105, 200, 300, 400, 410, 550, 205, 340, 150, 270],
+      fill: false,
+      borderColor: '#fff658',
+      backgroundColor: 'transparent',
+      pointBorderColor: '#bbc653',
+      pointRadius: 4,
+      pointHoverRadius: 4,
+      pointBorderWidth: 8,
+    };
 
     var speedData = {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [dataFirst, dataSecond]
+      datasets: [dataFirst, dataSecond, dataFirst1]
     };
 
     var chartOptions = {
@@ -406,3 +490,4 @@ demo = {
   }
 
 };
+

@@ -1124,7 +1124,7 @@ fieldset[disabled]
 .input-group.no-border .form-control,
 .input-group.no-border .form-control + .input-group-prepend .input-group-text,
 .input-group.no-border .form-control + .input-group-append .input-group-text {
-  background-color: rgba(222, 222, 222, 0.3);
+  background-color: #D0DB97;
   border: medium none; }
   .form-group.no-border .form-control:focus, .form-group.no-border .form-control:active, .form-group.no-border .form-control:active,
   .form-group.no-border .form-control + .input-group-prepend .input-group-text:focus,
@@ -1143,13 +1143,13 @@ fieldset[disabled]
   .input-group.no-border .form-control + .input-group-append .input-group-text:active,
   .input-group.no-border .form-control + .input-group-append .input-group-text:active {
     border: medium none;
-    background-color: rgba(222, 222, 222, 0.5); }
+    background-color: #69B578; }
 
 .form-group.no-border .form-control:focus + .input-group-prepend .input-group-text,
 .form-group.no-border .form-control:focus + .input-group-append .input-group-text,
 .input-group.no-border .form-control:focus + .input-group-prepend .input-group-text,
 .input-group.no-border .form-control:focus + .input-group-append .input-group-text {
-  background-color: rgba(222, 222, 222, 0.5); }
+  background-color: #69B578; }
 
 .form-group.no-border .input-group-prepend .input-group-text,
 .form-group.no-border .input-group-append .input-group-text,
@@ -1442,7 +1442,7 @@ p.description {
 
 .card-category {
   font-size: 1em; }
-
+/*Para trocar a cor dos icones*/
 .text-primary,
 a.text-primary:focus, a.text-primary:hover {
   color: #51cbce !important; }
@@ -1459,9 +1459,10 @@ a.text-success:focus, a.text-success:hover {
 a.text-warning:focus, a.text-warning:hover {
   color: #fbc658 !important; }
 
-.text-danger,
+/*Troca a cor das nossas CPIs*/
+.text-cpi,
 a.text-danger:focus, a.text-danger:hover {
-  color: #ef8157 !important; }
+  color: #3A7D44 !important; }
 
 .text-gray,
 a.text-gray:focus, a.text-gray:hover {
@@ -1755,7 +1756,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     .navbar a:not(.btn):not(.dropdown-item) {
       color: #FFFFFF; }
     .navbar a.dropdown-item {
-      color: #66615B; }
+      color: #254D32; }
   .navbar.bg-white .input-group .form-control,
   .navbar.bg-white .input-group.no-border .form-control {
     color: #66615B; }
@@ -1783,7 +1784,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     .navbar .input-group .form-group-addon,
     .navbar .input-group .input-group-prepend .input-group-text,
     .navbar .input-group .input-group-append .input-group-text {
-      color: #66615B; }
+      color: #000000; }
       .navbar .form-group .form-group-addon i,
       .navbar .form-group .input-group-prepend .input-group-text i,
       .navbar .form-group .input-group-append .input-group-text i,
@@ -1793,16 +1794,16 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
         opacity: 1; }
     .navbar .form-group.no-border .form-control,
     .navbar .input-group.no-border .form-control {
-      color: #66615B; }
+      color: #ffffff; }
       .navbar .form-group.no-border .form-control::-moz-placeholder,
       .navbar .input-group.no-border .form-control::-moz-placeholder {
-        color: #66615B; }
+        color: #665b66; }
       .navbar .form-group.no-border .form-control:-ms-input-placeholder,
       .navbar .input-group.no-border .form-control:-ms-input-placeholder {
         color: #66615B; }
       .navbar .form-group.no-border .form-control::-webkit-input-placeholder,
       .navbar .input-group.no-border .form-control::-webkit-input-placeholder {
-        color: #66615B; }
+        color: #000000; }
   .navbar p {
     display: inline-block;
     margin: 0;
@@ -1902,28 +1903,29 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     background-color: transparent !important;
     box-shadow: none;
     border-bottom: 1px solid #ddd; }
+    /*Para mudar a cor da navbar*/
     .navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
-      color: #66615B; }
+      color: #ffffff; }
       .navbar.navbar-transparent a:not(.dropdown-item):not(.btn).disabled {
         opacity: .5;
-        color: #66615B; }
+        color: #ffffff; }
     .navbar.navbar-transparent .button-bar {
-      background: #66615B; }
+      background: #ffffff; }
     .navbar.navbar-transparent .nav-item .nav-link:not(.btn) {
-      color: #66615B; }
+      color: #ffffff; }
     .navbar.navbar-transparent .nav-item.active .nav-link:not(.btn),
     .navbar.navbar-transparent .nav-item .nav-link:not(.btn):focus,
     .navbar.navbar-transparent .nav-item .nav-link:not(.btn):hover,
     .navbar.navbar-transparent .nav-item .nav-link:not(.btn):focus:hover,
     .navbar.navbar-transparent .nav-item .nav-link:not(.btn):active {
-      color: #51cbce; }
+      color: #69B578; }
   .navbar.bg-white a:not(.dropdown-item):not(.btn) {
-    color: #66615B; }
+    color: #ffffff; }
     .navbar.bg-white a:not(.dropdown-item):not(.btn).disabled {
       opacity: .5;
-      color: #66615B; }
+      color: #ffffff; }
   .navbar.bg-white .button-bar {
-    background: #66615B; }
+    background: #ffffff; }
   .navbar.bg-white .nav-item.active .nav-link:not(.btn),
   .navbar.bg-white .nav-item .nav-link:not(.btn):focus,
   .navbar.bg-white .nav-item .nav-link:not(.btn):hover,
@@ -2137,7 +2139,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     text-decoration: none; }
   .dropdown-menu .dropdown-item:hover,
   .dropdown-menu .dropdown-item:focus {
-    background-color: #66615B; }
+    background-color: #254D32; }/*Muda o hover do menu sininho*/
   .dropdown-menu.dropdown-primary .dropdown-item:hover,
   .dropdown-menu.dropdown-primary .dropdown-item:focus {
     background-color: #6dd3d6; }
@@ -3197,7 +3199,8 @@ License - nucleoapp.com/license/
     z-index: 3; }
   .sidebar[data-color="white"]:after,
   .off-canvas-sidebar[data-color="white"]:after {
-    background: #FFFFFF; }
+    /*Muda a cor principal da nav lateral com logo*/
+    background: #ebe9e9d0; }
   .sidebar[data-color="white"] .nav li a,
   .sidebar[data-color="white"] .nav li a i,
   .sidebar[data-color="white"] .nav li a[data-toggle="collapse"],
@@ -3306,7 +3309,8 @@ License - nucleoapp.com/license/
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] i,
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] ~ div > ul > li.active .sidebar-mini-icon,
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] ~ div > ul > li.active > a {
-    color: #ef8157;
+    /*Para trocar as cores da nav lateral em foco*/
+    color: #3A7D44;
     opacity: 1; }
   .sidebar[data-active-color="default"] .nav li.active > a,
   .sidebar[data-active-color="default"] .nav li.active > a i,
@@ -3340,7 +3344,7 @@ License - nucleoapp.com/license/
   position: relative;
   float: right;
   width: calc(100% - 260px);
-  background-color: #f4f3ef;
+  background-color: #181D27; /*Muda o fundo da dash*/
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .main-panel > .content {
     padding: 0 30px 30px;
@@ -4133,7 +4137,8 @@ License - nucleoapp.com/license/
     transition: opacity 150ms ease-in; }
   .sidebar .sidebar-wrapper li.active > a:not([data-toggle="collapse"]):after,
   .sidebar .sidebar-wrapper li.active > [data-toggle="collapse"] + div .nav li:after {
-    border-right: 17px solid #f4f3ef;
+    /*Muda a cor do triângulo na navbar lateral*/
+    border-right: 17px solid #3A7D44;
     border-top: 17px solid transparent;
     border-bottom: 17px solid transparent;
     content: "";
