@@ -250,29 +250,24 @@ demo = {
     ctx = document.getElementById('chartEmail').getContext("2d");
 
     myChart = new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
-        labels: [1, 2, 3],
+        labels: [1, 2, 3,4,5,6],
         datasets: [{
-          label: "Emails",
           fill: false,
           pointRadius: 0,
           pointHoverRadius: 0,
-          backgroundColor: [
-            '#e3e3e3',
-            '#4acccd',
-            '#fcc468',
-            '#ef8157'
-          ],
+          backgroundColor: 
+            '#69b5789e',
           borderWidth: 0,
-          data: [342, 480, 530, 120,450,5785]
+          data: [1.6, 0.2, 0.3, 1.3, 1.4, 0.5]
         }]
       },
 
       options: {
 
         legend: {
-          display: true
+          display: false
         },
 
         pieceLabel: {
@@ -289,12 +284,12 @@ demo = {
           yAxes: [{
 
             ticks: {
-              display: false
+              display: true
             },
             gridLines: {
               drawBorder: false,
               zeroLineColor: "transparent",
-              color: 'rgba(255,255,255,0.05)'
+              color: '69B578'
             }
 
           }],
@@ -302,12 +297,12 @@ demo = {
           xAxes: [{
             barPercentage: 1.6,
             gridLines: {
-              drawBorder: false,
-              color: 'rgba(255,255,255,0.1)',
+              drawBorder: true,
+              color: '69B578',
               zeroLineColor: "transparent"
             },
             ticks: {
-              display: false,
+              display: true,
             }
           }]
         },
