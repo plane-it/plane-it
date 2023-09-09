@@ -35,7 +35,8 @@ p{
     align-items: center;
     justify-content: space-around;
 }
-img{
+#social img{
+    cursor: pointer;
     max-height: 50px;
     margin-bottom: 50px;
 }

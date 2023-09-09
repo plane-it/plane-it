@@ -26,6 +26,10 @@
     flex-direction: column;
     justify-content: center; 
 }
+#sobre div:first-child div{
+    width: 850px;
+    padding: 50px;
+}
 #sobre img{
     object-fit: contain;
     width: 100%;
@@ -80,7 +84,9 @@
     margin: 10px 0;
 }
 #textoValor{
+    width: 1000px;
     margin-top: 0px;
+    text-align: center;
     animation-duration: 500ms;
 }
 @keyframes aparecer {
