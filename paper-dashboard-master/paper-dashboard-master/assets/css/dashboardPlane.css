@@ -1430,7 +1430,7 @@ p.description {
 .card-description,
 .footer-big p,
 .card .footer .stats {
-  color: #9A9A9A;
+  color: #303030;
   font-weight: 300; }
 
 .category,
@@ -2369,7 +2369,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
       text-align: left;
       padding: 0 10px; }
       .dropdown-notification .dropdown-footer .dropdown-footer-menu li a {
-        color: #9C9B99;
+        color: #ffffff;
         font-size: 0.9em;
         line-height: 35px; }
 
@@ -3386,7 +3386,10 @@ License - nucleoapp.com/license/
   height: 380px; }
 
 .footer {
-  padding: 24px 0; }
+  /*Troca a cor da fonte do rodapé*/
+  padding: 24px 0; 
+  color: #FFFFFF;
+}
   .footer.footer-default {
     background-color: #f2f2f2; }
   .footer nav {
@@ -3661,7 +3664,7 @@ License - nucleoapp.com/license/
     .card[data-background-color="orange"] .card-header {
       background-color: #51cbce; }
     .card[data-background-color="orange"] .card-footer .stats {
-      color: #FFFFFF; }
+      color: #434343; }
   .card[data-background-color="red"] {
     background-color: #ef8157; }
   .card[data-background-color="yellow"] {
@@ -3698,7 +3701,7 @@ License - nucleoapp.com/license/
       margin-right: 5px;
       position: relative;
       top: 0px;
-      color: #66615B; }
+      color: #464646; }
     .card .card-footer .btn {
       margin: 0; }
   .card.card-plain {
@@ -3748,7 +3751,7 @@ License - nucleoapp.com/license/
 .card-chart .card-footer {
   margin-top: 15px; }
   .card-chart .card-footer .stats {
-    color: #9A9A9A; }
+    color: #545454; }
 
 .card-chart .dropdown {
   position: absolute;
@@ -3810,7 +3813,7 @@ License - nucleoapp.com/license/
 .card-stats .card-footer {
   padding: 0px 15px 15px; }
   .card-stats .card-footer .stats {
-    color: #9A9A9A; }
+    color: #5a5a5a; }
   .card-stats .card-footer hr {
     margin-top: 10px;
     margin-bottom: 15px; }
@@ -4058,6 +4061,10 @@ License - nucleoapp.com/license/
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .footer .copyright {
     text-align: right; }
+    /*Alterar a cor da fonte*/
+  .footer{
+      color: #ffffff;
+  }
   .section-nucleo-icons .icons-container {
     margin-top: 65px; }
   .navbar-nav .nav-link i.fa,
