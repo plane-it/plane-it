@@ -55,7 +55,7 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="./principalDash.html">
               <i class="nc-icon nc-layout-11"></i>
               <p>Dashboard - principal</p>
             </a>
@@ -307,7 +307,7 @@ Coded by www.creative-tim.com
                   <p class="card-category">Monitoramento 24 horas de performance.</p>
                 </div>
                 <div class="card-body ">
-                  <canvas id=chartHours width="400" height="100"></canvas>
+                  <canvas id=analiseCPU width="400" height="100"></canvas>
                 </div>
                 <div class="card-footer ">
                   <hr>
@@ -318,25 +318,46 @@ Coded by www.creative-tim.com
               </div>
             </div>
           </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Estatísticas do disco</h5>
-                <p class="card-category">Tempo médio de resposta</p>
-              </div>
-              <div class="card-body ">
-                <canvas id="chartEmail"></canvas>
-              </div>
-              <div class="card-footer ">
-                
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h5 class="card-title">Estatísticas de velocidade</h5>
+                  <p class="card-category">Velocidade em GHz</p>
+                </div>
+                <div class="card-body ">
+                  <canvas id="chartVelocidadeCpu" width="400" height="100"></canvas>
+                </div>
+                <div class="card-footer ">
+                  
+                  <hr>
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h5 class="card-title">Estatísticas de utilização</h5>
+                  <p class="card-category">Utilização da CPU</p>
+                </div>
+                <div class="card-body ">
+                  <canvas id="chartUtiCpu" width="400" height="100"></canvas>
+                </div>
+                <div class="card-footer ">
+                  
+                  <hr>
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- 
           <div class="col-md-8">
             <div class="card card-chart">
               <div class="card-header">
@@ -355,7 +376,7 @@ Coded by www.creative-tim.com
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -391,7 +412,8 @@ Coded by www.creative-tim.com
   <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../../assets/demo/demo.js"></script>
+  <!-- <script src="../../assets/demo/demo.js"></script> -->
+  <script src="../../assets/js/graficoCPU/grafCPU.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
