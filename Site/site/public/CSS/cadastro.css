@@ -21,14 +21,15 @@ body {
     margin-top: 4%;
 }
 
-.container-2 {
-    display: flex;
-    flex-direction: row;
-    gap: 10%;
-    
-   
+.container2 {
+  display: flex;
+  gap: 10%;
 }
 
+.container3 {
+  display: none;
+  gap: 10%;
+}
 
 input {
     box-sizing: border-box;
@@ -80,6 +81,12 @@ button {
     line-height: 30px;
 }
 
+.cpf{
+  background-image: url(../IMG/icon-lupa.png);
+  background-size: 18px;
+  background-position: 8px;
+}
+
 .cnpj{
     background-image: url(../IMG/icon-lupa.png);
     background-size: 18px;
@@ -98,13 +105,13 @@ button {
     background-position: 8px;
   }
 
-  .email{
+.email{
     background-image: url(../IMG/icon-email.png);
     background-size: 18px;
     background-position: 8px;
   }
 
-  .tel{
+.tel{
     background-image: url(../IMG/icon-tel.png);
     background-size: 18px;
     background-position: 8px;
@@ -163,7 +170,7 @@ button {
       height: 600px;
     }
 
-    .container-2 {
+    .container2 {
       width: 80%;
     }
 
@@ -186,7 +193,7 @@ button {
         height: 600px;
       }
   
-      .container-2 {
+      .container2 {
         width: 70%;
       }
   
@@ -210,7 +217,7 @@ button {
         height: 600px;
       }
   
-      .container-2 {
+      .container2 {
         width: 65%;
       }
   
@@ -235,7 +242,7 @@ button {
         height: 600px;
       }
   
-      .container-2 {
+      .container2 {
         width: 65%;
       }
   

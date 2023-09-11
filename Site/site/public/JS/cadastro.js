@@ -1,69 +1,108 @@
-function cadastrar() {
+var cnpj = ""
+var nomeEmpresa = ""
+var email = ""
+
+
+function proximo() {
+  var contadorErro = 0
   
-    var cnpj = iptCnpj.value
-    var nomeEmpresa = iptNomeEmpresa.value
+  nomeEmpresa = iptNomeEmpresa.value
+  cnpj = iptCnpj.value
+  email = iptEmail.value
+  
+  
+  iptNomeEmpresa.style.border = "solid 2px #000000"
+  iptCnpj.style.border = "solid 2px #000000";
+  iptEmail.style.border = "solid 2px #000000";
+  
+  if (email == "" || !email.includes("@") || !email.includes(".com")) {
+    contadorErro++
+    iptEmail.style.border = "solid 2px #ff0000"
+  }
+
+  if (nomeEmpresa == "") {
+    contadorErro++
+    iptNomeEmpresa.style.border = "solid 2px #ff0000"
+  }
+  
+  if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
+    contadorErro++
+    iptCnpj.style.border = "solid 2px #ff0000"
+  }
+  
+  if (contadorErro <= 3 && contadorErro >=1) {
+    swal("Shii..", "Cheque suas informações!", "error")
+  } else if (contadorErro == 0) {
+    swal("Muito Bem!", "Você será redirecionado ao próximo passo!", "success");
+    idcontainer2.style.display = "none"
+    idcontainer3.style.display = "flex"
+  }
+
+}
+
+
+function cadastrar() {
+
+    console.log(nomeEmpresa, email, cnpj)
+    var cnpjNew = cnpj
+    var nomeEmpresaNew = nomeEmpresa
+    var emailNew = email
+    var cpf = iptCpf.value
     var nomeGerente = iptNomeGerente.value
-    var email = iptEmail.value
     var tel = iptTel.value
     var senha = iptSenha.value
     var confirmacao = iptConfirmacao.value
-    var erro = false
     var contadorErro = 0
 
-    iptNomeEmpresa.style.border = "solid 2px #000000"
-    iptCnpj.style.border = "solid 2px #000000";
+    iptCpf.style.border = "solid 2px #000000"
     iptNomeGerente.style.border = "solid 2px #000000";
-    iptEmail.style.border = "solid 2px #000000";
     iptTel.style.border = "solid 2px #000000";
     iptSenha.style.border = "solid 2px #000000";
     iptConfirmacao.style.border = "solid 2px #000000";
 
-    if (nomeEmpresa == "") {
-      erro = true;
-      contadorErro++
-      iptNomeEmpresa.style.border = "solid 2px #ff0000"
-    }
-
-    if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
-        erro = true
-        contadorErro++
-        iptCnpj.style.border = "solid 2px #ff0000"
-    }
+    
 
     if (nomeGerente == "") {
-        erro = true
-        contadorErro++
-        iptNomeGerente.style.border = "solid 2px #ff0000"
+      contadorErro++
+      iptNomeGerente.style.border = "solid 2px #ff0000"
     }
 
-    if (email == "" || !email.includes("@") || !email.includes(".com")) {
-      erro = true
+    if (cpf == "" || cpf.length < 11 || cpf.length > 11) {
       contadorErro++
-      iptEmail.style.border = "solid 2px #ff0000"
+      iptCpf.style.border = "solid 2px #ff0000"
     }
   
-  if (tel == "" || tel.length != 11) {
-    erro = true
-    contadorErro++
-    iptTel.style.border = "solid 2px #ff0000"
-  }
-
-if (senha == "" || senha.length < 8) {
-        erro = true
-        contadorErro++
-        iptSenha.style.border = "solid 2px #ff0000"
-      }
-    
-    if (confirmacao == "" || confirmacao != senha) {
-        erro = true
-        contadorErro++
-        iptConfirmacao.style.border = "solid 2px #ff0000"
+    if (tel == "" || tel.length != 11) {
+      contadorErro++
+      iptTel.style.border = "solid 2px #ff0000"
     }
 
-    if (contadorErro <= 7 && contadorErro >= 1) {
+    if (senha == "" || senha.length < 8) {
+      contadorErro++
+      iptSenha.style.border = "solid 2px #ff0000"
+    }
+    
+    if (confirmacao == "" || confirmacao != senha) {
+      contadorErro++
+      iptConfirmacao.style.border = "solid 2px #ff0000"
+    }
+
+    if (contadorErro <= 5 && contadorErro >= 1) {
       swal("Shii..", "Cheque suas informações!", "error");
     } else if (contadorErro == 0) {
       swal("Muito Bem!", "Você será redirecionado para o Login", "success");
+      console.table({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        cpfServer: cpf,
+        cnpjServer: cnpjNew,
+        nomeServer: nomeGerente,
+        telServer: tel,
+        nomeEmpresaServer: nomeEmpresaNew,
+        emailServer: emailNew,
+        senhaServer: senha,
+        confirmacaoServer: confirmacao,
+      })
       fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
@@ -72,13 +111,14 @@ if (senha == "" || senha.length < 8) {
             body: JSON.stringify({
               // crie um atributo que recebe o valor recuperado aqui
               // Agora vá para o arquivo routes/usuario.js
-              cnpjServer: cnpj,
-              nomeServer: nomeGerente,
+              cpfServer: cpf,
+              cnpjServer: cnpjNew,
+              nomeGerenteServer: nomeGerente,
               telServer: tel,
-              nomeEmpresaServer: nomeEmpresa,
-              emailServer: email,
+              nomeEmpresaServer: nomeEmpresaNew,
+              emailServer: emailNew,
               senhaServer: senha,
-              confirmacaoServer: confirmacao,
+              confirmacaoServer: confirmacao
             })
           }).then(function (resposta) {
       

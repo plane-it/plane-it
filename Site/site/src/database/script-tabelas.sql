@@ -3,6 +3,7 @@ use planeit;
 
 create table usuario (
 id int primary key auto_increment,
+cpf char(11),
 cnpj char(14),
 nomeGerente varchar(50),
 telefone char(11),
