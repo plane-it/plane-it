@@ -50,7 +50,7 @@ button:hover{
 }
 
 /*headerbar*/
-header, header div, header nav{
+header, header nav{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -67,6 +67,9 @@ header div{
     flex-direction: row;
     padding: 10px 40px;
 }
+header div a {
+    text-decoration: none;
+}
 header nav{
     list-style: none;
 }
@@ -74,6 +77,7 @@ header nav li{
     margin: 5px 30px;
 }
 header img{
+    max-height: 50px;
     width: 50px;
     margin: 0 10px;
 }
@@ -89,7 +93,7 @@ header button{
     transition: 1s;
 }
 header button, header nav li{
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     font-weight: 200;
     color: white;
 }
