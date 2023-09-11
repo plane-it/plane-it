@@ -1,5 +1,9 @@
+drop database if exists planeit;
 create database planeit;
 use planeit;
+
+create user if not exists 'acessoProduction' identified by 'urubu100';
+grant all privileges  on planeit.* to 'acessoProduction';
 
 create table usuario (
 id int primary key auto_increment,
