@@ -2160,7 +2160,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   margin: 0 !important; }
 
 .btn-group.select.open {
-  overflow: visible; }
+  overflow: hidden; }
 
 .dropdown-menu-right {
   right: -2px;
@@ -3014,7 +3014,7 @@ License - nucleoapp.com/license/
   .off-canvas-sidebar .sidebar-wrapper {
     position: relative;
     height: calc(100vh - 75px);
-    overflow: auto;
+    overflow: hi;
     width: 260px;
     z-index: 4;
     padding-bottom: 100px; }
@@ -3779,7 +3779,7 @@ License - nucleoapp.com/license/
   position: relative; }
 
 .card-user .card-body {
-  min-height: 240px; }
+  min-height: 450px; }
 
 .card-user hr {
   margin: 5px 15px 15px; }
