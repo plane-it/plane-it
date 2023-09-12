@@ -2,27 +2,27 @@ var mysql = require("mysql2");
 var sql = require('mssql');
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
-var sqlServerConfig = {
-    server: "SEU_SERVIDOR",
-    database: "SEU_BANCO_DE_DADOS",
-    user: "SEU_USUARIO",
-    password: "SUA_SENHA",
-    pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 30000
-    },
-    options: {
-        encrypt: true, // for azure
-    }
-}
+// var sqlServerConfig = {
+//     server: "SEU_SERVIDOR",
+//     database: "SEU_BANCO_DE_DADOS",
+//     user: "SEU_USUARIO",
+//     password: "SUA_SENHA",
+//     pool: {
+//         max: 10,
+//         min: 0,
+//         idleTimeoutMillis: 30000
+//     },
+//     options: {
+//         encrypt: true, // for azure
+//     }
+// }
 
 // CONEXÃO DO MYSQL WORKBENCH
 var mySqlConfig = {
     host: "localhost",
-    database: "aquatech",
-    user: "root",
-    password: "william",
+    database: "planeit",
+    user: "acessoProduction",
+    password: "urubu100",
 };
 
 function executar(instrucao) {
@@ -46,13 +46,13 @@ function executar(instrucao) {
         return new Promise(function (resolve, reject) {
             var conexao = mysql.createConnection(mySqlConfig);
             conexao.connect();
-            conexao.query(instrucao, function (erro, resultados) {
+            conexao.query(instrucao, function (erro, resultado) {
                 conexao.end();
                 if (erro) {
                     reject(erro);
                 }
-                console.log(resultados);
-                resolve(resultados);
+                console.log(resultado);
+                resolve(resultado);
             });
             conexao.on('error', function (erro) {
                 return ("ERRO NO MySQL WORKBENCH: ", erro.sqlMessage);
@@ -69,3 +69,4 @@ function executar(instrucao) {
 module.exports = {
     executar
 }
+    
