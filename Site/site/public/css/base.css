@@ -1,0 +1,193 @@
+/*Fontes*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Oxanium:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,400;0,700;1,400&family=Oxanium:wght@400;500;600;700&display=swap');
+
+/*Padrões do site*/
+*{
+    font-family: "Be Vietnam Pro";
+    font-size: 20px;
+    cursor: default;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+}
+div, section{
+    display: flex;
+}
+h1, h2, h3, h4, h5{
+    font-family: "Oxanium";
+    margin: 0px;
+}
+h1{
+    font-weight: bold;
+    font-size: 42px;
+}
+h2{
+    font-weight: 700;
+    font-size: 38px;
+}
+h3{
+    font-weight: 500;
+    font-size: 32px;
+}
+button, a{
+    cursor: pointer;
+}
+a{
+    color: inherit;
+    transition: 500ms;
+}
+a:hover{
+    text-shadow: 0px 0px 10px #0a0e27;
+}
+button{
+    transition: 1s;
+}
+button:hover{
+    transform: scale(1.05);
+}
+
+/*headerbar*/
+header, header nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header{
+    background: rgba(0, 0, 0, 0.70);
+    justify-content: stretch;
+    color: white;
+    position: fixed;
+    width: 100%;
+}
+header div{
+    flex-direction: row;
+    padding: 10px 40px;
+}
+header div a {
+    text-decoration: none;
+}
+header nav{
+    list-style: none;
+}
+header nav li{
+    margin: 5px 30px;
+}
+header img{
+    max-height: 50px;
+    width: 50px;
+    margin: 0 10px;
+}
+header h1{
+    letter-spacing: 5px;
+}
+header button{
+    border-radius: 5px;
+    background: #3A7D44;
+    border: none;
+    width: 110px;
+    height: 35px;
+    transition: 1s;
+}
+header button, header nav li{
+    letter-spacing: 2px;
+    font-weight: 200;
+    color: white;
+}
+@media only screen and (max-width: 1315px) {
+    header{
+        position: initial;
+        background: #141414;
+    }
+    header div{
+        justify-content: center;
+    }
+    header nav{
+        justify-content: center;
+    }
+}
+@media only screen and (max-width: 768px) {
+    header nav{
+        flex-direction: column;
+        margin: 0px;
+    }
+}
+
+/*Rodapé*/
+footer{
+    background: #3A7D44;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    letter-spacing: 2px;
+}
+footer div{
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+footer div div{
+    display: inherit;
+    flex-direction: row;
+}
+footer div:first-child{
+    align-items: start;
+}
+footer div:first-child div{
+    align-items: center;
+}
+footer div:first-child div h1{
+    letter-spacing: 3px;
+    margin: 0 10px;
+}
+footer div:first-child p{
+    font-size: 16px;
+}
+footer button{
+    background: none;
+    height: fit-content;
+    border: none;
+}
+footer button img{
+    cursor: pointer;
+}
+footer div:last-child div{
+    width: 75%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+footer div:last-child a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+footer div:last-child a img{
+    margin: 20px 10px;
+}
+
+/*Mobile*/
+[class*="col-"] {
+    width: 100%;
+    padding: 10px;
+}  
+/*Outros*/
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}

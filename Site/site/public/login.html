@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="voltar">
+            <a href="index.html"><img src="./IMG/icon-voltar.png" ></a>
+        </div>
+        
+        <div class="container-2">
+            <div class="foto">
+                <img src="./IMG/logo-login.png" >
+            </div>  
+            
+            <div class="form">
+                <h1>LOGIN</h1>
+                
+                <input type="text" id="iptCpf" class="cpf" placeholder="CPF">
+                <!-- <span id="spanCnpj">Informe corretamente seu CNPJ!</span> -->
+                
+                <input type="password" id="iptSenha" class="senha" placeholder="Senha">
+                <!-- <span id="spanSenha">Insira corretamente sua senha!</span> -->
+
+                <a href=""> <p class="esqueceu">Esqueceu a Senha?</p> </a>
+
+                <button onclick="entrar()">ENTRAR</button>
+                <p class="nao-possui">Não tem uma conta? <a href="Cadastro.html">Junte-se a nós!</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="JS/login.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

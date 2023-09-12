@@ -1,0 +1,37 @@
+body {
+    background-color: #181D27;
+}
+#sobre-servico {
+    padding-top: 100px;
+}
+#texto-imagem {
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+    margin: 8.33%;
+}
+#texto-imagem .div-txt{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 70%;
+}
+#texto-imagem .div-img{
+    width: 30%;
+}
+#fundo-botao {
+    align-items: center;
+    background-image: url('../assets/fundo-servidor.png');
+    height: 242px;
+    padding-left: 10vw;
+    backdrop-filter: blur(2px);
+}
+#fundo-botao button{
+    background-color: #3a7d44;
+    height: 60px;
+    width: 400px;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 5px;
+    border: none;
+}
