@@ -44,7 +44,7 @@ function entrar() {
             if (respostas.ok) {
       
               setTimeout(() => {
-                window.location = "./cadastro.html";
+                window.location = "./dashboardPlaneit/examples/adm/principalDashAdm.html";
               }, "1000")
       
             } else {
