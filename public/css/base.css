@@ -83,6 +83,7 @@ header img{
 }
 header h1{
     letter-spacing: 5px;
+    cursor: pointer;
 }
 header button{
     border-radius: 5px;

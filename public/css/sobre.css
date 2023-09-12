@@ -1,24 +1,35 @@
 body {
     background-color: #181D27;
 }
-#sobre-servico {
-    padding-top: 100px;
-}
-#texto-imagem {
-    display: flex;
-    flex-wrap: wrap;
-    color: #fff;
-    margin: 8.33%;
-}
-#texto-imagem .div-txt{
+
+#sobre-servico{
     display: flex;
     flex-direction: column;
-    text-align: justify;
-    width: 70%;
+    justify-content: center;
+    color: white;
+    margin-top: 90px;
+    padding: 0px;
 }
-#texto-imagem .div-img{
-    width: 30%;
+#sobre-servico span{
+    display: inherit;
+    flex-direction: row;
+    justify-content: center;
+    height: fit-content;
+    align-items: center;
+    transition: 1s;
+    padding: 10px 0;
 }
+#sobre-servico span:hover{
+    background-color: #15181e;
+}
+#sobre-servico span div{
+    display: inherit;
+    flex-direction: column;
+}
+#sobre-servico span img{
+    height: 200px;
+}
+
 #fundo-botao {
     align-items: center;
     background-image: url('../assets/fundo-servidor.png');
@@ -26,12 +37,14 @@ body {
     padding-left: 10vw;
     backdrop-filter: blur(2px);
 }
-#fundo-botao button{
+
+#fundo-botao button {
     background-color: #3a7d44;
-    height: 60px;
-    width: 400px;
-    color: #fff;
-    font-size: 30px;
+    color: white;
     border-radius: 5px;
     border: none;
+    letter-spacing: 4px;
+    font-weight: 700;
+    padding: 10px 30px;
+    margin: 0 10px;
 }
