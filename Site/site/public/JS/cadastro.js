@@ -1,25 +1,14 @@
-var cnpj = ""
-var nomeEmpresa = ""
-var email = ""
 
 
 function proximo() {
   var contadorErro = 0
-  
-  nomeEmpresa = iptNomeEmpresa.value
-  cnpj = iptCnpj.value
-  email = iptEmail.value
-  
+  var cnpj = iptCnpj.value
+  var nomeEmpresa = iptNomeEmpresa.value
   
   iptNomeEmpresa.style.border = "solid 2px #000000"
   iptCnpj.style.border = "solid 2px #000000";
-  iptEmail.style.border = "solid 2px #000000";
   
-  if (email == "" || !email.includes("@") || !email.includes(".com")) {
-    contadorErro++
-    iptEmail.style.border = "solid 2px #ff0000"
-  }
-
+  
   if (nomeEmpresa == "") {
     contadorErro++
     iptNomeEmpresa.style.border = "solid 2px #ff0000"
@@ -30,37 +19,69 @@ function proximo() {
     iptCnpj.style.border = "solid 2px #ff0000"
   }
   
-  if (contadorErro <= 3 && contadorErro >=1) {
+  if (contadorErro <= 2 && contadorErro >=1) {
     swal("Shii..", "Cheque suas informações!", "error")
   } else if (contadorErro == 0) {
     swal("Muito Bem!", "Você será redirecionado ao próximo passo!", "success");
-    idcontainer2.style.display = "none"
-    idcontainer3.style.display = "flex"
-  }
+    
+    fetch("/usuarios/proximo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        cnpjServer: cnpj,
+        nomeEmpresaServer: nomeEmpresa
+      })
+    }).then(function (resposta) {
 
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        setTimeout(() => {
+          idcontainer2.style.display = "none"
+          idcontainer3.style.display = "flex"
+        }, "1000")
+        
+      } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+    
+    return false;
+    
+  }
+  
 }
+  
+
+
 
 
 function cadastrar() {
-
-    console.log(nomeEmpresa, email, cnpj)
-    var cnpjNew = cnpj
-    var nomeEmpresaNew = nomeEmpresa
-    var emailNew = email
+  
     var cpf = iptCpf.value
     var nomeGerente = iptNomeGerente.value
-    var tel = iptTel.value
+    var email = iptEmail.value
     var senha = iptSenha.value
     var confirmacao = iptConfirmacao.value
     var contadorErro = 0
 
     iptCpf.style.border = "solid 2px #000000"
     iptNomeGerente.style.border = "solid 2px #000000";
-    iptTel.style.border = "solid 2px #000000";
     iptSenha.style.border = "solid 2px #000000";
     iptConfirmacao.style.border = "solid 2px #000000";
-
+    iptEmail.style.border = "solid 2px #000000";
     
+  
+    if (email == "" || !email.includes("@") || !email.includes(".com")) {
+      contadorErro++
+      iptEmail.style.border = "solid 2px #ff0000"
+    }
 
     if (nomeGerente == "") {
       contadorErro++
@@ -72,12 +93,7 @@ function cadastrar() {
       iptCpf.style.border = "solid 2px #ff0000"
     }
   
-    if (tel == "" || tel.length != 11) {
-      contadorErro++
-      iptTel.style.border = "solid 2px #ff0000"
-    }
-
-    if (senha == "" || senha.length < 8) {
+    if (senha == "" || senha.length < 8 || senha.length > 15) {
       contadorErro++
       iptSenha.style.border = "solid 2px #ff0000"
     }
@@ -88,21 +104,10 @@ function cadastrar() {
     }
 
     if (contadorErro <= 5 && contadorErro >= 1) {
-      swal("Shii..", "Cheque suas informações!", "error");
+      swal("Ops..", "Cheque suas informações!", "error");
     } else if (contadorErro == 0) {
       swal("Muito Bem!", "Você será redirecionado para o Login", "success");
-      console.table({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        cpfServer: cpf,
-        cnpjServer: cnpjNew,
-        nomeServer: nomeGerente,
-        telServer: tel,
-        nomeEmpresaServer: nomeEmpresaNew,
-        emailServer: emailNew,
-        senhaServer: senha,
-        confirmacaoServer: confirmacao,
-      })
+
       fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
@@ -112,13 +117,9 @@ function cadastrar() {
               // crie um atributo que recebe o valor recuperado aqui
               // Agora vá para o arquivo routes/usuario.js
               cpfServer: cpf,
-              cnpjServer: cnpjNew,
               nomeGerenteServer: nomeGerente,
-              telServer: tel,
-              nomeEmpresaServer: nomeEmpresaNew,
-              emailServer: emailNew,
+              emailServer: email,
               senhaServer: senha,
-              confirmacaoServer: confirmacao
             })
           }).then(function (resposta) {
       

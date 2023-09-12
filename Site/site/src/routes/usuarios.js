@@ -20,4 +20,8 @@ router.post("/entrar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.post("/proximo", function (req, res) {
+    usuarioController.proximo(req, res);
+});
+
 module.exports = router;

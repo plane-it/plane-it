@@ -9,6 +9,7 @@ create table tbEmpresa(
     razaoSocial varchar(50) not null,
     corDestaque char(6)
 );
+select * from tbEmpresa;
 
 create table tbColaborador(
 	idColab int primary key auto_increment,

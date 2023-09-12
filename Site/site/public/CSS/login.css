@@ -90,11 +90,11 @@ button {
     
 }
 
-.cnpj{
-    background-image: url(../IMG/icon-lupa.png);
-    background-size: 18px;
-    background-position: 8px;
-  }
+.cpf{
+  background-image: url(../IMG/icon-lupa.png);
+  background-size: 18px;
+  background-position: 8px;
+}
 
 
 .senha{

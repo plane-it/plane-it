@@ -1,23 +1,20 @@
 function entrar() {
-    var cnpj = iptCnpj.value
+    var cpf = iptCpf.value
     var senha = iptSenha.value
     var contadorErro = 0
-    var erro = false
 
-    iptCnpj.style.border = "solid 2px #000000";
+    iptCpf.style.border = "solid 2px #000000";
     iptSenha.style.border = "solid 2px #000000";
 
-    if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
-        erro = true
-        iptCnpj.style.border = "solid 2px #ff0000"
+    if (cpf == "" || cpf.length > 11 || cpf.length <= 10) {
+        iptCpf.style.border = "solid 2px #ff0000"
         contadorErro++
-        // spanCnpj.style.display = "block"
+        // spancpf.style.display = "block"
     } else {
-        // spanCnpj.style.display = "none"
+        // spancpf.style.display = "none"
     }
 
     if (senha == "" || senha.length < 8) {
-        erro = true
         contadorErro++
         iptSenha.style.border = "solid 2px #ff0000"
         // spanSenha.style.display = "block"
@@ -26,7 +23,7 @@ function entrar() {
     }
 
     if (contadorErro == 2 || contadorErro == 1) {
-      swal("Shii..", "Cheque suas informações!", "error");
+      swal("Ops..", "Cheque suas informações!", "error");
     } else if (contadorErro == 0) {
       swal("Muito Bem!", "Seja Bem-Vindo!", "success");
         fetch("/usuarios/entrar", {
@@ -37,7 +34,7 @@ function entrar() {
             body: JSON.stringify({
               // crie um atributo que recebe o valor recuperado aqui
               // Agora vá para o arquivo routes/usuario.js
-              cnpjServer: cnpj,
+              cpfServer: cpf,
               senhaServer: senha,
             })
           }).then(function (respostas) {

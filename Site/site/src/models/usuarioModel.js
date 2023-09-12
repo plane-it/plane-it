@@ -9,30 +9,41 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function entrar(cnpj, senha) {
+function entrar(cpf, senha) {
    
     var instrucao = `
-        SELECT * FROM usuario WHERE cnpj = '${cnpj}' AND senha = '${senha}';
+        SELECT * FROM usuario WHERE cpf = '${cpf}' AND senha = '${senha}';
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function proximo(cnpj, nomeEmpresa) {
+   
+    var instrucao = `
+        INSERT INTO tbEmpresa (cnpj, nomeEmpresa, razaoSocial) VALUES ('${cnpj}', '${nomeEmpresa}', 'Amor');
+    `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(cpf, cnpj, nomeGerente, tel, nomeEmpresa, email,  senha, confirmacao) {
+function cadastrar(cpf, nomeGerente, email,  senha) {
    
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
+    
     var instrucao = `
-        INSERT INTO usuario (cpf, cnpj, nomeGerente, telefone, nomeEmpresa, emailEmpresa, senha, confirmacao) VALUES ('${cpf}', '${cnpj}', '${nomeGerente}', '${tel}', '${nomeEmpresa}', '${email}', '${senha}', '${confirmacao}');
+        INSERT INTO tbColaborador (cpf, nome, email, senha, fkEmpr) VALUES ('${cpf}', '${nomeGerente}', '${email}', '${senha}', '1');
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
+    console.log("Executando a instrução SQL: \n" + instrucao );
     return database.executar(instrucao);
 }
 
 module.exports = {
     entrar,
+    proximo,
     cadastrar,
     listar,
 };
