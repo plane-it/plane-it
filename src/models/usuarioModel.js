@@ -12,7 +12,7 @@ function listar() {
 function entrar(cpf, senha) {
    
     var instrucao = `
-        SELECT * FROM usuario WHERE cpf = '${cpf}' AND senha = '${senha}';
+        SELECT * FROM tbColaborador WHERE cpf = '${cpf}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
