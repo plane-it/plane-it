@@ -1,24 +1,10 @@
-<!--
-=========================================================
-* Paper Dashboard 2 - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/planeIt/logo.png">
-  <link rel="icon" type="image/png" href="../../assets/img/planeIt/logo.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/planeIt/logo.png">
+  <link rel="icon" type="image/png" href="../assets/img/planeIt/logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Lista de dados gerais
@@ -29,9 +15,9 @@ Coded by www.creative-tim.com
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../assets/css/tabela.css">
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/dashboardPlane.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/tabela.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
@@ -42,7 +28,7 @@ Coded by www.creative-tim.com
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../../assets/img/planeIt/logo.png">
+            <img src="../assets/img/planeIt/logo.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
@@ -56,31 +42,48 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./sininho.html">
-              <i class="nc-icon nc-bell-55"></i>
-              <p>Notificação</p>
+            <a href="./principalDashAdm.html">
+              <i class="nc-icon nc-layout-11"></i>
+              <p>Dashboard - principal</p>
             </a>
           </li>
           <li>
-            <a href="./user2.html">
+            <a href="./addUser.html">
               <i class="nc-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
-                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                  <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
                 </svg>
               </i>
-              <p>Perfil Adm</p>
+              <p>Adicionar usuários</p>
             </a>
           </li>
           <li>
-            <a href="../adm/principalDashAdm.html">
-              <i class="nc-icon nc-layout-11"></i>
-              <p>Dashboard - geral</p>
+            <a href="./addComponente.html">
+              <i class="nc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+              </i>
+              <p>Add componentes</p>
             </a>
           </li>
-          <li class="active">
-            <a href="./tables.html">
+         
+          <li class="active ">
+            <a href="./servidores.html">
               <i class="nc-icon nc-tile-56"></i>
               <p>Lista geral</p>
+            </a>
+          </li>
+          <li>
+            <a href="../inicioAdm/user2.html">
+              <i class="nc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+              </i>
+              <p>Voltar</p>
             </a>
           </li>
         </ul>
@@ -135,7 +138,7 @@ Coded by www.creative-tim.com
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Notificação</a>
+                  <a class="dropdown-item" href="../inicioAdm/sininho.html">Notificação</a>
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
                   <a class="dropdown-item" href="#">Comunicação - Slack</a>
                 </div>
@@ -158,7 +161,7 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Lista de servidores</h4>
+                <h4 class="card-title"> Lista de coloboradores</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -170,7 +173,7 @@ Coded by www.creative-tim.com
                     <tbody>
                       <tr>
                         <th>
-                          Servidor
+                          Nome completo
                         </th>
                         <th>
                           Código
@@ -180,7 +183,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          <a href="../nossa/principalDash.html">Aeroporto Guarulhos</a>
+                          Claudio Frizzarini
                         </td>
                         <td>
                           567JMH
@@ -189,7 +192,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          João Pedro de Souza
                         </td>
                         <td>
                           1AZ012
@@ -198,7 +201,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Ana Luiza dos Santos
                         </td>
                         <td>
                           GJHU46
@@ -207,7 +210,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Miguel Rafael Carvalho
                         </td>
                         <td>
                           OKL579
@@ -216,7 +219,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Sofia Beatriz Gomes
                         </td>
                         <td>
                           45LP6I
@@ -225,7 +228,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Matheus Guilherme Pereira
                         </td>
                         <td>
                           5FGF78
@@ -233,7 +236,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Alice Helena Lima
                         </td>
                         <td>
                           JIKO45
@@ -241,7 +244,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto Guarulhos
+                          Gabriel Eduardo Barbosa
                         </td>
                         <td>
                           75lPON
@@ -249,7 +252,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Rafaela Maria Oliveira
                         </td>
                         <td>
                           JTOIj9
@@ -257,7 +260,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Laura Isabella Souza
                         </td>
                         <td>
                           SDVKJ7
@@ -265,7 +268,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Pedro Henrique Fernandes
                         </td>
                         <td>
                           654UGI
@@ -273,7 +276,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Bernardo Augusto Rodrigues
                         </td>
                         <td>
                           89HIM6
@@ -281,7 +284,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Luiza Gabriela Lima
                         </td>
                         <td>
                           125OIJ
@@ -289,7 +292,7 @@ Coded by www.creative-tim.com
                       </tr>
                       <tr>
                         <td>
-                          Aeroporto de congonhas
+                          Heitor Lucas Silva
                         </td>
                         <td>
                           DJDO13
@@ -301,8 +304,64 @@ Coded by www.creative-tim.com
               </div>
             </div>
           </div>
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Lista componentes</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
 
+
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>
+                          Nome componente
+                        </th>
+                        <th>
+                          Código
+                        </th>
+
+
+                      </tr>
+                      <tr>
+                        <td>
+                          Disco
+                        </td>
+                        <td>
+                          SDF456
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>
+                           Memória RAM
+                        </td>
+                        <td>
+                          KJP45D
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>
+                          CPU
+                        </td>
+                        <td>
+                          JHFSD5
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
         <footer class="footer footer-black  footer-white ">
           <div class="container-fluid">
             <div class="row">
