@@ -14,17 +14,15 @@ function proximo() {
     iptNomeEmpresa.style.border = "solid 2px #ff0000"
   }
   
-  if (cnpj == "" || cnpj.length > 14 || cnpj.length < 13) {
+  if (cnpj == "" || cnpj.length != 14) {
     contadorErro++
     iptCnpj.style.border = "solid 2px #ff0000"
   }
   
-  if (contadorErro <= 2 && contadorErro >=1) {
+  if (contadorErro > 0) {
     swal("Shii..", "Cheque suas informações!", "error")
-  } else if (contadorErro == 0) {
-    swal("Muito Bem!", "Você será redirecionado ao próximo passo!", "success");
-    
-    fetch("/usuarios/proximo", {
+  } else {
+    fetch("/empresa/existe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -36,9 +34,8 @@ function proximo() {
         nomeEmpresaServer: nomeEmpresa
       })
     }).then(function (resposta) {
-
-      console.log("resposta: ", resposta);
-
+      swal("Muito Bem!", "Você será redirecionado ao próximo passo!", "success");
+      console.log(resposta)
       if (resposta.ok) {
         setTimeout(() => {
           idcontainer2.style.display = "none"
@@ -51,9 +48,6 @@ function proximo() {
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
     });
-    
-    return false;
-    
   }
   
 }
@@ -63,7 +57,8 @@ function proximo() {
 
 
 function cadastrar() {
-  
+    const nomeEmpresa = iptNomeEmpresa.value
+    const cnpj = iptCnpj.value 
     var cpf = iptCpf.value
     var nomeGerente = iptNomeGerente.value
     var email = iptEmail.value
@@ -103,42 +98,37 @@ function cadastrar() {
       iptConfirmacao.style.border = "solid 2px #ff0000"
     }
 
-    if (contadorErro <= 5 && contadorErro >= 1) {
+    if (contadorErro > 0) {
       swal("Ops..", "Cheque suas informações!", "error");
-    } else if (contadorErro == 0) {
-      swal("Muito Bem!", "Você será redirecionado para o Login", "success");
-
-      fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              cpfServer: cpf,
-              nomeGerenteServer: nomeGerente,
-              emailServer: email,
-              senhaServer: senha,
-            })
-          }).then(function (resposta) {
+    } else {
       
-            console.log("resposta: ", resposta);
-      
-            if (resposta.ok) {
-      
-              setTimeout(() => {
-                window.location = "./login.html";
-              }, "1000")
-              
-            } else {
-              throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-          }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-          });
-          
-          return false;
-          
-        }
+      fetch("/empresa/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            "cnpj": cnpj,
+            "nomeEmpresa": nomeEmpresa,
+            "cpf": cpf,
+            "nomeFuncionario": nomeGerente,
+            "email": email,
+            "senha": senha
+          })
+        }).then(function (resposta) {
+          swal("Muito Bem!", "Você será redirecionado para o Login", "success");
+    
+          if (resposta.ok) {
+    
+            setTimeout(() => {
+              window.location = "./login.html";
+            }, "1000")
+            
+          } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+          }
+        }).catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+    }
 }
