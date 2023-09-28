@@ -28,16 +28,11 @@ function proximo(cnpj, nomeEmpresa) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(cpf, nomeGerente, email,  senha) {
-   
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    
-    var instrucao = `
-        INSERT INTO tbColaborador (cpf, nome, email, senha, fkEmpr) VALUES ('${cpf}', '${nomeGerente}', '${email}', '${senha}', '1');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao );
+function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
+  
+    const instrucao = `
+        INSERT INTO tbColaborador (cpf, nome, email, senha, fkEmpr) VALUES ('${cpf}', '${nomeGerente}', '${email}', '${senha}', ${idEmpresa});
+    `
     return database.executar(instrucao);
 }
 
