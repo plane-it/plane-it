@@ -17,46 +17,33 @@ function entrar() {
     if (senha == "" || senha.length < 8) {
         contadorErro++
         iptSenha.style.border = "solid 2px #ff0000"
-        // spanSenha.style.display = "block"
-    } else {
-        // spanSenha.style.display = "none"
     }
-
-    if (contadorErro == 2 || contadorErro == 1) {
+    
+    if (contadorErro > 0) {
       swal("Ops..", "Cheque suas informações!", "error");
-    } else if (contadorErro == 0) {
-      swal("Muito Bem!", "Seja Bem-Vindo!", "success");
+    } else {
         fetch("/usuarios/entrar", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              // crie um atributo que recebe o valor recuperado aqui
-              // Agora vá para o arquivo routes/usuario.js
-              cpfServer: cpf,
-              senhaServer: senha,
+              cpf: cpf,
+              senha: senha,
             })
-          }).then(function (respostas) {
-      
-            console.log("respostas: ", respostas);
-      
-            if (respostas.ok) {
-      
-              setTimeout(() => {
-                window.location = "./dashboardPlaneit/examples/adm/principalDashAdm.html";
-              }, "1000")
-      
-            } else {
-              alert ("Houve um erro ao tentar realizar o login!");
+          }).then(res => res.json())
+          .then((res) => {
+           if (res.error) {
+              swal("ERRO",res.error, "error")
+           }
+           else{
+                swal("Muito Bem!", "Seja Bem-Vindo!", "success");
+                setTimeout(() => {
+                      window.location = "./dashboard/screens/dashGeral.html";
+                }, "1000")
             }
-          }).catch(function (respostas) {
-            console.log(`#ERRO: ${respostas}`);
+          }).catch(function (res) {
+              swal("ERRO",res.error, "error")
           });
-      
-          return false;
-      
         }
-
-
 }

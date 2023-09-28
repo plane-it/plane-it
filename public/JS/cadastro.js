@@ -1,6 +1,6 @@
 
 
-function proximo() {
+async function proximo() {
   var contadorErro = 0
   var cnpj = iptCnpj.value
   var nomeEmpresa = iptNomeEmpresa.value
@@ -28,25 +28,22 @@ function proximo() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        cnpjServer: cnpj,
-        nomeEmpresaServer: nomeEmpresa
+        cnpj: cnpj,
       })
-    }).then(function (resposta) {
-      swal("Muito Bem!", "Você será redirecionado ao próximo passo!", "success");
-      console.log(resposta)
-      if (resposta.ok) {
+    }).then((res) => res.json())
+    .then((res) => {
+      if(res.error != null){
+        swal("ERRO",res.error, "error")
+      }
+      else{
+        swal("Muito Bem!", "Você será redirecionado para o Login", "success");
         setTimeout(() => {
           idcontainer2.style.display = "none"
           idcontainer3.style.display = "flex"
         }, "1000")
-        
-      } else {
-        throw ("Houve um erro ao tentar realizar o cadastro!");
       }
     }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
+      swal("ERRO",res.error, "error")
     });
   }
   
@@ -115,20 +112,20 @@ function cadastrar() {
             "email": email,
             "senha": senha
           })
-        }).then(function (resposta) {
-          swal("Muito Bem!", "Você será redirecionado para o Login", "success");
-    
-          if (resposta.ok) {
-    
+        }).then((res) => res.json())
+        .then((res) => {
+          if(res.error){
+            swal("ERRO", res.error, "error");
+          }
+          else{
+            swal("Muito Bem!", "Você será redirecionado para o Login", "success");
             setTimeout(() => {
               window.location = "./login.html";
             }, "1000")
-            
-          } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
+         
           }
         }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+          swal("ERRO",resposta.error, "error")
         });
     }
 }
