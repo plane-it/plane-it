@@ -1,0 +1,21 @@
+.alert.alert-flex-col{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+.alert.alert-flex-col *{
+    margin: 0;
+}
+.card-metric{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    background: #3A7D44;
+}
+.card-metric > *{
+    margin: 0;
+}
