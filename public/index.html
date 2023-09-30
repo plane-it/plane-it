@@ -174,7 +174,8 @@
             </div>
         </div> <!-- end about-desc -->
 
-        <div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up" style="display: none;">
+        <div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up"
+            style="display: none;">
 
             <div class="col-block stats__col ">
                 <div class="stats__count">127</div>
@@ -219,7 +220,8 @@
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Brand Identity</h3>
-                    <p>Uma abrangente plataforma de monitoramento com visão detalhada do desempenho dos seus servidores.</p>
+                    <p>Uma abrangente plataforma de monitoramento com visão detalhada do desempenho dos seus servidores.
+                    </p>
                     <p>Com interfaces intuitivas e dados precisos ao seu alcance.</p>
                     <p>Fortaleça sua infraestrutura, otimize recursos, previna interrupções e garanta continuidade.</p>
                 </div>
@@ -583,7 +585,7 @@
                                 cols="50" required="" aria-required="true" class="full-width"></textarea>
                         </div>
                         <div class="form-field">
-                            <button class="full-width btn--primary">Enviar</button>
+                            <button onclick="contato()" class="full-width btn--primary">Enviar</button>
                             <div class="submit-loader">
                                 <div class="text-loader">Enviando...</div>
                                 <div class="s-loader">
@@ -673,7 +675,9 @@
             <div class="col-six tab-full left footer-desc">
 
                 <div class="footer-logo"></div>
-                Aqui na Plane It, oferecemos uma solução de monitoramento de hardware de servidores para empresas de aeroportos. Nosso serviço permite que você acompanhe o desempenho e a saúde de seus servidores em tempo real, evitando interrupções e perda de dados.
+                Aqui na Plane It, oferecemos uma solução de monitoramento de hardware de servidores para empresas de
+                aeroportos. Nosso serviço permite que você acompanhe o desempenho e a saúde de seus servidores em tempo
+                real, evitando interrupções e perda de dados.
 
             </div>
 
@@ -781,3 +785,54 @@
 </body>
 
 </html>
+<script>
+
+    // function limpar() {
+
+    //     contactName.value = '';
+    //     contactEmail.value = '';
+    //     contactSubject.value = '';
+    //     // inputTelefone.value;
+    //     contactMessage.value = '';
+    //     mensagem.value = '';
+
+    // }
+
+    function contato() {
+        var nome = contactName.value
+        var email = contactEmail.value;
+        var assunto = contactSubject.value;
+        // var telefone = inputTelefone.value;
+        var mensagem = contactMessage.value;
+
+        fetch("/contato/enviar", {
+            method: "POST",
+            headers: {
+                "Content-type": 'application/json'
+            },
+            body: JSON.stringify({
+                nome,
+                email,
+                assunto,
+                // telefone,
+                mensagem
+            })
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(res => {
+                        
+                        alert("Mensagem enviada com sucesso")
+
+                        contactName.value = '';
+                        contactEmail.value = '';
+                        contactSubject.value = '';
+                        // inputTelefone.value;
+                        contactMessage.value = '';
+
+                    })
+                }
+            })
+    }
+
+</script>
