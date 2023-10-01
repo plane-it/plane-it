@@ -46,18 +46,24 @@ Copyright (c) 2015 Daniel Eden
 
 @-webkit-keyframes shake {
   from, to {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0); }
   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0); } }
 
 @keyframes shake {
   from, to {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0); }
   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0); } }
 
 .shake {
@@ -67,17 +73,21 @@ Copyright (c) 2015 Daniel Eden
 @-webkit-keyframes fadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0); }
   to {
     opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0); }
   to {
     opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 
 .fadeInDown {
@@ -105,6 +115,7 @@ Copyright (c) 2015 Daniel Eden
     opacity: 1; }
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0); } }
 
 @keyframes fadeOutDown {
@@ -112,6 +123,7 @@ Copyright (c) 2015 Daniel Eden
     opacity: 1; }
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0); } }
 
 .fadeOutDown {
@@ -123,6 +135,7 @@ Copyright (c) 2015 Daniel Eden
     opacity: 1; }
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0); } }
 
 @keyframes fadeOutUp {
@@ -130,6 +143,7 @@ Copyright (c) 2015 Daniel Eden
     opacity: 1; }
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0); } }
 
 .fadeOutUp {
@@ -251,8 +265,12 @@ Copyright (c) 2015 Daniel Eden
   border-radius: 3px;
   padding: 11px 22px;
   cursor: pointer;
-  background-color: #0a0a9a;
+  background-color: #66615B;
   color: #FFFFFF;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
   transition: all 150ms linear; }
   .btn:hover, .btn:focus, .btn:active, .btn.active, .btn:active:focus, .btn:active:hover, .btn.active:focus, .btn.active:hover,
   .show > .btn.dropdown-toggle,
@@ -272,7 +290,7 @@ Copyright (c) 2015 Daniel Eden
   .navbar .navbar-nav > a.btn.dropdown-toggle:focus,
   .show >
   .navbar .navbar-nav > a.btn.dropdown-toggle:hover {
-    background-color: #ee8e10 !important;
+    background-color: #403D39 !important;
     color: #FFFFFF !important;
     box-shadow: none !important; }
   .btn:not([data-action]):hover,
@@ -353,6 +371,7 @@ Copyright (c) 2015 Daniel Eden
   .navbar .navbar-nav > a.btn.active,
   .open >
   .navbar .navbar-nav > a.btn.dropdown-toggle {
+    -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important; }
   .btn .badge,
@@ -988,10 +1007,16 @@ fieldset[disabled]
   line-height: normal;
   height: auto;
   font-size: 14px;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -webkit-box-shadow: none;
   box-shadow: none; }
   .form-control:focus {
     border: 1px solid #9A9A9A;
+    -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
     color: #66615B; }
@@ -1006,6 +1031,7 @@ fieldset[disabled]
   .has-error .form-control,
   .has-success .form-control:focus,
   .has-error .form-control:focus {
+    -webkit-box-shadow: none;
     box-shadow: none; }
   .has-success .form-control {
     border: 1px solid #ccc;
@@ -1207,6 +1233,10 @@ fieldset[disabled]
   color: #66615B;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -ms-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out; }
   .input-group-append .input-group-text i,
   .input-group-prepend .input-group-text i {
@@ -1430,15 +1460,14 @@ p.description {
 .card-description,
 .footer-big p,
 .card .footer .stats {
-  color: #ffffff;
+  color: #9A9A9A;
   font-weight: 300; }
 
 .category,
 .card-category {
   text-transform: capitalize;
   font-weight: 400;
-  /*Muda a legenda da pág notificações*/
-  color: #000000;
+  color: #9A9A9A;
   font-size: 0.7142em; }
 
 .card-category {
@@ -1495,7 +1524,7 @@ a.text-gray:focus, a.text-gray:hover {
       color: rgba(255, 255, 255, 0.8); }
 
 body {
-  color: #000000;/*Muda as cores do rodapé*/
+  color: #2c2c2c;
   font-size: 14px;
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -1527,11 +1556,19 @@ body {
 .sidebar .logo a.logo-normal,
 .off-canvas-sidebar .logo a.logo-mini,
 .off-canvas-sidebar .logo a.logo-normal {
+  -webkit-transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
   transition: all 300ms ease 0s; }
 
 .dropdown-toggle:after,
 .bootstrap-switch-label:before,
 .caret {
+  -webkit-transition: all 150ms ease 0s;
+  -moz-transition: all 150ms ease 0s;
+  -o-transition: all 150ms ease 0s;
+  -ms-transition: all 150ms ease 0s;
   transition: all 150ms ease 0s; }
 
 .dropdown-toggle[aria-expanded="true"]:after,
@@ -1539,6 +1576,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .card-collapse .card a[data-toggle="collapse"][aria-expanded="true"] i,
 .card-collapse .card a[data-toggle="collapse"].expanded i {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg); }
 
 .button-bar {
@@ -1666,6 +1705,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     border-radius: 6px;
     top: 0;
     background-color: #AAA7A4;
+    -webkit-transition: opacity 0.3s linear;
+    -moz-transition: opacity 0.3s linear;
+    -o-transition: opacity 0.3s linear;
+    -ms-transition: opacity 0.3s linear;
     transition: opacity 0.3s linear; }
   .form-check .form-check-sign::after {
     font-family: 'FontAwesome';
@@ -1726,6 +1769,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .form-check-radio input[type="radio"] + .form-check-sign:after,
 .form-check-radio input[type="radio"] {
   opacity: 0;
+  -webkit-transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  -ms-transition: opacity 0.3s linear;
   transition: opacity 0.3s linear;
   content: " ";
   display: block; }
@@ -1974,6 +2021,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     top: 50%;
     left: 50%;
     z-index: 2;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
     color: #FFFFFF;
@@ -2014,8 +2063,11 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   .page-header[filter-color="orange"] {
     background: rgba(44, 44, 44, 0.2);
     /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
     /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
     /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
     /* Standard syntax */ }
@@ -2029,14 +2081,23 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .dropup .dropdown-menu {
   opacity: 0;
   filter: alpha(opacity=0);
+  -webkit-box-shadow: 1px 2px 7px 1px rgba(0, 0, 0, 0.125);
   box-shadow: 1px 2px 7px 1px rgba(0, 0, 0, 0.125);
   visibility: hidden;
   position: absolute; }
   .dropdown .dropdown-menu[x-placement="top-start"],
   .dropup .dropdown-menu[x-placement="top-start"] {
+    -webkit-transform: translate3d(-20px, 0px, 0) !important;
+    -moz-transform: translate3d(-20px, 0px, 0) !important;
+    -o-transform: translate3d(-20px, 0px, 0) !important;
+    -ms-transform: translate3d(-20px, 0px, 0) !important;
     transform: translate3d(-20px, 0px, 0) !important; }
   .dropdown .dropdown-menu[x-placement="bottom-start"],
   .dropup .dropdown-menu[x-placement="bottom-start"] {
+    -webkit-transform: translate3d(-20px, 0px, 0) !important;
+    -moz-transform: translate3d(-20px, 0px, 0) !important;
+    -o-transform: translate3d(-20px, 0px, 0) !important;
+    -ms-transform: translate3d(-20px, 0px, 0) !important;
     transform: translate3d(-20px, 0px, 0) !important; }
 
 .dropdown.show .dropdown-menu,
@@ -2046,11 +2107,19 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   visibility: visible; }
   .dropdown.show .dropdown-menu[x-placement="top-start"],
   .dropup.show .dropdown-menu[x-placement="top-start"] {
+    -webkit-transform: translate3d(-20px, -50px, 0) !important;
+    -moz-transform: translate3d(-20px, -50px, 0) !important;
+    -o-transform: translate3d(-20px, -50px, 0) !important;
+    -ms-transform: translate3d(-20px, -50px, 0) !important;
     transform: translate3d(-20px, -50px, 0) !important;
     top: auto !important;
     bottom: 0 !important; }
   .dropdown.show .dropdown-menu[x-placement="bottom-start"],
   .dropup.show .dropdown-menu[x-placement="bottom-start"] {
+    -webkit-transform: translate3d(-20px, 50px, 0) !important;
+    -moz-transform: translate3d(-20px, 50px, 0) !important;
+    -o-transform: translate3d(-20px, 50px, 0) !important;
+    -ms-transform: translate3d(-20px, 50px, 0) !important;
     transform: translate3d(-20px, 50px, 0) !important;
     bottom: auto !important;
     top: 0 !important; }
@@ -2064,6 +2133,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 
 .dropup .dropdown-menu,
 .dropdown-btn .dropdown-menu {
+  -webkit-transform: translate3d(-20px, 0px, 0) !important;
+  -moz-transform: translate3d(-20px, 0px, 0) !important;
+  -o-transform: translate3d(-20px, 0px, 0) !important;
+  -ms-transform: translate3d(-20px, 0px, 0) !important;
   transform: translate3d(-20px, 0px, 0) !important;
   top: auto !important;
   bottom: 0 !important; }
@@ -2074,9 +2147,17 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   visibility: visible; }
   .dropup.show .dropdown-menu.show,
   .dropdown-btn.show .dropdown-menu.show {
+    -webkit-transform: translate3d(0, -50px, 0) !important;
+    -moz-transform: translate3d(0, -50px, 0) !important;
+    -o-transform: translate3d(0, -50px, 0) !important;
+    -ms-transform: translate3d(0, -50px, 0) !important;
     transform: translate3d(0, -50px, 0) !important; }
 
 .bootstrap-select.show .dropdown-menu.show[x-placement="top-start"] {
+  -webkit-transform: translate3d(-20px, -57px, 0) !important;
+  -moz-transform: translate3d(-20px, -57px, 0) !important;
+  -o-transform: translate3d(-20px, -57px, 0) !important;
+  -ms-transform: translate3d(-20px, -57px, 0) !important;
   transform: translate3d(-20px, -57px, 0) !important;
   top: auto !important;
   bottom: 0 !important; }
@@ -2224,6 +2305,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     transform: translate3d(0px, 0px, 0px);
     visibility: visible !important; }
   .bootstrap-select .dropdown-menu {
+    -webkit-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+    -o-transition: all 150ms linear;
+    -ms-transition: all 150ms linear;
     transition: all 150ms linear; }
   .bootstrap-datetimepicker-widget {
     visibility: visible !important; }
@@ -2368,7 +2453,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
       text-align: left;
       padding: 0 10px; }
       .dropdown-notification .dropdown-footer .dropdown-footer-menu li a {
-        color: #ffffff;
+        color: #9C9B99;
         font-size: 0.9em;
         line-height: 35px; }
 
@@ -2512,6 +2597,7 @@ License - nucleoapp.com/license/
 -------------------------*/
 .nc-icon.spin {
   -webkit-animation: nc-icon-spin 2s infinite linear;
+  -moz-animation: nc-icon-spin 2s infinite linear;
   animation: nc-icon-spin 2s infinite linear; }
 
 @-webkit-keyframes nc-icon-spin {
@@ -2520,10 +2606,24 @@ License - nucleoapp.com/license/
   100% {
     -webkit-transform: rotate(360deg); } }
 
+@-moz-keyframes nc-icon-spin {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(360deg); } }
+
 @keyframes nc-icon-spin {
   0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 /*------------------------
@@ -2531,26 +2631,44 @@ License - nucleoapp.com/license/
 -------------------------*/
 .nc-icon.rotate-90 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
   transform: rotate(90deg); }
 
 .nc-icon.rotate-180 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
   transform: rotate(180deg); }
 
 .nc-icon.rotate-270 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
   transform: rotate(270deg); }
 
 .nc-icon.flip-y {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
   transform: scale(-1, 1); }
 
 .nc-icon.flip-x {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
   transform: scale(1, -1); }
-.row{
-  color: #ffffff;
-}
+
 /*------------------------
 	font icons
 -------------------------*/
@@ -3139,6 +3257,10 @@ License - nucleoapp.com/license/
       display: block;
       opacity: 1;
       padding: 11px 0 8px;
+      -webkit-transform: translate3d(0px, 0, 0);
+      -moz-transform: translate3d(0px, 0, 0);
+      -o-transform: translate3d(0px, 0, 0);
+      -ms-transform: translate3d(0px, 0, 0);
       transform: translate3d(0px, 0, 0); }
     .sidebar .logo:after,
     .off-canvas-sidebar .logo:after {
@@ -3196,6 +3318,9 @@ License - nucleoapp.com/license/
   .sidebar:after,
   .off-canvas-sidebar:after {
     background: #66615B;
+    background: -webkit-linear-gradient(#66615B 0%, #000 80%);
+    background: -o-linear-gradient(#66615B 0%, #000 80%);
+    background: -moz-linear-gradient(#66615B 0%, #000 80%);
     background: linear-gradient(#66615B 0%, #000 80%);
     z-index: 3; }
   .sidebar[data-color="white"]:after,
@@ -3343,7 +3468,11 @@ License - nucleoapp.com/license/
   position: relative;
   float: right;
   width: calc(100% - 260px);
-  background-color: #181D27;
+  background-color: #f4f3ef;
+  -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .main-panel > .content {
     padding: 0 30px 30px;
@@ -3365,6 +3494,7 @@ License - nucleoapp.com/license/
   padding-bottom: 45px;
   background: #141E30;
   /* fallback for old browsers */
+  background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
   background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
   position: relative;
   overflow: hidden; }
@@ -3617,17 +3747,33 @@ License - nucleoapp.com/license/
     margin: 0; }
 
 .fixed-plugin .show-dropdown .dropdown-menu[x-placement=bottom-start] {
+  -webkit-transform: translate3d(0, -100px, 0) !important;
+  -moz-transform: translate3d(0, -100px, 0) !important;
+  -o-transform: translate3d(0, -100px, 0) !important;
+  -ms-transform: translate3d(0, -100px, 0) !important;
   transform: translate3d(0, -100px, 0) !important; }
   .fixed-plugin .show-dropdown .dropdown-menu[x-placement=bottom-start]:before, .fixed-plugin .show-dropdown .dropdown-menu[x-placement=bottom-start]:after {
     top: 100px; }
 
 .fixed-plugin .show-dropdown .dropdown-menu[x-placement=top-start] {
+  -webkit-transform: translate3d(0, 100px, 0) !important;
+  -moz-transform: translate3d(0, 100px, 0) !important;
+  -o-transform: translate3d(0, 100px, 0) !important;
+  -ms-transform: translate3d(0, 100px, 0) !important;
   transform: translate3d(0, 100px, 0) !important; }
 
 .fixed-plugin .show-dropdown.show .dropdown-menu.show[x-placement=bottom-start] {
+  -webkit-transform: translate3d(0, -60px, 0) !important;
+  -moz-transform: translate3d(0, -60px, 0) !important;
+  -o-transform: translate3d(0, -60px, 0) !important;
+  -ms-transform: translate3d(0, -60px, 0) !important;
   transform: translate3d(0, -60px, 0) !important; }
 
 .fixed-plugin .show-dropdown.show .dropdown-menu.show[x-placement=top-start] {
+  -webkit-transform: translate3d(0, 470px, 0) !important;
+  -moz-transform: translate3d(0, 470px, 0) !important;
+  -o-transform: translate3d(0, 470px, 0) !important;
+  -ms-transform: translate3d(0, 470px, 0) !important;
   transform: translate3d(0, 470px, 0) !important; }
 
 .card {
@@ -3638,6 +3784,10 @@ License - nucleoapp.com/license/
   margin-bottom: 20px;
   position: relative;
   border: 0 none;
+  -webkit-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
+  -moz-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
+  -o-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
+  -ms-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease; }
   .card .card-body {
     padding: 15px 15px 10px 15px; }
@@ -3697,7 +3847,7 @@ License - nucleoapp.com/license/
       margin-right: 5px;
       position: relative;
       top: 0px;
-      color: #ffffff; }
+      color: #66615B; }
     .card .card-footer .btn {
       margin: 0; }
   .card.card-plain {
@@ -3747,7 +3897,7 @@ License - nucleoapp.com/license/
 .card-chart .card-footer {
   margin-top: 15px; }
   .card-chart .card-footer .stats {
-    color: #ffffff; }
+    color: #9A9A9A; }
 
 .card-chart .dropdown {
   position: absolute;
@@ -3809,7 +3959,7 @@ License - nucleoapp.com/license/
 .card-stats .card-footer {
   padding: 0px 15px 15px; }
   .card-stats .card-footer .stats {
-    color: #ffffff; }
+    color: #9A9A9A; }
   .card-stats .card-footer hr {
     margin-top: 10px;
     margin-bottom: 15px; }
@@ -3889,21 +4039,45 @@ License - nucleoapp.com/license/
     .navbar .toggled .navbar-toggler-bar + .navbar-toggler-bar {
       margin-top: 5px; }
   .wrapper {
+    -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .nav-open .main-panel {
     right: 0;
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0); }
   .nav-open .sidebar {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0); }
   .nav-open body {
     position: relative;
     overflow-x: hidden; }
   .nav-open .menu-on-right .main-panel {
+    -webkit-transform: translate3d(-260px, 0, 0);
+    -moz-transform: translate3d(-260px, 0, 0);
+    -o-transform: translate3d(-260px, 0, 0);
+    -ms-transform: translate3d(-260px, 0, 0);
     transform: translate3d(-260px, 0, 0); }
   .nav-open .menu-on-right .navbar-collapse,
   .nav-open .menu-on-right .sidebar {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0); }
   .nav-open .menu-on-right .navbar-translate {
+    -webkit-transform: translate3d(-300px, 0, 0);
+    -moz-transform: translate3d(-300px, 0, 0);
+    -o-transform: translate3d(-300px, 0, 0);
+    -ms-transform: translate3d(-300px, 0, 0);
     transform: translate3d(-300px, 0, 0); }
   .nav-open .menu-on-right #bodyClick {
     right: 260px;
@@ -3911,6 +4085,10 @@ License - nucleoapp.com/license/
   .menu-on-right .sidebar {
     left: auto;
     right: 0;
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0); }
   .bar1,
   .bar2,
@@ -3919,30 +4097,38 @@ License - nucleoapp.com/license/
   .bar1 {
     top: 0px;
     -webkit-animation: topbar-back 500ms linear 0s;
+    -moz-animation: topbar-back 500ms linear 0s;
     animation: topbar-back 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards; }
   .bar2 {
     opacity: 1; }
   .bar3 {
     bottom: 0px;
     -webkit-animation: bottombar-back 500ms linear 0s;
+    -moz-animation: bottombar-back 500ms linear 0s;
     animation: bottombar-back 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards; }
   .toggled .bar1 {
     top: 6px;
     -webkit-animation: topbar-x 500ms linear 0s;
+    -moz-animation: topbar-x 500ms linear 0s;
     animation: topbar-x 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards; }
   .toggled .bar2 {
     opacity: 0; }
   .toggled .bar3 {
     bottom: 6px;
     -webkit-animation: bottombar-x 500ms linear 0s;
+    -moz-animation: bottombar-x 500ms linear 0s;
     animation: bottombar-x 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards; }
   @keyframes topbar-x {
     0% {
@@ -3966,6 +4152,17 @@ License - nucleoapp.com/license/
       -webkit-transform: rotate(130deg); }
     100% {
       -webkit-transform: rotate(135deg); } }
+  @-moz-keyframes topbar-x {
+    0% {
+      top: 0px;
+      -moz-transform: rotate(0deg); }
+    45% {
+      top: 6px;
+      -moz-transform: rotate(145deg); }
+    75% {
+      -moz-transform: rotate(130deg); }
+    100% {
+      -moz-transform: rotate(135deg); } }
   @keyframes topbar-back {
     0% {
       top: 6px;
@@ -3988,6 +4185,17 @@ License - nucleoapp.com/license/
     100% {
       top: 0px;
       -webkit-transform: rotate(0); } }
+  @-moz-keyframes topbar-back {
+    0% {
+      top: 6px;
+      -moz-transform: rotate(135deg); }
+    45% {
+      -moz-transform: rotate(-10deg); }
+    75% {
+      -moz-transform: rotate(5deg); }
+    100% {
+      top: 0px;
+      -moz-transform: rotate(0); } }
   @keyframes bottombar-x {
     0% {
       bottom: 0px;
@@ -4010,6 +4218,17 @@ License - nucleoapp.com/license/
       -webkit-transform: rotate(-130deg); }
     100% {
       -webkit-transform: rotate(-135deg); } }
+  @-moz-keyframes bottombar-x {
+    0% {
+      bottom: 0px;
+      -moz-transform: rotate(0deg); }
+    45% {
+      bottom: 6px;
+      -moz-transform: rotate(-145deg); }
+    75% {
+      -moz-transform: rotate(-130deg); }
+    100% {
+      -moz-transform: rotate(-135deg); } }
   @keyframes bottombar-back {
     0% {
       bottom: 6px;
@@ -4032,7 +4251,23 @@ License - nucleoapp.com/license/
     100% {
       bottom: 0px;
       -webkit-transform: rotate(0); } }
+  @-moz-keyframes bottombar-back {
+    0% {
+      bottom: 6px;
+      -moz-transform: rotate(-135deg); }
+    45% {
+      -moz-transform: rotate(10deg); }
+    75% {
+      -moz-transform: rotate(-5deg); }
+    100% {
+      bottom: 0px;
+      -moz-transform: rotate(0); } }
   @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0; }
+    100% {
+      opacity: 1; } }
+  @-moz-keyframes fadeIn {
     0% {
       opacity: 0; }
     100% {
@@ -4054,6 +4289,10 @@ License - nucleoapp.com/license/
     z-index: 9999;
     overflow-x: hidden;
     background-color: transparent;
+    -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .footer .copyright {
     text-align: right; }
@@ -4075,7 +4314,15 @@ License - nucleoapp.com/license/
     visibility: visible;
     overflow-y: visible;
     padding: 0;
+    -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -webkit-transform: translate3d(-260px, 0, 0);
+    -moz-transform: translate3d(-260px, 0, 0);
+    -o-transform: translate3d(-260px, 0, 0);
+    -ms-transform: translate3d(-260px, 0, 0);
     transform: translate3d(-260px, 0, 0); }
   .main-panel {
     width: 100%; }
@@ -4217,5 +4464,3 @@ License - nucleoapp.com/license/
   .card-timeline .timeline .timeline-panel {
     width: 38%;
     padding: 15px; } }
-
-/*# sourceMappingURL=paper-dashboard.css.map */
