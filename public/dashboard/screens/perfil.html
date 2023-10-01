@@ -16,6 +16,7 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/dashboardPlane.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
@@ -30,7 +31,7 @@
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="../screens/index.html" class="simple-text logo-normal">
           Plane - it
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
@@ -40,27 +41,34 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./sininho.html">
+            <a href="./alertas.html">
               <i class="nc-icon nc-bell-55"></i>
-              <p>Notificação</p>
-            </a>
-          </li>
-          <li class="active">
-            <a href="./user.html">
-              <i class="nc-icon nc-single-02"></i>
-              <p>Perfil</p>
+              <p>Alertas</p>
             </a>
           </li>
           <li>
-            <a href="./dashGeral.html">
-              <i class="nc-icon nc-layout-11"></i>
-              <p>Dashboard - geral</p>
+            <a href="./chamados.html">
+              <i class="nc-icon nc-email-85"></i>
+              <p>Chamados</p>
             </a>
           </li>
+
+          <li>
+              <a href="#" class="dropbtn">
+                <i class="nc-icon nc-bell-55"></i>
+                <p>Cadastro</p>
+              </a>
+              <div class="dropdown-content">
+                <a href="../screens/adm/addFuncionario.html">Funcionários</a>
+                <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
+                <a href="../screens/adm/addServidor.html">Servidores</a>
+              </div>
+          </li>
+
           <li>
             <a href="./servidores.html">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Lista geral</p>
+              <p>Lista de Servidores</p>
             </a>
           </li>
         </ul>
@@ -87,46 +95,49 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link btn-magnify" href="javascript:;">
-                  <i class="nc-icon nc-layout-11"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
               <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="http://example.com"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <i class="nc-icon nc-bell-55"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="./sininho.html">Notificação</a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <a class="dropdown-item" href="../../screens/alertas.html"
+                    >Alertas</a
+                  >
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
                   <a class="dropdown-item" href="#">Comunicação - Slack</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn-rotate" href="javascript:;">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="http://example.com"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <i class="nc-icon nc-settings-gear-65"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
                 </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <a class="dropdown-item" href="./perfil.html">Perfil</a>
+                </div>
               </li>
             </ul>
           </div>
@@ -136,7 +147,7 @@
       <div class="content">
         <div class="row">
           <div class="col-md-4">
-            <div class="card card-user">
+            <!-- <div class="card card-user">
               <div class="image">
                 <img src="../assets/img/faces/sptech.jpg" alt="...">
               </div>
@@ -169,11 +180,11 @@
                       <h5>24,6$<br><small>Spent</small></h5>
                     </div>
                   </div>
-                </div> -->
-              </div>
-            </div>
+                </div> 
+              </div> -->
+            </div> 
           </div>
-          <div class="col-md-8">
+          <div class="col-md-11">
             <div class="card card-user">
               <div class="card-header">
                 <h5 class="card-title">Editar perfil</h5>
@@ -183,77 +194,72 @@
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
-                        <label>Sua empresa: </label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Aeroporto de Congonhas">
+                        <label>Empresa: </label>
+                        <input type="text" class="form-control" disabled="" placeholder="Empresa" value="Grupar">
                       </div>
                     </div>
-                    <div class="col-md-3 px-1">
+                    <div class="col-md-5 pr-1">
                       <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="frizza">
+                        <label>Aeroporto: </label>
+                        <input type="text" class="form-control" disabled="" placeholder="Aeroporto" value="Aeroporto de Congonhas">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" class="form-control" placeholder="Nome" value="">
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Email: </label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <label >Sobrenome: </label>
+                        <input type="text" class="form-control" placeholder="Sobrenome">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Cargo:</label>
+                        <input type="text" class="form-control"  placeholder="Cargo" value="">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Nome completo: </label>
-                        <input type="text" class="form-control" placeholder="Company" value="Claudio Frizzarini">
+                        <label for="exampleInputEmail1">Email: </label>
+                        <input type="email" class="form-control" placeholder="Email" value="">
                       </div>
                     </div>
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>Cargo:</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Last Name" value="Analista de dados">
+                        <label>Senha:</label>
+                        <input type="password" class="form-control"  placeholder="Senha" value="">
                       </div>
                     </div>
+                    
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Endereço: </label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001">
-                      </div>
-                    </div>
-                  </div>
+                  
                   <div class="row">
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Telefone: </label>
-                        <input type="text" class="form-control" placeholder="City" value="(11) 3589-4043">
+                        <input type="text" class="form-control" placeholder="Telefone" value="">
                       </div>
                     </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>Setor: </label>
-                        <input type="text" class="form-control" placeholder="Country" value="Tecnologia e inovação">
+                        <input type="text" class="form-control" placeholder="Setor" value="">
                       </div>
                     </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Sua equipe: </label>
-                        <input type="number" class="form-control" placeholder="Quantidade de membros da sua equipe">
-                      </div>
-                    </div>
+                    
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Descrição sobre você: </label>
-                        <textarea class="form-control textarea">Sou tão bom em T.I. que consigo até fazer o computador da minha mãe funcionar.
-                          E isso é um feito, acredite em mim.</textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Atualizar perfil</button>
+                  
+                  <div class="row" style="margin-top: 7%;">
+                    <div class="update px-3" >
+                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Salvar Alterações</button>
                     </div>
                   </div>
                 </form>
@@ -261,28 +267,28 @@
             </div>
           </div>
         </div>
-      </div>
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li><a href="https://www.creative-tim.com" target="_blank">Suporte</a></li>
-                <li><a href="https://www.creative-tim.com/blog" target="_blank">Comunicação</a></li>
-                <li><a href="https://www.creative-tim.com/license" target="_blank">Site institucional</a></li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with Plane - it.
-              </span>
+        <footer class="footer footer-black  footer-white ">
+          <div class="container-fluid">
+            <div class="row" style="margin-top: 7%;">
+              <nav class="footer-nav">
+                <ul>
+                  <li><a href="https://www.creative-tim.com" target="_blank">Suporte</a></li>
+                  <li><a href="https://www.creative-tim.com/blog" target="_blank">Comunicação</a></li>
+                  <li><a href="https://www.creative-tim.com/license" target="_blank">Site institucional</a></li>
+                </ul>
+              </nav>
+              <div class="credits ml-auto">
+                <span class="copyright">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear())
+                  </script>, made with Plane - it.
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   </div>
   <!--   Core JS Files   -->
