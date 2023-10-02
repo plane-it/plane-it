@@ -111,11 +111,29 @@ function cadastrar(req, res) {
             );
     }
 }
+function recuperar(req, res){
+    const { email } = req.body;
+    
+    if(!email){
+        res.status(400).json({msg: "Existem valor faltando"})
+    }
+    usuarioModel.recuperar(email)
+        .then(function(resultado){
+            if(resultado.length > 0){
+                enviarEmail(email, resultado[0].idFuncionario)
+                resultado.status(200).json({msg: "Email enviado!"})
+            }
+        })
+        .catch(function(erro){
+            
+        })
+}
 
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
-    testar
+    testar,
+    recuperar
 }

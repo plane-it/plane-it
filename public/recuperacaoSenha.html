@@ -99,12 +99,12 @@
     <section id="contact" class="s-contact">
 
         <div class="overlay"></div>
-        <div class="contact__line linha"></div>
+        <div class="contact__line"></div>
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">Login</h3>
-                <h1 class="display-2 display-2--light">Bem-vindo de volta!</h1>
+                <h3 class="subhead">Esqueceu sua senha?</h3>
+                <h1 class="display-2 display-2--light">Não se preocupe, acidentes acontecem!</h1>
             </div>
         </div>
 
@@ -112,21 +112,15 @@
 
             <div class="contact-primary">
 
-                <h3 class="h6">Insira suas credenciais</h3>
+                <h3 class="h6" style="text-transform: none;"> Basta digitar seu endereço de e-mail abaixo e enviaremos um link para redefinir sua senha!</h3>
 
                 <form name="contactForm" id="contactForm" method="post" action="" novalidate="novalidate">
                     <fieldset>
-
                         <div class="form-field">
-                            <input name="contactName" type="text" id="contactName" placeholder="Seu email" value=""
-                                minlength="2" required="" aria-required="true" class="full-width">
+                            <input type="text" id="iptEmail" placeholder="Seu email" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Sua senha" value=""
-                                required="" aria-required="true" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <button class="full-width btn--primary" onclick="logar()" id="entrar">Entrar</button>
+                            <button class="full-width btn--primary" onclick="recuperarSenha()">Enviar</button>
                             <div class="submit-loader">
                                 <div class="text-loader">Enviando...</div>
                                 <div class="s-loader">
@@ -134,12 +128,6 @@
                                     <div class="bounce2"></div>
                                     <div class="bounce3"></div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-field">
-                            <div class="form-links">
-                                <a href="recuperacaoSenha.html" class="form-a">Esqueceu a senha?</a>
-                                <a href="cadastro.html" class="form-a">Não possuí uma conta?</a>
                             </div>
                         </div>
                     </fieldset>
@@ -256,6 +244,9 @@
 
     </div> <!-- end photoSwipe background -->
 
+
+
+
     <!-- Java Script
     ================================================== -->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -271,9 +262,16 @@
         e.preventDefault();
     });
 
-    function logar() {
-        window.location = "dashboard/screens/index.html"
+    function recuperarSenha(){
+        const  email = iptEmail.value 
+        fetch("/usuarios/recuperar",{
+            method: "POST",
+            headers: {
+                'content-type':"application/json"
+            },
+            body: JSON.stringify({
+                email: email
+            })
+        })
     }
-
-
 </script>
