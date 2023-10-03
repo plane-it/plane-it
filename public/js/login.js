@@ -20,7 +20,7 @@ function entrar() {
     }
     
     if (contadorErro > 0) {
-      swal("Ops..", "Cheque suas informações!", "error");
+      Swal.fire("Ops..", "Cheque suas informações!", "error");
     } else {
         fetch("/usuarios/entrar", {
             method: "POST",
@@ -34,16 +34,16 @@ function entrar() {
           }).then(res => res.json())
           .then((res) => {
            if (res.error) {
-              swal("ERRO",res.error, "error")
+              Swal.fire("ERRO",res.error, "error")
            }
            else{
-                swal("Muito Bem!", "Seja Bem-Vindo!", "success");
+                Swal.fire("Muito Bem!", "Seja Bem-Vindo!", "success");
                 setTimeout(() => {
-                      window.location = "./dashboard/screens/dashGeral.html";
+                      window.location = "../dashboard/screens/index.html";
                 }, "1000")
             }
           }).catch(function (res) {
-              swal("ERRO",res.error, "error")
+              Swal.fire("ERRO",res.error, "error")
           });
         }
 }

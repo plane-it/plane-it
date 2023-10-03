@@ -20,7 +20,7 @@ async function proximo() {
   }
   
   if (contadorErro > 0) {
-    swal("Shii..", "Cheque suas informações!", "error")
+    Swal.fire("Shii..", "Cheque suas informações!", "error")
   } else {
     fetch("/empresa/existe", {
       method: "POST",
@@ -33,17 +33,17 @@ async function proximo() {
     }).then((res) => res.json())
     .then((res) => {
       if(res.error != null){
-        swal("ERRO",res.error, "error")
+        Swal.fire("ERRO",res.error, "error")
       }
       else{
-        swal("Muito Bem!", "Você será redirecionado para o Login", "success");
+        Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
         setTimeout(() => {
           idcontainer2.style.display = "none"
           idcontainer3.style.display = "flex"
         }, "1000")
       }
     }).catch(function (resposta) {
-      swal("ERRO",res.error, "error")
+      Swal.fire("ERRO",res.error, "error")
     });
   }
   
@@ -96,7 +96,7 @@ function cadastrar() {
     }
 
     if (contadorErro > 0) {
-      swal("Ops..", "Cheque suas informações!", "error");
+      Swal.fire("Ops..", "Cheque suas informações!", "error");
     } else {
       
       fetch("/empresa/cadastrar", {
@@ -115,17 +115,18 @@ function cadastrar() {
         }).then((res) => res.json())
         .then((res) => {
           if(res.error){
-            swal("ERRO", res.error, "error");
+            Swal.fire("ERRO", res.error, "error");
           }
           else{
-            swal("Muito Bem!", "Você será redirecionado para o Login", "success");
+            Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
             setTimeout(() => {
               window.location = "./login.html";
             }, "1000")
          
           }
         }).catch(function (resposta) {
-          swal("ERRO",resposta.error, "error")
+          console.log(resposta)
+          Swal.fire("ERRO",resposta.error, "error")
         });
     }
 }
