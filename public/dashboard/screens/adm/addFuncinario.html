@@ -86,7 +86,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Cadastro de Aeroportos</a>
+            <a class="navbar-brand" href="javascript:;">Cadastro de Funcionários</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,7 +150,7 @@
           <div class="col-md-12">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Adicionar Aeroporto</h5>
+                <h5 class="card-title">Adicionar Funcionário</h5>
               </div>
               <div class="card-body">
                 <form>
@@ -164,58 +164,65 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Aeroporto: </label>
-                        <input type="text" class="form-control"  placeholder="Aeroporto" value="Aeroporto de Congonhas">
+                        <input type="text" class="form-control" disabled="" placeholder="Aeroporto" value="Aeroporto de Congonhas">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" class="form-control" placeholder="Nome" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label >Sobrenome: </label>
+                        <input type="text" class="form-control" placeholder="Sobrenome">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Cargo:</label>
+                        <input type="text" class="form-control"  placeholder="Cargo" value="">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>País:</label>
-                        <input type="text" class="form-control" placeholder="Pais" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Estado:</label>
-                        <input type="number" class="form-control"  placeholder="Estado" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Cidade:</label>
-                        <input type="number" class="form-control"  placeholder="Cidade" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>Endereço:</label>
-                        <input type="text" class="form-control" placeholder="Endereco" value="">
+                        <label for="exampleInputEmail1">Email: </label>
+                        <input type="email" class="form-control" placeholder="Email" value="">
                       </div>
                     </div>
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>CEP:</label>
-                        <input type="number" class="form-control"  placeholder="CEP" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Chefe de Segurança: </label>
-                        <input type="email" class="form-control" placeholder="NomeChefe" value="">
+                        <label>Senha:</label>
+                        <input type="password" class="form-control"  placeholder="Senha" value="">
                       </div>
                     </div>
                     
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Telefone: </label>
+                        <input type="text" class="form-control" placeholder="Telefone" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Setor: </label>
+                        <input type="text" class="form-control" placeholder="Setor" value="">
+                      </div>
+                    </div>
                     
                   </div>
                   
                   <div class="row" style="margin-top: 7%;">
                     <div class="update px-3" >
-                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Adicionar Aeroporto</button>
+                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Adicionar Funcionário</button>
                     </div>
                   </div>
                 </form>
