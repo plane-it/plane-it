@@ -72,4 +72,15 @@ create table tbRegistro(
     fkComp int not null,
 	fkProp int not null,
 	foreign key (fkComp, fkProp) references tbPropriedade(idComp, idProp)
-)    
+);
+
+CREATE TABLE tbContato(
+	idContato INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(100),
+	email VARCHAR(100),
+    assunto VARCHAR(100),
+--    dataEnvio DATA,
+--    telefone VARCHAR(20),
+    mensagem VARCHAR(255)
+);
+
