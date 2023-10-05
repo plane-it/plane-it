@@ -20,22 +20,22 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login_cadastro.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/vendor.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/login_cadastro.css">
 
 
     <!-- script
     ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script src="js/pace.min.js"></script>
-    <script src="js/recuperar.js"></script>
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../js/pace.min.js"></script>
+    <script src="../../js/recuperar.js"></script>
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="images/logoSemNome.ico" type="image/x-icon">
-    <link rel="icon" href="images/logoSemNome.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/logoSemNome.ico" type="image/x-icon">
+    <link rel="icon" href="../../images/logoSemNome.ico" type="image/x-icon">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -48,7 +48,7 @@
 
         <div class="header-logo">
             <a class="site-logo" href="index.html">
-                <img src="images/logoSemNome.png" alt="Homepage">
+                <img src="../../images/logoSemNome.png" alt="Homepage">
             </a>
             <h1>Plane-It</h1>
         </div>
@@ -61,8 +61,8 @@
                 <h3>Navegação</h3>
 
                 <ul class="header-nav__list">
-                    <li><a href="index.html" title="Home">Início</a></li>
-                    <li><a href="cadastro.html" title="Cadastro">Cadastro</a></li>
+                    <li><a href="../../index.html" title="Home">Início</a></li>
+                    <li><a href="../../cadastro.html" title="Cadastro">Cadastro</a></li>
                 </ul>
 
                 <ul class="header-nav__social">
@@ -117,10 +117,13 @@
 
                 <form name="contactForm" id="contactForm" method="post" action="" novalidate="novalidate">
                     <fieldset>
-
                         <div class="form-field">
-                            <input type="text" id="iptCpf" placeholder="Seu Cpf" value=""
-                                minlength="11" maxlength="11" required="" aria-required="true" class="full-width">
+                            <input type="password" id="iptSenha" placeholder="Senha" value=""
+                               required="" aria-required="true" class="full-width">
+                        </div>
+                        <div class="form-field">
+                            <input type="password" id="iptConfimarSenha" placeholder="Confirmar Senha" value=""
+                               required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
                             <button class="full-width btn--primary" onclick="recuperarSenha()">Enviar</button>
@@ -253,9 +256,9 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <script src="../../js/main.js"></script>
 
 </body>
 

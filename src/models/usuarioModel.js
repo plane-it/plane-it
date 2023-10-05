@@ -38,7 +38,7 @@ function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
 
 function existsCpf(cpf){
     const sql = `
-        SELECT email FROM tbColaborador WHERE cpf = '${cpf}'
+        SELECT email, idColab FROM tbColaborador WHERE cpf = '${cpf}'
     `
     return database.executar(sql)
 }

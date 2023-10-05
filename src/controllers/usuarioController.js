@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-
+const email = require("../utils/email")
 var sessoes = [];
 
 function testar(req, res) {
@@ -116,8 +116,9 @@ function recuperar(req,res){
     const {cpf} = req.params
 
     usuarioModel.existsCpf(cpf)
-    .then(answer => {
+    .then(async (answer) => {
         if(answer.length == 1){
+            await email.enviarEmail(answer[0].email, answer[0].idColab)
             res.status(200).json({"email": answer[0].email})
         }
         else{

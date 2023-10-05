@@ -1,16 +1,16 @@
-const mail = require("node-mailer")
+const mailer = require("nodemailer");
 
-const config = mail.createTransport({
+const config = mailer.createTransport({
     service: "outlook",
     auth: {
-        user: "",
-        pass: "",
+        user: "Andreylrodrigues@hotmail.com",
+        pass: "andrey050405",
     },
 })
 
 async function enviarEmail(email,id){
     await config.sendMail({
-        from: 'Andreylrodrigues@hotmail.com', 
+        from: config.auth.user, 
         to: email, 
         subject: "Recuperação de senha",
         text: `
