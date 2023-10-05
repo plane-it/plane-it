@@ -36,9 +36,17 @@ function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
     return database.executar(instrucao);
 }
 
+function recuperar(email){
+    const sql = `
+        SELECT idFuncionario FROM funcionario WHERE email = '${email}'
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
+    recuperar
 };
