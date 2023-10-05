@@ -30,13 +30,14 @@
     ================================================== -->
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
+    <script src="js/login.js"></script>
 
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="images/logoSemNome.ico" type="image/x-icon">
     <link rel="icon" href="images/logoSemNome.ico" type="image/x-icon">
 
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="top">
@@ -118,15 +119,15 @@
                     <fieldset>
 
                         <div class="form-field">
-                            <input name="contactName" type="text" id="contactName" placeholder="Seu email" value=""
+                            <input name="contactName" type="text" id="iptCpf" placeholder="Seu email" value=""
                                 minlength="2" required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Sua senha" value=""
+                            <input type="password" id="iptSenha" placeholder="Sua senha" value=""
                                 required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <button class="full-width btn--primary" onclick="logar()" id="entrar">Entrar</button>
+                            <button class="full-width btn--primary" onclick="entrar()">Entrar</button>
                             <div class="submit-loader">
                                 <div class="text-loader">Enviando...</div>
                                 <div class="s-loader">

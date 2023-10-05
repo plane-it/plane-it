@@ -30,12 +30,13 @@
     ================================================== -->
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
+    <script src="js/cadastro.js"></script>
 
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="images/logoSemNome.ico" type="image/x-icon">
     <link rel="icon" href="images/logoSemNome.ico" type="image/x-icon">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -114,19 +115,19 @@
 
                 <h3 class="h6" id="mensagemForm">Insira as credenciais da sua empresa</h3>
 
-                <form name="contactForm" method="post" action="" novalidate="novalidate" id="form1">
+                <form id="idcontainer2"name="contactForm" method="post" action="" novalidate="novalidate">
                     <fieldset>
 
                         <div class="form-field">
-                            <input type="text" id="inputCnpj" placeholder="CNPJ" minlength="14" maxlength="18"
+                            <input type="text" id="iptCnpj" placeholder="CNPJ" minlength="14" maxlength="18"
                                 class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="inputNomeEmpresa" placeholder="Nome da Empresa" value="" required=""
+                            <input type="text" id="iptNomeEmpresa" placeholder="Nome da Empresa" value="" required=""
                                 aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <button class="full-width btn--primary" onclick="acessarTela(2)">Continuar</button>
+                            <button class="full-width btn--primary" onclick="proximo()">Continuar</button>
                         </div>
                         <div class="form-field">
                             <div class="form-links">
@@ -135,24 +136,24 @@
                         </div>
                     </fieldset>
                 </form>
-                <form name="contactForm" method="post" action="" novalidate="novalidate" id="form2"
+                <form id="idcontainer3" name="contactForm" method="post" action="" novalidate="novalidate" 
                     style="display: none;">
                     <fieldset>
 
                         <div class="form-field">
-                            <input type="text" id="inputNome" placeholder="Seu nome" class="full-width">
+                            <input type="text" id="iptNomeGerente" placeholder="Seu nome" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="inputCpf" placeholder="CPF" class="full-width">
+                            <input type="text" id="iptCpf" placeholder="CPF" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="inputEmail" placeholder="Email" class="full-width">
+                            <input type="text" id="iptEmail" placeholder="Email" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="inputSenha" placeholder="Senha" class="full-width">
+                            <input type="text" id="iptSenha" placeholder="Senha" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="inputSenha" placeholder="Confirmação de senha" class="full-width">
+                            <input type="text" id="iptConfirmacao" placeholder="Confirmação de senha" class="full-width">
                         </div>
                         <div class="form-field">
                             <button class="full-width btn--primary" onclick="cadastrar()">Cadastrar</button>
@@ -297,23 +298,4 @@
         // Impedir o recarregamento da tela
         e.preventDefault();
     });
-
-    function acessarTela(tela) {
-        if (tela == 1) {
-
-            form2.style.display = "none"
-            form1.style.display = "block"
-        }
-        if (tela == 2) {
-            mensagemForm.innerHTML = "Insira suas credenciais"
-            form2.style.display = "block"
-            form1.style.display = "none"
-        }
-    }
-
-    function cadastrar() {
-        window.location = "login.html"
-    }
-
-
 </script>
