@@ -24,4 +24,8 @@ router.post("/proximo", function (req, res) {
     usuarioController.proximo(req, res);
 });
 
+router.get("/recuperar/:cpf", function(req, res) {
+    usuarioController.recuperar(req,res)
+})
+
 module.exports = router;

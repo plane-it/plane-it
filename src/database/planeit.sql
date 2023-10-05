@@ -26,8 +26,6 @@ create table tbAeroporto(
     pais varchar(45),
     cidade varchar(45),
     endereco varchar(45),
-    fkEncarregado int,
-    foreign key (fkEncarregado) references tbColaborador(idColab),
     fkEmpresa int,
     foreign key (fkEmpresa) references tbEmpresa(idEmpr)
 );
@@ -41,8 +39,12 @@ create table tbColaborador(
     cargo varchar(15),
     telefone varchar(11),
     fkAeroporto int not null,
-    foreign key (fkAeroporto) references tbAeroport(idAeroporto)
+    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
+
+alter table tbAeroporto 
+	add fkEncarregado int,
+    add constraint foreign key (fkEncarregado) references tbColaborador(idColab);
 
 create table tbServidor(
 	idServ int primary key auto_increment,

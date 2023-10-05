@@ -36,9 +36,17 @@ function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
     return database.executar(instrucao);
 }
 
+function existsCpf(cpf){
+    const sql = `
+        SELECT email FROM tbColaborador WHERE cpf = '${cpf}'
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
+    existsCpf
 };

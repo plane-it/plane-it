@@ -112,10 +112,28 @@ function cadastrar(req, res) {
     }
 }
 
+function recuperar(req,res){
+    const {cpf} = req.params
+
+    usuarioModel.existsCpf(cpf)
+    .then(answer => {
+        if(answer.length == 1){
+            res.status(200).json({"email": answer[0].email})
+        }
+        else{
+            res.status(400).json({"error": "Não existe um conta com esse cpf"})
+        }
+    })
+    .catch(erro => {
+        res.status(500).json({"error": erro})
+    })
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
-    testar
+    testar,
+    recuperar
 }
