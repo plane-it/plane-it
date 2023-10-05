@@ -32,5 +32,8 @@ router.get("/recuperar/:cpf", function(req, res) {
 router.get("/alterar-senha/:id", function(req, res){
     res.sendFile(path.join(__dirname,"../../public/alterarSenha.html"))
 })
+router.post("/alterar-senha/:id", function(req,res){
+    usuarioController.alterarSenha(req,res)
+})
 
 module.exports = router;

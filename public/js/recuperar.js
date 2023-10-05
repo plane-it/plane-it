@@ -22,3 +22,33 @@ function recuperarSenha(){
         .catch()
     }
 }
+
+function alterarSenha(){
+    const senha = document.getElementById("iptSenha").value
+    const confimarSenha = document.getElementById("iptConfirmarSenha").value
+    const splitedUrl = window.location.href.split("/")
+    const id = splitedUrl[splitedUrl.length-1]
+
+    if(senha != confimarSenha || !senha || !confimarSenha){
+        Swal.fire("ERRO", "Verifique os campos", "error")
+    }
+    else{
+        fetch(`/usuarios/alterar-senha/${id}`,{
+            method: "POST",
+            headers:{
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                senha: senha
+            })
+        })
+        .then(res => {
+            if(res.status == 200){
+                Swal.fire("Sucesso","Senha Alterada","sucess")
+                setTimeout(() => {
+                    window.location.href = "/login.html"
+                },1000)
+            }
+        })
+    }
+}

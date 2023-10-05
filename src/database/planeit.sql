@@ -38,7 +38,9 @@ create table tbColaborador(
     senha varchar(15) not null,
     cargo varchar(15),
     telefone varchar(11),
-    fkAeroporto int not null,
+    fkEmpr int not null,
+    foreign key (fkEmpr) references tbEmpresa(idEmpr),
+    fkAeroporto int,
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
 

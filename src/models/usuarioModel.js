@@ -43,10 +43,18 @@ function existsCpf(cpf){
     return database.executar(sql)
 }
 
+function alterarSenha(id, senha){
+    const sql = `
+        UPDATE tbColaborador SET senha = '${senha}' WHERE idColab = ${id}
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
-    existsCpf
+    existsCpf,
+    alterarSenha
 };
