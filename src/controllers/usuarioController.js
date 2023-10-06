@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-
+const enviarEmail = require("../utils/email")
 var sessoes = [];
 
 function testar(req, res) {
@@ -129,11 +129,42 @@ function recuperar(req, res){
         })
 }
 
+function recuperar(req,res){
+    const {cpf} = req.params
+
+    usuarioModel.existsCpf(cpf)
+    .then(async (answer) => {
+        if(answer.length == 1){
+            enviarEmail(answer[0].email, answer[0].idColab)
+            res.status(200).json({"email": answer[0].email})
+        }
+        else{
+            res.status(400).json({"error": "Não existe um conta com esse cpf"})
+        }
+    })
+    .catch(erro => {
+        res.status(500).json({"error": erro})
+    })
+}
+function alterarSenha(req, res){
+    const {id} = req.params
+    const {senha} = req.body
+    
+    usuarioModel.alterarSenha(id, senha)
+        .then(resposta => {
+            res.status(200).json({"msg": "Alterado com sucesso"})
+        })
+        .catch(erro => {
+            res.status(500).json({"error": erro})
+        })
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,
     testar,
-    recuperar
+    recuperar,
+    alterarSenha
 }

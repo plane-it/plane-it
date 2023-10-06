@@ -36,9 +36,16 @@ function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
     return database.executar(instrucao);
 }
 
-function recuperar(email){
+function existsCpf(cpf){
     const sql = `
-        SELECT idFuncionario FROM funcionario WHERE email = '${email}'
+        SELECT email, idColab FROM tbColaborador WHERE cpf = '${cpf}'
+    `
+    return database.executar(sql)
+}
+
+function alterarSenha(id, senha){
+    const sql = `
+        UPDATE tbColaborador SET senha = '${senha}' WHERE idColab = ${id}
     `
     return database.executar(sql)
 }
@@ -47,6 +54,6 @@ module.exports = {
     entrar,
     proximo,
     cadastrar,
-    listar,
-    recuperar
+    listar,existsCpf,
+    alterarSenha
 };
