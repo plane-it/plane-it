@@ -54,7 +54,6 @@ module.exports = {
     entrar,
     proximo,
     cadastrar,
-    listar,
-    existsCpf,
+    listar,existsCpf,
     alterarSenha
 };

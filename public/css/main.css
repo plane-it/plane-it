@@ -1852,6 +1852,11 @@ input::-moz-focus-inner {
     left: -70px;
     width: 70px;
     padding-left: 12px;
+    color: #F5F5F5;
+}
+
+.header-menu-text:hover, ::after {
+    color: #3A7D44 !important;
 }
 
 .header-menu-icon {
@@ -1887,6 +1892,10 @@ input::-moz-focus-inner {
 
 .header-menu-icon::after {
     bottom: -9px;
+}
+
+.header-nav__list a:hover {
+    color: #3A7D44;
 }
 
 
