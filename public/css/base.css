@@ -945,5 +945,11 @@ a:active {
     color: #3A7D44 !important;
 }
 
+.dashboardDrop a:hover,
+a:focus,
+a:active {
+    color: #3A7D44 !important;;
+}
+
 
 /*# sourceMappingURL=base.css.map */
