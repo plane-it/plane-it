@@ -37,6 +37,9 @@ function buscarAeroporto() {
                         <td>
                           ${res[i].cidade}
                         </td>
+                        <td>
+                        <a class="a-td" onclick="listaServidores(${res[i].idAeroporto}, '${res[i].nome}')">Acessar</a>
+                        </td>
                       </tr>`
                     }
                     
@@ -45,4 +48,10 @@ function buscarAeroporto() {
                 
             });
     }
+}
+
+function listaServidores(valor, nomeAeroporto) {
+    sessionStorage.ID_AEROPORTO_SELECIONADO = valor;
+    sessionStorage.NOME_AEROPORTO = nomeAeroporto;
+    window.location.href="listaServidores.html";
 }

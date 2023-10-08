@@ -15,6 +15,8 @@ var medidasRouter = require("./src/routes/medidas");
 const empresaRouter = require("./src/routes/empresa");
 var contatoRouter = require("./src/routes/contato");
 const aeroportoRouter = require("./src/routes/aeroporto")
+const servidorRouter = require("./src/routes/servidor")
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +31,8 @@ app.use("/medidas", medidasRouter)
 app.use("/empresa", empresaRouter);
 app.use("/contato",contatoRouter);
 app.use("/aeroporto", aeroportoRouter);
+app.use("/servidor", servidorRouter);
+
 
 
 app.listen(PORTA, function () {
