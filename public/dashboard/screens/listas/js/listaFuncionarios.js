@@ -21,8 +21,6 @@ function buscarFunc() {
                     console.log("Aconteceu algum erro (res.error = true)")
                 }
                 else {
-                    console.log(res);
-                    console.log(res[1].nome)
 
                     for(let i = 0; i < res.length; i++) {
                         funcs.innerHTML += `                      
@@ -34,7 +32,7 @@ function buscarFunc() {
                           ${res[i].cargo}
                         </td>
                         <td>
-                          ${res[i].aeroporto}
+                          ${res[i].email}
                         </td>
                       </tr>`
                     }
