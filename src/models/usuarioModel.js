@@ -50,10 +50,18 @@ function alterarSenha(id, senha){
     return database.executar(sql)
 }
 
+function buscarFunc(fkEmpresa) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE fkEmpr = ${fkEmpresa};
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,existsCpf,
-    alterarSenha
+    alterarSenha,
+    buscarFunc
 };

@@ -14,8 +14,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
@@ -25,9 +25,9 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="../../screens/index.html" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../../assets/img/planeIt/logo.png">
+            <img src="../../assets/img/planeIt/logoSemNome.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
@@ -41,35 +41,44 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./alertas.html">
+            <a href="../index.html">
+              <i class="nc-icon nc-layout-11"></i>
+              <p>Menu</p>
+            </a>
+          </li>
+          <li>
+            <a href="../alertas.html">
               <i class="nc-icon nc-bell-55"></i>
               <p>Alertas</p>
             </a>
           </li>
           <li>
-            <a href="./chamados.html">
+            <a href="../chamados.html">
               <i class="nc-icon nc-email-85"></i>
               <p>Chamados</p>
             </a>
           </li>
 
-          <li>
+          <li class="active ">
               <a href="#" class="dropbtn">
-                <i class="nc-icon nc-bell-55"></i>
+                <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
               <div class="dropdown-content">
-                <a href="../screens/adm/addFuncionario.html">Funcionários</a>
-                <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
-                <a href="../screens/adm/addServidor.html">Servidores</a>
+                <a href="../../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
+                <a href="../../screens/adm/addAeroporto.html">Aeroportos</a>
+                <a href="../../screens/adm/addServidor.html" class="a-selected">Servidores</a>
               </div>
           </li>
-
           <li>
-            <a href="./servidores.html">
+            <a href="#" class="dropbtn">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Lista de Servidores</p>
+              <p>Informações Gerais</p>
             </a>
+            <div class="dropdown-content">
+              <a href="../listas/listaFuncionarios.html">Funcionários</a>
+              <a href="../listas/listaAeroportos.html">Aeroportos</a>
+              
           </li>
         </ul>
       </div>
