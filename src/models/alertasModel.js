@@ -57,8 +57,10 @@ function listar() {
         FROM tbRegistro r
             JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
             JOIN tbServidor s ON s.idServ = r.fkServidor
+            JOIN tbAeroporto a on a.idAeroporto = s.fkAeroporto
         WHERE
             r.valor >= m.valor * 0.95
+            and a.fkServ = ${id}
             and month(r.datahora) = month(now())
             and year(r.datahora) = year(now())
         GROUP BY
