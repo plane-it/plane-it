@@ -93,4 +93,23 @@ create table tbRegistro(
     foreign key (fkMetrica) references tbMetrica(idMetrica)
 );
 
+insert into tbChamados (estado, nivel, sla, fkRegistro) values ("Aberto", "Alto", "2h", 1);
+
+        select 
+            c.estado, c.nivel, c.sla, s.apelido, 
+            (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "CPU") cpu,
+            (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "HD") disco,
+            (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "RAM") ram
+        from tbChamados c
+            join tbRegistro r on c.fkRegistro = r.idRegst
+            join tbServidor s on r.fkServidor = s.idServ
+        where s.fkEmpr = ${id}
+select 
+	c.estado, c.nivel, c.sla, s.apelido, 
+	(select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "CPU")  cpu
+	(select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "HD")  cpu
+	(select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "RAM")  cpu
+from tbChamados c
+    join tbRegistro r on c.fkRegistro = r.idRegst
+    join tbServidor s on r.fkServidor = s.idServ;
 

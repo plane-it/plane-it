@@ -44,7 +44,21 @@ function cadastrar(req, res) {
     }
 }
 
+function chamados(req, res){
+    const {id} = req.params
+
+    empresaModel.listarChamados(id)
+        .then((respostas) => {
+            res.status(200).json(respostas)
+        })
+        .catch(erro => {
+            res.status(500).json({error: erro})
+        })
+}
+
+
 module.exports = {
     existe,
-    cadastrar
+    cadastrar,
+    chamados
 }
