@@ -39,19 +39,21 @@ demo = {
         ],
         datasets: [
           {
-            label: "Utilização da CPU em %",
-            borderColor: "#000000",
-            backgroundColor: "#6bd098",
-            pointRadius: 8,
-            pointHoverRadius: 15,
-            borderWidth: 0.1,
+            // label: "Utilização da CPU",
+            borderColor: "#3A7D44",
+            backgroundColor: "transparent",
+            pointBorderColor: "#3A7D44",
+            pointRadius: 4,
+            pointHoverRadius: 8,
+            pointBorderWidth: 8,
+            //borderWidth: 0.1,
             data: [12, 18, 23, 29, 34, 40, 45, 51, 56, 60, 56, 51, 60],
           },
         ],
       },
       options: {
         legend: {
-          //display: false
+          display: false,
           position: "top",
         },
 
@@ -70,20 +72,19 @@ demo = {
               },
               gridLines: {
                 drawBorder: false,
-                zeroLineColor: "#ccc",
-                color: "rgba(255,255,255,0.05)",
+                // zeroLineColor: "#ccc",
+                // color: "rgba(255,255,255,0.05)",
               },
             },
           ],
-
           xAxes: [
             {
-              barPercentage: 1.6,
+              //barPercentage: 0.5,
               gridLines: {
                 drawBorder: false,
                 color: "rgba(255,255,255,0.1)",
                 zeroLineColor: "transparent",
-                display: false,
+                display: true,
               },
               ticks: {
                 padding: 20,
@@ -105,11 +106,11 @@ demo = {
         7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 21,
       ],
       fill: false,
-      borderColor: "#181D27",
-      backgroundColor: "transparent",
+      borderColor: "#3A7D44",
+      backgroundColor: "#3A7D44",
       pointBorderColor: "#3A7D44",
       pointRadius: 4,
-      pointHoverRadius: 4,
+      pointHoverRadius: 5,
       pointBorderWidth: 8,
     };
 
@@ -151,59 +152,62 @@ demo = {
       options: chartOptions,
     });
 
+    
     ctx = document.getElementById("chartUtiCpu").getContext("2d");
 
     myChart = new Chart(ctx, {
-      type: "doughnut",
+      type: "bar",
       data: {
-        labels: ["Utilizado", "Não utilizado"],
+        labels: [
+          "12:00",
+        "12:05",
+        "12:10",
+        "12:15",
+        "12:20",
+        "12:25",
+        "12:30",
+        "12:35",
+        "12:40",
+        "12:45",
+        "12:50",
+        "12:55",
+        "13:00",
+      ],
         datasets: [
           {
-            fill: false,
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            backgroundColor: ["#69b5789e", "#3A7D44"],
-            borderWidth: 0,
-            data: [22, 78],
+            label: "Utilização do processador",
+            backgroundColor: "#3A7D44",
+            tension: 0.1,
+              data: [98,96,96,91,89,97,97,98,97,94,85,89,95,92],
           },
+            {
+            label: "Temperatura média",
+            backgroundColor: '#8b0000'          
+            }
         ],
       },
-
       options: {
         legend: {
-          display: false,
+          display: true,
+          position: 'top'
         },
-
-        pieceLabel: {
-          render: "percentage",
-          fontColor: ["white"],
-          precision: 2,
-        },
-
-        /* tooltips: {
-            enabled: false
-          }, */
-
         scales: {
           yAxes: [
             {
               ticks: {
-                display: false,
+                display: true,
+                beginAtZero: false,
               },
               gridLines: {
                 drawBorder: false,
                 zeroLineColor: "transparent",
-                color: "69B578",
               },
             },
           ],
-
           xAxes: [
             {
-              barPercentage: 1.6,
               gridLines: {
                 drawBorder: true,
-                color: "69B578",
                 zeroLineColor: "transparent",
               },
               ticks: {
@@ -212,7 +216,21 @@ demo = {
             },
           ],
         },
-      },
+          plugins: {
+            annotation: {
+              annotations: {
+                box1: {
+                  type: 'line',
+                  yMin: 92,
+                  yMax: 92,
+                  xMin: '12:00',
+                  xMax: '13:00',
+                  backgroundColor: 'rgba(255, 99, 132, 0.25)'
+              }
+            }
+          }
+        }
+  }
     });
   },
 };

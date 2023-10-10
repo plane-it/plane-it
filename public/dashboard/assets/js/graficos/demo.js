@@ -125,86 +125,35 @@ demo = {
     ctx = document.getElementById('chartHours').getContext("2d");
 
     myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
 
       data: {
    
         labels: [
-          '12:00',
-          '12:01',
-          '12:02',
-          '12:03',
-          '12:04',
-          '12:05',
-          '12:06',
-          '12:07',
-          '12:08',
-          '12:09',
-          '12:10',
-          '12:11',
-          '12:12',
-          '12:13',
-          '12:14',
-          '12:15',
-          '12:16',
-          '12:17',
-          '12:18',
-          '12:19',
-          '12:20',
-          '12:21',
-          '12:22',
-          '12:23',
-          '12:24',
-          '12:25',
-          '12:26',
-          '12:27',
-          '12:28',
-          '12:29',
-          '12:30',
-          '12:31',
-          '12:32',
-          '12:33',
-          '12:34',
-          '12:35',
-          '12:36',
-          '12:37',
-          '12:38',
-          '12:39',
-          '12:40',
-          '12:41',
-          '12:42',
-          '12:43',
-          '12:44',
-          '12:45',
-          '12:46',
-          '12:47',
-          '12:48',
-          '12:49',
-          '12:50',
-          '12:51',
-          '12:52',
-          '12:53',
-          '12:54',
-          '12:55',
-          '12:56',
-          '12:57',
-          '12:58',
-          '12:59',
-          '13:00'
+          '01/10/2023',
+          '02/10/2023',
+          '03/10/2023',
+          '04/10/2023',
+          '05/10/2023',
+          '06/10/2023',
+          '07/10/2023',
         ],
         datasets: [{
             label: 'Utilização da CPU em %',
             borderColor: "#",
-            backgroundColor: "#6bd098",
-            pointRadius: 8,
-            pointHoverRadius: 15,
-            data: [12, 18, 23, 29, 34, 40, 45, 51, 56, 60, 56, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56, 60, 56, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56, 60,18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51]
+            // borderColor: '#3A7D44',
+            backgroundColor: '#3A7D44',
+            pointBorderColor: '#3A7D44',
+            pointRadius: 4,
+            pointHoverRadius: 5,
+            pointBorderWidth: 8,
+            data: [98,89,94,95,98,90,97]
           }
         ]
       },
       options: {
         legend: {
-          //display: false
+          display: false,
           position:'top'
         },
 
@@ -222,23 +171,23 @@ demo = {
               //padding: 20
             },
             gridLines: {
-              drawBorder: false,
-              zeroLineColor: "#ccc",
-              color: 'rgba(255,255,255,0.05)'
+              drawBorder: true,
+              // zeroLineColor: "#fff",
+              // color: 'transparent'
             }
 
           }],
 
           xAxes: [{
-            barPercentage: 1.6,
+            // barPercentage: 1.6,
             gridLines: {
               drawBorder: false,
-              color: 'rgba(255,255,255,0.1)',
+              color: 'rgba(0,0,0)',
               zeroLineColor: "transparent",
               display: false,
             },
             ticks: {
-              padding: 20,
+              padding: 8,
               fontColor: "#9f9f9f"
             }
           }]
@@ -252,13 +201,20 @@ demo = {
     myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [1, 2, 3,4,5,6],
+        labels: [ '01/10/2023',
+        '02/10/2023',
+        '03/10/2023',
+        '04/10/2023',
+        '05/10/2023',
+        '06/10/2023',
+        '07/10/2023',
+        ],
         datasets: [{
           fill: false,
           pointRadius: 0,
-          pointHoverRadius: 0,
+          pointHoverRadius: 5,
           backgroundColor: 
-            '#69b5789e',
+            '#3A7D44',
           borderWidth: 0,
           data: [1.6, 0.2, 0.3, 1.3, 1.4, 0.5]
         }]
@@ -284,22 +240,22 @@ demo = {
           yAxes: [{
 
             ticks: {
-              display: true
+              display: true,
             },
             gridLines: {
               drawBorder: false,
-              zeroLineColor: "transparent",
-              color: '69B578'
+              // zeroLineColor: "transparent",
+              // color: '69B578'
             }
-
+            
           }],
 
           xAxes: [{
-            barPercentage: 1.6,
+            // barPercentage: 1.6,
             gridLines: {
               drawBorder: true,
-              color: '69B578',
-              zeroLineColor: "transparent"
+              // color: 'transparent',
+              // zeroLineColor: "transparent"
             },
             ticks: {
               display: true,
@@ -312,79 +268,26 @@ demo = {
     var speedCanvas = document.getElementById("speedChart");
 
     var dataFirst = {
-      data: [12, 18, 23, 29, 34, 40, 45, 51, 56, 20, 56, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 10, 45, 51, 56, 45, 46, 51, 45, 40, 34, 29, 23, 18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 51, 56, 30,18, 12, 7, 1, 7, 12, 18, 23, 29, 34, 40, 45, 21],
-      fill: false,
-      borderColor: '#181D27',
-      backgroundColor: 'transparent',
+      data: [97,98,98,96,97,95,98],
+      fill: true,
+      borderColor: '#3A7D44',
+      backgroundColor: '#3A7D44',
       pointBorderColor: '#3A7D44',
       pointRadius: 4,
-      pointHoverRadius: 4,
+      pointHoverRadius: 5,
       pointBorderWidth: 8,
     };
 
     var speedData = {
       labels: [ 
-      '12:00',
-      '12:01',
-      '12:02',
-      '12:03',
-      '12:04',
-      '12:05',
-      '12:06',
-      '12:07',
-      '12:08',
-      '12:09',
-      '12:10',
-      '12:11',
-      '12:12',
-      '12:13',
-      '12:14',
-      '12:15',
-      '12:16',
-      '12:17',
-      '12:18',
-      '12:19',
-      '12:20',
-      '12:21',
-      '12:22',
-      '12:23',
-      '12:24',
-      '12:25',
-      '12:26',
-      '12:27',
-      '12:28',
-      '12:29',
-      '12:30',
-      '12:31',
-      '12:32',
-      '12:33',
-      '12:34',
-      '12:35',
-      '12:36',
-      '12:37',
-      '12:38',
-      '12:39',
-      '12:40',
-      '12:41',
-      '12:42',
-      '12:43',
-      '12:44',
-      '12:45',
-      '12:46',
-      '12:47',
-      '12:48',
-      '12:49',
-      '12:50',
-      '12:51',
-      '12:52',
-      '12:53',
-      '12:54',
-      '12:55',
-      '12:56',
-      '12:57',
-      '12:58',
-      '12:59',
-      '13:00'],
+      '01/10/2023',
+      '02/10/2023',
+      '03/10/2023',
+      '04/10/2023',
+      '05/10/2023',
+      '06/10/2023',
+      '07/10/2023',
+    ],
       datasets: [dataFirst]
     };
 
@@ -392,12 +295,12 @@ demo = {
       legend: {
         display: false,
         position: 'top'
-      }
+      },
     };
 
-    var lineChart = new Chart(speedCanvas, {
-      type: 'line',
-      hover: false,
+    var barChart = new Chart(speedCanvas, {
+      type: 'bar',
+      hover: true,
       data: speedData,
       options: chartOptions
     });
