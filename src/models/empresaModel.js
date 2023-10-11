@@ -17,7 +17,7 @@ function cadastrar(nomeEmpresa, cnpj) {
 function listarChamados(id){
     const sql = `
         select 
-            c.estado, c.nivel, c.sla, s.apelido, 
+            c.estado, c.nivel, c.sla, s.apelido, r.datahora, 
             (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "CPU") cpu,
             (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "HD") disco,
             (select rs.valor from tbRegistro rs join tbComponente c on rs.fkComp = c.idComp where rs.fkServidor = s.idServ and rs.datahora = r.datahora and c.tipo = "RAM") ram
