@@ -33,6 +33,7 @@ Coded by www.creative-tim.com
   <link rel="stylesheet" href="../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/alertas.css">
 </head>
 
 <body class="">
@@ -41,12 +42,12 @@ Coded by www.creative-tim.com
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/planeIt/logo.png">
+            <img src="../assets/img/planeIt/logoSemNome.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
         <a href="./index.html" class="simple-text logo-normal">
-          Plane - it.
+          Plane - it
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
@@ -75,7 +76,7 @@ Coded by www.creative-tim.com
 
           <li>
               <a href="#" class="dropbtn">
-                <i class="nc-icon nc-bell-55"></i>
+                <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
               <div class="dropdown-content">
@@ -86,10 +87,15 @@ Coded by www.creative-tim.com
           </li>
 
           <li>
-            <a href="./servidores.html">
+            <a href="#" class="dropbtn">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Lista de Servidores</p>
+              <p>Informações Gerais</p>
             </a>
+            <div class="dropdown-content">
+              <a href="listas/listaFuncionarios.html">Funcionários</a>
+              <a href="listas/listaAeroportos.html">Aeroportos</a>
+              
+            </div>
           </li>
         </ul>
       </div>
@@ -168,7 +174,144 @@ Coded by www.creative-tim.com
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          
+          <div class="col-md-12"> 
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Chamados</h5>
+              </div>
+              <div class="card-body d-flex flex-column gap-2">
+                <div class="alert-called">
+                  <div class="alert-called-header">
+                      <p class="col-4">Aberto</p>
+                      <p class="col-4">Alto</p>
+                      <p class="col-4">2 horas</p>
+                    </div>
+                  <div class="alert alert-light-gray alert-flex-col" data-notify="container">
+                    <div class="d-flex row">
+                      <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
+                          <span class="nc-icon nc-bell-55"></span>
+                          <span>Servidor001 </span>
+                      </div>
+                      <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
+                        <span>29/09/2023 13:50</span>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <div class="card-metric">
+                        <p>Cpu</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Disco</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Ram</p>
+                        <p>99.0%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alert-called">
+                  <div class="alert-called-header">
+                      <p class="col-4">Estado</p>
+                      <p class="col-4">Nivel</p>
+                      <p class="col-4">Sla</p>
+                    </div>
+                  <div class="alert alert-light-gray alert-flex-col" data-notify="container">
+                    <div class="d-flex row">
+                      <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
+                          <span class="nc-icon nc-bell-55"></span>
+                          <span>Servidor001 </span>
+                      </div>
+                      <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
+                        <span>29/09/2023 13:50</span>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <div class="card-metric">
+                        <p>Cpu</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Disco</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Ram</p>
+                        <p>99.0%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="alert-called">
+                  <div class="alert-called-header">
+                      <p class="col-4">Estado</p>
+                      <p class="col-4">Nivel</p>
+                      <p class="col-4">Sla</p>
+                    </div>
+                  <div class="alert alert-light-gray alert-flex-col" data-notify="container">
+                    <div class="d-flex row">
+                      <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
+                          <span class="nc-icon nc-bell-55"></span>
+                          <span>Servidor001 </span>
+                      </div>
+                      <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
+                        <span>29/09/2023 13:50</span>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <div class="card-metric">
+                        <p>Cpu</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Disco</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Ram</p>
+                        <p>99.0%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="alert-called">
+                  <div class="alert-called-header">
+                      <p class="col-4">Estado</p>
+                      <p class="col-4">Nivel</p>
+                      <p class="col-4">Sla</p>
+                    </div>
+                  <div class="alert alert-light-gray alert-flex-col" data-notify="container">
+                    <div class="d-flex row">
+                      <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
+                          <span class="nc-icon nc-bell-55"></span>
+                          <span>Servidor001 </span>
+                      </div>
+                      <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
+                        <span>29/09/2023 13:50</span>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <div class="card-metric">
+                        <p>Cpu</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Disco</p>
+                        <p>99.0%</p>
+                      </div>
+                      <div class="card-metric">
+                        <p>Ram</p>
+                        <p>99.0%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     <!--     <div class="row">
           <div class="col-md-12">

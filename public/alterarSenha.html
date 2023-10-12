@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Cadastro</title>
+    <title>Login</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -20,24 +20,24 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login_cadastro.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/vendor.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/login_cadastro.css">
 
 
     <!-- script
     ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script src="js/pace.min.js"></script>
-    <script src="js/cadastro.js"></script>
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../js/pace.min.js"></script>
+    <script src="../../js/recuperar.js"></script>
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="images/logoSemNome.ico" type="image/x-icon">
-    <link rel="icon" href="images/logoSemNome.ico" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="../../images/logoSemNome.ico" type="image/x-icon">
+    <link rel="icon" href="../../images/logoSemNome.ico" type="image/x-icon">
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="top">
@@ -48,7 +48,7 @@
 
         <div class="header-logo">
             <a class="site-logo" href="index.html">
-                <img src="images/logoSemNome.png" alt="Homepage">
+                <img src="../../images/logoSemNome.png" alt="Homepage">
             </a>
             <h1>Plane-It</h1>
         </div>
@@ -61,8 +61,8 @@
                 <h3>Navegação</h3>
 
                 <ul class="header-nav__list">
-                    <li><a href="index.html" title="Home">Início</a></li>
-                    <li><a href="login.html" title="Login">Login</a></li>
+                    <li><a href="../../index.html" title="Home">Início</a></li>
+                    <li><a href="../../cadastro.html" title="Cadastro">Cadastro</a></li>
                 </ul>
 
                 <ul class="header-nav__social">
@@ -104,8 +104,8 @@
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">Cadastro</h3>
-                <h1 class="display-2 display-2--light">Seja bem-vindo!</h1>
+                <h3 class="subhead">Recuperar Senha</h3>
+                <h1 class="display-2 display-2--light">Vamos recuperar sua senha</h1>
             </div>
         </div>
 
@@ -113,50 +113,20 @@
 
             <div class="contact-primary">
 
-                <h3 class="h6" id="mensagemForm">Insira as credenciais da sua empresa</h3>
+                <h3 class="h6">Insira suas credenciais</h3>
 
-                <form id="idcontainer2"name="contactForm" method="post" action="" novalidate="novalidate">
+                <form name="contactForm" id="contactForm" method="post" action="" novalidate="novalidate">
                     <fieldset>
-
                         <div class="form-field">
-                            <input type="text" id="iptCnpj" placeholder="CNPJ" minlength="14" maxlength="18"
-                                class="full-width">
+                            <input type="password" id="iptSenha" placeholder="Senha" value=""
+                               required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input type="text" id="iptNomeEmpresa" placeholder="Nome da Empresa" value="" required=""
-                                aria-required="true" class="full-width">
+                            <input type="password" id="iptConfirmarSenha" placeholder="Confirmar Senha" value=""
+                               required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <button class="full-width btn--primary" onclick="proximo()">Continuar</button>
-                        </div>
-                        <div class="form-field">
-                            <div class="form-links">
-                                <a href="login.html" class="form-a">Já possuí uma conta?</a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-                <form id="idcontainer3" name="contactForm" method="post" action="" novalidate="novalidate" 
-                    style="display: none;">
-                    <fieldset>
-
-                        <div class="form-field">
-                            <input type="text" id="iptNomeGerente" placeholder="Seu nome" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <input type="text" id="iptCpf" placeholder="CPF" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <input type="text" id="iptEmail" placeholder="Email" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <input type="password" id="iptSenha" placeholder="Senha" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <input type="password" id="iptConfirmacao" placeholder="Confirmação de senha" class="full-width">
-                        </div>
-                        <div class="form-field">
-                            <button class="full-width btn--primary" onclick="cadastrar()">Cadastrar</button>
+                            <button class="full-width btn--primary" onclick="alterarSenha()">Enviar</button>
                             <div class="submit-loader">
                                 <div class="text-loader">Enviando...</div>
                                 <div class="s-loader">
@@ -166,6 +136,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </fieldset>
                 </form>
 
@@ -285,17 +256,10 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <script src="../../js/main.js"></script>
 
 </body>
 
 </html>
-
-<script>
-    $(".btn--primary").click(function (e) {
-        // Impedir o recarregamento da tela
-        e.preventDefault();
-    });
-</script>

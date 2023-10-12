@@ -3,8 +3,8 @@ function entrar() {
     var senha = iptSenha.value
     var contadorErro = 0
 
-    iptCpf.style.border = "solid 2px #000000";
-    iptSenha.style.border = "solid 2px #000000";
+    iptCpf.style.border = "";
+    iptSenha.style.border = "";
 
     if (cpf == "" || cpf.length > 11 || cpf.length <= 10) {
         iptCpf.style.border = "solid 2px #ff0000"
@@ -38,6 +38,16 @@ function entrar() {
            }
            else{
                 Swal.fire("Muito Bem!", "Seja Bem-Vindo!", "success");
+                console.log(res)
+                sessionStorage.CARGO = res.cargo;
+                sessionStorage.CPF = res.cpf;
+                sessionStorage.EMAIL = res.email;
+                sessionStorage.FK_AEROPORTO = res.fkAeroporto;
+                sessionStorage.FK_EMPRESA = res.fkEmpr;
+                sessionStorage.ID_COLAB = res.idColab;
+                sessionStorage.NOME = res.nome;
+                sessionStorage.SENHA = res.senha;
+                sessionStorage.TELEFONE = res.telefone;
                 setTimeout(() => {
                       window.location = "../dashboard/screens/index.html";
                 }, "1000")

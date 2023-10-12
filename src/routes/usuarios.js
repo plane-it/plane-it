@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const path = require("path")
 
 var usuarioController = require("../controllers/usuarioController");
 
@@ -24,8 +25,20 @@ router.post("/proximo", function (req, res) {
     usuarioController.proximo(req, res);
 });
 
-router.post("/recuperar", function(req, res) {
-    usuarioController.recuperar(req, res)
+router.get("/recuperar/:cpf", function(req, res) {
+    usuarioController.recuperar(req,res)
+})
+
+router.get("/alterar-senha/:id", function(req, res){
+    res.sendFile(path.join(__dirname,"../../public/alterarSenha.html"))
+})
+
+router.post("/alterar-senha/:id", function(req,res){
+    usuarioController.alterarSenha(req,res)
+})
+
+router.post("/buscarFunc", (req, res) => {
+    usuarioController.buscarFunc(req, res)
 })
 
 module.exports = router;
