@@ -182,6 +182,82 @@ function buscarFunc(req, res) {
     }
 }
 
+function buscarCPF(req, res) {
+    const {cpf} = req.body
+
+    if (!cpf) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        usuarioModel.buscarCPF(cpf).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    console.log("CPF existente!")
+                    res.json(resultado);
+                } else {
+                    console.log("CPF inexistente!")
+                    res.json(resultado);x
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+
+function buscarEmail(req, res) {
+    const {email} = req.body
+
+    if (!email) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        usuarioModel.buscarEmail(email).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    console.log("Email existente!")
+                    res.json(resultado);
+                } else {
+                    console.log("Email inexistente!")
+                    res.json(resultado);x
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function cadastrarFunc(req, res) {
+    const {nome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroporto, idEmpresa} = req.body
+
+    if (!nome || !cargo || !email || !senha || !telefone || !cpf || !idCadastrador || !idAeroporto || !idEmpresa) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        usuarioModel.cadastrarFunc(nome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroporto, idEmpresa).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    console.log("Email existente!")
+                    res.json(resultado);
+                } else {
+                    console.log("Email inexistente!")
+                    res.json(resultado);x
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     entrar,
     proximo,
@@ -190,5 +266,8 @@ module.exports = {
     testar,
     recuperar,
     alterarSenha,
-    buscarFunc
+    buscarFunc,
+    buscarCPF,
+    buscarEmail,
+    cadastrarFunc
 }

@@ -41,4 +41,16 @@ router.post("/buscarFunc", (req, res) => {
     usuarioController.buscarFunc(req, res)
 })
 
+router.post("/buscarCPF", (req, res) => {
+    usuarioController.buscarCPF(req, res)
+})
+
+router.post("/buscarEmail", (req, res) => {
+    usuarioController.buscarEmail(req, res)
+})
+
+router.post("/cadastrarFunc", (req, res) => {
+    usuarioController.cadastrarFunc(req, res)
+})
+
 module.exports = router;

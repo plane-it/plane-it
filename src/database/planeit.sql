@@ -40,12 +40,14 @@ create table tbColaborador(
     nome varchar(70) not null,
     email varchar(100) not null unique,
     senha varchar(15) not null,
-    cargo varchar(15),
+    cargo varchar(35),
     telefone varchar(11),
     fkEmpr int not null,
     foreign key (fkEmpr) references tbEmpresa(idEmpr),
     fkAeroporto int,
-    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
+    foreign key (fkAeroporto) references tbAeroporto(idAeroporto),
+    fkSupervisor int,
+    foreign key (fkSupervisor) references tbColaborador(idColab)
 );
 
 insert into tbColaborador values (null,"1234","lu","","","Gerente","1234",1,1);
