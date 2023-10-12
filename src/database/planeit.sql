@@ -23,7 +23,7 @@ create table tbEmpresa(
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
     nome varchar(45),
-    pais varchar(45),
+    pais varchar(45),	
     cidade varchar(45),
     endereco varchar(45),
     fkEmpresa int,
@@ -36,12 +36,14 @@ create table tbColaborador(
     nome varchar(70) not null,
     email varchar(100) not null unique,
     senha varchar(15) not null,
-    cargo varchar(15),
+    cargo varchar(35),
     telefone varchar(11),
     fkEmpr int not null,
     foreign key (fkEmpr) references tbEmpresa(idEmpr),
     fkAeroporto int,
-    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
+    foreign key (fkAeroporto) references tbAeroporto(idAeroporto),
+    fkSupervisor int,
+    foreign key (fkSupervisor) references tbColaborador(idColab)
 );
 
 alter table tbAeroporto 
