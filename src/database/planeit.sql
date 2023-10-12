@@ -20,7 +20,6 @@ create table tbEmpresa(
     razaoSocial varchar(50) not null
 );
 
-insert into tbEmpresa values(null,"1234","Aero","Aerort");
 
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
@@ -32,7 +31,7 @@ create table tbAeroporto(
     foreign key (fkEmpresa) references tbEmpresa(idEmpr)
 );
 
-insert into tbAeroporto values(null,"Cegonha","","","",1);
+
 
 create table tbColaborador(
 	idColab int primary key auto_increment,
@@ -41,6 +40,8 @@ create table tbColaborador(
     email varchar(100) not null unique,
     senha varchar(15) not null,
     cargo varchar(15),
+    fkSuperior int,
+    foreign key (fkSuperior) references tbColaborador(idColab),
     telefone varchar(11),
     fkEmpr int not null,
     foreign key (fkEmpr) references tbEmpresa(idEmpr),
@@ -48,7 +49,7 @@ create table tbColaborador(
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
 
-insert into tbColaborador values (null,"1234","lu","","","Gerente","1234",1,1);
+
 
 alter table tbAeroporto 
 	add fkEncarregado int,
@@ -64,6 +65,14 @@ create table tbServidor(
     ultimaManutencao date,
     fkAeroporto int not null,
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
+);
+
+CREATE TABLE tbManutencao(
+	idManutencao INT PRIMARY KEY,
+	dataHota DATETIME NOT NULL,
+    descricaoManutencao VARCHAR(255) NOT NULL,
+	fkServidor INT,
+    FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
 
 create table tbComponente(
@@ -85,6 +94,25 @@ create table tbMetrica(
     foreign key (fkComponente) references tbComponente(idComp),
     fkUnidadeMedida int,
     foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
+);
+
+CREATE TABLE tbProcessos(
+	idProcesso INT PRIMARY KEY,
+	PID INT,
+    usoCPU DOUBLE,
+    fkMetricaCPU INT,
+    FOREIGN KEY (fkMetricaCPU) REFERENCES tbMetrica(idMetrica),
+    usoMemoria DOUBLE,
+	fkMetricaMemoria INT,
+    FOREIGN KEY (fkMetricaMemoria) REFERENCES tbMetrica(idMetrica),
+    bytesUtilizados INT,
+	fkMetricaBytes INT,
+    FOREIGN KEY (fkMetricaBytes) REFERENCES tbMetrica(idMetrica),
+    memoriaVirtual INT,
+	fkMetricaMemoriaVitrual INT,
+    FOREIGN KEY (fkMetricaMemoriaVitrual) REFERENCES tbMetrica(idMetrica),
+    fkServidor INT,
+    foreign key (fkServidor) references tbServidor(idServ)
 );
 
 create table tbRegistro(
