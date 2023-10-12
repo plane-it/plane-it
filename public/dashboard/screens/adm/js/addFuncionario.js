@@ -24,9 +24,6 @@ function buscarAeroporto() {
                 }
                 else {
 
-
-                    console.log(res)
-
                     for (let i = 0; i < res.length; i++) {
                         liAeroportos.innerHTML += `                      
                         <li><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nome}')">${res[i].nome}</a></li>
@@ -43,7 +40,6 @@ function buscarAeroporto() {
 function selecionarAeroporto(id, nome) {
     idAeroportoSelecionado = id;
     spanAeroporto.innerHTML = nome;
-    liAeroportos.style.visibility = "hidden";
 }
 
 function verifCampos() {
@@ -58,7 +54,7 @@ function verifCampos() {
     idCadastrador = sessionStorage.ID_COLAB;
     idEmpresa = sessionStorage.FK_EMPRESA;
     idAeroportoSelecionado = idAeroportoSelecionado;
-    
+
 
     erro = false
 
@@ -79,62 +75,62 @@ function verifCampos() {
     if (cargo == undefined || cargo == "") {
         alert('Preencha o campo Cargo')
         iptCargo.style = "border: 1px solid RED"
-        erro=true;
+        erro = true;
     } else {
         iptCargo.style = "border: 1px solid #DDDDD";
     }
     if (email == undefined || email == "") {
         alert('Preencha o campo Email')
         iptEmail.style = "border: 1px solid RED"
-        erro=true;
+        erro = true;
     } else {
         iptEmail.style = "border: 1px solid #DDDDD";
     }
     if (senha == undefined || senha == '') {
         alert('Preencha a Senha')
         iptSenha.style = "border: 1px solid RED"
-        erro=true;
+        erro = true;
     } else {
         iptSenha.style = "border: 1px solid #DDDDD";
     }
     if (confirmacaoSenha == undefined || confirmacaoSenha == "") {
         alert("Confirme sua senha")
         iptConfirmacaoSenha.style = "border: 1px solid red"
-        erro=true;
+        erro = true;
     } else {
         iptConfirmacaoSenha.style = "border: 1px solid #DDDDD";
     }
     if (confirmacaoSenha != senha) {
         alert("As senhas não são iguais");
-        iptConfirmacaoSenha.style="border: 1px solid red;"
-        iptSenha.style="border: 1px solid red;"
-        erro=true;
+        iptConfirmacaoSenha.style = "border: 1px solid red;"
+        iptSenha.style = "border: 1px solid red;"
+        erro = true;
     } else {
-        iptConfirmacaoSenha.style ="border: 1px solid #DDDDD;"
+        iptConfirmacaoSenha.style = "border: 1px solid #DDDDD;"
     }
     if (telefone == undefined || telefone == '') {
         alert('Preencha o Telefone')
         iptTelefone.style = 'border: 1px solid red'
-        erro=true;
+        erro = true;
     } else {
-        iptTelefone.style='border: 1px solid #DDDDD;';
+        iptTelefone.style = 'border: 1px solid #DDDDD;';
     }
     if (cpf == undefined || cpf == "") {
         alert('Preencha o cpf')
         iptCPF.style = 'border: 1px solid red';
-        erro=true;
+        erro = true;
     } else {
         iptCPF.style = 'border: 1px solid #DDDDD;';
     }
     if (idCadastrador == undefined || idEmpresa == undefined) {
         alert("Você não esta logado!")
         window.location.href = "../../../../login.html";
-        erro=true;
-    } 
+        erro = true;
+    }
     if (idAeroportoSelecionado == undefined) {
-        alert ("Escolha um Aéroporto!");
+        alert("Escolha um Aéroporto!");
         slctAero.style = 'border: 1px solid red;';
-        erro=true;
+        erro = true;
     } else {
         selctAero.style = 'border: none;'
     }
@@ -153,7 +149,7 @@ function verifCampos() {
                     console.log("Aconteceu algum erro (res.error = true)")
                 }
                 else {
-                    if (res.length>0) {
+                    if (res.length > 0) {
                         alert("CPF já registrado")
                         iptCPF.style = "border: 1px solid RED"
                     } else {
@@ -171,7 +167,7 @@ function verifCampos() {
                                     console.log("Aconteceu algum erro (res.error = true)")
                                 }
                                 else {
-                                    if (res.length>0) {
+                                    if (res.length > 0) {
                                         alert("Email já registrado")
                                         iptEmail.style = "border: 1px solid RED"
                                     } else {
@@ -179,7 +175,7 @@ function verifCampos() {
                                     }
                                 }
                             }).catch(function (resposta) {
-                
+
                             });
                     }
                 }
@@ -215,14 +211,15 @@ function cadastrarFunc(nome, sobrenome, cargo, email, senha, telefone, cpf, idCa
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-                console.log(res)
-
-                for (let i = 0; i < res.length; i++) {
-                    liAeroportos.innerHTML += `                      
-                    <li><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nome}')">${res[i].nome}</a></li>
-                    `
-                }
-
+                alert("Usuario cadastrado!")
+                iptNome.value = "";
+                iptSobrenome.value = "";
+                iptCargo.value = "";
+                iptEmail.value = "";
+                iptSenha.value = "";
+                iptConfirmacaoSenha.value = "";
+                iptTelefone.value = "";
+                iptCPF.value = "";
             }
         }).catch(function (resposta) {
 
