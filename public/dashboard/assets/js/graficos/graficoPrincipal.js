@@ -1,4 +1,4 @@
-function cpuMain(){
+function pegarDadosCpu(){
 //Coletando dados do banco
     fetch("/dadosCpu/capturar",{
         method:"GET",
@@ -19,8 +19,12 @@ function cpuMain(){
 
 function gerarGraficoCpu(resposta){
 //Montando o grafico com os dados
-ctx = document.getElementById('chartHours').getContext("2d");
+ctx = document.getElementById('analiseCPU').getContext("2d");
     var dados = [];
+    for(i = 0; i < resposta.length; i++){
+        var registro = resposta[i];
+        dados.push(registro)
+        }
     var info = {
         labels: dados,
         datasets: [{
@@ -31,5 +35,13 @@ ctx = document.getElementById('chartHours').getContext("2d");
             tension: 0.1
         }]
     };
+    var config = {
+        type: 'line',
+        data: info,
+    }
+    var myChart = new Chart(ctx,{
+    info,
+    config,
+    });
 
 }
