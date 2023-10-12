@@ -1,11 +1,3 @@
-drop database if exists planeit;
-create database planeit;
-use planeit;
-
-create user if not exists 'acessoProduction' identified by 'urubu100';
-grant all privileges  on planeit.* to 'acessoProduction';
-
-
 create table tbFaleConosco(
     idFaleConosco int primary key,
     mensagem varchar(255),
@@ -20,7 +12,6 @@ create table tbEmpresa(
     razaoSocial varchar(50) not null
 );
 
-
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
     nomeAeroporto varchar(45),
@@ -30,8 +21,6 @@ create table tbAeroporto(
     fkEmpresa int,
     foreign key (fkEmpresa) references tbEmpresa(idEmpr)
 );
-
-
 
 create table tbColaborador(
 	idColab int primary key auto_increment,
@@ -48,8 +37,6 @@ create table tbColaborador(
     fkAeroporto int,
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
-
-
 
 alter table tbAeroporto 
 	add fkEncarregado int,
@@ -70,9 +57,12 @@ create table tbServidor(
 CREATE TABLE tbManutencao(
 	idManutencao INT PRIMARY KEY,
 	dataHota DATETIME NOT NULL,
-    descricaoManutencao VARCHAR(255) NOT NULL,
-	fkServidor INT,
-    FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
+    fkResponsavel INT NOT NULL,
+    FOREIGN KEY (fkResponsavel) REFERENCES tbColaborador(idColab),
+	fkServidor INT NOT NULL,
+    FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ),	
+    descricaoManutencao VARCHAR(255) NOT NULL
+
 );
 
 create table tbComponente(
@@ -82,11 +72,13 @@ create table tbComponente(
     fkServ int,
     foreign key (fkServ) references tbServidor(idServ)
 );
+
 create table tbUnidadeMedida(
 	idUnidadeMedida int primary key auto_increment,
     nome varchar(50),
     sinal varchar(5)
 );
+
 create table tbMetrica(
 	idMetrica int primary key auto_increment,
     valor decimal(10,2),
