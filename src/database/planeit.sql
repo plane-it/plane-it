@@ -28,7 +28,7 @@ create table tbColaborador(
     nome varchar(70) not null,
     email varchar(100) not null unique,
     senha varchar(15) not null,
-    cargo varchar(15),
+    cargo varchar(35),
     fkSuperior int,
     foreign key (fkSuperior) references tbColaborador(idColab),
     telefone varchar(11),
