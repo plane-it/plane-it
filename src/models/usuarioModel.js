@@ -57,11 +57,44 @@ function buscarFunc(fkEmpresa) {
     return database.executar(sql)
 }
 
+function buscarCPF(cpf) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE cpf = "${cpf}";
+    `
+    return database.executar(sql)
+}
+
+function buscarEmail(email) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE email = "${email}";
+    `
+    return database.executar(sql)
+}
+
+function cadastrarFunc(nome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroporto, idEmpresa) {
+    const sql = `
+        INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto) VALUES (
+            '${cpf}',
+            '${nome}',
+            '${email}',
+            '${senha}',
+            '${cargo}',
+            '${telefone}',
+            '${idEmpresa}',
+            '${idAeroporto}'
+        );
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
     listar,existsCpf,
     alterarSenha,
-    buscarFunc
+    buscarFunc,
+    buscarCPF,
+    buscarEmail,
+    cadastrarFunc
 };
