@@ -29,7 +29,7 @@ function buscarAeroporto() {
                         aeroportos.innerHTML += `                      
                         <tr>
                         <td>
-                          ${res[i].nome}
+                          ${res[i].nomeAeroporto}
                         </td>
                         <td>
                           ${res[i].pais}
@@ -38,7 +38,7 @@ function buscarAeroporto() {
                           ${res[i].cidade}
                         </td>
                         <td>
-                        <a class="a-td" onclick="listaServidores(${res[i].idAeroporto}, '${res[i].nome}')">Acessar</a>
+                        <a class="a-td" onclick="listaServidores(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">Acessar</a>
                         </td>
                       </tr>`
                     }
