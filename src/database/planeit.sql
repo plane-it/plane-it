@@ -20,8 +20,6 @@ create table tbEmpresa(
     razaoSocial varchar(50) not null
 );
 
-insert into tbEmpresa values(null,"1234","Aero","Aerort");
-
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
     nomeAeroporto varchar(45),
@@ -31,8 +29,6 @@ create table tbAeroporto(
     fkEmpresa int,
     foreign key (fkEmpresa) references tbEmpresa(idEmpr)
 );
-
-insert into tbAeroporto values(null,"Cegonha","","","",1);
 
 create table tbColaborador(
 	idColab int primary key auto_increment,
@@ -49,8 +45,6 @@ create table tbColaborador(
     fkSupervisor int,
     foreign key (fkSupervisor) references tbColaborador(idColab)
 );
-
-insert into tbColaborador values (null,"1234","lu","","","Gerente","1234",1,1);
 
 alter table tbAeroporto 
 	add fkEncarregado int,
