@@ -17,6 +17,7 @@ var contatoRouter = require("./src/routes/contato");
 var perfilRouter = require("./src/routes/perfil");
 var aeroportoRouter = require("./src/routes/aeroporto");
 var servidorRouter = require("./src/routes/servidor");
+var registrosRouter = require("./src/routes/registros");
 
 
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use("/contato",contatoRouter);
 app.use("/perfil",perfilRouter);
 app.use("/aeroporto", aeroportoRouter);
 app.use("/servidor", servidorRouter);
+app.use("/registros", registrosRouter);
 
 
 

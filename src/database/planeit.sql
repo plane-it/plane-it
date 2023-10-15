@@ -118,3 +118,12 @@ create table tbRegistro(
     fkMetrica int,
     foreign key (fkMetrica) references tbMetrica(idMetrica)
 );
+
+create table tbChamados(
+        idChamados int primary key auto_increment,
+        nivel varchar(45),
+        sla VARCHAR(45),
+        estado VARCHAR(45),
+        fkRegistro int,
+        foreign key (fkRegistro) references tbRegistro(idRegst)
+);

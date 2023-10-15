@@ -158,37 +158,8 @@
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Servidor em destaque</p>
+                      <p class="card-category">Servidores em alerta</p>
                       <p class="card-title">354-89</p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <div class="text-cpi">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" fill="currentColor"
-                          class="bi bi-dash-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Alertas Registrados</p>
-                      <p class="card-title">10</p>
                       <p></p>
                     </div>
                   </div>
@@ -234,6 +205,35 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <div class="text-cpi">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" fill="currentColor"
+                          class="bi bi-dash-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Alertas Registrados</p>
+                      <p class="card-title" id="alertasRegistrados"></p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <hr />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning text-cpi">
                       <i class="nc-icon nc-sound-wave"></i>
                     </div>
@@ -258,12 +258,12 @@
         </h3>
         <!--Inicio dos gráficos-->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-8">
             <div class="card">
               <div class="card-header">
                 <h5 class="card-title">Produtividade</h5>
                 <p class="card-category">
-                  Resumo de produtividade do sistema
+                  Número de chamados abertos nos último ano
                 </p>
               </div>
               <div class="card-body">
@@ -277,8 +277,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <div class="card">
               <div class="card-header">
@@ -296,6 +294,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="row" style="display: none;">
           <div class="col-md-8">
             <div class="card card-chart">
               <div class="card-header">
@@ -360,7 +360,7 @@
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/js/graficoAdm/grafAdm.js"></script>
-  <script src="../assets/js/kpi/kpiAlertasRegistrados.js"></script>
+  <script src="../assets/js/graficoIndex/index.js"></script>
 
   <script>
     $(document).ready(function () {

@@ -1,14 +1,22 @@
+var dataAtual = new Date();
+var anoAtual = dataAtual.getFullYear();
+
+buscarAlertas();
+
+var alertasAnuais = [];
+
 function buscarAlertas() {
     fkEmpresa = sessionStorage.FK_EMPRESA;
-
+    anoAtual = anoAtual;
     
-    fetch("/aeroporto/buscarAeroporto", {
+    fetch("/registros/buscarAlertas", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "fkEmpresa": fkEmpresa
+            "fkEmpresa": fkEmpresa,
+            "anoAtual": anoAtual
         })
     }).then((res) => res.json())
         .then((res) => {
@@ -16,15 +24,10 @@ function buscarAlertas() {
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-
-                for (let i = 0; i < res.length; i++) {
-                    liAeroportos.innerHTML += `                      
-                    <li><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">${res[i].nomeAeroporto}</a></li>
-                    `
-                }
-
+                alertasRegistrados.innerHTML = res[0].totalAlertas;
             }
         }).catch(function (resposta) {
 
         });
 }
+
