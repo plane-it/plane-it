@@ -1,11 +1,3 @@
-drop database if exists planeit;
-create database planeit;
-use planeit;
-
-create user if not exists 'acessoProduction' identified by 'urubu100';
-grant all privileges  on planeit.* to 'acessoProduction';
-
-
 create table tbFaleConosco(
     idFaleConosco int primary key,
     mensagem varchar(255),
@@ -37,13 +29,13 @@ create table tbColaborador(
     email varchar(100) not null unique,
     senha varchar(15) not null,
     cargo varchar(35),
+    fkSuperior int,
+    foreign key (fkSuperior) references tbColaborador(idColab),
     telefone varchar(11),
     fkEmpr int not null,
     foreign key (fkEmpr) references tbEmpresa(idEmpr),
     fkAeroporto int,
-    foreign key (fkAeroporto) references tbAeroporto(idAeroporto),
-    fkSupervisor int,
-    foreign key (fkSupervisor) references tbColaborador(idColab)
+    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
 
 alter table tbAeroporto 
@@ -62,6 +54,17 @@ create table tbServidor(
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
 
+CREATE TABLE tbManutencao(
+	idManutencao INT PRIMARY KEY,
+	dataHota DATETIME NOT NULL,
+    fkResponsavel INT NOT NULL,
+    FOREIGN KEY (fkResponsavel) REFERENCES tbColaborador(idColab),
+	fkServidor INT NOT NULL,
+    FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ),	
+    descricaoManutencao VARCHAR(255) NOT NULL
+
+);
+
 create table tbComponente(
 	idComp int primary key auto_increment,
     tipo varchar(75) not null,
@@ -69,11 +72,13 @@ create table tbComponente(
     fkServ int,
     foreign key (fkServ) references tbServidor(idServ)
 );
+
 create table tbUnidadeMedida(
 	idUnidadeMedida int primary key auto_increment,
     nome varchar(50),
     sinal varchar(5)
 );
+
 create table tbMetrica(
 	idMetrica int primary key auto_increment,
     valor decimal(10,2),
@@ -83,14 +88,43 @@ create table tbMetrica(
     foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
 );
 
+CREATE TABLE tbProcessos(
+	idProcesso INT PRIMARY KEY,
+	PID INT,
+    usoCPU DOUBLE,
+    fkMetricaCPU INT,
+    FOREIGN KEY (fkMetricaCPU) REFERENCES tbMetrica(idMetrica),
+    usoMemoria DOUBLE,
+	fkMetricaMemoria INT,
+    FOREIGN KEY (fkMetricaMemoria) REFERENCES tbMetrica(idMetrica),
+    bytesUtilizados INT,
+	fkMetricaBytes INT,
+    FOREIGN KEY (fkMetricaBytes) REFERENCES tbMetrica(idMetrica),
+    memoriaVirtual INT,
+	fkMetricaMemoriaVitrual INT,
+    FOREIGN KEY (fkMetricaMemoriaVitrual) REFERENCES tbMetrica(idMetrica),
+    fkServidor INT,
+    foreign key (fkServidor) references tbServidor(idServ)
+);
+
 create table tbRegistro(
 	idRegst int primary key auto_increment,
     valor decimal(10,2) not null,
     dataHora dateTime default(now()),
     fkComp int,
+    alerta boolean,
     foreign key (fkComp) references tbComponente(idComp),
     fkServidor int,
     foreign key	(fkServidor) references tbServidor(idServ),
     fkMetrica int,
     foreign key (fkMetrica) references tbMetrica(idMetrica)
+);
+
+create table tbChamados(
+        idChamados int primary key auto_increment,
+        nivel varchar(45),
+        sla VARCHAR(45),
+        estado VARCHAR(45),
+        fkRegistro int,
+        foreign key (fkRegistro) references tbRegistro(idRegst)
 );

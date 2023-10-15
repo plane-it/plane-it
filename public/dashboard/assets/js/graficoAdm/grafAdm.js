@@ -23,29 +23,28 @@ demo = {
 
       data: {
         labels: [
-          "12:00",
-          "12:05",
-          "12:10",
-          "12:15",
-          "12:20",
-          "12:25",
-          "12:30",
-          "12:35",
-          "12:40",
-          "12:45",
-          "12:50",
-          "12:55",
-          "13:00",
+          "Janeiro",
+          "Fevereiro",
+          "Março",
+          "Abril",
+          "Maio",
+          "Junho",
+          "Julho",
+          "Agosto",
+          "Setembro",
+          "Outubro",
+          "Novembro",
+          "Dezembro",
         ],
         datasets: [
           {
-            label: "Rendimento do sistema",
+            label: "Chamados abertos",
             borderColor: "#000000",
             backgroundColor: "#6bd098",
             pointRadius: 8,
             pointHoverRadius: 15,
             borderWidth: 0.1,
-            data: [25, 35, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
+            data: [1,2,3,4,5,6,7,8,9,10,11,12],
           },
         ],
       },
@@ -113,7 +112,6 @@ demo = {
     var speedData = {
       labels: [
         "12:00",
-
         "12:02",
         "12:04",
         "12:06",
@@ -150,7 +148,7 @@ demo = {
 
     ctx = document.getElementById("chartEstado").getContext("2d");
 
-    myChart = new Chart(ctx, {
+    myChartRosca = new Chart(ctx, {
       type: "doughnut",
       data: {
         labels: ["Seguro", "Alerta", "Risco"],
@@ -213,3 +211,5 @@ demo = {
     });
   },
 };
+
+
