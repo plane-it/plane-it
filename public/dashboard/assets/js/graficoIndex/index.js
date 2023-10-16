@@ -54,7 +54,6 @@ function buscarChamados() {
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-                alert("Funcionou")
 
                 chamadosAnuais[0] = parseInt(res[0].Janeiro)
                 chamadosAnuais[1] = parseInt(res[0].Fevereiro)
@@ -72,10 +71,90 @@ function buscarChamados() {
                 let qtdTotal = 0;
 
                 for (i in chamadosAnuais) {
-                    qtdTotal += chamadosAnuais[i]
+                    qtdTotal += chamadosAnuais[i];
+                    myChart.data.datasets[0].data[i] = chamadosAnuais[i];
                 }
 
+                myChart.destroy()
+                ctx = document.getElementById("analiseSistema").getContext("2d");
+                myChart = new Chart(ctx, {
+                    type: "line",
+                    data: {
+                      labels: [
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro",
+                      ],
+                      datasets: [
+                        {
+                          label: "Chamados abertos",
+                          borderColor: "#000000",
+                          backgroundColor: "#6bd098",
+                          pointRadius: 8,
+                          pointHoverRadius: 15,
+                          borderWidth: 0.1,
+                          data: [chamadosAnuais[0],chamadosAnuais[1],chamadosAnuais[2],chamadosAnuais[3],chamadosAnuais[4],chamadosAnuais[5],chamadosAnuais[6],chamadosAnuais[7],chamadosAnuais[8],chamadosAnuais[9],chamadosAnuais[10],chamadosAnuais[11]],
+                        },
+                      ],
+                    },
+                    options: {
+                      legend: {
+                        //display: false
+                        position: "top",
+                      },
+              
+                      /*  tooltips: {
+                          enabled: false
+                        }, */
+              
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              fontColor: "#9f9f9f",
+                              beginAtZero: false,
+                              maxTicksLimit: 5,
+                              //padding: 20
+                            },
+                            gridLines: {
+                              drawBorder: false,
+                              zeroLineColor: "#ccc",
+                              color: "rgba(255,255,255,0.05)",
+                            },
+                          },
+                        ],
+              
+                        xAxes: [
+                          {
+                            barPercentage: 1.6,
+                            gridLines: {
+                              drawBorder: false,
+                              color: "rgba(255,255,255,0.1)",
+                              zeroLineColor: "transparent",
+                              display: false,
+                            },
+                            ticks: {
+                              padding: 20,
+                              fontColor: "#9f9f9f",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  });
+
                 qtdChamados.innerHTML = qtdTotal;
+
+                myChart.data.datasets.update();
             }
         }).catch(function (resposta) {
 
