@@ -35,7 +35,30 @@ function buscarChamados(req, res) {
                 if (resultado.length > 0) {
                     res.json(resultado);
                 } else {
-                    res.status(403).json({ error: "Sem Alertas!" });
+                    res.status(403).json({ error: "Sem chamados!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function buscarEstadoServidores(req, res) {
+    const { fkEmpresa } = req.body
+
+    if (!fkEmpresa) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        registrosModel.buscarEstadoServidores(fkEmpresa).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
                 }
             }
         ).catch(
@@ -48,5 +71,6 @@ function buscarChamados(req, res) {
 
 module.exports = {
     buscarAlertas,
-    buscarChamados
+    buscarChamados,
+    buscarEstadoServidores
 }

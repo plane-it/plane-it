@@ -40,7 +40,24 @@ function buscarChamados(fkEmpresa, anoAtual) {
     return database.executar(sql)
 }
 
+function buscarEstadoServidores(fkEmpresa) {
+    const sql = `
+    SELECT fkServidor, COUNT(*) AS alertasGerados, 
+    (SELECT COUNT(*) FROM tbServidor JOIN tbAeroporto ON fkAeroporto = idAeroporto JOIN tbEmpresa ON fkEmpresa = idEmpr WHERE idEmpr = ${fkEmpresa}) as totalServidores
+    FROM tbRegistro
+    JOIN tbServidor ON fkServidor = idServ
+    JOIN tbAeroporto on fkAeroporto = idAeroporto
+    JOIN tbEmpresa on fkEmpresa = idEmpr
+    WHERE alerta = true
+    AND idEmpr = ${fkEmpresa}
+    GROUP BY fkServidor
+    LIMIT 10;  
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     buscarAlertas,
-    buscarChamados
+    buscarChamados,
+    buscarEstadoServidores
 }

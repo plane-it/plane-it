@@ -1,5 +1,9 @@
 var dataAtual = new Date();
 var anoAtual = dataAtual.getFullYear();
+var totalServidores;
+var servidoresAlerta = 0;
+var servidoresRisco = 0;
+var servidoresSeguro = 0;
 
 buscarAlertas();
 
@@ -72,7 +76,6 @@ function buscarChamados() {
 
                 for (i in chamadosAnuais) {
                     qtdTotal += chamadosAnuais[i];
-                    myChart.data.datasets[0].data[i] = chamadosAnuais[i];
                 }
 
                 myChart.destroy()
@@ -153,10 +156,45 @@ function buscarChamados() {
                   });
 
                 qtdChamados.innerHTML = qtdTotal;
-
-                myChart.data.datasets.update();
             }
         }).catch(function (resposta) {
 
         });
+}
+
+buscarEstadoServidores()
+
+function buscarEstadoServidores() {
+    fkEmpresa = sessionStorage.FK_EMPRESA;
+    
+    fetch("/registros/buscarEstadoServidores", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "fkEmpresa": fkEmpresa,
+        })
+    }).then((res) => res.json())
+        .then((res) => {
+            if (res.error) {
+                console.log("Aconteceu algum erro (res.error = true)")
+            }
+            else {
+                totalServidores = res[0].totalServidores;
+                for (i in res) {
+                    if (res[i].alertasGerados >= 5) {
+                        servidoresRisco++
+                    } else if (res[i].alertasGerados >=3) {
+                        servidoresAlerta++
+                    } else {
+                        servidoresSeguro++
+                    }
+                }
+                porcentServidoresRisco.innerHTML = ((servidoresAlerta/totalServidores) * 100).toFixed(2) + "%"
+                porcentServidoresAlerta.innerHTML = ((servidoresRisco/totalServidores) * 100).toFixed(2) + "%"
+            }
+        }).catch(function (resposta) {
+
+        }); 
 }
