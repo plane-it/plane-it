@@ -193,6 +193,70 @@ function buscarEstadoServidores() {
                 }
                 porcentServidoresRisco.innerHTML = ((servidoresAlerta/totalServidores) * 100).toFixed(2) + "%"
                 porcentServidoresAlerta.innerHTML = ((servidoresRisco/totalServidores) * 100).toFixed(2) + "%"
+
+                myChartRosca.destroy()
+                ctx = document.getElementById("chartEstado").getContext("2d");
+                myChartRosca = new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                      labels: ["Seguro", "Alerta", "Risco"],
+                      datasets: [
+                        {
+                          fill: false,
+                          pointRadius: 0,
+                          pointHoverRadius: 0,
+                          backgroundColor: ["#3A7D44","#69b5789e","#EA2309"],
+                          borderWidth: 0,
+                          data: [servidoresSeguro, servidoresAlerta, servidoresRisco],
+                        },
+                      ],
+                    },
+              
+                    options: {
+                      legend: {
+                        display: false,
+                      },
+              
+                      pieceLabel: {
+                        render: "percentage",
+                        fontColor: ["white"],
+                        precision: 2,
+                      },
+              
+                      /* tooltips: {
+                          enabled: false
+                        }, */
+              
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              display: false,
+                            },
+                            gridLines: {
+                              drawBorder: false,
+                              zeroLineColor: "transparent",
+                              color: "69B578",
+                            },
+                          },
+                        ],
+              
+                        xAxes: [
+                          {
+                            barPercentage: 1.6,
+                            gridLines: {
+                              drawBorder: true,
+                              color: "69B578",
+                              zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                              display: true,
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  });
             }
         }).catch(function (resposta) {
 
