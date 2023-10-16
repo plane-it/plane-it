@@ -1,10 +1,14 @@
 const express = require("express")
 const router = express.Router()
 
-const aeroportoController = require("../controllers/registrosController");
+const registrosController = require("../controllers/registrosController");
 
 router.post("/buscarAlertas", (req, res) => {
-    aeroportoController.buscarAlertas(req, res)
+    registrosController.buscarAlertas(req, res)
+})
+
+router.post("/buscarChamados", (req, res) => {
+    registrosController.buscarChamados(req, res)
 })
 
 module.exports = router

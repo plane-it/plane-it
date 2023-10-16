@@ -163,3 +163,17 @@ VALUES
 (45.5, 31, 0, 1, 31),
 (75.2, 32, 0, 1, 32),
 (150.0, 33, 1, 2, 33);
+
+INSERT INTO tbChamados (nivel, sla, estado, fkRegistro)
+VALUES
+('Alto', '4 horas', 'Aberto', 3),
+('Médio', '8 horas', 'Aberto', 6),
+('Baixo', '24 horas', 'Aberto', 9),
+('Alto', '4 horas', 'Aberto', 12),
+('Médio', '8 horas', 'Aberto', 15),
+('Baixo', '24 horas', 'Aberto', 18),
+('Alto', '4 horas', 'Aberto', 21),
+('Médio', '8 horas', 'Aberto', 24),
+('Baixo', '24 horas', 'Aberto', 27),
+('Alto', '4 horas', 'Aberto', 30),
+('Alto', '4 horas', 'Aberto', 31);
