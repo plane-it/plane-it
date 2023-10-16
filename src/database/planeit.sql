@@ -112,6 +112,7 @@ create table tbRegistro(
     valor decimal(10,2) not null,
     dataHora dateTime default(now()),
     fkComp int,
+    alerta boolean,
     foreign key (fkComp) references tbComponente(idComp),
     fkServidor int,
     foreign key	(fkServidor) references tbServidor(idServ),
