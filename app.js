@@ -34,7 +34,7 @@ app.use("/empresa", empresaRouter);
 app.use("/contato",contatoRouter);
 app.use("/perfil",perfilRouter);
 app.use("/aeroporto", aeroportoRouter);
-app.use("/servidor", servidorRouter);
+app.use("/servidor",servidorRouter);
 app.use("/registros", registrosRouter);
 
 
