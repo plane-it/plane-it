@@ -23,7 +23,7 @@
 
 </head>
 
-<body class=""  onload="validarSessao()">
+<body class="" onload="validarSessao()">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
@@ -163,125 +163,120 @@
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Nome do Servidor:</label>
-                        <input type="text" class="form-control" placeholder="AC-290874" id="inputNome" value="teste">
+                        <input type="text" class="form-control" placeholder="AC-290874" id="inputNome">
                       </div>
                     </div>
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>IP:</label>
-                        <input type="number" class="form-control" placeholder="IP" id="inputIp" value="123">
+                        <input type="number" class="form-control" placeholder="IP" id="inputIp">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Código de autenticação: </label>
-                        <input type="text" class="form-control" placeholder="987654" id="inputCodAutenticacao"
-                          value="12">
-                      </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-7 pr-1">
-                        <div class="form-group">
-                          <label">Função: </label>
-                            <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
-                              id="inputFuncao" value="teste">
-                        </div>
-                      </div>
-                      <div class="col-md-3 pr-1">
-                        <div class="form-group">
-                          <label>Sistema Operacional: </label>
-                          <input type="text" class="form-control" placeholder="" id="inputSo" value="teste">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4 pr-1">
-                        <div class="form-group">
-                          <label>Processador: </label>
-                          <input type="text" class="form-control" placeholder="Processador" id="inputCpu" value="Cpu">
-                        </div>
-                      </div>
-                      <div class="col-md-2 pr-1">
-                        <div class="form-group">
-                          <label>Temperatura máx:</label>
-                          <input type="number" class="form-control" placeholder="25°C" id="inputTemperaturaCpu"
-                            value="25">
-                        </div>
-                      </div>
-                      <div class="col-md-2 pr-1">
-                        <div class="form-group">
-                          <label>Limite máx:</label>
-                            <input type="number" class="form-control" placeholder="" id="inputLimiteCpu" value="90">
-                        </div>
-                      </div>
-                      <div class="col-md-2 pr-1">
-                        <div class="form-group">
-                          <label>Preço</label>
-                          <input type="number" class="form-control" placeholder="2.567" id="inputPrecoCpu"
-                            value="2567.00">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 pr-1">
-                        <div class="form-group">
-                          <label>Memória RAM: </label>
-                          <input type="text" class="form-control" placeholder="" id="inputRam" value="Ram">
-                        </div>
-                      </div>
-                      <div class="col-md-3 pr-1">
-                        <div class="form-group">
-                          <label>Limite máx:</label>
-                            <input type="number" class="form-control" placeholder="" id="inputLimiteRam" value="10">
-                        </div>
-                      </div>
-                      <div class="col-md-2 pr-1">
-                        <div class="form-group">
-                          <label>Preço</label>
-                            <input type="number" class="form-control" placeholder="2.567" id="inputPrecoRam"
-                              value="267.00">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5 pr-1">
-                        <div class="form-group">
-                          <label>Disco: </label>
-                          <input type="text" class="form-control" placeholder="" id="inputDisco" value="Disco">
-                        </div>
-                      </div>
-                      <div class="col-md-3 pr-1">
-                        <div class="form-group">
-                          <label>Limite máx:</label>
-                            <input type="number" class="form-control" placeholder="" id="inputLimiteDisco" value="12">
-                        </div>
-                      </div>
-                      <div class="col-md-2 pr-1">
-                        <div class="form-group">
-                          <label>Preço</label>
-                            <input type="number" class="form-control" placeholder="2.567" id="inputPrecoDisco"
-                              value="67.00">
-                        </div>
+                        <input type="text" class="form-control" placeholder="987654" id="inputCodAutenticacao">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="update px-4" style="margin-bottom: 3%;">
-                      <button onclick="cadastrarServidor()" id="buttonCadastro" class="btn btn-primary btn-round"
-                        style="background-color: #254D32;">Adicionar
-                        Servidor</button>
+                    <div class="col-md-7 pr-1">
+                      <div class="form-group">
+                        <label">Função: </label>
+                          <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
+                            id="inputFuncao">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Sistema Operacional: </label>
+                        <input type="text" class="form-control" placeholder="" id="inputSo">
+                      </div>
                     </div>
                   </div>
-                </form>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Processador: </label>
+                        <input type="text" class="form-control" placeholder="Processador" id="inputCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Temperatura máx:</label>
+                        <input type="number" class="form-control" placeholder="25°C" id="inputTemperaturaCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoCpu">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Memória RAM: </label>
+                        <input type="text" class="form-control" placeholder="" id="inputRam">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteRam">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoRam">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Disco: </label>
+                        <input type="text" class="form-control" placeholder="" id="inputDisco">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteDisco">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoDisco">
+                      </div>
+                    </div>
+                  </div>
               </div>
+              <div class="row">
+                <div class="update px-4" style="margin-bottom: 3%;">
+                  <button onclick="cadastrarServidor()" id="buttonCadastro" class="btn btn-primary btn-round"
+                    style="background-color: #254D32;">Adicionar
+                    Servidor</button>
+                </div>
+              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- <footer class="footer footer-black  footer-white ">
+  <!-- <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
@@ -304,21 +299,21 @@
       </footer>
     </div>
   </div> -->
-    <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Chart JS -->
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
-    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/demo/demo.js"></script>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
 </body>
 
 </html>
