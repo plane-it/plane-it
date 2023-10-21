@@ -9,7 +9,8 @@
   <title>
     Plane - it
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -19,9 +20,10 @@
   <link rel="stylesheet" href="../../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+
 </head>
 
-<body class="">
+<body class="" onload="validarSessao()">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
@@ -60,15 +62,15 @@
           </li>
 
           <li class="active ">
-              <a href="#" class="dropbtn">
-                <i class="nc-icon nc-single-copy-04"></i>
-                <p>Cadastro</p>
-              </a>
-              <div class="dropdown-content">
-                <a href="../../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
-                <a href="../../screens/adm/addAeroporto.html">Aeroportos</a>
-                <a href="../../screens/adm/addServidor.html" class="a-selected">Servidores</a>
-              </div>
+            <a href="#" class="dropbtn">
+              <i class="nc-icon nc-single-copy-04"></i>
+              <p>Cadastro</p>
+            </a>
+            <div class="dropdown-content">
+              <a href="../../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
+              <a href="../../screens/adm/addAeroporto.html">Aeroportos</a>
+              <a href="../../screens/adm/addServidor.html" class="a-selected">Servidores</a>
+            </div>
           </li>
           <li>
             <a href="#" class="dropbtn">
@@ -78,14 +80,14 @@
             <div class="dropdown-content">
               <a href="../listas/listaFuncionarios.html">Funcionários</a>
               <a href="../listas/listaAeroportos.html">Aeroportos</a>
-              
+
           </li>
         </ul>
       </div>
     </div>
     <div class="main-panel">
-       <!-- Navbar -->
-       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -106,45 +108,25 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
               <li class="nav-item btn-rotate dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="http://example.com"
-                  id="navbarDropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="nc-icon nc-bell-55"></i>
                 </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <a class="dropdown-item" href="../../screens/alertas.html"
-                    >Alertas</a
-                  >
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../../screens/alertas.html">Alertas</a>
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
                   <a class="dropdown-item" href="#">Comunicação - Slack</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="http://example.com"
-                  id="navbarDropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="nc-icon nc-settings-gear-65"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
                 </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="./perfil.html">Perfil</a>
                 </div>
               </li>
@@ -152,10 +134,10 @@
           </div>
         </div>
       </nav>
-      <!-- End Navbar --> 
+      <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          
+
           <div class="col-md-12">
             <div class="card card-user">
               <div class="card-header">
@@ -167,143 +149,134 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Empresa: </label>
-                        <input type="text" class="form-control" disabled="" placeholder="Empresa" value="Grupar">
+                        <input type="text" class="form-control" disabled="" placeholder="Empresa" id="inputEmpresa">
                       </div>
                     </div>
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Aeroporto: </label>
-                        <input type="text" class="form-control"  placeholder="Aeroporto" value="Aeroporto de Congonhas">
+                        <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto"></select>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 pr-1">
+                    <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Nome do Servidor:</label>
-                        <input type="text" class="form-control" placeholder="AC-290874" value="">
+                        <input type="text" class="form-control" placeholder="AC-290874" id="inputNome">
                       </div>
                     </div>
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>IP:</label>
-                        <input type="number" class="form-control"  placeholder="IP" value="">
+                        <input type="number" class="form-control" placeholder="IP" id="inputIp">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Código de autenticação: </label>
+                        <input type="text" class="form-control" placeholder="987654" id="inputCodAutenticacao">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 pr-1">
+                    <div class="col-md-7 pr-1">
                       <div class="form-group">
                         <label">Função: </label>
-                        <input type="text" class="form-control" placeholder="controle de tráfego aéreo" value="">
+                          <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
+                            id="inputFuncao">
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label">Chefe de Segurança: </label>
-                        <input type="email" class="form-control" placeholder="NomeChefe" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Processador: </label>
-                        <input type="text" class="form-control" placeholder="Processador" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Temperatura máx:</label>
-                        <input type="email" class="form-control" placeholder="25°C" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label">Limite máx:</label>
-                        <input type="email" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label">Preço</label>
-                        <input type="number" class="form-control" placeholder="2.567" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Memória RAM: </label>
-                        <input type="text" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label">Limite máx:</label>
-                        <input type="email" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label">Preço</label>
-                        <input type="number" class="form-control" placeholder="2.567" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Disco: </label>
-                        <input type="text" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label">Limite máx:</label>
-                        <input type="email" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label">Preço</label>
-                        <input type="number" class="form-control" placeholder="2.567" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Sistema Operacional: </label>
-                        <input type="text" class="form-control" placeholder="" value="">
+                        <input type="text" class="form-control" placeholder="" id="inputSo">
                       </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Última Manutenção: </label>
-                        <input type="date" class="form-control" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>Código do Servidor: </label>
-                        <input type="number" class="form-control" disabled="" placeholder="987654" value="">
-                      </div>
-                    </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="update px-4" style="margin-bottom: 3%;">
-                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Adicionar Servidor</button>
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Processador: </label>
+                        <input type="text" class="form-control" placeholder="Processador" id="inputCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Temperatura máx:</label>
+                        <input type="number" class="form-control" placeholder="25°C" id="inputTemperaturaCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoCpu">
+                      </div>
                     </div>
                   </div>
-                </form>
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Memória RAM: </label>
+                        <input type="text" class="form-control" placeholder="" id="inputRam">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteRam">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoRam">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Disco: </label>
+                        <input type="text" class="form-control" placeholder="" id="inputDisco">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Limite máx:</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteDisco">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço</label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoDisco">
+                      </div>
+                    </div>
+                  </div>
               </div>
+              <div class="row">
+                <div class="update px-4" style="margin-bottom: 3%;">
+                  <button onclick="cadastrarServidor()" id="buttonCadastro" class="btn btn-primary btn-round"
+                    style="background-color: #254D32;">Adicionar
+                    Servidor</button>
+                </div>
+              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <!-- <footer class="footer footer-black  footer-white ">
+    </div>
+  </div>
+
+  <!-- <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
@@ -326,20 +299,141 @@
       </footer>
     </div>
   </div> -->
- <!--   Core JS Files   -->
- <script src="../../assets/js/core/jquery.min.js"></script>
- <script src="../../assets/js/core/popper.min.js"></script>
- <script src="../../assets/js/core/bootstrap.min.js"></script>
- <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
- <!--  Google Maps Plugin    -->
- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
- <!-- Chart JS -->
- <script src="../../assets/js/plugins/chartjs.min.js"></script>
- <!--  Notifications Plugin    -->
- <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
- <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
- <script src="../../assets/js/paper-dashboard.min.js" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
- <script src="../../assets/demo/demo.js"></script>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
 </body>
 
 </html>
+<script>
+
+  function validarSessao() {
+    idUsuario = sessionStorage.ID_COLAB;
+    fkSuperior = sessionStorage.FK_SUPERIOR;
+
+    if (idUsuario == undefined || idUsuario == null || idUsuario == "" || isNaN(idUsuario)) {
+
+      window.location = '../../login.html'
+
+    } else if (fkSuperior == null || fkSuperior == undefined || fkSuperior != " ") {
+
+      alert("Para cadastrar é necessario ser administrador", "erro");
+      document.getElementById('buttonCadastro').disabled = true;
+
+    } else {
+
+      fkEmpresa = sessionStorage.FK_EMPRESA
+
+      if (fkEmpresa == "" || fkEmpresa == undefined) {
+
+        alert("Você não esta logado!")
+
+      } else {
+
+        buscarAeroporto();
+
+      }
+    }
+  }
+
+  function buscarAeroporto() {
+
+    fkEmpresa = sessionStorage.FK_EMPRESA
+
+    fetch(`/servidor/buscarAeroporto/${1}`).then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+
+          vazio.textContent = "Nenhum resultado encontrado."
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+
+          inputEmpresa.value = resposta[0].nomeEmpresa;
+
+          for (var i = 0; i < resposta.length; i++) {
+
+            let opcao = document.createElement("option")
+            opcao.value = resposta[i].idAeroporto
+            opcao.textContent = resposta[i].nomeAeroporto;
+            inputAeroporto.appendChild(opcao)
+
+          }
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+
+    });
+  }
+
+  function cadastrarServidor() {
+
+    validarSessao()
+
+    if (inputNome.value == '' || inputIp.value == '' || inputFuncao.value == '' || inputSo.value == '' || inputCpu.value == ''
+      || inputPrecoCpu.value == '' || inputRam.value == '' || inputPrecoRam.value == '' || inputDisco.value == ''
+      || inputPrecoDisco.value == '' || inputTemperaturaCpu.value == '' || inputLimiteCpu.value == '' || inputLimiteRam.value == ''
+      || inputLimiteDisco.value == '' || inputCodAutenticacao.value == '' || (inputCodAutenticacao.value).leght > 6) {
+
+      alert("Nenhum campo pode estar vazio")
+
+    } else {
+
+      fetch(`/servidor/cadastrarServidor`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          codAutenticacao: inputCodAutenticacao.value,
+          nomeServidor: inputNome.value,
+          SO: inputSo.value,
+          IP: inputIp.value,
+          funcao: inputFuncao.value,
+          fkAeroporto: document.getElementById("inputAeroporto").value,
+          // ------------------------------
+          cpu: inputCpu.value,
+          precoCpu: inputPrecoCpu.value,
+          ram: inputRam.value,
+          precoRam: inputPrecoRam.value,
+          disco: inputDisco.value,
+          precoDisco: inputPrecoDisco.value,
+          //--------------------------------
+          temperaturaCpu: inputTemperaturaCpu.value,
+          limiteCpu: inputLimiteCpu.value,
+          limiteRam: inputLimiteRam.value,
+          limiteDisco: inputLimiteDisco.value
+
+        })
+      }).then(function (resposta) {
+
+        if (resposta.ok) {
+          alert("Cadastro realizado com sucesso")
+
+        } else {
+
+          alert("Houve um erro ao realizar o cadastro do servidor")
+
+        }
+
+      })
+    }
+  }
+
+</script>
