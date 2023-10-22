@@ -95,7 +95,6 @@ function cadastrarLimite(idComponente, temperaturaCPU, limiteCpu, limiteRam, lim
                 function (erro) {
                     console.log(erro);
                     console.log("\nHouve um erro")
-                    resolve(req.status(500).json(erro.sqlMessage))
                 }
             )
     })

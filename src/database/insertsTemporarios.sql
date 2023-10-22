@@ -90,7 +90,8 @@ INSERT INTO tbComponente (tipo, preco, fkServ) VALUES
 INSERT INTO tbUnidadeMedida (nome, sinal)
 VALUES
 ('Celsius', '°C'),
-('Porcentagem', '%');
+('Porcentagem', '%'),
+('Gigabyte', 'Gb');
 
 INSERT INTO tbMetrica (valor, fkComponente, fkUnidadeMedida)
 VALUES

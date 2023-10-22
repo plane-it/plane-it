@@ -35,7 +35,7 @@ function buscarServidor() {
                           ${res[i].funcao}
                         </td>
                         <td>
-                          ${res[i].ultimaManutencao}
+                          ${res[i].codAutentic}
                         </td>
                         <td>
                         <a class="a-td" onclick="acessarServidor(${res[i].idServ})">Acessar</a>

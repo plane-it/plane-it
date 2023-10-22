@@ -327,6 +327,11 @@
 </html>
 <script>
 
+  $(".btn-round").click(function (e) {
+    // Impedir o recarregamento da tela
+    e.preventDefault();
+  });
+
   function validarSessao() {
     idUsuario = sessionStorage.ID_COLAB;
     fkSuperior = sessionStorage.FK_SUPERIOR;
@@ -335,7 +340,7 @@
 
       window.location = '../../login.html'
 
-    } else if (fkSuperior == null || fkSuperior == undefined || fkSuperior != " ") {
+    } else if (fkSuperior != undefined) {
 
       alert("Para cadastrar é necessario ser administrador", "erro");
       document.getElementById('buttonCadastro').disabled = true;
@@ -443,5 +448,6 @@
       })
     }
   }
+
 
 </script>
