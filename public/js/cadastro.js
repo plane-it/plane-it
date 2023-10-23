@@ -29,6 +29,7 @@ async function proximo() {
       },
       body: JSON.stringify({
         cnpj: cnpj,
+        nomeEmpresa: nomeEmpresa
       })
     }).then((res) => res.json())
     .then((res) => {
@@ -118,6 +119,7 @@ function cadastrar() {
             Swal.fire("ERRO", res.error, "error");
           }
           else{
+            
             Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
             setTimeout(() => {
               window.location = "./login.html";
