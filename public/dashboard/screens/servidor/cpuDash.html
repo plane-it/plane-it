@@ -30,10 +30,12 @@ Coded by www.creative-tim.com
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../assets/css/cpuDash.css">
+  <link rel="stylesheet" href="../../assets/css/descriptionAll.css">
+  <!-- <link rel="stylesheet" href="../../assets/css/bootstrap.css"> -->
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
-</head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
 <body class="">
   <div class="wrapper ">
@@ -203,11 +205,11 @@ Coded by www.creative-tim.com
                 </div>
               </div>
               <div class="card-footer ">
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update Now
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -238,11 +240,11 @@ Coded by www.creative-tim.com
                 </div>
               </div>
               <div class="card-footer ">
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update Now
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -271,11 +273,11 @@ Coded by www.creative-tim.com
                 </div>
               </div>
               <div class="card-footer ">
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update Now
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -298,32 +300,32 @@ Coded by www.creative-tim.com
                 </div>
               </div>
               <div class="card-footer ">
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update now
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
-        <h3 class="description" style="color: aliceblue;text-align: center;">Gráficos</h3>
+        <h3 class="description">Gráficos</h3>
         <!--Inicio dos gráficos-->
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Dados da CPU</h5>
-                <p class="card-category">Monitoramento 24 horas de performance.</p>
+                <h5 class="card-title">Utilização da CPU</h5>
+                <p class="card-category">Dados em porcentagem</p>
               </div>
               <div class="card-body ">
-                <canvas id=analiseCPU width="400" height="100"></canvas>
+                <canvas id="analiseCPU" class="graficoUsoCpu"></canvas>
               </div>
               <div class="card-footer ">
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -339,11 +341,10 @@ Coded by www.creative-tim.com
                 <canvas id="chartVelocidadeCpu" width="400" height="100"></canvas>
               </div>
               <div class="card-footer ">
-
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -352,18 +353,18 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Estatísticas de utilização - CPU</h5>
-                <p class="card-category">Utilização em %</p>
+                <h5 class="card-title">Relação porcentagem de uso x temperatura</h5>
+                <p class="card-category">Temperatura está em graus</p>
               </div>
               <div class="card-body ">
-                <canvas id="chartUtiCpu" width="400" height="100"></canvas>
+                <canvas id="chartUtiCpu" width="400" height="130"></canvas>
               </div>
               <div class="card-footer ">
 
-                <hr>
+                <!-- <hr>
                 <div class="stats">
                   <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -406,13 +407,15 @@ Coded by www.creative-tim.com
   <script src="../../assets/js/paper-dashboard.min.js" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <!-- <script src="../../assets/demo/demo.js"></script> -->
-    <script src="../../assets/js/graficoCPU/grafCPU.js"></script>
+    <script src="../../assets/js/graficos/grafCPU.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js"></script>
     <script>
       $(document).ready(function () {
         // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
         demo.initChartsPages();
       });
-    </script>
+    </script>    
 </body>
 
 </html>
