@@ -73,7 +73,7 @@ function buscarEmail(email) {
 
 function cadastrarFunc(nome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroporto, idEmpresa) {
     const sql = `
-        INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSupervisor) VALUES (
+        INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSuperior) VALUES (
             '${cpf}',
             '${nome}',
             '${email}',
