@@ -7,7 +7,6 @@ create table tbFaleConosco(
 	mensagem varchar(255),
 	email varchar(255),
 	tefelone varchar(11)
-        
 );
 
 create table tbEmpresa(
