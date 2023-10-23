@@ -2,3 +2,7 @@
     text-align: center;
     color: #19692c;
 }
+.graficoUsoCpu{
+    height: 100vh;
+    width: 50vw;
+}

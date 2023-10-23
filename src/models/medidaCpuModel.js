@@ -59,8 +59,9 @@ function capturar() {
 
     // } 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select * from tbServidor join tbRegistro on fkServidor = idServ
-        join tbMetrica on fkMetrica = idMetrica`;
+        instrucaoSql = `
+        SELECT * FROM tbRegistro JOIN tbComponente ON fkComp = idComp WHERE tipo = "Processador" AND fkServidor = 1;
+`
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

@@ -35,18 +35,21 @@ demo = {
       //Montando o grafico com os dados
       ctx = document.getElementById('analiseCPU').getContext("2d");
           var dados = [];
+          var labelHora = [];
           for(i = 0; i < resposta.length; i++){
               var registro = resposta[i];
-              dados.push(registro)
+              dados.push(registro.valor)
+              labelHora.push(registro.dataHora)
               }
               console.log(dados)
+              console.log(labelHora)
           var info = {
-              labels: dados,
+              labels: labelHora,
               datasets: [{
-                  label: 'Dados CPU',
-                  data: [],
+                  label: 'Utilização da CPU',
+                  data: dados,
                   fill: false,
-                  borderColor: "rgb(75,190,190)",
+                  borderColor: "#3A7D44",
                   tension: 0.1
               }]
           };
@@ -54,11 +57,10 @@ demo = {
               type: 'line',
               data: info,
           }
-          var myChart = new Chart(ctx,{
-          info,
-          config,
-          });
-      
+          var myChart = new Chart(
+            ctx,
+            config
+          );      
       }
     // chartColor = "#FFFFFF";
 
