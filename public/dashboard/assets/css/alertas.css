@@ -8,7 +8,7 @@
     margin: 0;
 }
 .alert.alert-light-gray{
-    background-color: #ebe9e9d0;
+    background-color: #efeded;
     color: black;
 }
 .card-metric{
@@ -43,4 +43,23 @@
    .top-sm-1{
     margin-top: 0.5rem !important; 
    }
+}
+.alert-called{
+    display: flex;
+    flex-direction: column;
+}
+
+.alert-called-header{
+    background: blue;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 3px 3px 0 0;
+    background-color: #b9b5b5;
+    margin-bottom: -10px;
+    font-weight: 800;
+}
+.alert-called-header > p{
+    margin: 0px;
 }

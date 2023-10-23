@@ -1,3 +1,4 @@
+
 drop database if exists planeit;
 
 create database planeit;
@@ -6,6 +7,9 @@ use planeit;
 
 create user
     if not exists 'acessoProduction' identified by 'urubu100';
+
+grant all privileges on planeit.* to 'acessoProduction';
+
 
 grant all privileges on planeit.* to 'acessoProduction';
 
@@ -25,31 +29,33 @@ create table
         razaoSocial varchar(50) not null
     );
 
-create table
-    tbAeroporto(
-        idAeroporto int primary key auto_increment,
-        nome varchar(45),
-        pais varchar(45),
-        cidade varchar(45),
-        endereco varchar(45),
-        fkEmpresa int,
-        foreign key (fkEmpresa) references tbEmpresa(idEmpr)
-    );
 
-create table
-    tbColaborador(
-        idColab int primary key auto_increment,
-        cpf char(11) not null unique,
-        nome varchar(70) not null,
-        email varchar(100) not null unique,
-        senha varchar(15) not null,
-        cargo varchar(15),
-        telefone varchar(11),
-        fkEmpr int not null,
-        foreign key (fkEmpr) references tbEmpresa(idEmpr),
-        fkAeroporto int,
-        foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
-    );
+create table tbAeroporto(
+	idAeroporto int primary key auto_increment,
+    nomeAeroporto varchar(45),
+    pais varchar(45),
+    cidade varchar(45),
+    endereco varchar(45),
+    fkEmpresa int,
+    foreign key (fkEmpresa) references tbEmpresa(idEmpr)
+);
+
+create table tbColaborador(
+	idColab int primary key auto_increment,
+    cpf char(11) not null unique,
+    nome varchar(70) not null,
+    email varchar(100) not null unique,
+    senha varchar(15) not null,
+    cargo varchar(35),
+    fkSuperior int,
+    foreign key (fkSuperior) references tbColaborador(idColab),
+    telefone varchar(11),
+    fkEmpr int not null,
+    foreign key (fkEmpr) references tbEmpresa(idEmpr),
+    fkAeroporto int,
+    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
+);
+
 
 alter table tbAeroporto
 add fkEncarregado int,
@@ -70,31 +76,80 @@ create table
         foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
     );
 
-create table
-    tbComponente(
-        idComp int primary key auto_increment,
-        tipo varchar(75) not null,
-        preco decimal(9, 2),
-        fkServ int,
-        foreign key (fkServ) references tbServidor(idServ)
-    );
+CREATE TABLE tbManutencao(
+	idManutencao INT PRIMARY KEY,
+	dataHota DATETIME NOT NULL,
+    fkResponsavel INT NOT NULL,
+    FOREIGN KEY (fkResponsavel) REFERENCES tbColaborador(idColab),
+	fkServidor INT NOT NULL,
+    FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ),	
+    descricaoManutencao VARCHAR(255) NOT NULL
 
-create table
-    tbUnidadeMedida(
-        idUnidadeMedida int primary key auto_increment,
-        nome varchar(50),
-        sinal varchar(5)
-    );
+);
 
-create table
-    tbMetrica(
-        idMetrica int primary key auto_increment,
-        valor decimal(10, 2),
-        fkComponente int,
-        foreign key (fkComponente) references tbComponente(idComp),
-        fkUnidadeMedida int,
-        foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
-    );
+create table tbComponente(
+	idComp int primary key auto_increment,
+    tipo varchar(75) not null,
+    preco decimal(9,2),
+    fkServ int,
+    foreign key (fkServ) references tbServidor(idServ)
+);
+
+create table tbUnidadeMedida(
+	idUnidadeMedida int primary key auto_increment,
+    nome varchar(50),
+    sinal varchar(5)
+);
+
+create table tbMetrica(
+	idMetrica int primary key auto_increment,
+    valor decimal(10,2),
+    fkComponente int,
+    foreign key (fkComponente) references tbComponente(idComp),
+    fkUnidadeMedida int,
+    foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
+);
+
+CREATE TABLE tbProcessos(
+	idProcesso INT PRIMARY KEY,
+	PID INT,
+    usoCPU DOUBLE,
+    fkMetricaCPU INT,
+    FOREIGN KEY (fkMetricaCPU) REFERENCES tbMetrica(idMetrica),
+    usoMemoria DOUBLE,
+	fkMetricaMemoria INT,
+    FOREIGN KEY (fkMetricaMemoria) REFERENCES tbMetrica(idMetrica),
+    bytesUtilizados INT,
+	fkMetricaBytes INT,
+    FOREIGN KEY (fkMetricaBytes) REFERENCES tbMetrica(idMetrica),
+    memoriaVirtual INT,
+	fkMetricaMemoriaVitrual INT,
+    FOREIGN KEY (fkMetricaMemoriaVitrual) REFERENCES tbMetrica(idMetrica),
+    fkServidor INT,
+    foreign key (fkServidor) references tbServidor(idServ)
+);
+
+create table tbRegistro(
+	idRegst int primary key auto_increment,
+    valor decimal(10,2) not null,
+    dataHora dateTime default(now()),
+    fkComp int,
+    alerta boolean,
+    foreign key (fkComp) references tbComponente(idComp),
+    fkServidor int,
+    foreign key	(fkServidor) references tbServidor(idServ),
+    fkMetrica int,
+    foreign key (fkMetrica) references tbMetrica(idMetrica)
+);
+
+create table tbChamados(
+        idChamados int primary key auto_increment,
+        nivel varchar(45),
+        sla VARCHAR(45),
+        estado VARCHAR(45),
+        fkRegistro int,
+        foreign key (fkRegistro) references tbRegistro(idRegst)
+);
 
 create table
     tbRegistro(
@@ -108,3 +163,68 @@ create table
         fkMetrica int,
         foreign key (fkMetrica) references tbMetrica(idMetrica)
     );
+    
+SELECT
+    DATE_SUB(
+        FROM_UNIXTIME(
+            MIN(UNIX_TIMESTAMP(r.datahora))
+        ),
+        INTERVAL MINUTE(
+            FROM_UNIXTIME(
+                MIN(UNIX_TIMESTAMP(r.datahora))
+            )
+        ) - ROUND(
+            MINUTE(
+                FROM_UNIXTIME(
+                    MIN(UNIX_TIMESTAMP(r.datahora))
+                )
+            ) / 5
+        ) * 5 MINUTE
+    ) as "datahora", (
+        select rs.valor
+        from tbRegistro rs
+            join tbMetrica m on m.idMetrica = rs.fkMetrica
+            join tbComponente c on c.idComp = m.fkComponente
+            join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+        where
+            c.tipo = "CPU"
+            and rs.fkServidor = r.fkServidor
+        order by rs.idRegst
+        limit 1
+    ) as "CPU", (
+        select rs.valor
+        from tbRegistro rs
+            join tbMetrica m on m.idMetrica = rs.fkMetrica
+            join tbComponente c on c.idComp = m.fkComponente
+            join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+        where
+            c.tipo = "RAM"
+            and rs.fkServidor = r.fkServidor
+        order by rs.idRegst
+        limit 1
+    ) as "RAM", (
+        select rs.valor
+        from tbRegistro rs
+            join tbMetrica m on m.idMetrica = rs.fkMetrica
+            join tbComponente c on c.idComp = m.fkComponente
+            join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+        where
+            c.tipo = "HD"
+            and rs.fkServidor = r.fkServidor
+        order by rs.idRegst
+        limit
+            1
+    ) as "HD",
+    r.fkServidor
+FROM tbRegistro r
+    JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
+WHERE
+    r.valor >= m.valor * 0.95
+    and month(r.datahora) = month(now())
+    and year(r.datahora) = year(now())
+GROUP BY
+    DATE(r.datahora),
+    HOUR(r.dataHora),
+    ROUND(MINUTE(r.datahora) / 5) * 5,
+    r.fkServidor;
+
