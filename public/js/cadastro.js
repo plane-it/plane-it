@@ -36,7 +36,7 @@ async function proximo() {
         Swal.fire("ERRO",res.error, "error")
       }
       else{
-        Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
+        Swal.fire("Muito Bem!", "Você será redirecionado para o próximo cadastro", "success");
         setTimeout(() => {
           idcontainer2.style.display = "none"
           idcontainer3.style.display = ""
