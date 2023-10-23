@@ -39,3 +39,79 @@ li:hover .dropdown-content {
 .a-selected {
   color: #3A7D44 !important;
 }
+
+.dropdownC {
+  max-width: 13em;
+  position: relative;
+  width: 100%;
+}
+
+.dropdownC-btn {
+  background: #E3E3E3;
+  font-size: 18px;
+  width: 100%;
+  border: none;
+  color: #66615B;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7em 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #66615B;
+  transition: transform ease-in-out 0.3s;
+}
+
+.dropdownC-content {
+  z-index: 1;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  list-style: none;
+  position: absolute;
+  top: 3.2em;
+  width: 100%;
+  visibility: hidden;
+/*   overflow: hidden; */
+  transform: translateY(-1em);
+  transition: transform ease 0.3s;
+}
+
+input[type="checkbox"]:checked ~ .dropdownC-content {
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownC-content li {
+  background: #E3E3E3;
+  border-radius: 4px;
+}
+
+input[type="checkbox"]:checked + label > .arrow {
+  transform: rotate(180deg);
+}
+
+input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+input[type="checkbox"]:focus + label {
+}
+
+.dropdownC-content li:hover {
+  background: #3A7D44;
+  color: #f5f5f5;
+}
+
+.dropdownC-content li a {
+  display: block;
+  padding: 0.7em 0.5em;
+  color: #66615B;
+  margin: 0.1em 0;
+  text-decoration: none;
+}

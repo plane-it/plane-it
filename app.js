@@ -14,8 +14,10 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 const empresaRouter = require("./src/routes/empresa");
 var contatoRouter = require("./src/routes/contato");
-const aeroportoRouter = require("./src/routes/aeroporto")
-const servidorRouter = require("./src/routes/servidor")
+var perfilRouter = require("./src/routes/perfil");
+var aeroportoRouter = require("./src/routes/aeroporto");
+var servidorRouter = require("./src/routes/servidor");
+var registrosRouter = require("./src/routes/registros");
 
 
 app.use(express.json());
@@ -27,11 +29,14 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter)
+app.use("/medidas", medidasRouter);
 app.use("/empresa", empresaRouter);
 app.use("/contato",contatoRouter);
+app.use("/perfil",perfilRouter);
 app.use("/aeroporto", aeroportoRouter);
-app.use("/servidor", servidorRouter);
+app.use("/servidor",servidorRouter);
+app.use("/registros", registrosRouter);
+
 
 
 
