@@ -31,7 +31,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/dadosCpu",cpuRouter);
-app.use("/medidas", medidasRouter);
+// app.use("/medidas", medidasRouter);
 app.use("/empresa", empresaRouter);
 app.use("/contato",contatoRouter);
 app.use("/perfil",perfilRouter);
