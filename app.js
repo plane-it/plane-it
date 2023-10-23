@@ -14,6 +14,12 @@ var avisosRouter = require("./src/routes/avisos");
 const empresaRouter = require("./src/routes/empresa");
 var contatoRouter = require("./src/routes/contato");
 var cpuRouter = require("./src/routes/dadosCpu");
+const alertasRouter = require("./src/routes/alertas")
+var perfilRouter = require("./src/routes/perfil");
+var aeroportoRouter = require("./src/routes/aeroporto");
+var servidorRouter = require("./src/routes/servidor");
+var registrosRouter = require("./src/routes/registros");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,9 +30,18 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
+app.use("/dadosCpu",cpuRouter);
+app.use("/medidas", medidasRouter);
 app.use("/empresa", empresaRouter);
 app.use("/contato",contatoRouter);
-app.use("/dadosCpu",cpuRouter);
+app.use("/perfil",perfilRouter);
+app.use("/aeroporto", aeroportoRouter);
+app.use("/servidor", servidorRouter);
+app.use("/alertas", alertasRouter)
+app.use("/registros", registrosRouter);
+
+
+
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

@@ -36,9 +36,66 @@ function cadastrar(cpf, nomeGerente, email,  senha, idEmpresa) {
     return database.executar(instrucao);
 }
 
+function existsCpf(cpf){
+    const sql = `
+        SELECT email, idColab FROM tbColaborador WHERE cpf = '${cpf}'
+    `
+    return database.executar(sql)
+}
+
+function alterarSenha(id, senha){
+    const sql = `
+        UPDATE tbColaborador SET senha = '${senha}' WHERE idColab = ${id}
+    `
+    return database.executar(sql)
+}
+
+function buscarFunc(fkEmpresa) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE fkEmpr = ${fkEmpresa};
+    `
+    return database.executar(sql)
+}
+
+function buscarCPF(cpf) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE cpf = "${cpf}";
+    `
+    return database.executar(sql)
+}
+
+function buscarEmail(email) {
+    const sql = `
+        SELECT * FROM tbColaborador WHERE email = "${email}";
+    `
+    return database.executar(sql)
+}
+
+function cadastrarFunc(nome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroporto, idEmpresa) {
+    const sql = `
+        INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSuperior) VALUES (
+            '${cpf}',
+            '${nome}',
+            '${email}',
+            '${senha}',
+            '${cargo}',
+            '${telefone}',
+            '${idEmpresa}',
+            '${idAeroporto}',
+            '${idCadastrador}'
+        );
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     entrar,
     proximo,
     cadastrar,
-    listar,
+    listar,existsCpf,
+    alterarSenha,
+    buscarFunc,
+    buscarCPF,
+    buscarEmail,
+    cadastrarFunc
 };

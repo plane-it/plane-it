@@ -39,7 +39,7 @@ async function proximo() {
         Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
         setTimeout(() => {
           idcontainer2.style.display = "none"
-          idcontainer3.style.display = "flex"
+          idcontainer3.style.display = ""
         }, "1000")
       }
     }).catch(function (resposta) {
@@ -125,7 +125,6 @@ function cadastrar() {
          
           }
         }).catch(function (resposta) {
-          console.log(resposta)
           Swal.fire("ERRO",resposta.error, "error")
         });
     }

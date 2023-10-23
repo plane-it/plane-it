@@ -589,6 +589,23 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
   box-shadow: none !important;
 }
 
+td .btn-primary:hover {
+  color: #3A7D44 !important;
+  background-color: #181D27 !important;
+} 
+
+td .btn-primary {
+  color: #3A7D44 !important;
+  background-color: #f5f5f5 !important;
+}
+
+.a-td:hover {
+  transform: scale(1.05);
+  transition: all 400ms ease-in-out;
+  color: #3a7d44;
+}
+
+
 .btn-primary:not([data-action]):hover {
   box-shadow: none;
 }
@@ -2435,7 +2452,7 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  background-color: #181d27 !important;
+  background-color: #f5f5f5 !important;
 }
 
 .main {
@@ -4360,6 +4377,31 @@ License - nucleoapp.com/license/
   vertical-align: middle;
 }
 
+.table>thead>tr>th>a,
+.table>tbody>tr>th>a,
+.table>tfoot>tr>th>a,
+.table>thead>tr>td>a,
+.table>tbody>tr>td>a,
+.table>tfoot>tr>td>a {
+  width: 40%;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 300ms ease-out, font-size 300ms ease-out;
+}
+
+.table>thead>tr>th>a:hover,
+.table>tbody>tr>th>a:hover,
+.table>tfoot>tr>th>a:hover,
+.table>thead>tr>td>a:hover,
+.table>tbody>tr>td>a:hover,
+.table>tfoot>tr>td>a:hover {
+  color: #3A7D44;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+
+
 .table .th-description {
   max-width: 150px;
 }
@@ -5497,6 +5539,13 @@ License - nucleoapp.com/license/
   border-bottom: 1px solid #e9ecef;
 }
 
+.card-chart .table td button {
+  width: 20% !important;
+  background-color: #3A7D44 !important;
+  color: #f5f5f5 !important;
+  border: none !important;
+}
+
 .card-chart .card-progress {
   margin-top: 30px;
 }
@@ -6281,5 +6330,7 @@ License - nucleoapp.com/license/
     padding: 15px;
   }
 }
+
+
 
 /*# sourceMappingURL=paper-dashboard.css.map */

@@ -100,7 +100,7 @@
     <section id="contact" class="s-contact">
 
         <div class="overlay"></div>
-        <div class="contact__line"></div>
+        <div class="contact__line linha"></div>
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
@@ -119,7 +119,7 @@
                     <fieldset>
 
                         <div class="form-field">
-                            <input name="contactName" type="text" id="iptCpf" placeholder="Seu email" value=""
+                            <input name="contactName" type="text" id="iptCpf" placeholder="Seu cpf" value=""
                                 minlength="2" required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
@@ -137,7 +137,12 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-field">
+                            <div class="form-links">
+                                <a href="recuperacaoSenha.html" class="form-a">Esqueceu a senha?</a>
+                                <a href="cadastro.html" class="form-a">Não possuí uma conta?</a>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
 
@@ -252,9 +257,6 @@
 
     </div> <!-- end photoSwipe background -->
 
-
-
-
     <!-- Java Script
     ================================================== -->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -269,8 +271,4 @@
         // Impedir o recarregamento da tela
         e.preventDefault();
     });
-
-    function logar() {
-        window.location = "dashboard/screens/index.html"
-    }
 </script>

@@ -24,14 +24,14 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="/index.html" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/planeIt/logo.png">
+            <img src="../assets/img/planeIt/logoSemNome.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
         <a href="./index.html" class="simple-text logo-normal">
-          Plane - it.
+          Plane - it
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
@@ -60,21 +60,26 @@
 
           <li>
               <a href="#" class="dropbtn">
-                <i class="nc-icon nc-bell-55"></i>
+                <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
               <div class="dropdown-content">
-                <a href="../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
+                <a href="../../dashboard/screens/adm/addFuncinario.html" class="dashboardDrop">Funcionários</a>
                 <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
                 <a href="../screens/adm/addServidor.html">Servidores</a>
               </div>
           </li>
 
           <li>
-            <a href="./servidores.html">
+            <a href="#" class="dropbtn">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Lista de Servidores</p>
+              <p>Informações Gerais</p>
             </a>
+            <div class="dropdown-content">
+              <a href="listas/listaFuncionarios.html">Funcionários</a>
+              <a href="listas/listaAeroportos.html">Aeroportos</a>
+              
+            </div>
           </li>
         </ul>
       </div>
@@ -121,7 +126,7 @@
                     >Alertas</a
                   >
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
-                  <a class="dropdown-item" href="#">Comunicação - Slack</a>
+                  <a class="dropdown-item" href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7">Comunicação - Slack</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -142,7 +147,8 @@
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="./perfil.html">Perfil</a>
+                                      <a class="dropdown-item" href="/dashboard/screens/perfil.html">Perfil</a>
+
                 </div>
               </li>
             </ul>
@@ -158,57 +164,8 @@
                 <h5 class="card-title">Alertas</h5>
                 <p class="card-category">Ultimos alertas do sistema.</a></p>
               </div>
-              <div class="card-body">
-                <div class="alert alert-light-gray alert-with-icon alert-flex-col alert-dismissible fade show" data-notify="container">
-                  <div class="d-flex row">
-                    <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
-                        <span class="nc-icon nc-bell-55"></span>
-                        <span>Servidor001 </span>
-                    </div>
-                    <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
-                      <span>29/09/2023 13:50</span>
-                    </div>
-                  </div>
-                  <div class="d-flex gap-2">
-                    <div class="card-metric">
-                      <p>Cpu</p>
-                      <p>99.0%</p>
-                    </div>
-                    <div class="card-metric">
-                      <p>Disco</p>
-                      <p>99.0%</p>
-                    </div>
-                    <div class="card-metric">
-                      <p>Ram</p>
-                      <p>99.0%</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="alert alert-light-gray alert-with-icon alert-flex-col alert-dismissible fade show" data-notify="container">
-                  <div class="d-flex row">
-                    <div class="col-12 col-md-9 d-flex justify-content-md-start justify-content-center align-items-center gap-1">
-                        <span class="nc-icon nc-bell-55"></span>
-                        <span>Servidor001 </span>
-                    </div>
-                    <div class="col-12 col-md-3 d-flex justify-content-center top-sm-1">
-                      <span>29/09/2023 13:50</span>
-                    </div>
-                  </div>
-                  <div class="d-flex gap-2">
-                    <div class="card-metric">
-                      <p>Cpu</p>
-                      <p>99.0%</p>
-                    </div>
-                    <div class="card-metric">
-                      <p>Disco</p>
-                      <p>99.0%</p>
-                    </div>
-                    <div class="card-metric">
-                      <p>Ram</p>
-                      <p>99.0%</p>
-                    </div>
-                  </div>
-                </div>
+              <div class="card-body" id="alertas">
+                
               </div>
             </div>
           </div>
@@ -237,6 +194,7 @@
       </footer>
     </div>
   </div>
+  <script src="../assets/js/alertas/alertas.js"></script>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>

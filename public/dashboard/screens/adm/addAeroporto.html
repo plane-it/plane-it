@@ -14,8 +14,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
@@ -25,9 +25,9 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="../../screens/index.html" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../../assets/img/planeIt/logo.png">
+            <img src="../../assets/img/planeIt/logoSemNome.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
@@ -41,35 +41,44 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./alertas.html">
+            <a href="../index.html">
+              <i class="nc-icon nc-layout-11"></i>
+              <p>Menu</p>
+            </a>
+          </li>
+          <li>
+            <a href="../alertas.html">
               <i class="nc-icon nc-bell-55"></i>
               <p>Alertas</p>
             </a>
           </li>
           <li>
-            <a href="./chamados.html">
+            <a href="../chamados.html">
               <i class="nc-icon nc-email-85"></i>
               <p>Chamados</p>
             </a>
           </li>
 
-          <li>
+          <li class="active ">
               <a href="#" class="dropbtn">
-                <i class="nc-icon nc-bell-55"></i>
+                <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
               <div class="dropdown-content">
-                <a href="../screens/adm/addFuncionario.html">Funcionários</a>
-                <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
-                <a href="../screens/adm/addServidor.html">Servidores</a>
+                <a href="../../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
+                <a href="../../screens/adm/addAeroporto.html" class="a-selected">Aeroportos</a>
+                <a href="../../screens/adm/addServidor.html">Servidores</a>
               </div>
           </li>
-
           <li>
-            <a href="./servidores.html">
+            <a href="#" class="dropbtn">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Lista de Servidores</p>
+              <p>Informações Gerais</p>
             </a>
+            <div class="dropdown-content">
+              <a href="../listas/listaFuncionarios.html">Funcionários</a>
+              <a href="../listas/listaAeroportos.html">Aeroportos</a>
+              
           </li>
         </ul>
       </div>
@@ -111,11 +120,10 @@
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="../../screens/alertas.html"
-                    >Alertas</a
+                  <a class="dropdown-item" href="/dashboard/screens/alertas.html">Alertas</a
                   >
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
-                  <a class="dropdown-item" href="#">Comunicação - Slack</a>
+                  <a class="dropdown-item" href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7">Comunicação - Slack</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -136,7 +144,7 @@
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="./perfil.html">Perfil</a>
+                  <a class="dropdown-item" href="/dashboard/screens/perfil.html">Perfil</a>
                 </div>
               </li>
             </ul>
@@ -247,20 +255,20 @@
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
+ <!--   Core JS Files   -->
+ <script src="../../assets/js/core/jquery.min.js"></script>
+ <script src="../../assets/js/core/popper.min.js"></script>
+ <script src="../../assets/js/core/bootstrap.min.js"></script>
+ <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+ <!--  Google Maps Plugin    -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+ <!-- Chart JS -->
+ <script src="../../assets/js/plugins/chartjs.min.js"></script>
+ <!--  Notifications Plugin    -->
+ <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+ <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+ <script src="../../assets/js/paper-dashboard.min.js" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+ <script src="../../assets/demo/demo.js"></script>
 </body>
 
 </html>
