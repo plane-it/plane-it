@@ -11,19 +11,24 @@ create user
 grant all privileges on planeit.* to 'acessoProduction';
 
 
-create table tbFaleConosco(
-    idFaleConosco int primary key,
-    mensagem varchar(255),
-    email varchar(255),
-    tefelone varchar(11)
-);
+grant all privileges on planeit.* to 'acessoProduction';
 
-create table tbEmpresa(
-	idEmpr int primary key auto_increment,
-    cnpj char(14) not null unique,
-    nomeEmpresa varchar(70) not null,
-    razaoSocial varchar(50) not null
-);
+create table
+    tbFaleConosco(
+        idFaleConosco int primary key,
+        mensagem varchar(255),
+        email varchar(255),
+        tefelone varchar(11)
+    );
+
+create table
+    tbEmpresa(
+        idEmpr int primary key auto_increment,
+        cnpj char(14) not null unique,
+        nomeEmpresa varchar(70) not null,
+        razaoSocial varchar(50) not null
+    );
+
 
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
@@ -51,21 +56,25 @@ create table tbColaborador(
     foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
 
-alter table tbAeroporto 
-	add fkEncarregado int,
-    add constraint foreign key (fkEncarregado) references tbColaborador(idColab);
 
-create table tbServidor(
-	idServ int primary key auto_increment,
-    codAutentic char(6) not null, -- Cerca de 1 milhão e 300 mil possibilidades
-    apelido varchar(50) not null,
-    sistemaOp varchar(25),
-    ip varchar(12),
-    funcao varchar(40),
-    ultimaManutencao date,
-    fkAeroporto int not null,
-    foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
-);
+alter table tbAeroporto
+add fkEncarregado int,
+add
+    constraint foreign key (fkEncarregado) references tbColaborador(idColab);
+
+create table
+    tbServidor(
+        idServ int primary key auto_increment,
+        codAutentic char(6) not null,
+        -- Cerca de 1 milhão e 300 mil possibilidades
+        apelido varchar(50) not null,
+        sistemaOp varchar(25),
+        ip varchar(12),
+        funcao varchar(40),
+        ultimaManutencao date,
+        fkAeroporto int not null,
+        foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
+    );
 
 CREATE TABLE tbManutencao(
 	idManutencao INT PRIMARY KEY,
@@ -142,6 +151,19 @@ create table tbChamados(
         foreign key (fkRegistro) references tbRegistro(idRegst)
 );
 
+create table
+    tbRegistro(
+        idRegst int primary key auto_increment,
+        valor decimal(10, 2) not null,
+        dataHora dateTime default(now()),
+        fkComp int,
+        foreign key (fkComp) references tbComponente(idComp),
+        fkServidor int,
+        foreign key (fkServidor) references tbServidor(idServ),
+        fkMetrica int,
+        foreign key (fkMetrica) references tbMetrica(idMetrica)
+    );
+    
 SELECT
     DATE_SUB(
         FROM_UNIXTIME(
