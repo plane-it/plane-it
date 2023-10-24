@@ -8,17 +8,19 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
-var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
+const indexRouter = require("./src/routes/index");
+const usuarioRouter = require("./src/routes/usuarios");
+const avisosRouter = require("./src/routes/avisos");
 const empresaRouter = require("./src/routes/empresa");
-var contatoRouter = require("./src/routes/contato");
-var cpuRouter = require("./src/routes/dadosCpu");
+const contatoRouter = require("./src/routes/contato");
+const cpuRouter = require("./src/routes/dadosCpu");
 const alertasRouter = require("./src/routes/alertas")
-var perfilRouter = require("./src/routes/perfil");
-var aeroportoRouter = require("./src/routes/aeroporto");
-var servidorRouter = require("./src/routes/servidor");
-var registrosRouter = require("./src/routes/registros");
+const perfilRouter = require("./src/routes/perfil");
+const aeroportoRouter = require("./src/routes/aeroporto");
+const servidorRouter = require("./src/routes/servidor");
+const registrosRouter = require("./src/routes/registros");
+const componenteRouter = require("./src/routes/componente");
+
 
 
 app.use(express.json());
@@ -39,6 +41,8 @@ app.use("/aeroporto", aeroportoRouter);
 app.use("/servidor", servidorRouter);
 app.use("/alertas", alertasRouter)
 app.use("/registros", registrosRouter);
+app.use("/componente", componenteRouter);
+
 
 
 
