@@ -156,17 +156,9 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Aeroporto: </label>
-                        <div class="dropdownC">
-                          <input type="checkbox" id="dropdownC" />
-                          <label for="dropdownC" class="dropdownC-btn" id="selctAero">
-                            <span id="spanAeroporto">--Selecione--</span>
-                            <span class="arrow"></span>
-                          </label>
-                          <ul class="dropdownC-content" role="menu" id="liAeroportos">
-                          </ul>
+                        <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto"></select>
                         </div>
                       </div>
-                    </div>
                   </div>
                   <div class="row">
                     <div class="col-md-2 pr-1">
@@ -290,31 +282,6 @@
       demo.initChartsPages();
     });
 
-    $(document).ready(function () {
-      $("#inputCpf").on("keyup", function () {
-        // Atualiza a máscara
-        var value = $(this).val();
-        var mask = inputCpf.value;
-        var result = "";
-        for (var i = 0; i < mask.length; i++) {
-          if (i < value.length) {
-            result += value[i];
-          } else {
-            result += mask[i];
-          }
-        }
-
-        // Remove os zeros à esquerda
-        result = result.replace(/^0+/, "");
-
-        // Limita o tamanho do input a 11 caracteres
-        if (result.length > 11) {
-          result = result.substring(0, 11);
-        }
-
-        $(this).val(result);
-      });
-    });
 
 
   </script>
