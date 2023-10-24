@@ -43,12 +43,17 @@ function buscarAeroporto(fkEmpresa) {
 
 }
 
+function buscarEstadoServidor(fkServidor) {
+    const sql = `CALL buscarEstadoDeServidor(${fkServidor});`
+    return database.executar(sql)
+}
+
 
 module.exports = {
     buscarServidor,
     cadastrarServidor,
     cadastrarComponentes,
     cadastrarLimite,
-    buscarAeroporto
-
+    buscarAeroporto,
+    buscarEstadoServidor
 }

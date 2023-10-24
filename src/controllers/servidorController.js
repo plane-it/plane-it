@@ -118,11 +118,29 @@ function buscarAeroporto(req, res) {
         )
 }
 
+function buscarEstadoServidor(req, res) {
+    var fkServidor = req.body.fkServidor
+
+    servidorModel.buscarEstadoServidor(fkServidor)
+        .then(
+             function (resultado) {
+                 res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+}
+
 
 module.exports = {
     buscarServidor,
     cadastrarServidor,
     cadastrarComponentes,
     cadastrarLimite,
-    buscarAeroporto
+    buscarAeroporto,
+    buscarEstadoServidor
 }
