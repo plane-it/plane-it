@@ -1,6 +1,6 @@
-drop database planeit;
-create database planeit;	
-use planeit;
+DROP DATABASE IF EXISTS planeit;
+CREATE DATABASE planeit;
+USE planeit;
 
 create table tbFaleConosco(
 	idFaleConosco int primary key,
@@ -33,7 +33,7 @@ create table tbColaborador(
 	nome varchar(70) not null,
 	email varchar(100) not null unique,
 	senha varchar(15) not null,
-	cargo varchar(15),
+	cargo varchar(35),
 	administracao boolean,
 	fkSuperior int,
 		foreign key (fkSuperior) references tbColaborador(idColab),
@@ -66,7 +66,7 @@ CREATE TABLE tbManutencao(
 
 );
 
-CREATE TABLE tbTipoComponete(
+CREATE TABLE tbTipoComponente(
 	idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
 	tipo VARCHAR(45)
 );
@@ -75,10 +75,10 @@ create table tbComponente(
 	idComp int primary key auto_increment,
 	nome VARCHAR(100) NOT NULL, 
 	fktipoComponente INT NOT NULL, 
-		FOREIGN KEY (fktipoComponente) REFERENCES tbTipoComponete(idTipoComponente),
+	foreign key (fktipoComponente) REFERENCES tbTipoComponente(idTipoComponente),
 	preco decimal(9,2),
 	fkServ int,
-		foreign key (fkServ) references tbServidor(idServ)
+	foreign key (fkServ) references tbServidor(idServ)
 );
 
 create table tbUnidadeMedida(
@@ -108,6 +108,9 @@ create table tbRegistro(
 	idRegst int primary key auto_increment,
 	valor varchar(100) not null,
 	dataHora dateTime default(now()),
+    alerta boolean,
+    fkServidor int,
+		foreign key (fkServidor) references tbServidor(idServ),
 	fkComp int,
 		foreign key (fkComp) references tbComponente(idComp),
 	fkMetrica int,

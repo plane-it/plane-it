@@ -18,9 +18,9 @@ function cadastrarServidor(codAutenticacao, nomeServidor, SO, IP, funcao, fkAero
 function cadastrarComponentes(idServidor, cpu, precoCpu, ram, precoRam, disco, precoDisco) {
     
     const sql = `
-        INSERT INTO tbComponente VALUES(null,"${cpu}","${precoCpu}","${idServidor}"),
-                                       (null,"${ram}","${precoRam}","${idServidor}"),
-                                       (null,"${disco}","${precoDisco}","${idServidor}");
+        INSERT INTO tbComponente VALUES(null,"${cpu}", 1, "${precoCpu}",${idServidor}),
+                                       (null,"${ram}", 2, "${precoRam}",${idServidor}),
+                                       (null,"${disco}", 3,"${precoDisco}",${idServidor});
     `
     console.log(sql)
     return database.executar(sql)
