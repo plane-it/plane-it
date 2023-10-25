@@ -19,9 +19,10 @@
   <link rel="stylesheet" href="../../assets/css/dashboard.css">
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <script src="../adm/js/addAeroporto.js"></script>
 </head>
 
-<body class="">
+<body onload="pegarDadosEmpresa()">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
@@ -166,13 +167,13 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Empresa: </label>
-                        <input type="text" class="form-control" disabled="" placeholder="Empresa" value="Grupar">
+                        <input id="ipt_empresa" type="text" class="form-control" disabled="" placeholder="">
                       </div>
                     </div>
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Aeroporto: </label>
-                        <input type="text" class="form-control"  placeholder="Aeroporto" value="Aeroporto de Congonhas">
+                        <input id="ipt_nomeAeroporto" type="text" class="form-control"  placeholder="Aeroporto">
                       </div>
                     </div>
                   </div>
@@ -180,19 +181,13 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>País:</label>
-                        <input type="text" class="form-control" placeholder="Pais" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Estado:</label>
-                        <input type="number" class="form-control"  placeholder="Estado" value="">
+                        <input id="ipt_pais" type="text" class="form-control" placeholder="Pais" value="">
                       </div>
                     </div>
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>Cidade:</label>
-                        <input type="number" class="form-control"  placeholder="Cidade" value="">
+                        <input id="ipt_cidade" type="text" class="form-control"  placeholder="Cidade" value="">
                       </div>
                     </div>
                   </div>
@@ -200,30 +195,14 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Endereço:</label>
-                        <input type="text" class="form-control" placeholder="Endereco" value="">
+                        <input id="ipt_endereco" type="text" class="form-control" placeholder="Endereco" value="">
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>CEP:</label>
-                        <input type="number" class="form-control"  placeholder="CEP" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Chefe de Segurança: </label>
-                        <input type="email" class="form-control" placeholder="NomeChefe" value="">
-                      </div>
-                    </div>
-                    
-                    
                   </div>
                   
                   <div class="row" style="margin-top: 7%;">
                     <div class="update px-3" >
-                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;">Adicionar Aeroporto</button>
+                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #254D32;" onclick="cadastrarAeroporto()">Adicionar Aeroporto</button>
                     </div>
                   </div>
                 </form>

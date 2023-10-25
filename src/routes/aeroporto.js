@@ -7,4 +7,13 @@ router.post("/buscarAeroporto", (req, res) => {
     aeroportoController.buscarAeroporto(req, res)
 })
 
+router.post("/cadastrarAeroporto", (req, res) => {
+    aeroportoController.cadastrarAeroporto(req, res)
+})
+
+router.get("/pegarDadosEmpresa/:idUsuario", function (req, res) {
+    aeroportoController.pegarDadosEmpresa(req, res);
+    console.log("erro");
+});
+
 module.exports = router
