@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../public/css/base.css">
   </head>
 
   <body class="">
@@ -397,15 +398,15 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">Métricas</h5>
                   <p class="card-category">Como calculamos as métricas</p>
                 </div>
                 <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                  <div class="row align-center justify-content-center">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-body alert-success">
                           <div class="row">
@@ -446,7 +447,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-body alert-warning">
                           <div class="row">
@@ -487,7 +488,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-body alert-danger">
                           <div class="row">
@@ -529,14 +530,17 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="alert alert-danger">oi</div>
-                  </div>
-                  <div class="row">
-                    <div class="alert alert-danger">oi</div>
-                  </div>
-                  <div class="row">
-                    <div class="alert alert-danger">oi</div>
+                  <div>
+
+                    <div class="row justify-content-center">
+                      <div class="alert alert-success col-lg-11 text-center">Cor <b>verde</b> representa que até 5% dos servidores estão em risco/alerta</div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="alert alert-warning col-lg-11 text-center">Cor <b>amarela</b> representa que até 10% dos servidores estão em risco/alerta</div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="alert alert-danger col-lg-11 text-center">Cor <b>vermelha</b> representa que mais de 11% dos servidores estão em risco/alerta</div>
+                    </div>
                   </div>
                 </div>
                 <div class="card-footer">
@@ -544,7 +548,26 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Estado dos servidores</h5>
+                    <p class="card-category">Em risco | alerta | saudável</p>
+                </div>
+                <div class="card-body">
+                  <p>Servidores em <b style="color: #dc3545;">alertas</b> passaram totalmente dos limites aceitáveis.</p>
+                  <p>Servidores em <b style="color: #ffc107;">risco</b> estão a menos de 5% dos limites aceitáveis.</p>
+                  <p>Servidores <b style="color: #28a745;">saudáveis</b> estão dentro dos limites aceitáveis.</p>
+
+                </div>
+                <div class="card-footer">
+                  <hr />
+                 
+                </div>
+              </div>
+            </div>
           </div>
+          
         </div>
 
         <footer class="footer footer-black footer-white">

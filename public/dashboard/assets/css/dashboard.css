@@ -115,3 +115,10 @@ input[type="checkbox"]:focus + label {
   margin: 0.1em 0;
   text-decoration: none;
 }
+
+
+.kpi-space{
+  justify-content: space-between !important;
+  padding-left: 2%;
+  padding-right: 2%;
+}
