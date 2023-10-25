@@ -25,8 +25,8 @@ function buscarAeroporto() {
                 else {
 
                     for (let i = 0; i < res.length; i++) {
-                        liAeroportos.innerHTML += `                      
-                        <li><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">${res[i].nomeAeroporto}</a></li>
+                        inputAeroporto.innerHTML += `                      
+                        <option><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">${res[i].nomeAeroporto}</a></option>
                         `
                     }
 

@@ -6,9 +6,10 @@
  */
 
  /* Apenas o que foi modificado */
-.graficoCpuUso{
-    width: 400;
-    height: 100;
+.graficoUso{
+    width: 100% !important;
+    height: 100% !important;
+    padding: 15px;
 }
 .graficoRamUso{
     width: 250;
@@ -679,6 +680,26 @@ pre code {
     margin-right: -15px;
     margin-left: -15px;
     justify-content: space-evenly;
+}
+
+.grafico-container {
+    margin-top: 5px;
+    padding-top: 25px;
+    justify-content: space-around !important;
+}
+
+.grafico {
+    width: 40%;
+}
+
+.grafico select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    height: calc(1.5em + 0.75rem + 2px) !important;
 }
 
 .no-gutters {
@@ -5263,7 +5284,7 @@ input[type=submit].btn-block {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: .25rem
+    border-radius: 12px !important;
 }
 
 .card>hr {

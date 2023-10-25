@@ -56,6 +56,8 @@ function buscarEstadoServidores(fkEmpresa) {
     return database.executar(sql)
 }
 
+
+
 module.exports = {
     buscarAlertas,
     buscarChamados,
