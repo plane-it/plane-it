@@ -28,8 +28,8 @@ Coded by www.creative-tim.com
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/bootstrap.css" />
+  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
 </head>
@@ -38,13 +38,15 @@ Coded by www.creative-tim.com
   <div class="wrapper">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="/index.html" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../../assets/img/planeIt/logo.png" />
+            <img src="../../assets/img/planeIt/logoSemNome.ico">
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="/dashboard/screens/index.html" class="simple-text logo-normal">
+
+
           Plane - it
           <!-- <div class="logo-image-big">
             <img src="../../assets/img/logo-big.png">
@@ -53,10 +55,10 @@ Coded by www.creative-tim.com
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active">
+          <li class="active ">
             <a href="./principalDash.html">
               <i class="nc-icon nc-layout-11"></i>
-              <p>Dashboard - principal</p>
+              <p>Geral</p>
             </a>
           </li>
           <li>
@@ -96,6 +98,7 @@ Coded by www.creative-tim.com
               <p>Disco</p>
             </a>
           </li>
+
           <li>
             <a href="./especificacoes.html">
               <i class="nc-icon nc-tile-56"></i>
@@ -103,7 +106,7 @@ Coded by www.creative-tim.com
             </a>
           </li>
           <li>
-            <a href="/dashboard/screens/listas/listaServidores.html">
+            <a href="../listas/listaServidores.html">
               <i class="nc-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                   class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
@@ -291,17 +294,17 @@ Coded by www.creative-tim.com
             <div class="card">
               <div class="row grafico-container">
                 <div class="form-group grafico">
-                  <h5 class="card-title">Dados da CPU</h5>
+                  <h5 class="card-title">Análise anual</h5>
                   <p class="card-category">
-                    Porcentagem de uso nos ultimos dias
+                    Quantidade de vezes que ultrapassou a métrica limite
                   </p>
                 </div>
                 <div class="form-group grafico">
-                  <label>Selecione: </label>
-                  <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto">
-                    <option value="">CPU</option>
-                    <option value="">RAM</option>
-                    <option value="">Disco</option>
+                  <label>Selecione componente: </label>
+                  <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto" onchange="buscarErrosMensais(this.value)">
+                    <option value="1">CPU</option>
+                    <option value="2">RAM</option>
+                    <option value="3">Disco</option>
                   </select>
                 </div>
               </div>
@@ -381,6 +384,7 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
+  
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
@@ -398,7 +402,6 @@ Coded by www.creative-tim.com
   <script src="../../assets/js/graficos/demo.js"></script>
   <script src="js/principalDash.js"></script>
 
-
   <script>
 
     nomeServ.innerHTML = sessionStorage.NOME_SERVIDOR;
@@ -409,5 +412,6 @@ Coded by www.creative-tim.com
     });
   </script>
 </body>
+
 
 </html>
