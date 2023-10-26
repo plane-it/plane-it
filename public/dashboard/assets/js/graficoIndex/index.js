@@ -191,8 +191,8 @@ function buscarEstadoServidores() {
                         servidoresSeguro++
                     }
                 }
-                porcentServidoresRisco.innerHTML = ((servidoresAlerta/totalServidores) * 100).toFixed(2) + "%"
-                porcentServidoresAlerta.innerHTML = ((servidoresRisco/totalServidores) * 100).toFixed(2) + "%"
+                porcentServidoresAlerta.innerHTML = ((servidoresAlerta/totalServidores) * 100).toFixed(2) + "%"
+                porcentServidoresRisco.innerHTML = ((servidoresRisco/totalServidores) * 100).toFixed(2) + "%"
 
                 myChartRosca.destroy()
                 ctx = document.getElementById("chartEstado").getContext("2d");
@@ -257,8 +257,21 @@ function buscarEstadoServidores() {
                       },
                     },
                   });
+                rodarTempo()  
             }
         }).catch(function (resposta) {
 
         }); 
+}
+
+tempo = 0;
+
+function rodarTempo() {
+  tempo1.innerHTML = tempo
+  tempo2.innerHTML = tempo
+  setTimeout(() => {
+    tempo++;
+    rodarTempo()
+  }, 60000)
+
 }

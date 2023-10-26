@@ -97,7 +97,7 @@ create table tbMetrica(
 );	
 
 CREATE TABLE tbProcessos(
-	idProcesso INT PRIMARY KEY,
+	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
 	totalProcessos INT,
 	fkServidor INT,
