@@ -49,6 +49,8 @@ function buscarEstadoServidor() {
             discoEstado.innerHTML = "Estável";
           }
 
+          buscarErrosMensais(1)
+
         }
       }).catch(function (res) {
 

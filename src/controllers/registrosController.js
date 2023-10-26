@@ -69,8 +69,32 @@ function buscarEstadoServidores(req, res) {
     }
 }
 
+function buscarUltimosRegistrosLive(req, res) {
+    const { fkServidor, fkTipoComponente } = req.body
+
+    if (!fkServidor || !fkTipoComponente) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        registrosModel.buscarUltimosRegistrosLive(fkServidor, fkTipoComponente).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     buscarAlertas,
     buscarChamados,
-    buscarEstadoServidores
+    buscarEstadoServidores,
+    buscarUltimosRegistrosLive
 }

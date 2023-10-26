@@ -56,10 +56,25 @@ function buscarEstadoServidores(fkEmpresa) {
     return database.executar(sql)
 }
 
+function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
+    const sql = `
+    SELECT * FROM (
+        SELECT * 
+        FROM tbRegistro 
+        JOIN tbComponente ON fkComp = idComp 
+        WHERE fktipoComponente = ${fkTipoComponente} AND fkServ = ${fkServidor}
+        ORDER BY idRegst DESC
+        LIMIT 10
+    ) AS sub
+    ORDER BY idRegst ASC;
+    `
+    return database.executar(sql)
+}
 
 
 module.exports = {
     buscarAlertas,
     buscarChamados,
-    buscarEstadoServidores
+    buscarEstadoServidores,
+    buscarUltimosRegistrosLive
 }
