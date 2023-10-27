@@ -1,5 +1,4 @@
 function loadAlertas() {
-    console.log(alertas)
     fetch("/alertas/listar/1", {
         method: "GET"
     })
