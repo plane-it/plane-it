@@ -1,6 +1,6 @@
 const database = require('../database/config')
 
-function listar() {
+function listar(id) {
     const sql = `
         SELECT
         DATE_SUB(
@@ -60,14 +60,16 @@ function listar() {
             JOIN tbAeroporto a on a.idAeroporto = s.fkAeroporto
         WHERE
             r.valor >= m.valor * 0.95
-            and a.fkServ = ${id}
+            and a.idAeroporto = ${id}
             and month(r.datahora) = month(now())
             and year(r.datahora) = year(now())
         GROUP BY
             DATE(r.datahora),
             HOUR(r.dataHora),
             ROUND(MINUTE(r.datahora) / 5) * 5,
-            r.fkServidor;
+            r.fkServidor
+        ORDER BY
+            datahora DESC
     `
     return database.executar(sql)
 }
