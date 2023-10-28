@@ -47,13 +47,13 @@ function buscarChamados(req, res) {
 }
 
 function buscarEstadoServidores(req, res) {
-    const { fkEmpresa } = req.body
-
-    if (!fkEmpresa) {
+    const { fk, adm } = req.body
+    
+    if (!fk || adm == undefined) {
         res.status(400).json({ error: "Existem parametros faltando" })
     }
     else {
-        registrosModel.buscarEstadoServidores(fkEmpresa).then(
+        registrosModel.buscarEstadoServidores(fk, adm).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);

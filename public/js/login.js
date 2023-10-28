@@ -40,14 +40,13 @@ function entrar() {
                 Swal.fire("Muito Bem!", "Seja Bem-Vindo!", "success");
                 console.log(res)
                 sessionStorage.CARGO = res.cargo;
-                sessionStorage.CPF = res.cpf;
                 sessionStorage.EMAIL = res.email;
                 sessionStorage.FK_AEROPORTO = res.fkAeroporto;
                 sessionStorage.FK_EMPRESA = res.fkEmpr;
                 sessionStorage.ID_COLAB = res.idColab;
                 sessionStorage.NOME = res.nome;
-                sessionStorage.SENHA = res.senha;
                 sessionStorage.TELEFONE = res.telefone;
+                sessionStorage.ADM = res.administracao;
                 setTimeout(() => {
                       window.location = "../dashboard/screens/index.html";
                 }, "1000")

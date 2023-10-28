@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Paper Dashboard 2 - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -75,7 +61,7 @@ Coded by www.creative-tim.com
           </li>
 
           <li>
-              <a href="#" class="dropbtn">
+              <a href="#" class="dropbtn adm">
                 <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
@@ -87,15 +73,22 @@ Coded by www.creative-tim.com
           </li>
 
           <li>
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-tile-56"></i>
               <p>Informações Gerais</p>
             </a>
             <div class="dropdown-content">
-              <a href="listas/listaFuncionarios.html">Funcionários</a>
+              <a href="listas/listaFuncionarios.html" class="adm">Funcionários</a>
               <a href="listas/listaAeroportos.html">Aeroportos</a>
               
             </div>
+          </li>
+
+          <li class="analista">
+            <a href="/dashboard/screens/listas/listaServidores.html">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Lista de servidores</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -209,6 +202,7 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
+  <script src="/dashboard/assets/js/separacao_Dash.js"></script>
   <script src="../assets/js/chamados.js"></script>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
@@ -223,6 +217,7 @@ Coded by www.creative-tim.com
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+
 </body>
 
 </html>
