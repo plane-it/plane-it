@@ -181,7 +181,7 @@ function buscarEstadoServidores() {
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-                totalServidores = res[0].totalServidores;
+                totalServidores = res.length;
                 for (i in res) {
                     if (res[i].alertasGerados >= 5) {
                         servidoresRisco++
