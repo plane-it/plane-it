@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Recuperar senha</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -117,7 +117,7 @@
                 <form name="contactForm" id="contactForm" method="post" action="" novalidate="novalidate">
                     <fieldset>
                         <div class="form-field">
-                            <input type="text" id="iptEmail" placeholder="Seu email" class="full-width">
+                            <input type="text" id="iptCpf" placeholder="Seu Cpf" class="full-width">
                         </div>
                         <div class="form-field">
                             <button class="full-width btn--primary" onclick="recuperarSenha()">Enviar</button>
@@ -249,6 +249,7 @@
 
     <!-- Java Script
     ================================================== -->
+    <script src="js/recuperar.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
@@ -261,17 +262,4 @@
         // Impedir o recarregamento da tela
         e.preventDefault();
     });
-
-    function recuperarSenha(){
-        const  email = iptEmail.value 
-        fetch("/usuarios/recuperar",{
-            method: "POST",
-            headers: {
-                'content-type':"application/json"
-            },
-            body: JSON.stringify({
-                email: email
-            })
-        })
-    }
 </script>

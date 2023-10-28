@@ -103,6 +103,8 @@ CREATE TABLE tbProcessos(
 	fkServidor INT,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
+select * from tbChamados;
+insert into tbChamados values (null, "alto", "2horas","aberto", 1);
 
 create table tbRegistro(
 	idRegst int primary key auto_increment,
