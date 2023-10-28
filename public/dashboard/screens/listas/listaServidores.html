@@ -62,7 +62,7 @@
           </li>
 
           <li>
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-single-copy-04"></i>
               <p>Cadastro</p>
             </a>
@@ -74,14 +74,20 @@
           </li>
 
           <li class="active ">
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-tile-56"></i>
               <p>Informações Gerais</p>
             </a>
             <div class="dropdown-content">
-              <a href="listaFuncionarios.html">Funcionários</a>
+              <a href="listaFuncionarios.html" class="adm">Funcionários</a>
               <a href="listaAeroportos.html">Aeroportos</a>
             </div>
+          </li>
+          <li class="active analista">
+            <a href="/dashboard/screens/listas/listaServidores.html">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Lista de servidores</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -98,7 +104,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Lista de servidores</a>
+            <a class="navbar-brand" href="javascript:;">Servidores</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,7 +148,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title" id="apresentacaoServers">Lista de servidores de </h4>
+                <h4 class="card-title" id="apresentacaoServers">--</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -195,6 +201,7 @@
         </footer>
       </div>
     </div>
+    <script src="/dashboard/assets/js/separacao_Dash.js"></script>
     <!--   Core JS Files   -->
     <script src="../../assets/js/core/jquery.min.js"></script>
     <script src="../../assets/js/core/popper.min.js"></script>

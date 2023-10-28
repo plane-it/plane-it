@@ -165,7 +165,13 @@ function buscarChamados() {
 buscarEstadoServidores()
 
 function buscarEstadoServidores() {
-    fkEmpresa = sessionStorage.FK_EMPRESA;
+  if (sessionStorage.ADM == 0) {
+    fk = sessionStorage.FK_AEROPORTO
+    adm = 0
+  } else {
+    fk = sessionStorage.FK_EMPRESA
+    adm = 1
+  }
     
     fetch("/registros/buscarEstadoServidores", {
         method: "POST",
@@ -173,7 +179,8 @@ function buscarEstadoServidores() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "fkEmpresa": fkEmpresa,
+            "fk": fk,
+            "adm": adm
         })
     }).then((res) => res.json())
         .then((res) => {
