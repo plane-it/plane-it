@@ -33,13 +33,13 @@ function buscarEspecificacoes() {
                         } else if (res[i].tipo == 1 && res[i].fkUnidadeMedida == 4) {
                             cpuFreq.innerHTML = res[i].valor;
                             cpuFreq.innerHTML += res[i].sinal;
-                        } else if (res[i].tipo == 2) {
+                        } else if (res[i].tipo == 2 && res[i].fkUnidadeMedida == 3) {
                             ramModelo.innerHTML = res[i].modelo;
                             ramPreco.innerHTML = 'R$: ';
                             ramPreco.innerHTML += res[i].preco;
                             ramLimite.innerHTML = res[i].valor;
                             ramLimite.innerHTML += res[i].sinal;
-                        } else if (res[i].tipo == 3) {
+                        } else if (res[i].tipo == 3 && res[i].fkUnidadeMedida == 3) {
                             discoModelo.innerHTML = res[i].modelo;
                             discoPreco.innerHTML = 'R$: ';
                             discoPreco.innerHTML += res[i].preco;
