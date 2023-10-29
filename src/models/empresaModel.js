@@ -7,9 +7,9 @@ function existe(cnpj){
     return database.executar(sql)
 }
 
-function cadastrar(nomeEmpresa, cnpj) {
+function cadastrar(nomeEmpresa, cnpj,razaoSocial,endereco) {
     const sql = `
-        insert into tbEmpresa (nomeEmpresa, cnpj, razaoSocial) values ("${nomeEmpresa}","${cnpj}", "teste");
+        insert into tbEmpresa (nomeEmpresa, cnpj, razaoSocial,endereco) values ("${nomeEmpresa}","${cnpj}", "${razaoSocial}","${endereco}");
     `
     return database.executar(sql)
 }
