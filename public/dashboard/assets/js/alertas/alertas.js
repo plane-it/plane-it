@@ -1,5 +1,14 @@
+// function loadAlertas() {
+//     fetch("/alertas/listar/1", {
+//         method: "GET"
+//     })
 function loadAlertas() {
-    fetch("/alertas/listar/1", {
+    if (sessionStorage.ADM == 1) {
+        var idAeroporto = 11;
+    } else {
+        var idAeroporto = sessionStorage.FK_AEROPORTO
+    }
+    fetch(`/alertas/listar/${idAeroporto}`, {
         method: "GET"
     })
         .then(res => res.json())
