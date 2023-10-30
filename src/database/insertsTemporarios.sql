@@ -54,7 +54,7 @@ VALUES
 
 INSERT INTO tbTipoComponente (tipo) VALUES 
 ('CPU'),
-('Memória RAM'),
+('RAM'),
 ('Disco');
  
 INSERT INTO tbComponente (nome, preco, fkServ, fkTipoComponente) VALUES
