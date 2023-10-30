@@ -23,6 +23,9 @@
     text-align: center;
     color: #19692c;
 }
+.nav-item{
+    position: relative;
+}
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -4723,6 +4726,7 @@ input[type=submit].btn-block {
 }
 
 .nav-tabs .nav-item {
+
     margin-bottom: -1px
 }
 
