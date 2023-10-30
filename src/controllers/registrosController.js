@@ -92,6 +92,7 @@ function buscarUltimosRegistrosLive(req, res) {
     }
 }
 
+
 module.exports = {
     buscarAlertas,
     buscarChamados,

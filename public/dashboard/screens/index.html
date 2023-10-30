@@ -25,11 +25,12 @@
     />
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
     <link href="../assets/css/dashboardPlane.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../../public/css/base.css">
+    <!-- <link rel="stylesheet" href="../../../css/base.css"> -->
   </head>
 
   <body class="">
@@ -200,7 +201,7 @@
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-body">
+                <div id="cardStatsAlerta" class="card-body">
                   <div class="row">
                     <div class="col-5 col-md-4">
                       <div class="icon-big text-center icon-warning">
@@ -229,21 +230,22 @@
                         <p class="card-title" id="porcentServidoresAlerta"></p>
                         <p></p>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
-                <div class="card-footer">
+                <div id="cardFooterAlerta" class="card-footer">
                   <hr />
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5 col-md-4">
-                      <div class="icon-big text-center icon-warning">
-                        <div class="text-cpi">
+            <div class="col-lg-3 col-md-6 col-sm-6 ">
+              <div  class="card card-stats">
+                <div id="cardStatsSuccess" class="card-body">
+                  <div class="row ">
+                    <div class="col-5 col-md-4 ">
+                      <div class="icon-big text-center icon-warning ">
+                        <div class="text-cpi ">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="60"
@@ -264,14 +266,14 @@
                     </div>
                     <div class="col-7 col-md-8">
                       <div class="numbers">
-                        <p class="card-category">Servidores em Risco</p>
+                        <p class="card-category">Servidores em risco</p>
                         <p class="card-title" id="porcentServidoresRisco"></p>
                         <p></p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card-footer">
+                <div id="cardFooterSucess" class="card-footer">
                   <hr />
                 </div>
               </div>
@@ -335,6 +337,7 @@
                 </div>
                 <div class="card-footer">
                   <hr />
+                  
                 </div>
               </div>
             </div>
@@ -366,7 +369,7 @@
             <div class="col-md-4">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">Estatísticas dos servidores.html</h5>
+                  <h5 class="card-title">Estatísticas dos servidores</h5>
                   <p class="card-category">Estado de velocidade rede</p>
                 </div>
                 <div class="card-body">
@@ -397,9 +400,6 @@
                 </div>
                 <div class="card-footer">
                   <hr />
-                  <div class="card-stats">
-                    <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                  </div>
                 </div>
               </div>
             </div>
@@ -415,7 +415,7 @@
                   <div class="row align-center justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
-                        <div class="card-body alert-success">
+                        <div class="card-body alert-warning">
                           <div class="row">
                             <div class="col-5 col-md-4">
                               <div class="icon-big text-center icon-warning">
@@ -456,7 +456,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
-                        <div class="card-body alert-warning">
+                        <div class="card-body alert-seguro">
                           <div class="row">
                             <div class="col-5 col-md-4">
                               <div class="icon-big text-center icon-warning">
@@ -540,10 +540,10 @@
                   <div>
 
                     <div class="row justify-content-center">
-                      <div class="alert alert-success col-lg-11 text-center">Cor <b>verde</b> representa que até 5% dos servidores estão em risco/alerta</div>
+                      <div class="alert alert-warning col-lg-11 text-center">Cor <b>verde</b> representa que até 5% dos servidores estão em risco/alerta</div>
                     </div>
                     <div class="row justify-content-center">
-                      <div class="alert alert-warning col-lg-11 text-center">Cor <b>amarela</b> representa que até 10% dos servidores estão em risco/alerta</div>
+                      <div class="alert alert-seguro col-lg-11 text-center">Cor <b>amarela</b> representa que até 10% dos servidores estão em risco/alerta</div>
                     </div>
                     <div class="row justify-content-center">
                       <div class="alert alert-danger col-lg-11 text-center">Cor <b>vermelha</b> representa que mais de 11% dos servidores estão em risco/alerta</div>
@@ -562,8 +562,8 @@
                     <p class="card-category">Em risco | alerta | saudável</p>
                 </div>
                 <div class="card-body">
-                  <p>Servidores em <b style="color: #dc3545;">alerta</b> passaram totalmente dos limites aceitáveis.</p>
-                  <p>Servidores em <b style="color: #ffc107;">risco</b> estão a menos de 5% dos limites aceitáveis.</p>
+                  <p>Servidores em <b style="color: #dc3545;">risco</b> passaram totalmente dos limites aceitáveis.</p>
+                  <p>Servidores em <b style="color: #ffc107;">alertas</b> estão a menos de 5% dos limites aceitáveis.</p>
                   <p>Servidores <b style="color: #28a745;">saudáveis</b> estão dentro dos limites aceitáveis.</p>
 
                 </div>
