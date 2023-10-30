@@ -43,7 +43,7 @@ create table tbColaborador(
 	fkAeroporto int,
 		foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
-	
+
 create table tbServidor(
 	idServ int primary key auto_increment,
 	codAutentic char(6) not null, -- Cerca de 1 milhão e 300 mil possibilidades
@@ -63,8 +63,8 @@ CREATE TABLE tbManutencao(
 	fkServidor INT NOT NULL,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ),	
 	descricaoManutencao VARCHAR(255) NOT NULL
-
 );
+
 
 CREATE TABLE tbTipoComponente(
 	idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,6 +81,7 @@ create table tbComponente(
 	foreign key (fkServ) references tbServidor(idServ)
 );
 
+
 create table tbUnidadeMedida(
 	idUnidadeMedida int primary key auto_increment,
 	nome varchar(50),
@@ -96,8 +97,9 @@ create table tbMetrica(
 		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
 );	
 
+
 CREATE TABLE tbProcessos(
-	idProcesso INT PRIMARY KEY,
+	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
 	totalProcessos INT,
 	fkServidor INT,

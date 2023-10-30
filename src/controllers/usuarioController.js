@@ -111,29 +111,15 @@ function cadastrar(req, res) {
             );
     }
 }
-function recuperar(req, res) {
-    const { email } = req.body;
-
-    if (!email) {
-        res.status(400).json({ msg: "Existem valor faltando" })
-    }
-    usuarioModel.recuperar(email)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                enviarEmail(email, resultado[0].idFuncionario)
-                resultado.status(200).json({ msg: "Email enviado!" })
-            }
-        })
-        .catch(function (erro) {
-
-        })
-}
 
 function recuperar(req, res) {
     const { cpf } = req.params
 
+    if (!cpf) {
+        res.status(400).json({ msg: "Existem valor faltando" })
+    }
     usuarioModel.existsCpf(cpf)
-        .then(async (answer) => {
+        .then((answer) => {
             if (answer.length == 1) {
                 enviarEmail(answer[0].email, answer[0].idColab)
                 res.status(200).json({ "email": answer[0].email })

@@ -1,10 +1,19 @@
+
 buscarServidor();
 
-apresentacaoServers.innerHTML+= `${sessionStorage.NOME_AEROPORTO}`
+
+if (sessionStorage.ADM == 0) {
+    apresentacaoServers.innerHTML = "Lista de servidores"
+} else {
+    apresentacaoServers.innerHTML+= `Lista de servidores de ${sessionStorage.NOME_AEROPORTO}`
+}
 
 function buscarServidor() {
-    fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
-
+    if (sessionStorage.ADM == 0) {
+        fkAeroporto = sessionStorage.FK_AEROPORTO;
+    } else {
+        fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO;
+    }
 
     if (fkAeroporto == "" || fkAeroporto == undefined) {
         alert("Você não esta logado!")
@@ -38,7 +47,7 @@ function buscarServidor() {
                           ${res[i].codAutentic}
                         </td>
                         <td>
-                        <a class="a-td" onclick="acessarServidor(${res[i].idServ})">Acessar</a>
+                        <a class="a-td" onclick="acessarServidor(${res[i].idServ}, '${res[i].apelido}')">Acessar</a>
                         </td>
                       </tr>`
                     }
@@ -50,7 +59,8 @@ function buscarServidor() {
     }
 }
 
-function acessarServidor(valor) {
+function acessarServidor(valor, nome) {
     sessionStorage.setItem('ID_SERVIDOR_ESCOLHIDO', valor);
+    sessionStorage.setItem('NOME_SERVIDOR', nome);
     window.location.href="../servidor/principalDash.html";
 }

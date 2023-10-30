@@ -1,10 +1,10 @@
 function loadAlertas() {
-    console.log(alertas)
     fetch("/alertas/listar/1", {
         method: "GET"
     })
         .then(res => res.json())
         .then(res => {
+            console.log(res)
             res.map(i => {
                 const dateFormatted = new Date(i.datahora).toLocaleString()
                 alertas.innerHTML += `

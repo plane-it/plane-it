@@ -4,7 +4,9 @@ async function proximo() {
   var contadorErro = 0
   var cnpj = iptCnpj.value
   var nomeEmpresa = iptNomeEmpresa.value
-  
+  var razaoSocial = iptRazaoSocial.value
+  var endereco = iptEndereco.value
+
   iptNomeEmpresa.style.border = "solid 2px #000000"
   iptCnpj.style.border = "solid 2px #000000";
   
@@ -19,6 +21,16 @@ async function proximo() {
     iptCnpj.style.border = "solid 2px #ff0000"
   }
   
+  if(razaoSocial == ""){
+    contadorErro++
+    iptRazaoSocial.style.border = "solid 2px #ff0000"
+  }
+
+  if(endereco == ""){
+    contadorErro++
+    iptEndereco.style.border = "solid 2px #ff0000"
+  }
+
   if (contadorErro > 0) {
     Swal.fire("Shii..", "Cheque suas informações!", "error")
   } else {
@@ -29,6 +41,7 @@ async function proximo() {
       },
       body: JSON.stringify({
         cnpj: cnpj,
+        nomeEmpresa: nomeEmpresa
       })
     }).then((res) => res.json())
     .then((res) => {
@@ -36,7 +49,7 @@ async function proximo() {
         Swal.fire("ERRO",res.error, "error")
       }
       else{
-        Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
+        Swal.fire("Muito Bem!", "Você será redirecionado para o próximo cadastro", "success");
         setTimeout(() => {
           idcontainer2.style.display = "none"
           idcontainer3.style.display = ""
@@ -56,6 +69,8 @@ async function proximo() {
 function cadastrar() {
     const nomeEmpresa = iptNomeEmpresa.value
     const cnpj = iptCnpj.value 
+    var razaoSocial = iptRazaoSocial.value
+    var endereco = iptEndereco.value
     var cpf = iptCpf.value
     var nomeGerente = iptNomeGerente.value
     var email = iptEmail.value
@@ -107,6 +122,8 @@ function cadastrar() {
           body: JSON.stringify({
             "cnpj": cnpj,
             "nomeEmpresa": nomeEmpresa,
+            "razaoSocial": razaoSocial,
+            "endereco": endereco,
             "cpf": cpf,
             "nomeFuncionario": nomeGerente,
             "email": email,
@@ -118,6 +135,7 @@ function cadastrar() {
             Swal.fire("ERRO", res.error, "error");
           }
           else{
+            
             Swal.fire("Muito Bem!", "Você será redirecionado para o Login", "success");
             setTimeout(() => {
               window.location = "./login.html";

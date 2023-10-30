@@ -25,13 +25,13 @@ function existe(req, res) {
 }
 
 function cadastrar(req, res) {
-    const { nomeEmpresa, cnpj, cpf, nomeFuncionario, email, senha } = req.body
+    const { nomeEmpresa, cnpj,razaoSocial,endereco,cpf, nomeFuncionario, email, senha } = req.body
 
-    if (!nomeEmpresa || !cnpj) {
+    if (!nomeEmpresa || !cnpj || !razaoSocial || !endereco) {
         res.status(400).json({ error: "Existem parametros faltando" })
     }
     else {
-        empresaModel.cadastrar(nomeEmpresa, cnpj)
+        empresaModel.cadastrar(nomeEmpresa, cnpj,razaoSocial,endereco)
             .then((resposta) => {
                 usuarioModel.cadastrar(cpf, nomeFuncionario, email, senha, resposta.insertId)
                     .then(() => {

@@ -15,4 +15,12 @@ router.get("/buscarAeroporto/:fkEmpresa", function (req,res) {
     servidorController.buscarAeroporto(req,res)
 })
 
+router.post("/buscarEstadoServidor", function (req,res) {
+    servidorController.buscarEstadoServidor(req,res)
+})
+
+router.post("/buscarErrosMensais", function (req,res) {
+    servidorController.buscarErrosMensais(req,res)
+})
+
 module.exports = router

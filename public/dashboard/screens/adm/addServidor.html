@@ -62,7 +62,7 @@
           </li>
 
           <li class="active ">
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-single-copy-04"></i>
               <p>Cadastro</p>
             </a>
@@ -73,7 +73,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-tile-56"></i>
               <p>Informações Gerais</p>
             </a>
@@ -190,7 +190,7 @@
                   <div class="row">
                     <div class="col-md-7 pr-1">
                       <div class="form-group">
-                        <label">Função: </label>
+                        <label>Função: </label>
                           <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
                             id="inputFuncao">
                       </div>
@@ -205,19 +205,19 @@
                   <div class="row">
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>Processador: </label>
+                        <label>Modelo de processador: </label>
                         <input type="text" class="form-control" placeholder="Processador" id="inputCpu">
                       </div>
                     </div>
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
-                        <label>Temperatura máx:</label>
+                        <label>Temperatura máx em ºC:</label>
                         <input type="number" class="form-control" placeholder="25°C" id="inputTemperaturaCpu">
                       </div>
                     </div>
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
-                        <label>Limite máx:</label>
+                        <label>Limite máx em Mhz:</label>
                         <input type="number" class="form-control" placeholder="" id="inputLimiteCpu">
                       </div>
                     </div>
@@ -231,13 +231,13 @@
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
-                        <label>Memória RAM: </label>
+                        <label>Modelo de memória RAM: </label>
                         <input type="text" class="form-control" placeholder="" id="inputRam">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
-                        <label>Limite máx:</label>
+                        <label>Limite máx de Gb:</label>
                         <input type="number" class="form-control" placeholder="" id="inputLimiteRam">
                       </div>
                     </div>
@@ -251,13 +251,13 @@
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
-                        <label>Disco: </label>
+                        <label>Modelo de disco: </label>
                         <input type="text" class="form-control" placeholder="" id="inputDisco">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
-                        <label>Limite máx:</label>
+                        <label>Limite máx de Gb:</label>
                         <input type="number" class="form-control" placeholder="" id="inputLimiteDisco">
                       </div>
                     </div>
@@ -338,34 +338,21 @@
 
     if (idUsuario == undefined || idUsuario == null || idUsuario == "" || isNaN(idUsuario)) {
 
-      window.location = '../../login.html'
+      window.location = '../../../login.html'
 
-    } else if (fkSuperior != undefined) {
-
-      alert("Para cadastrar é necessario ser administrador", "erro");
-      document.getElementById('buttonCadastro').disabled = true;
-
-    } else {
-
-      fkEmpresa = sessionStorage.FK_EMPRESA
-
-      if (fkEmpresa == "" || fkEmpresa == undefined) {
-
-        alert("Você não esta logado!")
-
-      } else {
+    }  else {
 
         buscarAeroporto();
 
       }
-    }
+    
   }
 
   function buscarAeroporto() {
 
     fkEmpresa = sessionStorage.FK_EMPRESA
 
-    fetch(`/servidor/buscarAeroporto/${1}`).then(function (resposta) {
+    fetch(`/servidor/buscarAeroporto/${fkEmpresa}`).then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
 

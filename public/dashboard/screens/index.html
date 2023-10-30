@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
@@ -35,66 +34,151 @@
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="active ">
-            <a href="./index.html">
-              <i class="nc-icon nc-layout-11"></i>
-              <p>Menu</p>
-            </a>
-          </li>
-          <li>
-            <a href="./alertas.html">
-              <i class="nc-icon nc-bell-55"></i>
-              <p>Alertas</p>
-            </a>
-          </li>
-          <li>
-            <a href="./chamados.html">
-              <i class="nc-icon nc-email-85"></i>
-              <p>Chamados</p>
-            </a>
-          </li>
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="active">
+              <a href="./index.html">
+                <i class="nc-icon nc-layout-11"></i>
+                <p>Menu</p>
+              </a>
+            </li>
+            <li>
+              <a href="./alertas.html">
+                <i class="nc-icon nc-bell-55"></i>
+                <p>Alertas</p>
+              </a>
+            </li>
+            <li>
+              <a href="./chamados.html">
+                <i class="nc-icon nc-email-85"></i>
+                <p>Chamados</p>
+              </a>
+            </li>
 
-          <li>
-            <a href="#" class="dropbtn">
-              <i class="nc-icon nc-single-copy-04"></i>
-              <p>Cadastro</p>
-            </a>
-            <div class="dropdown-content">
-              <a href="../../dashboard/screens/adm/addFuncinario.html">Funcionários</a>
-              <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
-              <a href="../screens/adm/addServidor.html">Servidores</a>
-            </div>
-          </li>
+            <li>
+              <a href="#" class="dropbtn adm">
+                <i class="nc-icon nc-single-copy-04"></i>
+                <p>Cadastro</p>
+              </a>
+              <div class="dropdown-content">
+                <a href="../../dashboard/screens/adm/addFuncinario.html"
+                  >Funcionários</a
+                >
+                <a href="../screens/adm/addAeroporto.html">Aeroportos</a>
+                <a href="../screens/adm/addServidor.html">Servidores</a>
+              </div>
+            </li>
 
-          <li>
-            <a href="#" class="dropbtn">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Informações Gerais</p>
-            </a>
-            <div class="dropdown-content">
-              <a href="listas/listaFuncionarios.html">Funcionários</a>
-              <a href="listas/listaAeroportos.html">Aeroportos</a>
-              
-            </div>
-          </li>
-        </ul>
+            <li>
+              <a href="#" class="dropbtn adm">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>Informações Gerais</p>
+              </a>
+              <div class="dropdown-content">
+                <a href="listas/listaFuncionarios.html" class="adm">Funcionários</a>
+                <a href="listas/listaAeroportos.html">Aeroportos</a>
+              </div>
+            </li>
+
+            <li class="analista">
+              <a href="/dashboard/screens/listas/listaServidores.html">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>Lista de servidores</p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav
+          class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent"
+        >
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </button>
+              </div>
+              <a class="navbar-brand" href="javascript:;">Dashboard</a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navigation"
+              aria-controls="navigation-index"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navigation"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item btn-rotate dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="navbarDropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="nc-icon nc-bell-55"></i>
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="/dashboard/screens/alertas.html"
+                      >Alertas</a
+                    >
+                    <a class="dropdown-item" href="#">Ajuda - Jira</a>
+                    <a
+                      class="dropdown-item"
+                      href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7"
+                      >Comunicação - Slack</a
+                    >
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="navbarDropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="nc-icon nc-settings-gear-65"></i>
+                    <p>
+                      <span class="d-lg-none d-md-block">Account</span>
+                    </p>
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="/dashboard/screens/perfil.html"
+                      >Perfil</a
+                    >
+                  </div>
+                </li>
+              </ul>
             </div>
             <a class="navbar-brand" href="javascript:;">Dashboard</a>
           </div>
@@ -131,243 +215,452 @@
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <div class="text-cpi">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                          <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                          <style>
-                            svg {
-                              fill: #254d32;
-                            }
-                          </style>
-                          <path
-                            d="M448 48V384C385 407 366 416 329 416C266 416 242 384 179 384C159 384 143 388 128 392V328C143 324 159 320 179 320C242 320 266 352 329 352C349 352 364 349 384 343V135C364 141 349 144 329 144C266 144 242 112 179 112C128 112 104 133 64 141V448C64 466 50 480 32 480S0 466 0 448V64C0 46 14 32 32 32S64 46 64 64V77C104 69 128 48 179 48C242 48 266 80 329 80C366 80 385 71 448 48Z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Servidores em alerta</p>
-                      <p class="card-title" id="porcentServidoresAlerta"></p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <div class="text-cpi">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" fill="currentColor"
-                          class="bi bi-x-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                          <path
-                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category" >Servidores em Risco</p>
-                      <p class="card-title" id="porcentServidoresRisco"></p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <div class="text-cpi">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" fill="currentColor"
-                          class="bi bi-dash-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Total alertas Registrados</p>
-                      <p class="card-title" id="alertasRegistrados"></p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning text-cpi">
-                      <i class="nc-icon nc-sound-wave"></i>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Quantidade de chamado</p>
-                      <p class="card-title" id="qtdChamados"></p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-              </div>
-            </div>
-          </div>
-        </div>
-        <h3 class="description" style="color: aliceblue; text-align: center">
-          Gráficos
-        </h3>
-        <!--Inicio dos gráficos-->
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Produtividade</h5>
-                <p class="card-category">
-                  Número de chamados abertos nos último ano
-                </p>
-              </div>
-              <div class="card-body">
-                <canvas id="analiseSistema" width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer">
-                <hr />
-                <div class="stats">
-                  <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Estatísticas dos servidores.html</h5>
-                <p class="card-category">Estado de velocidade rede</p>
-              </div>
-              <div class="card-body">
-                <canvas id="chartEstado"></canvas>
-              </div>
-              <div class="card-footer">
-                <hr />
-                <div class="stats">
-                  <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="display: none;">
-          <div class="col-md-8">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-title">Memória RAM</h5>
-                <p class="card-category">Em uso contínuo</p>
-              </div>
-              <div class="card-body">
-                <canvas id="chartVelocidade" width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer">
-                <hr />
-                <div class="card-stats">
-                  <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer footer-black footer-white">
-        <div class="container-fluid">
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
           <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://www.creative-tim.com" target="_blank">Suporte</a>
-                </li>
-                <li>
-                  <a href="https://www.creative-tim.com/blog" target="_blank">Comunicação</a>
-                </li>
-                <li>
-                  <a href="https://www.creative-tim.com/license" target="_blank">Site institucional</a>
-                </li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                , made with Plane - it.
-              </span>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div id="cardStatsAlerta" class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <div class="text-cpi">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="1em"
+                            viewBox="0 0 448 512"
+                          >
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <style>
+                              svg {
+                                fill: #254d32;
+                              }
+                            </style>
+                            <path
+                              d="M448 48V384C385 407 366 416 329 416C266 416 242 384 179 384C159 384 143 388 128 392V328C143 324 159 320 179 320C242 320 266 352 329 352C349 352 364 349 384 343V135C364 141 349 144 329 144C266 144 242 112 179 112C128 112 104 133 64 141V448C64 466 50 480 32 480S0 466 0 448V64C0 46 14 32 32 32S64 46 64 64V77C104 69 128 48 179 48C242 48 266 80 329 80C366 80 385 71 448 48Z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">Servidores em alerta</p>
+                        <p class="card-title" id="porcentServidoresAlerta"></p>
+                        <p></p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div id="cardFooterAlerta" class="card-footer">
+                  <hr />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 ">
+              <div  class="card card-stats">
+                <div id="cardStatsSuccess" class="card-body">
+                  <div class="row ">
+                    <div class="col-5 col-md-4 ">
+                      <div class="icon-big text-center icon-warning ">
+                        <div class="text-cpi ">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="60"
+                            height="50"
+                            fill="currentColor"
+                            class="bi bi-x-circle"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                            />
+                            <path
+                              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">Servidores em risco</p>
+                        <p class="card-title" id="porcentServidoresRisco"></p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="cardFooterSucess" class="card-footer">
+                  <hr />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <div class="text-cpi">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="60"
+                            height="50"
+                            fill="currentColor"
+                            class="bi bi-dash-circle"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                            />
+                            <path
+                              d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">Total alertas Registrados</p>
+                        <p class="card-title" id="alertasRegistrados"></p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning text-cpi">
+                        <i class="nc-icon nc-sound-wave"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">Quantidade de chamados</p>
+                        <p class="card-title" id="qtdChamados"></p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  
+                </div>
+              </div>
             </div>
           </div>
+          <h3 class="description" style="color: aliceblue; text-align: center">
+            Gráficos
+          </h3>
+          <!--Inicio dos gráficos-->
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Produtividade</h5>
+                  <p class="card-category">
+                    Número de chamados abertos nos último ano
+                  </p>
+                </div>
+                <div class="card-body">
+                  <canvas id="analiseSistema" width="400" height="100"></canvas>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado há <a id="tempo1"></a> minuto atrás.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Estatísticas dos servidores</h5>
+                  <p class="card-category">Estado de velocidade rede</p>
+                </div>
+                <div class="card-body">
+                  <canvas id="chartEstado"></canvas>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado há <a id="tempo2"></a> minuto atrás.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="display: none">
+            <div class="col-md-8">
+              <div class="card card-chart">
+                <div class="card-header">
+                  <h5 class="card-title">Memória RAM</h5>
+                  <p class="card-category">Em uso contínuo</p>
+                </div>
+                <div class="card-body">
+                  <canvas
+                    id="chartVelocidade"
+                    width="400"
+                    height="100"
+                  ></canvas>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Métricas</h5>
+                  <p class="card-category">Como calculamos as métricas</p>
+                </div>
+                <div class="card-body">
+                  <div class="row align-center justify-content-center">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-body alert-warning">
+                          <div class="row">
+                            <div class="col-5 col-md-4">
+                              <div class="icon-big text-center icon-warning">
+                                <div class="text-cpi">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="60"
+                                    height="50"
+                                    fill="currentColor"
+                                    class="bi bi-x-circle"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path
+                                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                                    />
+                                    <path
+                                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                              <div class="numbers">
+                                <p class="card-category">Servidores em Risco</p>
+                                <p
+                                  class="card-title"
+                                  id=""
+                                >
+                                  5
+                                </p>
+                                <p></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-body alert-seguro">
+                          <div class="row">
+                            <div class="col-5 col-md-4">
+                              <div class="icon-big text-center icon-warning">
+                                <div class="text-cpi">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="60"
+                                    height="50"
+                                    fill="currentColor"
+                                    class="bi bi-x-circle"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path
+                                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                                    />
+                                    <path
+                                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                              <div class="numbers">
+                                <p class="card-category">Servidores em Risco</p>
+                                <p
+                                  class="card-title"
+                                  id=""
+                                >
+                                  25
+                                </p>
+                                <p></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
+                        <div class="card-body alert-danger">
+                          <div class="row">
+                            <div class="col-5 col-md-4">
+                              <div class="icon-big text-center icon-warning">
+                                <div class="text-cpi">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="60"
+                                    height="50"
+                                    fill="currentColor"
+                                    class="bi bi-x-circle"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path
+                                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                                    />
+                                    <path
+                                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                              <div class="numbers">
+                                <p class="card-category">Servidores em Risco</p>
+                                <p
+                                  class="card-title"
+                                  id=""
+                                >
+                                  50
+                                </p>
+                                <p></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+
+                    <div class="row justify-content-center">
+                      <div class="alert alert-warning col-lg-11 text-center">Cor <b>verde</b> representa que até 5% dos servidores estão em risco/alerta</div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="alert alert-seguro col-lg-11 text-center">Cor <b>amarela</b> representa que até 10% dos servidores estão em risco/alerta</div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="alert alert-danger col-lg-11 text-center">Cor <b>vermelha</b> representa que mais de 11% dos servidores estão em risco/alerta</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Estado dos servidores</h5>
+                    <p class="card-category">Em risco | alerta | saudável</p>
+                </div>
+                <div class="card-body">
+                  <p>Servidores em <b style="color: #dc3545;">risco</b> passaram totalmente dos limites aceitáveis.</p>
+                  <p>Servidores em <b style="color: #ffc107;">alertas</b> estão a menos de 5% dos limites aceitáveis.</p>
+                  <p>Servidores <b style="color: #28a745;">saudáveis</b> estão dentro dos limites aceitáveis.</p>
+
+                </div>
+                <div class="card-footer">
+                  <hr />
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </footer>
+
+        <footer class="footer footer-black footer-white">
+          <div class="container-fluid">
+            <div class="row">
+              <nav class="footer-nav">
+                <ul>
+                  <li>
+                    <a href="https://www.creative-tim.com" target="_blank"
+                      >Suporte</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.creative-tim.com/blog" target="_blank"
+                      >Comunicação</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.creative-tim.com/license"
+                      target="_blank"
+                      >Site institucional</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <div class="credits ml-auto">
+                <span class="copyright">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with Plane - it.
+                </span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
-  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/js/graficoAdm/grafAdm.js"></script>
-  <script src="../assets/js/graficoIndex/index.js"></script>
+    <script src="/dashboard/assets/js/separacao_Dash.js"></script>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script
+      src="../assets/js/paper-dashboard.min.js?v=2.0.1"
+      type="text/javascript"
+    ></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/graficoAdm/grafAdm.js"></script>
+    <script src="../assets/js/graficoIndex/index.js"></script>
 
-  <script>
-    $(document).ready(function () {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
-    });
-  </script>
-</body>
-
+    <script>
+      $(document).ready(function () {
+        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+        demo.initChartsPages();
+      });
+    </script>
+  </body>
 </html>
