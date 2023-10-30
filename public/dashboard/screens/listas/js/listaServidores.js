@@ -1,10 +1,19 @@
+
 buscarServidor();
 
-apresentacaoServers.innerHTML+= `${sessionStorage.NOME_AEROPORTO}`
+
+if (sessionStorage.ADM == 0) {
+    apresentacaoServers.innerHTML = "Lista de servidores"
+} else {
+    apresentacaoServers.innerHTML+= `Lista de servidores de ${sessionStorage.NOME_AEROPORTO}`
+}
 
 function buscarServidor() {
-    fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
-
+    if (sessionStorage.ADM == 0) {
+        fkAeroporto = sessionStorage.FK_AEROPORTO;
+    } else {
+        fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO;
+    }
 
     if (fkAeroporto == "" || fkAeroporto == undefined) {
         alert("Você não esta logado!")

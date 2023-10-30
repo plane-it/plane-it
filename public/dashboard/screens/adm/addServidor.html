@@ -62,7 +62,7 @@
           </li>
 
           <li class="active ">
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-single-copy-04"></i>
               <p>Cadastro</p>
             </a>
@@ -73,7 +73,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="dropbtn">
+            <a href="#" class="dropbtn adm">
               <i class="nc-icon nc-tile-56"></i>
               <p>Informações Gerais</p>
             </a>
@@ -338,34 +338,21 @@
 
     if (idUsuario == undefined || idUsuario == null || idUsuario == "" || isNaN(idUsuario)) {
 
-      window.location = '../../login.html'
+      window.location = '../../../login.html'
 
-    } else if (fkSuperior != undefined) {
-
-      alert("Para cadastrar é necessario ser administrador", "erro");
-      document.getElementById('buttonCadastro').disabled = true;
-
-    } else {
-
-      fkEmpresa = sessionStorage.FK_EMPRESA
-
-      if (fkEmpresa == "" || fkEmpresa == undefined) {
-
-        alert("Você não esta logado!")
-
-      } else {
+    }  else {
 
         buscarAeroporto();
 
       }
-    }
+    
   }
 
   function buscarAeroporto() {
 
     fkEmpresa = sessionStorage.FK_EMPRESA
 
-    fetch(`/servidor/buscarAeroporto/${1}`).then(function (resposta) {
+    fetch(`/servidor/buscarAeroporto/${fkEmpresa}`).then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
 

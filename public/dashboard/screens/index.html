@@ -72,7 +72,7 @@
             </li>
 
             <li>
-              <a href="#" class="dropbtn">
+              <a href="#" class="dropbtn adm">
                 <i class="nc-icon nc-single-copy-04"></i>
                 <p>Cadastro</p>
               </a>
@@ -86,14 +86,21 @@
             </li>
 
             <li>
-              <a href="#" class="dropbtn">
+              <a href="#" class="dropbtn adm">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>Informações Gerais</p>
               </a>
               <div class="dropdown-content">
-                <a href="listas/listaFuncionarios.html">Funcionários</a>
+                <a href="listas/listaFuncionarios.html" class="adm">Funcionários</a>
                 <a href="listas/listaAeroportos.html">Aeroportos</a>
               </div>
+            </li>
+
+            <li class="analista">
+              <a href="/dashboard/screens/listas/listaServidores.html">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>Lista de servidores</p>
+              </a>
             </li>
           </ul>
         </div>
@@ -321,7 +328,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                       <div class="numbers">
-                        <p class="card-category">Quantidade de chamado</p>
+                        <p class="card-category">Quantidade de chamados</p>
                         <p class="card-title" id="qtdChamados"></p>
                         <p></p>
                       </div>
@@ -353,7 +360,9 @@
                 </div>
                 <div class="card-footer">
                   <hr />
-                  
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado há <a id="tempo1"></a> minuto atrás.
+                  </div>
                 </div>
               </div>
             </div>
@@ -368,7 +377,9 @@
                 </div>
                 <div class="card-footer">
                   <hr />
-                  
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Atualizado há <a id="tempo2"></a> minuto atrás.
+                  </div>
                 </div>
               </div>
             </div>
@@ -604,6 +615,7 @@
         </footer>
       </div>
     </div>
+    <script src="/dashboard/assets/js/separacao_Dash.js"></script>
     <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>

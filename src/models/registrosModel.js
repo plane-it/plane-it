@@ -40,26 +40,87 @@ function buscarChamados(fkEmpresa, anoAtual) {
     return database.executar(sql)
 }
 
-function buscarEstadoServidores(fkEmpresa) {
+function buscarEstadoServidores(fk, adm) {
+    console.log(adm)
+    if (adm == 1) {
+        const sql = `
+        WITH ServidoresEmpresa AS (
+            SELECT idServ FROM tbServidor 
+            JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
+            WHERE fkEmpresa = ${fk}
+        ),
+        UltimosRegistros AS (
+            SELECT fkServidor, alerta
+            FROM (
+                SELECT *, ROW_NUMBER() OVER (PARTITION BY fkServidor ORDER BY idRegst DESC) as rn
+                FROM tbRegistro
+                WHERE fkServidor IN (SELECT idServ FROM ServidoresEmpresa)
+            ) tmp
+            WHERE rn <= 10
+        ),
+        AlertasPorServidor AS (
+            SELECT fkServidor, COUNT(*) as alertasGerados
+            FROM UltimosRegistros
+            WHERE alerta = true
+            GROUP BY fkServidor
+        )
+        SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
+        FROM ServidoresEmpresa s
+        LEFT JOIN AlertasPorServidor a ON s.idServ = a.fkServidor;
+        `
+        return database.executar(sql)
+
+    } else if (adm == 0) {
+        const sql = `
+        WITH ServidoresEmpresa AS (
+            SELECT idServ FROM tbServidor 
+            JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
+            WHERE fkAeroporto = ${fk}
+        ),
+        UltimosRegistros AS (
+            SELECT fkServidor, alerta
+            FROM (
+                SELECT *, ROW_NUMBER() OVER (PARTITION BY fkServidor ORDER BY idRegst DESC) as rn
+                FROM tbRegistro
+                WHERE fkServidor IN (SELECT idServ FROM ServidoresEmpresa)
+            ) tmp
+            WHERE rn <= 10
+        ),
+        AlertasPorServidor AS (
+            SELECT fkServidor, COUNT(*) as alertasGerados
+            FROM UltimosRegistros
+            WHERE alerta = true
+            GROUP BY fkServidor
+        )
+        SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
+        FROM ServidoresEmpresa s
+        LEFT JOIN AlertasPorServidor a ON s.idServ = a.fkServidor;
+        `
+        return database.executar(sql)
+
+    }
+
+}
+
+function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     const sql = `
-    SELECT fkServidor, COUNT(*) AS alertasGerados, 
-    (SELECT COUNT(*) FROM tbServidor JOIN tbAeroporto ON fkAeroporto = idAeroporto JOIN tbEmpresa ON fkEmpresa = idEmpr WHERE idEmpr = ${fkEmpresa}) as totalServidores
-    FROM tbRegistro
-    JOIN tbServidor ON fkServidor = idServ
-    JOIN tbAeroporto on fkAeroporto = idAeroporto
-    JOIN tbEmpresa on fkEmpresa = idEmpr
-    WHERE alerta = true
-    AND idEmpr = ${fkEmpresa}
-    GROUP BY fkServidor
-    LIMIT 10;  
+    SELECT * FROM (
+        SELECT * 
+        FROM tbRegistro 
+        JOIN tbComponente ON fkComp = idComp 
+        WHERE fktipoComponente = ${fkTipoComponente} AND fkServ = ${fkServidor}
+        ORDER BY idRegst DESC
+        LIMIT 10
+    ) AS sub
+    ORDER BY idRegst ASC;
     `
     return database.executar(sql)
 }
 
 
-
 module.exports = {
     buscarAlertas,
     buscarChamados,
-    buscarEstadoServidores
+    buscarEstadoServidores,
+    buscarUltimosRegistrosLive
 }

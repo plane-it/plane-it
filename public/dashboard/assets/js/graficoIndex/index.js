@@ -175,7 +175,16 @@ function buscarChamados() {
 buscarEstadoServidores();
 
 function buscarEstadoServidores() {
+
   fkEmpresa = sessionStorage.FK_EMPRESA;
+  
+   if (sessionStorage.ADM == 0) {
+    fk = sessionStorage.FK_AEROPORTO
+    adm = 0
+  } else {
+    fk = sessionStorage.FK_EMPRESA
+    adm = 1
+  }
 
   fetch("/registros/buscarEstadoServidores", {
     method: "POST",
@@ -184,6 +193,8 @@ function buscarEstadoServidores() {
     },
     body: JSON.stringify({
       fkEmpresa: fkEmpresa,
+       "fk": fk,
+       "adm": adm
     }),
   })
     .then((res) => res.json())
@@ -191,7 +202,7 @@ function buscarEstadoServidores() {
       if (res.error) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
-        totalServidores = res[0].totalServidores;
+        totalServidores = res.length;
         for (i in res) {
           if (res[i].alertasGerados >= 5) {
             servidoresRisco++;
@@ -244,7 +255,6 @@ function buscarEstadoServidores() {
               },
             ],
           },
-
           options: {
             legend: {
               display: false,
@@ -258,40 +268,52 @@ function buscarEstadoServidores() {
 
             /* tooltips: {
                           enabled: false
-                        }, */
+                        }, */              
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              display: false,
+                            },
+                            gridLines: {
+                              drawBorder: false,
+                              zeroLineColor: "transparent",
+                              color: "69B578",
+                            },
+                          },
+                        ],
+              
+                        xAxes: [
+                          {
+                            barPercentage: 1.6,
+                            gridLines: {
+                              drawBorder: true,
+                              color: "69B578",
+                              zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                              display: true,
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  });
+                rodarTempo()  
+            }
+        }).catch(function (resposta) {
 
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    display: false,
-                  },
-                  gridLines: {
-                    drawBorder: false,
-                    zeroLineColor: "transparent",
-                    color: "69B578",
-                  },
-                },
-              ],
-
-              xAxes: [
-                {
-                  barPercentage: 1.6,
-                  gridLines: {
-                    drawBorder: true,
-                    color: "69B578",
-                    zeroLineColor: "transparent",
-                  },
-                  ticks: {
-                    display: true,
-                  },
-                },
-              ],
-            },
-          },
-        });
-      }
-    })
-    .catch(function (resposta) {});
+        }); 
 }
 
+tempo = 0;
+
+function rodarTempo() {
+  tempo1.innerHTML = tempo
+  tempo2.innerHTML = tempo
+  setTimeout(() => {
+    tempo++;
+    rodarTempo()
+  }, 60000)
+
+}

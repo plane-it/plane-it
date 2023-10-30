@@ -5,7 +5,9 @@ function recuperarSenha(){
         Swal.fire("ERRO","Preencha todas as infomações","error")
     }
     else{
-        fetch(`/usuarios/recuperar/${cpf.value}`)
+        fetch(`/usuarios/recuperar/${cpf.value}`,{
+            methodh: "GET",
+        })
         .then(res => res.json())
         .then(res => {
             console.log(res)
