@@ -5,7 +5,7 @@ buscarServidor();
 if (sessionStorage.ADM == 0) {
     apresentacaoServers.innerHTML = "Lista de servidores"
 } else {
-    apresentacaoServers.innerHTML+= `Lista de servidores de ${sessionStorage.NOME_AEROPORTO}`
+    apresentacaoServers.innerHTML = `Lista de servidores de ${sessionStorage.NOME_AEROPORTO}`
 }
 
 function buscarServidor() {

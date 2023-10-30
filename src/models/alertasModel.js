@@ -62,7 +62,7 @@ function listar(id) {
             JOIN tbServidor s ON s.idServ = r.fkServidor
             JOIN tbAeroporto a on a.idAeroporto = s.fkAeroporto
         WHERE
-            r.valor >= m.valor * 0.95
+            r.valor >= m.valor * 0.8
             and a.idAeroporto = ${id}
             and month(r.datahora) = month(now())
             and year(r.datahora) = year(now())

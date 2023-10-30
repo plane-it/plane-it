@@ -31,7 +31,7 @@
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
-    --red: #dc3545;
+    --red: rgba(244, 69, 69, 0.604);
     --orange: #fd7e14;
     --yellow: #ffc107;
     --green: #28a745;
@@ -5939,7 +5939,7 @@ a.badge-dark:focus {
 
 .alert-danger {
     color: #721c24;
-    background-color: #fd7e14;
+    background-color: rgba(244, 69, 69, 0.604) !important;
     border-color: #f5c6cb
 }
 

@@ -220,22 +220,23 @@ function buscarEstadoServidores() {
         if ((servidoresRisco * 100) / totalServidores < totalServidores * 0.05) {
           cardFooterSucess.style.backgroundColor = "#fff3cd";
           cardStatsSuccess.style.backgroundColor = "#fff3cd";
-        } else if ((servidoresRisco * 100) / totalServidores < totalServidores * 0.10){
+        } else if ((servidoresRisco * 100) / totalServidores <= totalServidores * 0.10){
           cardFooterSucess.style.backgroundColor = "#e9ba93";
           cardStatsSuccess.style.backgroundColor = "#e9ba93";
         } else {
-          cardFooterSucess.style.backgroundColor = "#f8d7da";
-          cardStatsSuccess.style.backgroundColor = "#f8d7da";
+          cardFooterSucess.style.backgroundColor = "rgba(244, 69, 69, 0.604)";
+          cardStatsSuccess.style.backgroundColor = "rgba(244, 69, 69, 0.604)";
         }
-        if ((servidoresAlerta * 100) / totalServidores < totalServidores * 0.05) {
+
+        if ((servidoresAlerta * 100) / totalServidores <= totalServidores * 0.5) {
           cardFooterAlerta.style.backgroundColor = "#fff3cd";
           cardStatsAlerta.style.backgroundColor = "#fff3cd";
-        } else if((servidoresAlerta * 100) / totalServidores < totalServidores * 0.10){
+        } else if((servidoresAlerta * 100) / totalServidores <= totalServidores * 10){
           cardFooterAlerta.style.backgroundColor = "#e9ba93";
           cardStatsAlerta.style.backgroundColor = "#e9ba93";
         } else{
-          cardFooterAlerta.style.backgroundColor = "#f8d7da";
-          cardStatsAlerta.style.backgroundColor = "#f8d7da";
+          cardFooterAlerta.style.backgroundColor = "rgba(224, 29, 49, 0.784)";
+          cardStatsAlerta.style.backgroundColor = "rgba(224, 29, 49, 0.784)";
         }
 
         myChartRosca.destroy();

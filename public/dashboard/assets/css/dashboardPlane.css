@@ -2359,7 +2359,7 @@ p.description {
 .card-category {
   text-transform: capitalize;
   font-weight: 400;
-  color: #9A9A9A;
+  color: #000000;
   font-size: 0.7142em;
 }
 
@@ -3669,7 +3669,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .alert.alert-danger {
-  background-color: #f1926e;
+  background-color: rgba(244, 69, 69, 0.604);
 }
 
 .alert.alert-warning {
@@ -5640,7 +5640,7 @@ License - nucleoapp.com/license/
 }
 
 .card-stats .card-body .numbers .card-category {
-  color: #9A9A9A;
+  color: #000000;
   font-size: 16px;
   line-height: 1.4em;
 }
