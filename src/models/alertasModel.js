@@ -24,8 +24,9 @@ function listar(id) {
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
                 join tbComponente c on c.idComp = m.fkComponente
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                c.tipo = "CPU"
+                tc.tipo = "CPU"
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
@@ -35,8 +36,9 @@ function listar(id) {
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
                 join tbComponente c on c.idComp = m.fkComponente
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                c.tipo = "RAM"
+                tc.tipo = "RAM"
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
@@ -46,8 +48,9 @@ function listar(id) {
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
                 join tbComponente c on c.idComp = m.fkComponente
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                c.tipo = "HD"
+                tc.tipo = "Disco"
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit
