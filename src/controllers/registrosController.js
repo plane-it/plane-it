@@ -69,6 +69,7 @@ function buscarEstadoServidores(req, res) {
     }
 }
 
+
 module.exports = {
     buscarAlertas,
     buscarChamados,

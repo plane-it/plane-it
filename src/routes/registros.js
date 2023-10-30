@@ -15,4 +15,8 @@ router.post("/buscarEstadoServidores", (req, res) => {
     registrosController.buscarEstadoServidores(req, res)
 })
 
+router.post("/buscarUltimoRegistro", (req, res) => {
+    registrosController.buscarUltimoRegistro(req, res)
+})
+
 module.exports = router
