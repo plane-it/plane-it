@@ -2,6 +2,7 @@ function loadChamados(){
     fetch(`/empresa/chamados/${1}`)
         .then(res => res.json())
         .then(res => {
+            console.log(res)
             res.map(i => {
                 const formattedDate = new Date(i.datahora).toLocaleString()
                 chamados.innerHTML +=`

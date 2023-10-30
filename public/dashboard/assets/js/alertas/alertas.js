@@ -4,6 +4,7 @@ function loadAlertas() {
     })
         .then(res => res.json())
         .then(res => {
+            console.log(res)
             res.map(i => {
                 const dateFormatted = new Date(i.datahora).toLocaleString()
                 alertas.innerHTML += `
