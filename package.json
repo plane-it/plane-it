@@ -1,0 +1,22 @@
+{
+  "name": "plane-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --exec node app.js"
+  },
+  "author": "Site desenvolvido para o projeto de Pesquisa e Inovação",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "date-utils": "^1.2.21",
+    "express": "^4.17.1",
+    "mssql": "^7.1.3",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.9.5",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7"
+  }
+}

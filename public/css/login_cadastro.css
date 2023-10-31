@@ -1,0 +1,16 @@
+.contact-content {
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.4);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    font-family: "montserrat-light", sans-serif;
+    font-size: 1.5rem;
+    line-height: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.contact-primary {
+    width: 80%;
+  }
