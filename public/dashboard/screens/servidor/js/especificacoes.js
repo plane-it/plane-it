@@ -31,6 +31,9 @@ function buscarEspecificacoes() {
                             cpuTemp.innerHTML = res[i].valor;
                             cpuTemp.innerHTML += res[i].sinal;
                         } else if (res[i].tipo == 1 && res[i].fkUnidadeMedida == 4) {
+                            cpuModelo.innerHTML = res[i].modelo;
+                            cpuPreco.innerHTML = 'R$: ';
+                            cpuPreco.innerHTML += res[i].preco;
                             cpuFreq.innerHTML = res[i].valor;
                             cpuFreq.innerHTML += res[i].sinal;
                         } else if (res[i].tipo == 2 && res[i].fkUnidadeMedida == 3) {

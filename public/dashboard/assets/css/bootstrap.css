@@ -682,8 +682,9 @@ pre code {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-    justify-content: space-evenly;
 }
+
+
 
 .grafico-container {
     margin-top: 5px;
@@ -12125,7 +12126,6 @@ pre code {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-    justify-content: space-evenly;
 }
 
 .no-gutters {
