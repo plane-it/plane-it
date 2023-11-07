@@ -108,7 +108,7 @@ CREATE TABLE tbProcessos(
 create table tbRegistro(
 	idRegst int primary key auto_increment,
 	valor varchar(100) not null,
-	dataHora dateTime default(now()),
+	dataHora dateTime default now(),
     alerta boolean,
     fkServidor int,
 		foreign key (fkServidor) references tbServidor(idServ),
