@@ -629,6 +629,21 @@ pre code {
     transition: all 1s linear !important;
   }
 
+  .blackFont {
+    color: #000 !important;
+  }
+
+  .pilha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 1.2rem;
+  }
+
+  .kpiViva {
+    padding-bottom: 0.5rem;
+  }
+
 @media (min-width:576px) {
     .container {
         max-width: 540px
@@ -6014,6 +6029,12 @@ a.badge-dark:focus {
     color: #040505
 }
 
+.alert-acima-media {
+    background-color: #cdeabe;
+    color: #491217;
+    border-color: #cdeabe;
+
+}
 @-webkit-keyframes progress-bar-stripes {
     from {
         background-position: 1rem 0
