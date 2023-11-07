@@ -1,0 +1,1 @@
+nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR; 
