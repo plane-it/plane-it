@@ -6035,6 +6035,18 @@ a.badge-dark:focus {
     border-color: #cdeabe;
 
 }
+
+.alinhador-botao {
+    height: 1.2rem;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.empurrar-cima {
+    margin-top: 2rem;
+}
 @-webkit-keyframes progress-bar-stripes {
     from {
         background-position: 1rem 0

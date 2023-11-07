@@ -174,7 +174,7 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
+            <div class="content" id="fundo" style="z-index: 0;">
                 <div class="row" style="display: flex; justify-content: space-between;">
                     <div class="col-md-5 pr-1 blackFont">
                         <div class="form-group">
@@ -194,6 +194,9 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">CPU</p>
+                                </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-5 col-md-4 kpiViva">
@@ -210,6 +213,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Mhz por dólar</p>
+                                            <p class="card-category">gasto</p>
                                             <p class="card-title" id="cpuEstado">--</p>
                                             <p></p>
                                         </div>
@@ -225,6 +229,9 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">RAM</p>
+                                </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-5 col-md-4 kpiViva">
@@ -241,6 +248,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Gb por dólar</p>
+                                            <p class="card-category">gasto</p>
                                             <p class="card-title" id="ramEstado">--</p>
                                             <p></p>
                                         </div>
@@ -256,6 +264,9 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">Disco</p>
+                                </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-5 col-md-4 kpiViva">
@@ -274,6 +285,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Gb por dólar</p>
+                                            <p class="card-category">gasto</p>
                                             <p class="card-title" id="discoEstado">--</p>
                                             <p></p>
                                         </div>
@@ -289,6 +301,9 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">Geral</p>
+                                </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-5 col-md-4 kpiViva">
@@ -307,6 +322,7 @@
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
                                             <p class="card-category">Custo Total</p>
+                                            <p class="card-category">de componentes</p>
                                             <p class="card-title" id="custoTotal">--</p>
                                             <p></p>
                                         </div>
@@ -320,23 +336,39 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="description">Gráficos</h3>
+                <h3 class="description empurrar-cima">Gráficos</h3>
+                <div class="row" style="display: flex; justify-content: space-between;">
+                    <div class="col-md-5 pr-1 blackFont">
+                        <div class="form-group">
+                            <label>Componente: </label>
+                            <select type="text" class="form-control" placeholder="--Selecione--" id="inputAeroporto">
+                                <option value="1">CPU</option>
+                                <option value="2">RAM</option>
+                                <option value="3">Disco</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="alinhador-botao"></div>
+                        <div class="update px-3">
+                            <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                onclick="aparecerTela()">Solicitar Análise</button>
+                        </div>
+                    </div>
+
+                </div>
                 <!--Inicio dos gráficos-->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="card-header ">
-                                <h5 class="card-title">Estatísticas de uso</h5>
+                                <h5 class="card-title">Desempenho / Gasto</h5>
                                 <p class="card-category">MHz</p>
                             </div>
                             <div class="card-body ">
-                                <canvas id="chartVelocidadeDisco" width="400" height="100"></canvas>
+                                <canvas id="myChart"></canvas>
                             </div>
                             <div class="card-footer ">
-                                <!-- <hr>
-                <div class="stats">
-                  <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                </div> -->
                             </div>
                         </div>
                     </div>
@@ -416,12 +448,18 @@
                                 </div>
                                 <div>
                                     <div class="row justify-content-center">
-                                        <div class="alert alert-danger col-lg-11 text-center blackFont">Cor <b>vermelha</b>
-                                            indica-se que o componente em questão apresenta um desempenho inferior à média dos seus servidores, porém a um custo mais elevado.</div>
+                                        <div class="alert alert-danger col-lg-11 text-center blackFont">Cor
+                                            <b>vermelha</b>
+                                            indica-se que o componente em questão apresenta um desempenho inferior à
+                                            mediana dos seus servidores, porém a um custo mais elevado.
+                                        </div>
                                     </div>
                                     <div class="row justify-content-center">
-                                        <div class="alert alert-acima-media col-lg-11 text-center blackFont">Cor <b>verde</b>
-                                            sugere-se que o componente em questão oferece um desempenho superior à média dos seus servidores a um custo mais baixo.</div>
+                                        <div class="alert alert-acima-media col-lg-11 text-center blackFont">Cor
+                                            <b>verde</b>
+                                            sugere-se que o componente em questão oferece um desempenho superior à mediana
+                                            dos seus servidores a um custo mais baixo.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -456,6 +494,45 @@
                     </div>
                 </footer>
             </div>
+            <div class="content" id="frente" style="z-index: 1; display: none;">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h5 class="card-title">Solicitar análise de servidor</h5>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row" style="display: flex; justify-content: center;">
+                                <div class="col-md-11 pr-3">
+                                    <div class="form-group">
+                                      <label>Insira o motivo da análise: </label>
+                                      <input type="text" class="form-control" placeholder="Motivo" value="" id="iptTelefone">
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row" style="display: flex; justify-content: center;">
+                                <div class="col-md-11 pr-3">
+                                    <div class="form-group">
+                                      <label>Descreva o problema: </label>
+                                      <input type="text" class="form-control" placeholder="Problema" value="" id="iptTelefone">
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="update px-3">
+                                    <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                        onclick="sumirTela()">Voltar</button>
+                                </div>
+                                <div class="update px-3">
+                                    <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                        onclick="enviarAnalise()">Enviar solicitação</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--   Core JS Files   -->
         <script src="../../../assets/js/core/jquery.min.js"></script>
@@ -475,6 +552,73 @@
         <!-- <script src="../../../assets/demo/demo.js"></script> -->
         <script src="js/custoBeneficio.js"></script>
         <script>
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            // Coeficientes da função linear f(x) = ax + b
+            var a = 1;
+            var b = 5.71;
+
+            // Gera alguns valores para x
+            var valoresX = Array.from({ length: 10 }, (_, i) => i);
+
+            // Calcula os valores correspondentes de y usando a função linear
+            var valoresY = valoresX.map(x => a * x + b);
+
+            var valoresDesempenho = valoresY.map(y => y + 2);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: valoresX,
+                    datasets: [{
+                        label: 'Mediana',
+                        data: valoresY,
+                        fill: false,
+                        borderColor: '#3A7D44',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Desempenho do Componente',
+                        data: valoresDesempenho,
+                        fill: false,
+                        borderColor: '#FF0000', 
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Dólar gasto'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Desempenho fornecido'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+        <script>
+            function aparecerTela() {
+                fundo.style = "filter: opacity(40%) blur(0.5px); backdrop-filter: opacity(40%) blur(0.5px);"
+                frente.style = "position: absolute; top: 10%; left: 30%; display: block;"
+            }
+
+            function sumirTela() {
+                fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
+                frente.style = "display:none"
+            }
+        </script>
+    </body>
+            }
 
         </script>
 </body>
