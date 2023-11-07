@@ -30,7 +30,19 @@ function listar(id) {
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "CPU", (
+        ) as "cpu", (
+            select u.sinal
+            from tbRegistro rs
+                join tbMetrica m on m.idMetrica = rs.fkMetrica
+                join tbComponente c on c.idComp = m.fkComponente
+                join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
+            where
+                tc.tipo = "CPU"
+                and rs.fkServidor = r.fkServidor
+            order by rs.idRegst
+            limit 1
+        ) as "cpuUni",(
             select rs.valor
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -42,7 +54,19 @@ function listar(id) {
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "RAM", (
+        ) as "ram", (
+            select u.sinal
+            from tbRegistro rs
+                join tbMetrica m on m.idMetrica = rs.fkMetrica
+                join tbComponente c on c.idComp = m.fkComponente
+                join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
+            where
+                tc.tipo = "RAM"
+                and rs.fkServidor = r.fkServidor
+            order by rs.idRegst
+            limit 1
+        ) as "ramUni", (
             select rs.valor
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -55,7 +79,19 @@ function listar(id) {
             order by rs.idRegst
             limit
                 1
-        ) as "HD",
+        ) as "disco",(
+            select u.sinal
+            from tbRegistro rs
+                join tbMetrica m on m.idMetrica = rs.fkMetrica
+                join tbComponente c on c.idComp = m.fkComponente
+                join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
+                join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
+            where
+                tc.tipo = "Disco"
+                and rs.fkServidor = r.fkServidor
+            order by rs.idRegst
+            limit 1
+        ) as "discoUni",
         s.apelido as "servidor"
         FROM tbRegistro r
             JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
