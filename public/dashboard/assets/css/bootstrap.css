@@ -601,6 +601,34 @@ pre code {
     margin-left: auto
 }
 
+.li-dropdown-content {
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px;
+    font-size: 12px;
+    transition: all 1s linear;
+  }
+  
+  .li-dropdown-content a {
+    color: black;
+    padding: 9px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1.3rem;
+  }
+  
+  .li-dropdown-content a:hover {
+    color: #3A7D44 !important;
+  }
+  
+  
+  li:hover .li-dropdown-content {
+    display: block;
+    transition: all 1s linear !important;
+  }
+
 @media (min-width:576px) {
     .container {
         max-width: 540px
