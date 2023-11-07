@@ -1,5 +1,6 @@
 function loadChamados(){
-    fetch(`/empresa/chamados/${1}`)
+    const id = sessionStorage.FK_EMPRESA
+fetch(`/empresa/chamados/${id}`)
         .then(res => res.json())
         .then(res => {
             console.log(res)
@@ -25,15 +26,15 @@ function loadChamados(){
                         <div class="d-flex gap-2">
                         <div class="card-metric">
                             <p>Cpu</p>
-                            <p>${i.cpu}</p>
+                            <p>${i.cpu || ""}${i.cpuUni || ""}</p>
                         </div>
                         <div class="card-metric">
                             <p>Disco</p>
-                            <p>${i.disco}%</p>
+                            <p>${i.disco || ""}${i.discoUni || ""}</p>
                         </div>
                         <div class="card-metric">
                             <p>Ram</p>
-                            <p>${i.ram}%</p>
+                            <p>${i.ram || ""}${i.ramUni || ""}</p>
                         </div>
                         </div>
                     </div>
