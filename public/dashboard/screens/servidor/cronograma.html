@@ -18,6 +18,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/alertas.css">
+  <link rel="stylesheet" href="../../assets/css/cronograma.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -163,8 +164,8 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="row">
-          <div class="card">
+        <div class="row rowNoWrap rowGap">
+          <div class="card w-100">
             <div class="card-header">
               <h5>Semanal</h5>
             </div>
@@ -172,8 +173,15 @@
               <canvas id="dash"></canvas>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header"></div>
+          <div class="card cardMonth">
+            <div class="card-header">
+              <h5>Proximo Feriado</h5>
+            </div>
+            <div class="card-body">
+              <h4>Mes</h4>
+              <p>1</p>
+
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ const dash = document.querySelector("#dash")
 new Chart(dash, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
@@ -16,6 +16,14 @@ new Chart(dash, {
         y: {
           beginAtZero: true
         }
+      },
+      plugins: {
+        legend: {
+            display: false
+        }
       }
+    },
+    dataLabels: {
+        position: 'top'
     }
 })

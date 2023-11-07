@@ -1,0 +1,12 @@
+.rowNoWrap{
+    flex-wrap: nowrap;
+}
+.rowGap{
+    gap: 1rem;
+}
+.cardMonth{
+    width: 30%;
+}
+#dash{
+    max-height: 250px;
+}
