@@ -101,7 +101,6 @@ create table tbMetrica(
 CREATE TABLE tbProcessos(
 	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
-	totalProcessos INT,
 	fkServidor INT,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
