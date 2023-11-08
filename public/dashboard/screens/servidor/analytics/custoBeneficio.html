@@ -211,7 +211,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category">Mhz por <a class="nomeMoeda"></a></p>
+                                            <p class="card-category"><a class="medidaComponente"></a> por <a class="nomeMoeda"></a></p>
                                             <p class="card-category">gasto</p>
                                             <p class="card-title" id="cpuEstado">--</p>
                                             <p></p>
@@ -340,7 +340,7 @@
                     <div class="col-md-5 pr-1 blackFont">
                         <div class="form-group">
                             <label>Componente: </label>
-                            <select type="text" class="form-control" placeholder="--Selecione--" id="inputAeroporto">
+                            <select type="text" class="form-control" placeholder="--Selecione--" id="slctComponente" onchange="mudarComponente()">
                                 <option value="1">CPU</option>
                                 <option value="2">RAM</option>
                                 <option value="3">Disco</option>
@@ -362,7 +362,7 @@
                         <div class="card ">
                             <div class="card-header ">
                                 <h5 class="card-title">Desempenho / Gasto</h5>
-                                <p class="card-category">MHz</p>
+                                <p class="card-category"><a class="medidaComponente"></a></p>
                             </div>
                             <div class="card-body two-graphics">
                                 <div style="height: 300px; width: 550px;">

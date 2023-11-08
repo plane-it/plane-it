@@ -1,11 +1,13 @@
 nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR;
 
 buscarMoedas();
-garficoFunc("BRL");
-graficoBarras("BRL");
+garficoFunc("BRL", "MHz");
+graficoBarras("BRL", "MHz");
 
 var chartFunc;
 var chartBarras;
+
+var moedaAtual = "BRL";
 
 document.getElementById('slctMoeda').addEventListener('change', function() {
     var selectedOption = this.options[this.selectedIndex];
@@ -47,11 +49,42 @@ function atualizarMoeda(moeda) {
     if (chartBarras) {
         chartBarras.destroy();
     }
+    moedaAtual = moeda;
     chartFunc = garficoFunc(moeda);
     chartBarras = graficoBarras(moeda);
 }
 
-function garficoFunc(moeda) {
+function mudarComponente() {
+    var elements = document.getElementsByClassName('medidaComponente');
+
+    switch (slctComponente.value) {
+        case "1":
+            medidaComponente = "MHz";
+            break;
+        case "2":
+        case "3":
+            medidaComponente = "Gb";
+            break;
+        default:
+            break;
+    }
+    
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = medidaComponente;
+    }
+    if (chartFunc) {
+        chartFunc.destroy();
+    }
+    if (chartBarras) {
+        chartBarras.destroy();
+    }
+    chartFunc = garficoFunc(moedaAtual, medidaComponente);
+    chartBarras = graficoBarras(moedaAtual, medidaComponente);
+}
+
+
+
+function garficoFunc(moeda, medidaComponente) {
     // Coeficientes da função linear f(x) = ax + b
     var a = 1;
     var b = 5.71;
@@ -105,14 +138,14 @@ function garficoFunc(moeda) {
     return chart;
 
 }
-function graficoBarras(moeda) {
+function graficoBarras(moeda, medidaComponente) {
     var ctx = document.getElementById('barras').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['CPU Específica', 'Mediana dos Servidores'],
             datasets: [{
-                label: `Desempenho por ${moeda} (MHz/$)`,
+                label: `Desempenho por ${moeda} (${medidaComponente}/$)`,
                 data: [5.17, 4.2],
                 backgroundColor: [
                     '#FF0000',
@@ -130,7 +163,7 @@ function graficoBarras(moeda) {
                 y: {
                     title: {
                         display: true,
-                        text: 'Desempenho fornecido (MHz/$)'
+                        text: `Desempenho fornecido (${medidaComponente}/$)`
                     },
                     ticks: {
                         beginAtZero: true,
