@@ -4,6 +4,9 @@
 .rowGap{
     gap: 1rem;
 }
+.rowPadding{
+    padding: 0 1rem;
+}
 .cardMonth{
     width: 30%;
     min-width: calc(300px );
@@ -91,3 +94,16 @@
     font-size: 1.5rem;
     font-weight: 500;
 }
+
+.selectParts{
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #3A7D44;
+    background: transparent;
+}
+
+.selectParts option{
+    background: #fff;
+    color: #3A7D44;
+}
+

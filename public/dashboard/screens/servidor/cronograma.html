@@ -169,7 +169,16 @@
         <div class="row rowNoWrap rowGap">
           <div class="card w-100">
             <div class="card-header">
-              <h5>Semanal</h5>
+              <div class="row d-flex justify-content-between rowPadding">
+                <h5>Semanal</h5>
+                <div>
+                  <select class="selectParts">
+                    <option value="1">Cpu</option>
+                    <option value="2">Ram</option>
+                    <option value="3">Disco</option>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <canvas id="dash"></canvas>
