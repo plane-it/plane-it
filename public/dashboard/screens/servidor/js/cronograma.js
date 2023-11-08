@@ -49,17 +49,14 @@ new Chart(dash, {
     },
 })
 
-new Chart(dashHist, {
+const dashHistory = new Chart(dashHist, {
     type: 'line',
     data: {
-      labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+      labels: ['10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50','12:00','12:10','12:20'],
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30],
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
-        borderRadius: 10,
-        borderSkipped: false,
-        barPercentage: 0.5,
       }]
     },
     options: {
@@ -69,16 +66,11 @@ new Chart(dashHist, {
       scales: {
         x: {
           position: 'top',
-          grid: {
-            display: false,
-          },
+          max: 5,
+          min: 0
        },
         y: {
-          display: false,
           beginAtZero: true,
-          grid: {
-            display: false,
-          },
         }
       },
       plugins: {
@@ -94,4 +86,21 @@ new Chart(dashHist, {
         }
       },
     },
+})
+console.log(dashHistory)
+dashHist.addEventListener("wheel", (e) => {
+  const datasize = dashHistory.data.datasets[0].data.length
+
+  const currentMax = dashHistory.options.scales.x.max
+  const currentMin = dashHistory.options.scales.x.min
+
+  if(e.deltaY > 0 && currentMax < datasize -1){
+    dashHistory.options.scales.x.max = currentMax+1
+    dashHistory.options.scales.x.min = currentMin+1
+  }
+  else if(currentMin > 0 && e.deltaY < 0){
+    dashHistory.options.scales.x.max = currentMax-1
+    dashHistory.options.scales.x.min = currentMin-1
+  }
+  dashHistory.update()
 })
