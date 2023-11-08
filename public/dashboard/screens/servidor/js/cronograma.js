@@ -13,7 +13,6 @@ new Chart(dash, {
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
         borderRadius: 10,
         borderSkipped: false,
-        hoverBackgroundColor: '#fff',
         barPercentage: 0.5,
       }]
     },
