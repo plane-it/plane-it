@@ -9,7 +9,6 @@ new Chart(dash, {
       datasets: [{
         label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
         borderRadius: 10,
         borderSkipped: false,
