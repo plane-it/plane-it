@@ -1,8 +1,17 @@
 nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR;
 
 buscarMoedas();
-garficoFunc();
-graficoBarras();
+garficoFunc("BRL");
+graficoBarras("BRL");
+
+var chartFunc;
+var chartBarras;
+
+document.getElementById('slctMoeda').addEventListener('change', function() {
+    var selectedOption = this.options[this.selectedIndex];
+    var currencyName = selectedOption.getAttribute('data-currency-name');
+    atualizarMoeda(currencyName);
+});
 
 function buscarMoedas() {
     $.ajax({
@@ -27,9 +36,22 @@ function buscarMoedas() {
     });
 
 }
+function atualizarMoeda(moeda) {
+    var elements = document.getElementsByClassName('nomeMoeda');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].innerHTML = moeda;
+    }
+    if (chartFunc) {
+        chartFunc.destroy();
+    }
+    if (chartBarras) {
+        chartBarras.destroy();
+    }
+    chartFunc = garficoFunc(moeda);
+    chartBarras = graficoBarras(moeda);
+}
 
-
-function garficoFunc() {
+function garficoFunc(moeda) {
     // Coeficientes da função linear f(x) = ax + b
     var a = 1;
     var b = 5.71;
@@ -67,7 +89,7 @@ function garficoFunc() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Dólar gasto'
+                        text: `${moeda} gasto`
                     }
                 },
                 y: {
@@ -80,15 +102,17 @@ function garficoFunc() {
             aspectRatio: 1.8
         }
     });
+    return chart;
+
 }
-function graficoBarras() {
+function graficoBarras(moeda) {
     var ctx = document.getElementById('barras').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['CPU Específica', 'Mediana dos Servidores'],
             datasets: [{
-                label: 'Desempenho por Dólar (MHz/$)',
+                label: `Desempenho por ${moeda} (MHz/$)`,
                 data: [5.17, 4.2],
                 backgroundColor: [
                     '#FF0000',
@@ -117,7 +141,7 @@ function graficoBarras() {
             aspectRatio: 1.2
         }
     });
-
+    return chart;
 }
 
 
@@ -129,3 +153,4 @@ function sumirTela() {
     fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
     frente.style = "display:none"
 }
+
