@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="../../../assets/img/planeIt/logoSemNome.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>
-    Cpu | Plane It
+    Custo | Plane It
 </title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -365,8 +365,13 @@
                                 <h5 class="card-title">Desempenho / Gasto</h5>
                                 <p class="card-category">MHz</p>
                             </div>
-                            <div class="card-body ">
-                                <canvas id="myChart"></canvas>
+                            <div class="card-body two-graphics">
+                                <div style="height: 300px; width: 550px;">
+                                    <canvas id="func"></canvas>
+                                </div>
+                                <div style="height: 300px; width: 550px; display: flex; justify-content: space-around;">
+                                    <canvas id="barras"></canvas>
+                                </div>
                             </div>
                             <div class="card-footer ">
                             </div>
@@ -457,7 +462,8 @@
                                     <div class="row justify-content-center">
                                         <div class="alert alert-acima-media col-lg-11 text-center blackFont">Cor
                                             <b>verde</b>
-                                            sugere-se que o componente em questão oferece um desempenho superior à mediana
+                                            sugere-se que o componente em questão oferece um desempenho superior à
+                                            mediana
                                             dos seus servidores a um custo mais baixo.
                                         </div>
                                     </div>
@@ -504,18 +510,20 @@
                             <div class="row" style="display: flex; justify-content: center;">
                                 <div class="col-md-11 pr-3">
                                     <div class="form-group">
-                                      <label>Insira o motivo da análise: </label>
-                                      <input type="text" class="form-control" placeholder="Motivo" value="" id="iptTelefone">
+                                        <label>Insira o motivo da análise: </label>
+                                        <input type="text" class="form-control" placeholder="Motivo" value=""
+                                            id="iptMotivo">
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                             <div class="row" style="display: flex; justify-content: center;">
                                 <div class="col-md-11 pr-3">
                                     <div class="form-group">
-                                      <label>Descreva o problema: </label>
-                                      <input type="text" class="form-control" placeholder="Problema" value="" id="iptTelefone">
+                                        <label>Descreva o problema: </label>
+                                        <textarea type="text" class="form-control" placeholder="Problema" value=""
+                                            id="iptProblema"></textarea>
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer ">
@@ -555,6 +563,13 @@
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+
+
         <script>
             // Coeficientes da função linear f(x) = ax + b
             var a = 1;
@@ -568,7 +583,7 @@
 
             var valoresDesempenho = valoresY.map(y => y + 2);
 
-            var ctx = document.getElementById('myChart').getContext('2d');
+            var ctx = document.getElementById('func').getContext('2d');
             var chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -584,7 +599,7 @@
                         label: 'Desempenho do Componente',
                         data: valoresDesempenho,
                         fill: false,
-                        borderColor: '#FF0000', 
+                        borderColor: '#FF0000',
                         tension: 0.1
                     }]
                 },
@@ -602,10 +617,12 @@
                                 text: 'Desempenho fornecido'
                             }
                         }
-                    }
+                    },
+                    aspectRatio: 1.8
                 }
             });
         </script>
+
         <script>
             function aparecerTela() {
                 fundo.style = "filter: opacity(40%) blur(0.5px); backdrop-filter: opacity(40%) blur(0.5px);"
@@ -617,10 +634,46 @@
                 frente.style = "display:none"
             }
         </script>
-    </body>
-            }
+
+        <script>
+            var ctx = document.getElementById('barras').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['CPU Específica', 'Mediana dos Servidores'],
+                    datasets: [{
+                        label: 'Desempenho por Dólar (MHz/$)',
+                        data: [5.17, 4.2],
+                        backgroundColor: [
+                            '#FF0000',
+                            '#3A7D44'
+                        ],
+                        borderColor: [
+                            '#FF0000',
+                            '#3A7D44'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Desempenho fornecido (MHz/$)'
+                            }
+                        }
+                    },
+                    aspectRatio: 1.1
+                }
+            });
 
         </script>
+</body>
+
+
+</script>
 </body>
 
 </html>

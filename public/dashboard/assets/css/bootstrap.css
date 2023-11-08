@@ -6047,6 +6047,11 @@ a.badge-dark:focus {
 .empurrar-cima {
     margin-top: 2rem;
 }
+
+.two-graphics {
+    display: flex;
+    justify-content: space-between;
+}
 @-webkit-keyframes progress-bar-stripes {
     from {
         background-position: 1rem 0
