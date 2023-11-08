@@ -38,6 +38,10 @@
     max-height: 250px;
     min-width: 100%;
 }
+#dashHist{
+    max-height: 250px;
+    min-width: 100%;
+}
 .calendar{
     display: flex;
     flex-direction: column;
