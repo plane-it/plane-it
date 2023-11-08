@@ -179,8 +179,7 @@
                     <div class="col-md-5 pr-1 blackFont">
                         <div class="form-group">
                             <label>Moeda: </label>
-                            <select type="text" class="form-control" placeholder="Aeroporto"
-                                id="inputAeroporto"></select>
+                            <select type="text" class="form-control" placeholder="Aeroporto" id="slctMoeda"></select>
                         </div>
                     </div>
                     <div class="col-md-5 pr-1 blackFont">
@@ -369,7 +368,7 @@
                                 <div style="height: 300px; width: 550px;">
                                     <canvas id="func"></canvas>
                                 </div>
-                                <div style="height: 300px; width: 550px; display: flex; justify-content: space-around;">
+                                <div style="height: 300px; width: 380px; display: flex; justify-content: space-around;">
                                     <canvas id="barras"></canvas>
                                 </div>
                             </div>
@@ -563,113 +562,6 @@
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
-
-
-
-
-        <script>
-            // Coeficientes da função linear f(x) = ax + b
-            var a = 1;
-            var b = 5.71;
-
-            // Gera alguns valores para x
-            var valoresX = Array.from({ length: 10 }, (_, i) => i);
-
-            // Calcula os valores correspondentes de y usando a função linear
-            var valoresY = valoresX.map(x => a * x + b);
-
-            var valoresDesempenho = valoresY.map(y => y + 2);
-
-            var ctx = document.getElementById('func').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: valoresX,
-                    datasets: [{
-                        label: 'Mediana',
-                        data: valoresY,
-                        fill: false,
-                        borderColor: '#3A7D44',
-                        tension: 0.1
-                    },
-                    {
-                        label: 'Desempenho do Componente',
-                        data: valoresDesempenho,
-                        fill: false,
-                        borderColor: '#FF0000',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Dólar gasto'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Desempenho fornecido'
-                            }
-                        }
-                    },
-                    aspectRatio: 1.8
-                }
-            });
-        </script>
-
-        <script>
-            function aparecerTela() {
-                fundo.style = "filter: opacity(40%) blur(0.5px); backdrop-filter: opacity(40%) blur(0.5px);"
-                frente.style = "position: absolute; top: 10%; left: 30%; display: block;"
-            }
-
-            function sumirTela() {
-                fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
-                frente.style = "display:none"
-            }
-        </script>
-
-        <script>
-            var ctx = document.getElementById('barras').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['CPU Específica', 'Mediana dos Servidores'],
-                    datasets: [{
-                        label: 'Desempenho por Dólar (MHz/$)',
-                        data: [5.17, 4.2],
-                        backgroundColor: [
-                            '#FF0000',
-                            '#3A7D44'
-                        ],
-                        borderColor: [
-                            '#FF0000',
-                            '#3A7D44'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Desempenho fornecido (MHz/$)'
-                            }
-                        }
-                    },
-                    aspectRatio: 1.1
-                }
-            });
-
-        </script>
 </body>
 
 
