@@ -52,10 +52,10 @@ new Chart(dash, {
 const dashHistory = new Chart(dashHist, {
     type: 'line',
     data: {
-      labels: ['10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50','12:00','12:10','12:20'],
+      labels: ['10:30','10:40','10:50','11:00','11:10','11:20','11:30','11:40','11:50','12:00','12:10','12:20', '12:30', '12:40', '12:50', '13:00', '13:10'],
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30],
+        data: [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30, 35, 40, 35, 32, 36],
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
       }]
     },
@@ -66,7 +66,7 @@ const dashHistory = new Chart(dashHist, {
       scales: {
         x: {
           position: 'top',
-          max: 5,
+          max: 15,
           min: 0
        },
         y: {
@@ -74,13 +74,6 @@ const dashHistory = new Chart(dashHist, {
         }
       },
       plugins: {
-        datalabels: {
-          color: "#fff",
-          font: {
-            size: 14,
-            weight: 'bold',
-          }
-        },
         legend: {
           display: false,
         }
