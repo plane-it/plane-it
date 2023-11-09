@@ -5,16 +5,36 @@ function cadastrarAeroporto(){
     var enderecoVar = ipt_endereco.value;
     var fkEmpresaVar = sessionStorage.FK_EMPRESA;
 
-    if (nomeAeroportoVar == undefined){
-        alert("O nome do aeroporto não pode estar vazio")
-    } else if(paisVar == undefined){
-        alert("O nome do país não pode estar vazio")
-    } else if(cidadeVar == undefined){
-        alert("O nome da cidade não pode estar vazio")
-    } else if(enderecoVar == undefined){
-        alert("O nome do endereço não pode estar vazio")
-    } else if(fkEmpresaVar == undefined){
-        alert("O nome da empresa não pode estar vazio")
+    if (nomeAeroportoVar == undefined || nomeAeroportoVar == ''){
+        Swal.fire({
+            icon: "error",
+            title: "Erro no cadastro",
+            text: "O nome do aeroporto está inválido"
+        })
+    } else if(paisVar == undefined || paisVar == ''){
+        Swal.fire({
+            icon: "error",
+            title: "Erro no cadastro",
+            text: "O nome do país está inválido"
+        });
+    } else if(cidadeVar == undefined || cidadeVar == ''){
+        Swal.fire({
+            icon: "error",
+            title: "Erro no cadastro",
+            text: "O nome da cidade está inválido"
+        });
+    } else if(enderecoVar == undefined || enderecoVar == ''){
+        Swal.fire({
+            icon: "error",
+            title: "Erro no cadastro",
+            text: "O endereço está inválido"
+        });
+    } else if(fkEmpresaVar == undefined || fkEmpresaVar == ''){
+        Swal.fire({
+            icon: "error",
+            title: "Erro no cadastro",
+            text: "O nome da empresa está inválido"
+        });
     } else{
         fetch(`/aeroporto/cadastrarAeroporto`, {
             method: "POST",
@@ -30,7 +50,17 @@ function cadastrarAeroporto(){
             })
         }).then(function(resposta) {
             if(resposta.ok){
-                location.reload();
+
+                
+                
+                // ipt_nomeAeroporto.value = '';
+                // ipt_pais.value = '';
+                // ipt_cidade.value = '';
+                // ipt_endereco.value = '';
+                Swal.fire({
+                    title: "Cadastro realizado com sucesso!",
+                    icon: "success"
+                });
             }
         }).catch(function (resposta){
             console.log(`#ERRO: ${resposta}`)

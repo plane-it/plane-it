@@ -1,3 +1,5 @@
+
+
 buscarAeroporto()
 
 var idAeroportoSelecionado;
@@ -61,7 +63,7 @@ function verifCampos() {
     erro = false
 
     if (nome == undefined || nome == "") {
-        alert('Preencha o campo Nome');
+        alert('Preencha o campo Nome')
         iptNome.style = "border: 1px solid RED"
         erro = true;
     } else {
@@ -215,7 +217,10 @@ function cadastrarFunc(nome, sobrenome, cargo, email, senha, telefone, cpf, idCa
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-                alert("Usuario cadastrado!")
+                Swal.fire({
+                    title: "Usuário cadastrado",
+                    icon: "success"
+                  });
                 iptNome.value = "";
                 iptSobrenome.value = "";
                 iptCargo.value = "";
