@@ -2,6 +2,12 @@ const dash = document.querySelector("#dash")
 const dashHist = document.querySelector("#dashHist")
 const scrollbar = document.querySelector("#scrollbar")
 const bar = document.querySelector("#bar")
+const timeline = document.querySelector("#timelineDate")
+
+let yesterday = new Date()
+yesterday.setDate(new Date().getDate()-2)
+timeline.max = yesterday.toISOString().split("T")[0]
+timeline.value = yesterday.toISOString().split("T")[0]
 
 new Chart(dash, {
     type: 'bar',
