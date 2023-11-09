@@ -342,6 +342,7 @@ function validarSessao(){
           inputNome.value = resposta[0].nome;
           inputCpf.value = resposta[0].cpf;
           inputCargo.value = resposta[0].cargo;
+          
 
           respostas = resposta[0];
 
@@ -363,23 +364,23 @@ function validarSessao(){
     var confirmaçãoSenha;
     var validarSenha = true;
 
-    if (inputTelefone.value != "") {
+    if (inputTelefone.value != "" && inputTelefone.length == 11) {
 
       telefone = inputTelefone.value
 
     }
 
-    if (inputEmail.value != "") {
+    if (inputEmail == "") {
 
       email = inputEmail.value
 
     }
 
-    if (inputSenha.value != "") {
+    if (inputSenha == "" || inputSenha.length < 8 || inputSenha.length > 15) {
 
       senha = inputSenha.value;
 
-      if (senha != inputConfimacaoSenha.value) {
+      if (senha != inputConfimacaoSenha.value || senha == '') {
 
         validarSenha = false;
         alert("As senha e a confirmação são diferentes")
