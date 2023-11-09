@@ -115,9 +115,9 @@ function scrollBar(){
   const datasize = dashHistory.data.datasets[0].data.length
   const ScrollbarSize = scrollbar.offsetWidth
 
-  const position = Math.ceil(newMin/(datasize-16)*100)
-  const pos = Math.ceil(ScrollbarSize * (position/100))
-  const res = position == 100 ? pos-30+"px" : pos+"px"
+  const percentage = newMin/(datasize-16)
+  const position = Math.ceil(ScrollbarSize * percentage)
+  const res = percentage == 100 ? pos-30+"px" : pos+"px"
 
   bar.style.marginLeft = res
 }
