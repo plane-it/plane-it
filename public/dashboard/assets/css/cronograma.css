@@ -126,6 +126,15 @@
     color: #3A7D44;
 }
 
+.inputDate{
+    height: 35px;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #3A7D44;
+    background: transparent;
+
+}
+
 #scrollbar{
     width: 90%;
     height: 5px;
