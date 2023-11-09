@@ -232,33 +232,23 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="chartHours" class="graficoUso"></canvas>
-              </div>
-              <div class="card-footer">
-                <hr />
-                <div class="stats"></div>
+                <canvas id="chartHours"></canvas>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="card d-flex">
-                  <div class="card-header ">
+            <div class="row d-flex">
+              <div class="col-8 d-flex">
+                <div class="card d-flex w-100 max-h-100"> 
+                  <div class="card-header d-flex flex-column">
                     <h5 class="card-title">Estatísticas de uso</h5>
                     <p class="card-category">Gb</p>
-                  </div>
-                  <div class="card-body">
-                    <canvas id="chartVelocidadeDisco"></canvas>
-                  </div>
-                  <div class="card-footer ">
-                    <!-- <hr>
-                    <div class="stats">
-                      <i class="fa fa-history"></i> Atualizado 1 minuto atrás.
-                    </div> -->
+                  </div>  
+                  <div class="card-body d-flex">
+                    <canvas id="chartVelocidadeDisco" class="d-flex h-100"></canvas>
                   </div>
                 </div>
               </div>
-              <div class="col-4">
-                <div class="card card-stats">
+              <div class="col-4 max-h-100 d-flex flex-column justify-content-between">
+                <div class="card card-stats no-margin">
                   <div class="card-body ">
                     <div class="row">
                       <div class="col-5 col-md-4">
@@ -274,13 +264,12 @@
                         <div class="numbers">
                           <p class="card-category">Média dos últimos registros</p>
                           <p class="card-title" id="kpiMedia">--</p>
-                          <p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card card-stats">
+                <div class="card card-stats no-margin">
                   <div class="card-body ">
                     <div class="row">
                       <div class="col-5 col-md-4">
@@ -302,7 +291,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card card-stats">
+                <div class="card card-stats no-margin">
                   <div class="card-body ">
                     <div class="row">
                       <div class="col-5 col-md-4">
@@ -320,13 +309,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-footer ">
-                    <!-- <hr>
-                    <div class="stats">
-                      <i class="fa fa-refresh"></i>
-                      Update now
-                    </div> -->
                   </div>
                 </div>
               </div>
