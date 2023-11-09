@@ -19,14 +19,15 @@ function buscarAeroporto() {
             })
         }).then((res) => res.json())
             .then((res) => {
+                console.log(res)
                 if (res.error) {
                     console.log("Aconteceu algum erro (res.error = true)")
                 }
                 else {
-
                     for (let i = 0; i < res.length; i++) {
+                        console.log(res[i].idAeroporto)
                         inputAeroporto.innerHTML += `                      
-                        <option><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">${res[i].nomeAeroporto}</a></option>
+                        <option value="${res[i].idAeroporto}">${res[i].nomeAeroporto}</option>
                         `
                     }
 
@@ -40,6 +41,7 @@ function buscarAeroporto() {
 function selecionarAeroporto(id, nome) {
     idAeroportoSelecionado = id;
     spanAeroporto.innerHTML = nome;
+    confirm.log("teste")
 }
 
 function verifCampos() {
@@ -53,7 +55,7 @@ function verifCampos() {
     cpf = iptCPF.value;
     idCadastrador = sessionStorage.ID_COLAB;
     idEmpresa = sessionStorage.FK_EMPRESA;
-    idAeroportoSelecionado = idAeroportoSelecionado;
+    idAeroportoSelecionado = inputAeroporto.value;
 
 
     erro = false
@@ -128,11 +130,12 @@ function verifCampos() {
         erro = true;
     }
     if (idAeroportoSelecionado == undefined) {
+        console.log(idAeroportoSelecionado)
         alert("Escolha um Aéroporto!");
-        slctAero.style = 'border: 1px solid red;';
+        // slctAero.style = 'border: 1px solid red;';
         erro = true;
     } else {
-        selctAero.style = 'border: none;'
+        // selctAero.style = 'border: none;'
     }
     if (!erro) {
         fetch("/usuarios/buscarCPF", {
@@ -164,6 +167,7 @@ function verifCampos() {
                         }).then((res) => res.json())
                             .then((res) => {
                                 if (res.error) {
+                                    console.log(res)
                                     console.log("Aconteceu algum erro (res.error = true)")
                                 }
                                 else {
