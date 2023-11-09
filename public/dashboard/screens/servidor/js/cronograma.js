@@ -1,5 +1,7 @@
 const dash = document.querySelector("#dash")
 const dashHist = document.querySelector("#dashHist")
+const scrollbar = document.querySelector("#scrollbar")
+const bar = document.querySelector("#bar")
 
 new Chart(dash, {
     type: 'bar',
@@ -80,7 +82,7 @@ const dashHistory = new Chart(dashHist, {
       },
     },
 })
-console.log(dashHistory)
+
 dashHist.addEventListener("wheel", (e) => {
   const datasize = dashHistory.data.datasets[0].data.length
 
@@ -96,4 +98,18 @@ dashHist.addEventListener("wheel", (e) => {
     dashHistory.options.scales.x.min = currentMin-1
   }
   dashHistory.update()
+  scrollBar()
 })
+
+function scrollBar(){
+  const newMin = dashHistory.options.scales.x.min
+  const datasize = dashHistory.data.datasets[0].data.length
+  const ScrollbarSize = scrollbar.offsetWidth
+
+  const position = Math.ceil(newMin/(datasize-16)*100)
+  console.log(position)
+  const pos = Math.ceil(ScrollbarSize * (position/100))
+  const res = position == 100 ? pos-30+"px" : pos+"px"
+  console.log(res)
+  bar.style.marginLeft = res
+}
