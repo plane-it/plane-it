@@ -80,7 +80,7 @@ const dashHistory = new Chart(dashHist, {
        },
         y: {
           beginAtZero: true,
-          max: Math.max(...data), 
+          max: Math.max(...data)+10, 
         }
       },
       plugins: {
@@ -90,6 +90,10 @@ const dashHistory = new Chart(dashHist, {
       },
     },
 })
+
+const ocoupiedSpace = data.length/16
+const barsize = scrollbar.offsetWidth / ocoupiedSpace
+bar.style.width = barsize+"px"
 
 dashHist.addEventListener("wheel", (e) => {
   e.preventDefault()
@@ -112,12 +116,8 @@ dashHist.addEventListener("wheel", (e) => {
 
 function scrollBar(){
   const newMin = dashHistory.options.scales.x.min
-  const datasize = dashHistory.data.datasets[0].data.length
-  const ScrollbarSize = scrollbar.offsetWidth
+  const nonOcoupiedSpace = scrollbar.offsetWidth - barsize
+  const scrollStepSize = nonOcoupiedSpace / (data.length-16)
 
-  const percentage = newMin/(datasize-16)
-  const position = Math.ceil(ScrollbarSize * percentage)
-  const res = percentage == 100 ? pos-30+"px" : pos+"px"
-
-  bar.style.marginLeft = res
+  bar.style.marginLeft = scrollStepSize * newMin + "px"
 }
