@@ -9,7 +9,8 @@ function cadastrarAeroporto(){
         Swal.fire({
             icon: "error",
             title: "Erro no cadastro",
-            text: "O nome do aeroporto está inválido"
+            text: "O nome do aeroporto está inválido",
+            timer: 3000
         })
     } else if(paisVar == undefined || paisVar == ''){
         Swal.fire({
@@ -59,7 +60,8 @@ function cadastrarAeroporto(){
                 // ipt_endereco.value = '';
                 Swal.fire({
                     title: "Cadastro realizado com sucesso!",
-                    icon: "success"
+                    icon: "success",
+                    timer: 3000
                 });
             }
         }).catch(function (resposta){
