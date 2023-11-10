@@ -57,28 +57,32 @@ const dashWeekly = new Chart(dash, {
     },
 })
 
-async function getWeekly(){
-  const res = await fetch("http://localhost:3333/cronograma/medidaSemana", {
+async function getWeekly(tipoComponente){
+  const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
+
+  const res = await fetch("/cronograma/medidaSemanal", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      idServidor: sessionStorage.getItem("idServidor"),
-      tipoComponente: 1,
+      idServidor: serverId,
+      tipoComponente: tipoComponente,
     })
   })
 
   const data = await res.json()
 
   const orderedData = dashWeekly.data.labels.map((item, index) => {
-    data.filter((item) => item.diaSemana == index+1)
+    const value = data.filter((item) => item.days == index+1).map((item) => item.avgValues)[0] || 0
+    const roundedValue = Math.round(value)
+    return roundedValue
   })
   
-  console.log(orderedData)
-
+  dashWeekly.data.datasets[0].data = orderedData
+  dashWeekly.update()
 }
-getWeekly()
+getWeekly(1)
 
 
 const data = [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30, 35, 40, 35, 32, 36, 38, 40, 42, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2, 1, 0, 2, 4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 35, 30, 25, 20, 15, 10, 5, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
