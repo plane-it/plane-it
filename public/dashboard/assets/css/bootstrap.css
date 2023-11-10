@@ -6030,10 +6030,9 @@ a.badge-dark:focus {
 }
 
 .alert-acima-media {
-    background-color: #cdeabe;
+    background-color: #cdeabe !important;
     color: #491217;
     border-color: #cdeabe;
-
 }
 
 .alinhador-botao {
@@ -6052,6 +6051,15 @@ a.badge-dark:focus {
     display: flex;
     justify-content: space-between;
 }
+
+.sem-margem {
+    margin: 0 !important;
+}
+
+.padding-little-card {
+    padding: 15px 15px 10px 15px !important;   
+}
+
 @-webkit-keyframes progress-bar-stripes {
     from {
         background-position: 1rem 0
