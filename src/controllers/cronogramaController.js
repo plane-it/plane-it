@@ -13,6 +13,20 @@ async function getMedidaSemanal(req, res) {
     }
 }
 
+async function getMediaDiaria(req, res) {
+    try{
+        const { idServidor, tipoComponente } = req.body
+
+        const medida = await model.getMediaDiaria(idServidor, tipoComponente)
+
+        res.status(200).json(medida)
+    }
+    catch(error){
+        res.status(500).json({message: error})
+    }
+}
+
 module.exports = {
-    getMedidaSemanal
+    getMedidaSemanal,
+    getMediaDiaria
 }
