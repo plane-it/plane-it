@@ -24,5 +24,6 @@ function getMediaDiaria(){
 }
 
 module.exports = {
-    getMedidaSemanal
+    getMedidaSemanal,
+    getMediaDiaria
 }
