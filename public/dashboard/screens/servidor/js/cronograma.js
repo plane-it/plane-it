@@ -9,14 +9,14 @@ yesterday.setDate(new Date().getDate()-2)
 timeline.max = yesterday.toISOString().split("T")[0]
 timeline.value = yesterday.toISOString().split("T")[0]
 
-new Chart(dash, {
+const dashWeekly = new Chart(dash, {
     type: 'bar',
     plugins: [ChartDataLabels],
     data: {
       labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [],
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
         borderRadius: 10,
         borderSkipped: false,
@@ -56,6 +56,31 @@ new Chart(dash, {
       },
     },
 })
+
+async function getWeekly(){
+  const res = await fetch("http://localhost:3333/cronograma/medidaSemana", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idServidor: sessionStorage.getItem("idServidor"),
+      tipoComponente: 1,
+    })
+  })
+
+  const data = await res.json()
+
+  const orderedData = dashWeekly.data.labels.map((item, index) => {
+    data.filter((item) => item.diaSemana == index+1)
+  })
+  
+  console.log(orderedData)
+
+}
+getWeekly()
+
+
 const data = [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30, 35, 40, 35, 32, 36, 38, 40, 42, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2, 1, 0, 2, 4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 35, 30, 25, 20, 15, 10, 5, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
 const dashHistory = new Chart(dashHist, {
