@@ -1,42 +1,46 @@
-function cadastrarAeroporto(){
+function cadastrarAeroporto() {
     var nomeAeroportoVar = ipt_nomeAeroporto.value;
     var paisVar = ipt_pais.value;
     var cidadeVar = ipt_cidade.value;
     var enderecoVar = ipt_endereco.value;
     var fkEmpresaVar = sessionStorage.FK_EMPRESA;
+    var erro = false;
 
-    if (nomeAeroportoVar == undefined || nomeAeroportoVar == ''){
+
+    if (nomeAeroportoVar == undefined || nomeAeroportoVar == '') {
+        ipt_nomeAeroporto.style = "border: 1px solid RED"
+        erro = true;
+    } else {
+        ipt_nomeAeroporto.style = "border: 1px solid #DDDDDD;";
+    }
+
+    if (paisVar == undefined || paisVar == '') {
+        ipt_pais.style = "border: 1px solid RED"
+        erro = true;
+    } else {
+        ipt_pais.style = "border: 1px solid #DDDDDD;";
+    }
+
+    if (cidadeVar == undefined || cidadeVar == '') {
+        ipt_cidade.style = "border: 1px solid RED"
+        erro = true;
+    } else {
+        ipt_cidade.style = "border: 1px solid #DDDDDD;";
+    }
+    if (enderecoVar == undefined || enderecoVar == '') {
+        ipt_endereco.style = "border: 1px solid RED"
+        erro = true;
+    } else {
+        ipt_cidade.style = "border: 1px solid #DDDDDD;";
+    }
+
+    if (erro) {
         Swal.fire({
             icon: "error",
-            title: "Erro no cadastro",
-            text: "O nome do aeroporto está inválido",
-            timer: 3000
-        })
-    } else if(paisVar == undefined || paisVar == ''){
-        Swal.fire({
-            icon: "error",
-            title: "Erro no cadastro",
-            text: "O nome do país está inválido"
+            title: "Erro no cadastrado",
+            text: "Campos invalidos"
         });
-    } else if(cidadeVar == undefined || cidadeVar == ''){
-        Swal.fire({
-            icon: "error",
-            title: "Erro no cadastro",
-            text: "O nome da cidade está inválido"
-        });
-    } else if(enderecoVar == undefined || enderecoVar == ''){
-        Swal.fire({
-            icon: "error",
-            title: "Erro no cadastro",
-            text: "O endereço está inválido"
-        });
-    } else if(fkEmpresaVar == undefined || fkEmpresaVar == ''){
-        Swal.fire({
-            icon: "error",
-            title: "Erro no cadastro",
-            text: "O nome da empresa está inválido"
-        });
-    } else{
+    } else {
         fetch(`/aeroporto/cadastrarAeroporto`, {
             method: "POST",
             headers: {
@@ -49,22 +53,15 @@ function cadastrarAeroporto(){
                 enderecoServer: enderecoVar,
                 fkEmpresaServer: fkEmpresaVar
             })
-        }).then(function(resposta) {
-            if(resposta.ok){
+        }).then(function (resposta) {
+            if (resposta.ok) {
 
-                
-                
-                // ipt_nomeAeroporto.value = '';
-                // ipt_pais.value = '';
-                // ipt_cidade.value = '';
-                // ipt_endereco.value = '';
                 Swal.fire({
                     title: "Cadastro realizado com sucesso!",
-                    icon: "success",
-                    timer: 3000
+                    icon: "success"
                 });
             }
-        }).catch(function (resposta){
+        }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`)
         });
     }
@@ -74,28 +71,28 @@ function cadastrarAeroporto(){
 function pegarDadosEmpresa() {
 
     idUsuario = sessionStorage.ID_COLAB;
-    
+
     fetch(`/aeroporto/pegarDadosEmpresa/${idUsuario}`).then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
 
-          vazio.textContent = "Nenhum resultado encontrado."
-          throw "Nenhum resultado encontrado!!";
+                vazio.textContent = "Nenhum resultado encontrado."
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            resposta.json().then(function (resposta) {
+
+
+                ipt_empresa.value = resposta[0].nomeEmpresa;
+
+                respostas = resposta[0];
+
+            });
+        } else {
+            throw ('Houve um erro na API!');
         }
-
-        resposta.json().then(function (resposta) {
-            
-
-          ipt_empresa.value = resposta[0].nomeEmpresa;
-
-          respostas = resposta[0];
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
     }).catch(function (resposta) {
-      console.error(resposta);
+        console.error(resposta);
 
     });
-  }
+}
