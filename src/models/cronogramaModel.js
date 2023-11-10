@@ -1,11 +1,11 @@
 const database = require('../database/config');
 
-function getMedidaSemanal(idServidor) {
+function getMedidaSemanal(idServidor, tipoComponente) {
     const sql = `
         SELECT AVG(r.valor) AS avgValues, DAYOFWEEK(r.datahora) days
         FROM tbRegistro r
         JOIN tbComponente c ON c.idComp = r.fkComp
-        WHERE c.fkTipoComponente = 2 AND r.fkServidor = ${idServidor}
+        WHERE c.fkTipoComponente = ${tipoComponente} AND r.fkServidor = ${idServidor}
         GROUP BY days;
     `
 

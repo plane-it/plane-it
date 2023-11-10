@@ -3,7 +3,7 @@ const router = express.Router()
 
 const cronogramaController = require("../controllers/cronogramaController")
 
-router.get("/medidaSemanal/:idServidor", (req,res) => {
+router.post("/medidaSemanal", (req,res) => {
     cronogramaController.getMedidaSemanal(req,res)
 })
 

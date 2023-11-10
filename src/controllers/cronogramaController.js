@@ -2,9 +2,9 @@ const model = require('../models/cronogramaModel')
 
 async function getMedidaSemanal(req, res) {
     try{
-        const { idServidor } = req.params
+        const { idServidor, tipoComponente } = req.body
 
-        const medida = await model.getMedidaSemanal(idServidor)
+        const medida = await model.getMedidaSemanal(idServidor, tipoComponente)
 
         res.status(200).json(medida)
     }
