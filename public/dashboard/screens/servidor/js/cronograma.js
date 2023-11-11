@@ -174,4 +174,4 @@ async function getDaily(date){
   ram.innerText = dataDaily.filter((item) => item.type == 2)[0].value
   disk.innerText = dataDaily.filter((item) => item.type == 3)[0].value
 }
-getDaily("2023-11-06")
+getDaily(timeline.value)
