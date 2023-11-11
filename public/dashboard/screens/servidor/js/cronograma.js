@@ -153,7 +153,7 @@ getWeekly(1)
 async function getDaily(date){
   const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
 
-  const res = await fetch("/cronograma/medidaDiaria", {
+  const res = await fetch("/cronograma/mediaDiaria", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -166,5 +166,6 @@ async function getDaily(date){
 
   const dataDaily = await res.json()
 
-  console.log(dataDaily)
+
+
 }
