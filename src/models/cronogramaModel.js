@@ -14,10 +14,13 @@ function getMedidaSemanal(idServidor, tipoComponente) {
  
 function getMediaDiaria(idServidor, data){
     const sql = `
-        SELECT AVG(r.valor) AS value, DATE(r.dataHora) AS datetime, c.fkTipoComponente AS type FROM tbRegistro r
+        SELECT AVG(r.valor) AS value, DATE(r.dataHora) AS datetime, c.fkTipoComponente AS type, um.sinal AS uni
+        FROM tbRegistro r
         JOIN tbComponente c ON c.idComp = r.fkComp
+        JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
+        JOIN tbUnidadeMedida um ON um.idUnidadeMedida = m.fkUnidadeMedida
         WHERE r.fkServidor = ${idServidor} AND DATE(r.datahora) = DATE("${data}")
-        GROUP BY DATE(r.dataHora), c.fkTipoComponente;
+        GROUP BY DATE(r.dataHora), c.fkTipoComponente, um.sinal;
     `
 
     return database.executar(sql)
