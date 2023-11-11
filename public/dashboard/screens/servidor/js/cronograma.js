@@ -174,16 +174,19 @@ async function getDaily(date){
   ram.innerText = ""
   disk.innerText = ""
 
-  dataDaily.map((item) => {
-    if(item.type == 1){
-      cpu.innerText = item.value
-    }
-    else if(item.type == 2){
-      ram.innerText = item.value 
-    }
-    else if(item.type == 3){
-      disk.innerText = item.value
-    }
-  })
+  if(dataDaily.length > 0){
+    console.log(dataDaily)
+    dataDaily.map((item) => {
+      if(item.type == 1){
+        cpu.innerText = item.value+item.uni
+      }
+      else if(item.type == 2){
+        ram.innerText = item.value+item.uni
+      }
+      else if(item.type == 3){
+        disk.innerText = item.value+item.uni
+      }
+    })
+  }
 }
 getDaily(timeline.value)
