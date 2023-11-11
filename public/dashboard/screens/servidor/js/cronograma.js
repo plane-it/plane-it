@@ -151,6 +151,10 @@ async function getWeekly(tipoComponente){
 getWeekly(1)
 
 async function getDaily(date){
+  const cpu = document.querySelector("#cpuDaily")
+  const ram = document.querySelector("#ramDaily")
+  const disk = document.querySelector("#diskDaily")
+
   const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
 
   const res = await fetch("/cronograma/mediaDiaria", {
@@ -166,6 +170,8 @@ async function getDaily(date){
 
   const dataDaily = await res.json()
 
-
-
+  cpu.innerText = dataDaily.filter((item) => item.type == 1)[0].value
+  ram.innerText = dataDaily.filter((item) => item.type == 2)[0].value
+  disk.innerText = dataDaily.filter((item) => item.type == 3)[0].value
 }
+getDaily("2023-11-06")
