@@ -15,9 +15,9 @@ async function getMedidaSemanal(req, res) {
 
 async function getMediaDiaria(req, res) {
     try{
-        const { idServidor, tipoComponente } = req.body
+        const { idServidor, data } = req.body
 
-        const medida = await model.getMediaDiaria(idServidor, tipoComponente)
+        const medida = await model.getMediaDiaria(idServidor, data)
 
         res.status(200).json(medida)
     }
