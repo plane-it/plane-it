@@ -170,8 +170,20 @@ async function getDaily(date){
 
   const dataDaily = await res.json()
 
-  cpu.innerText = dataDaily.filter((item) => item.type == 1)[0].value
-  ram.innerText = dataDaily.filter((item) => item.type == 2)[0].value
-  disk.innerText = dataDaily.filter((item) => item.type == 3)[0].value
+  cpu.innerText = ""
+  ram.innerText = ""
+  disk.innerText = ""
+
+  dataDaily.map((item) => {
+    if(item.type == 1){
+      cpu.innerText = item.value
+    }
+    else if(item.type == 2){
+      ram.innerText = item.value 
+    }
+    else if(item.type == 3){
+      disk.innerText = item.value
+    }
+  })
 }
 getDaily(timeline.value)
