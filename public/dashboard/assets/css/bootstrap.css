@@ -6140,6 +6140,11 @@ a.badge-dark:focus {
     flex: 1
 }
 
+.alinhado-final {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .list-group {
     display: -ms-flexbox;
     display: flex;

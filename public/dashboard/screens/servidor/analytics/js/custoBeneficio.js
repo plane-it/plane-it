@@ -186,4 +186,6 @@ function sumirTela() {
     fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
     frente.style = "display:none"
 }
-
+function verRespostas(){
+    window.location="respostasInspecao.html"
+}
