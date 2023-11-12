@@ -28,7 +28,7 @@ function getMediaDiaria(idServidor, data){
 
 function getValores(idServidor, data){
     const sql = `
-        SELECT AVG(r.valor),  HOUR(r.dataHora), FLOOR(MINUTE(r.datahora)/5)*5, c.fktipoComponente 
+        SELECT AVG(r.valor) value,  HOUR(r.dataHora) hour, FLOOR(MINUTE(r.datahora)/5)*5 minute, c.fktipoComponente type 
             FROM tbRegistro r
             JOIN tbMetrica m ON r.fkMetrica = m.idMetrica
             JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
