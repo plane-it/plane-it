@@ -28,9 +28,9 @@ async function getMediaDiaria(req, res) {
 
 async function getValores(req, res) {
     try{
-        const { idServidor, data } = req.body
+        const { idServidor, data, type } = req.body
 
-        const medida = await model.getValores(idServidor, data)
+        const medida = await model.getValores(idServidor, data, type)
 
         res.status(200).json(medida)
     }
