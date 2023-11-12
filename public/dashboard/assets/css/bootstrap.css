@@ -601,6 +601,49 @@ pre code {
     margin-left: auto
 }
 
+.li-dropdown-content {
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px;
+    font-size: 12px;
+    transition: all 1s linear;
+  }
+  
+  .li-dropdown-content a {
+    color: black;
+    padding: 9px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1.3rem;
+  }
+  
+  .li-dropdown-content a:hover {
+    color: #3A7D44 !important;
+  }
+  
+  
+  li:hover .li-dropdown-content {
+    display: block;
+    transition: all 1s linear !important;
+  }
+
+  .blackFont {
+    color: #000 !important;
+  }
+
+  .pilha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 1.2rem;
+  }
+
+  .kpiViva {
+    padding-bottom: 0.5rem;
+  }
+
 @media (min-width:576px) {
     .container {
         max-width: 540px
@@ -5984,6 +6027,37 @@ a.badge-dark:focus {
 
 .alert-dark .alert-link {
     color: #040505
+}
+
+.alert-acima-media {
+    background-color: #cdeabe !important;
+    color: #491217;
+    border-color: #cdeabe;
+}
+
+.alinhador-botao {
+    height: 1.2rem;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.empurrar-cima {
+    margin-top: 2rem;
+}
+
+.two-graphics {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sem-margem {
+    margin: 0 !important;
+}
+
+.padding-little-card {
+    padding: 15px 15px 10px 15px !important;   
 }
 
 @-webkit-keyframes progress-bar-stripes {
