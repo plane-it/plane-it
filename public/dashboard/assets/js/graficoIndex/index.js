@@ -312,6 +312,10 @@ tempo = 0;
 function rodarTempo() {
   tempo1.innerHTML = tempo
   tempo2.innerHTML = tempo
+  tempo3.innerHTML = tempo
+  tempo4.innerHTML = tempo
+  tempo5.innerHTML = tempo
+  tempo6.innerHTML = tempo
   setTimeout(() => {
     tempo++;
     rodarTempo()

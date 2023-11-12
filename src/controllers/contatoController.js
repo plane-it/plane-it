@@ -2,13 +2,13 @@ var contatoModel = require("../models/contatoModel");
 
 function enviar(req,res){
         
-    var nomeReceibed = req.body.nome;
-    var emailReceibed = req.body.email;
-    var assuntoReceubed  = req.body.assunto;
+    var nomeRecebido = req.body.nome;
+    var emailRecebido = req.body.email;
+    var assuntoRecebido  = req.body.assunto;
     // var telefoneReceibed = req.body.telefone;
-    var mensagemReceibed = req.body.mensagem;
+    var mensagemRecebido = req.body.mensagem;
       
-    contatoModel.enviar(nomeReceibed,emailReceibed,assuntoReceubed,mensagemReceibed)
+    contatoModel.enviar(nomeRecebido,emailRecebido,assuntoRecebido,mensagemRecebido)
 
     .then(
         function(resultado){

@@ -112,15 +112,11 @@
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="nc-icon nc-bell-55"></i>
                 </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <a class="dropdown-item" href="/dashboard/screens/alertas.html">Alertas</a
-
-                  >
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/dashboard/screens/alertas.html">Alertas</a>
                   <a class="dropdown-item" href="#">Ajuda - Jira</a>
-                  <a class="dropdown-item" href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7">Comunicação - Slack</a>
+                  <a class="dropdown-item" href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7">Comunicação -
+                    Slack</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -131,11 +127,8 @@
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
                 </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                <a class="dropdown-item" href="/dashboard/screens/perfil.html">Perfil</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/dashboard/screens/perfil.html">Perfil</a>
                 </div>
               </li>
             </ul>
@@ -191,8 +184,8 @@
                     <div class="col-md-7 pr-1">
                       <div class="form-group">
                         <label>Função: </label>
-                          <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
-                            id="inputFuncao">
+                        <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
+                          id="inputFuncao">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
@@ -322,6 +315,9 @@
   <script src="../../assets/js/paper-dashboard.min.js" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../../assets/demo/demo.js"></script>
+
+  <script src="sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
@@ -340,12 +336,12 @@
 
       window.location = '../../../login.html'
 
-    }  else {
+    } else {
 
-        buscarAeroporto();
+      buscarAeroporto();
 
-      }
-    
+    }
+
   }
 
   function buscarAeroporto() {
@@ -391,7 +387,11 @@
       || inputPrecoDisco.value == '' || inputTemperaturaCpu.value == '' || inputLimiteCpu.value == '' || inputLimiteRam.value == ''
       || inputLimiteDisco.value == '' || inputCodAutenticacao.value == '' || (inputCodAutenticacao.value).leght > 6) {
 
-      alert("Nenhum campo pode estar vazio")
+      Swal.fire({
+        icon: "error",
+        title: "Erro no cadastro",
+        text: "Os campos não podem ficar vazios"
+      });
 
     } else {
 
@@ -424,7 +424,10 @@
       }).then(function (resposta) {
 
         if (resposta.ok) {
-          alert("Cadastro realizado com sucesso")
+          Swal.fire({
+            title: "Servidor cadastrado!",
+            icon: "success"
+          });
 
         } else {
 
