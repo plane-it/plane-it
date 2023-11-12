@@ -26,7 +26,21 @@ async function getMediaDiaria(req, res) {
     }
 }
 
+async function getValores(req, res) {
+    try{
+        const { idServidor, data } = req.body
+
+        const medida = await model.getValores(idServidor, data)
+
+        res.status(200).json(medida)
+    }
+    catch(error){
+        res.status(500).json({message: error})
+    }
+}
+
 module.exports = {
     getMedidaSemanal,
-    getMediaDiaria
+    getMediaDiaria,
+    getValores
 }
