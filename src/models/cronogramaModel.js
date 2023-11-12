@@ -26,18 +26,17 @@ function getMediaDiaria(idServidor, data){
     return database.executar(sql)
 }
 
-function getValores(idServidor, data){
+function getValores(idServidor, data, tipoComponente){
     const sql = `
-        SELECT AVG(r.valor) value,  HOUR(r.dataHora) hour, FLOOR(MINUTE(r.datahora)/5)*5 minute, c.fktipoComponente type 
+        SELECT AVG(r.valor) value,  HOUR(r.dataHora) hour, FLOOR(MINUTE(r.datahora)/5)*5 minute
             FROM tbRegistro r
             JOIN tbMetrica m ON r.fkMetrica = m.idMetrica
             JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
             JOIN tbComponente c ON c.idComp = m.fkComponente
-        WHERE r.fkServidor = ${idServidor} AND DATE(r.dataHora) = DATE("${data}")
+        WHERE r.fkServidor = ${idServidor} AND DATE(r.dataHora) = DATE("${data}") AND c.fkTipoComponente = ${tipoComponente}
         GROUP BY 
             HOUR(r.dataHora),
-            FLOOR(MINUTE(r.dataHora)/5)*5,
-            c.fkTipoComponente;
+            FLOOR(MINUTE(r.dataHora)/5)*5;
     `
 
     return database.executar(sql)
