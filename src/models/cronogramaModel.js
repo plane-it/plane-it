@@ -28,7 +28,7 @@ function getMediaDiaria(idServidor, data){
 
 function getValores(idServidor, data){
     const sql = `
-        SELECT AVG(r.valor),  HOUR(r.dataHora), FLOOR(MINUTE(r.datahora)/5)*5, DATE(r.dataHora), c.fktipoComponente 
+        SELECT AVG(r.valor),  HOUR(r.dataHora), FLOOR(MINUTE(r.datahora)/5)*5, c.fktipoComponente 
             FROM tbRegistro r
             JOIN tbMetrica m ON r.fkMetrica = m.idMetrica
             JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
@@ -45,5 +45,6 @@ function getValores(idServidor, data){
 
 module.exports = {
     getMedidaSemanal,
-    getMediaDiaria
+    getMediaDiaria,
+    getValores
 }
