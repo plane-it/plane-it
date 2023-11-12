@@ -11,4 +11,8 @@ router.post("/mediaDiaria", (req,res) => {
     cronogramaController.getMediaDiaria(req,res)
 })
 
+router.post("/valores", (req,res) => {
+    cronogramaController.getValores(req,res)
+})
+
 module.exports = router
