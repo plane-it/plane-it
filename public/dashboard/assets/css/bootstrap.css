@@ -6145,6 +6145,42 @@ a.badge-dark:focus {
     justify-content: flex-end;
 }
 
+.form-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7px;
+}
+
+.flex-justify-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.check-size{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.margin-right-5 {
+    margin-right: -5px !important;
+}
+
+.card-no-min-height{
+    min-height: 0px !important;
+}
+
+.padding-left-1 {
+    padding-left: 1rem;
+}
+.padding-right-1 {
+    padding-right: 1rem;
+}
+
+.text-complete-width{
+    width: 100%;
+}
+
 .list-group {
     display: -ms-flexbox;
     display: flex;
