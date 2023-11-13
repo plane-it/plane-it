@@ -57,7 +57,6 @@ const dashWeekly = new Chart(dash, {
     },
 })
 
-const data = [12, 19, 3, 5, 2, 3, 8, 10, 15, 20, 25, 30, 35, 40, 35, 32, 36, 38, 40, 42, 45, 50, 55, 60, 65, 70, 75, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2, 1, 0, 2, 4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 35, 30, 25, 20, 15, 10, 5, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
 const dashHistory = new Chart(dashHist, {
     type: 'line',
@@ -65,7 +64,7 @@ const dashHistory = new Chart(dashHist, {
     labels: [],
       datasets: [{
         label: '# of Votes',
-        data: data,
+        data: [],
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
       }]
     },
@@ -81,7 +80,6 @@ const dashHistory = new Chart(dashHist, {
        },
         y: {
           beginAtZero: true,
-          max: Math.max(...data)+10, 
         }
       },
       plugins: {
@@ -92,9 +90,6 @@ const dashHistory = new Chart(dashHist, {
     },
 })
 
-const ocoupiedSpace = data.length/16
-const barsize = scrollbar.offsetWidth / ocoupiedSpace
-bar.style.width = barsize+"px"
 
 dashHist.addEventListener("wheel", (e) => {
   e.preventDefault()
@@ -208,5 +203,19 @@ async function getHistory(date){
 
   const data = await res.json()
   console.log(data)
+
+  if(data.length == 0){
+    dashHistory.data.datasets[0].data = []
+    dashHistory.update()
+  }
+  else{
+    const orderedData = data.map((item) => item.value)
+    const orderLabels = data.map((item) => item.hour + ":" + item.minute)
+    dashHistory.data.datasets[0].data = orderedData
+    dashHistory.options.scales.x.max = Math.max(orderedData)
+    dashHistory.data.labels = [...orderLabels, "20:10"]
+    dashHistory.update()
+
+  }
 }
 getHistory("2023-11-06")
