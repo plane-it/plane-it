@@ -151,6 +151,28 @@ function buscarErrosMensais(req, res) {
             }
         )
 }
+function buscarAlertas(req,res){
+    const {fkServidor} = req.body
+    if (!fkServidor) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        servidorModel.buscarAlertas(fkServidor).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
+}
 
 
 module.exports = {
@@ -160,5 +182,6 @@ module.exports = {
     cadastrarLimite,
     buscarAeroporto,
     buscarEstadoServidor,
-    buscarErrosMensais
+    buscarErrosMensais,
+    buscarAlertas
 }

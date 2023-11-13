@@ -23,4 +23,8 @@ router.post("/buscarErrosMensais", function (req,res) {
     servidorController.buscarErrosMensais(req,res)
 })
 
+router.post("/buscarAlertas",function(req,res){
+    servidorController.buscarAlertas(req,res)
+})
+
 module.exports = router

@@ -77,6 +77,16 @@ function buscarErrosMensais(fkServidor, mesLimite, anoAtual, fkComponente) {
     return database.executar(sql)
 }
 
+function buscarAlertas(fkServidor){
+    const sql = `
+    SELECT sistemaOp,sum(alerta) as 'Qtd de alerta' FROM tbRegistro 
+    JOIN tbServidor ON ${fkServidor} = idServ 
+    GROUP BY sistemaOp;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 
 module.exports = {
     buscarServidor,
@@ -85,5 +95,6 @@ module.exports = {
     cadastrarLimite,
     buscarAeroporto,
     buscarEstadoServidor,
-    buscarErrosMensais
+    buscarErrosMensais,
+    buscarAlertas
 }
