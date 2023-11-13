@@ -135,13 +135,33 @@ async function getWeekly(tipoComponente){
   const data = await res.json()
 
   const orderedData = dashWeekly.data.labels.map((item, index) => {
-    const value = data.filter((item) => item.days == index+1).map((item) => item.avgValues)[0] || 0
-    const roundedValue = Math.round(value)
-    return roundedValue
+    const newData = data.filter((item) => item.days == index+1)
+    return newData[0]
   })
-  
-  dashWeekly.data.datasets[0].data = orderedData
+
+  const colors = orderedData.map((item) => {
+    if(!item) return ""
+    if(data[0].metrica > item.avgValues){
+      return "#28a745"
+    }
+    else if(data[0].metrica > item.avgValues * 0.9){
+      return "#ffc107"
+    }
+    else{
+      return "#dc3545"
+    }
+  })
+
+  const values = orderedData.map((item) => {
+    if(!item) return 0
+    return Math.round(item.avgValues * 10) / 10
+  })
+
+  dashWeekly.data.datasets[0].data = values
+  dashWeekly.data.datasets[0].backgroundColor = colors
   dashWeekly.update()
+
+  getKpi(data[0].avgValues)
 }
 getWeekly(1)
 
