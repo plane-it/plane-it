@@ -216,6 +216,15 @@ async function getHistory(date){
     dashHistory.data.labels = [...orderLabels, "20:10"]
     dashHistory.update()
 
+    // const ocoupiedSpace = (orderedData.length)/16
+
+    // const barsize = scrollbar.offsetWidth / ocoupiedSpace
+    // bar.style.width = barsize+"px"
   }
 }
 getHistory("2023-11-06")
+
+function getKpi(value){
+  
+
+}
