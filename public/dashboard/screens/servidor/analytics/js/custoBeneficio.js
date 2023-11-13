@@ -9,7 +9,7 @@ var chartBarras;
 
 var moedaAtual = "BRL";
 
-document.getElementById('slctMoeda').addEventListener('change', function() {
+document.getElementById('slctMoeda').addEventListener('change', function () {
     var selectedOption = this.options[this.selectedIndex];
     var currencyName = selectedOption.getAttribute('data-currency-name');
     atualizarMoeda(currencyName);
@@ -68,7 +68,7 @@ function mudarComponente() {
         default:
             break;
     }
-    
+
     for (var i = 0; i < elements.length; i++) {
         elements[i].innerHTML = medidaComponente;
     }
@@ -186,6 +186,39 @@ function sumirTela() {
     fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
     frente.style = "display:none"
 }
-function verRespostas(){
-    window.location="respostasInspecao.html"
+function verRespostas() {
+    window.location = "respostasInspecao.html"
+}
+
+function enviarAnalise() {
+    var motivo = iptMotivo.value;
+    var descricao = iptProblema.value;
+    var requisitante = sessionStorage.ID_COLAB;
+    var servidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
+
+
+    if (motivo == "" || motivo == undefined || descricao == "" || descricao == undefined || requisitante == "" || requisitante == undefined || servidor == "" || servidor == undefined) {
+        alert("Requisição incompleta")
+    } else {
+        fetch("/requisicoes/enviarReq", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "motivo": motivo,
+                "descricao": descricao,
+                "requisitante": requisitante,
+                "servidor": servidor
+            })
+        }).then((res) => res.json())
+            .then((res) => {
+                fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
+                frente.style = "display:none"
+            }).catch(function (error) {
+                console.error("Error:", error);
+            });
+    }
+    
+
 }

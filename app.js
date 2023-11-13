@@ -20,6 +20,8 @@ const aeroportoRouter = require("./src/routes/aeroporto");
 const servidorRouter = require("./src/routes/servidor");
 const registrosRouter = require("./src/routes/registros");
 const componenteRouter = require("./src/routes/componente");
+const requisicoesRouter = require("./src/routes/requisicoes");
+
 
 
 
@@ -42,6 +44,8 @@ app.use("/servidor", servidorRouter);
 app.use("/alertas", alertasRouter)
 app.use("/registros", registrosRouter);
 app.use("/componente", componenteRouter);
+app.use("/requisicoes", requisicoesRouter);
+
 
 
 
