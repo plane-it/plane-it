@@ -17,7 +17,7 @@ const dashWeekly = new Chart(dash, {
       datasets: [{
         label: '# of Votes',
         data: [],
-        backgroundColor: ['#dc3545','#ffc107', '#28a745'],
+        backgroundColor: ['','', ''],
         borderRadius: 10,
         borderSkipped: false,
         barPercentage: 0.5,
@@ -141,11 +141,10 @@ async function getWeekly(tipoComponente){
 
   const colors = orderedData.map((item) => {
     if(!item) return ""
-    console.log(item)
-    if(item.metrica > item.avgValues){
+    if(data[0].metrica > item.avgValues){
       return "#28a745"
     }
-    else if(item.metrica > item.avgValues * 0.9){
+    else if(data[0].metrica > item.avgValues * 0.9){
       return "#ffc107"
     }
     else{

@@ -7,6 +7,9 @@
 .rowPadding{
     padding: 0 1rem;
 }
+.noPadding{
+    padding: 0;
+}
 .cardMonth{
     width: 30%;
     min-width: calc(300px );
@@ -147,4 +150,19 @@
     background: #333;
     border-radius: 5px;
     transition: all 0.3s linear;
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.green{
+    background: #28a745
+}
+.yellow{
+    background: #ffc107
+}
+.red{
+    background: #dc3545
 }
