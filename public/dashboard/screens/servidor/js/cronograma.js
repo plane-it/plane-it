@@ -165,6 +165,8 @@ async function getWeekly(tipoComponente){
   dashWeekly.data.datasets[0].data = values
   dashWeekly.data.datasets[0].backgroundColor = colors
   dashWeekly.update()
+
+  getKpi(data[0].avgValues)
 }
 getWeekly(1)
 
@@ -208,3 +210,8 @@ async function getDaily(date){
   }
 }
 getDaily(timeline.value)
+
+function getKpi(value){
+  
+
+}
