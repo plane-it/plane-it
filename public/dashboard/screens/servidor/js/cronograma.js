@@ -108,15 +108,20 @@ dashHist.addEventListener("wheel", (e) => {
     dashHistory.options.scales.x.min = currentMin-1
   }
   dashHistory.update()
-  scrollBar()
+  // scrollBar()
 })
 
 function scrollBar(){
   const newMin = dashHistory.options.scales.x.min
-  const nonOcoupiedSpace = scrollbar.offsetWidth - barsize
-  const scrollStepSize = nonOcoupiedSpace / (data.length-16)
+  const barPercentage = bar.style.width.split("%")[0]
 
-  bar.style.marginLeft = scrollStepSize * newMin + "px"
+  const step = (100 - barPercentage) / dashHistory.data.datasets[0].data.length
+
+  const nonOcoupiedSpace = step * newMin
+  console.log(nonOcoupiedSpace)
+  // const scrollStepSize = nonOcoupiedSpace / (data.length-16)
+
+  bar.style.marginLeft = nonOcoupiedSpace + "%"
 }
 
 async function getWeekly(tipoComponente){
@@ -227,10 +232,7 @@ async function getHistory(type, date){
   const orderedData = data.map((item) => item.value)
   const orderedLabels = data.map((item) => item.hour + ":" + item.minute)
 
-  if(data.length == 0){
-    handleScrollSize(0)
-  }
-  else if(data.length == 1){
+  if(data.length == 1){
     if(data[0].hour == 23 && data[0].minute == 55){
       orderedData.shift(0)
       orderedLabels.shift("23:50")
@@ -247,9 +249,8 @@ async function getHistory(type, date){
       orderedData.push(0)
       orderedLabels.push(lastHour + ":" + lastMinute)
     } 
-    handleScrollSize(orderedData.length)
   }
-
+  handleScrollSize(orderedData.length)
 
   const colors = orderedData.map((item) => {
     if(data[0].metrica * 0.8 > item){
@@ -264,7 +265,6 @@ async function getHistory(type, date){
   })
 
   dashHistory.data.datasets[0].data = orderedData
-  dashHistory.options.scales.x.max = Math.max(orderedData)
   dashHistory.data.datasets[0].backgroundColor = colors
   dashHistory.data.labels = orderedLabels
   dashHistory.update()
