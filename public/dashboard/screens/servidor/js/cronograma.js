@@ -268,5 +268,5 @@ function handleScrollSize(size){
 
 function updateTimeline(date){
   getDaily(date)
-  getHistory()
+  getHistory(date)
 }
