@@ -57,9 +57,31 @@ function buscarSolicitacoes(req, res) {
     }
 }
 
+function enviarResposta(req, res) {
+    const { pedido, resposta, respondente } = req.body
+
+    if (!pedido || !resposta || !respondente) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.enviarResposta(pedido, resposta, respondente).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+
+
 
 module.exports = {
     enviarReq,
     buscarRespostas,
-    buscarSolicitacoes
+    buscarSolicitacoes,
+    enviarResposta
 }

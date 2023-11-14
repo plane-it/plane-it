@@ -28,9 +28,17 @@ function buscarSolicitacoes(aeroporto) {
     return database.executar(sql)
 }
 
+function enviarResposta(pedido, resposta, respondente) {
+    const sql = `
+    INSERT INTO tbRespostaInspecao VALUES (NULL, '${resposta}', ${respondente}, ${pedido})
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
 
 module.exports = {
     enviarReq,
     buscarRespostas,
-    buscarSolicitacoes
+    buscarSolicitacoes,
+    enviarResposta
 }

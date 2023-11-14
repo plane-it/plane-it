@@ -42,5 +42,10 @@ function buscarRequisições() {
 
 function responder(pedido) {
     window.location="responderInspecao.html"
-    localStorage.setItem("solicitacaoId", pedido);
+    localStorage.setItem("ID_SOLICITACAO", pedido);
+}
+
+function enviarResposta(pedido) {
+    window.location="responderInspecao.html"
+    localStorage.setItem("ID_SOLICITACAO", pedido);
 }

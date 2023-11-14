@@ -1,9 +1,9 @@
 
 buscarEstadoServidor();
 
-verifsolicitacaoId();
-function verifsolicitacaoId() {
-  if (localStorage.solicitacaoId != undefined) {
+verifID_SOLICITACAO();
+function verifID_SOLICITACAO() {
+  if (localStorage.ID_SOLICITACAO != undefined) {
     var elementos = document.querySelectorAll('.respostaReq');
     elementos.forEach(function(elemento) {
       elemento.style.display = 'block';

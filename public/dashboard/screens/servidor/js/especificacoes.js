@@ -1,6 +1,6 @@
-verifsolicitacaoId();
-function verifsolicitacaoId() {
-  if (localStorage.solicitacaoId != null) {
+verifID_SOLICITACAO();
+function verifID_SOLICITACAO() {
+  if (localStorage.ID_SOLICITACAO != null) {
     var elementos = document.querySelectorAll('.respostaReq');
     elementos.forEach(function(elemento) {
       elemento.style.display = 'block';
