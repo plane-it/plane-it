@@ -142,14 +142,14 @@ async function getWeekly(tipoComponente){
 
   const colors = orderedData.map((item) => {
     if(!item) return ""
-    if(data[0].metrica > item.avgValues){
-      return "#28a745"
+    if(data[0].metrica < item.avgValues){
+      return "#dc3545"
     }
-    else if(data[0].metrica > item.avgValues * 0.9){
+    else if(data[0].metrica * 0.9 < item.avgValues){
       return "#ffc107"
     }
     else{
-      return "#dc3545"
+      return "#28a745"
     }
   })
 
