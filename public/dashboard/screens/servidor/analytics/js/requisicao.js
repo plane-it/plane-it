@@ -26,7 +26,7 @@ function buscarRequisições() {
                           ${res[i].apelido}
                         </td>
                         <td>
-                        <a class="a-td" onclick="responder(${res[i].idPedidoInspecao})">Acessar</a>
+                        <a class="a-td" onclick="responder(${res[i].idPedidoInspecao}, ${res[i].idServ})">Acessar</a>
                         </td>
                       </tr>`
                     }
@@ -40,9 +40,10 @@ function buscarRequisições() {
     }
 }
 
-function responder(pedido) {
+function responder(pedido, idServ) {
     window.location="responderInspecao.html"
     localStorage.setItem("ID_SOLICITACAO", pedido);
+    sessionStorage.setItem("ID_SERVIDOR_ESCOLHIDO", idServ);
 }
 
 function enviarResposta(pedido) {

@@ -30,16 +30,32 @@ function buscarSolicitacoes(aeroporto) {
 }
 
 function enviarResposta(pedido, resposta, respondente) {
-    const sql = `
+    const sqlInsert = `
     INSERT INTO tbRespostaInspecao VALUES (NULL, '${resposta}', ${respondente}, ${pedido})
+    `
+    return database.executar(sqlInsert).then(() => {
+        const sqlSelect = `SELECT idRespostaInspecao FROM tbRespostaInspecao 
+        WHERE resposta = '${resposta}' 
+        AND fkRespondente = ${respondente} 
+        AND fkPedido = ${pedido}`
+        return database.executar(sqlSelect)
+    })
+}
+
+
+function sianlizar(idComp, motivo, idResposta) {
+    const sql = `
+    INSERT INTO tbComponentesSinalizados VALUES (${idResposta}, ${idComp}, '${motivo}') 
     `
     console.log(sql)
     return database.executar(sql)
 }
 
+
 module.exports = {
     enviarReq,
     buscarRespostas,
     buscarSolicitacoes,
-    enviarResposta
+    enviarResposta,
+    sianlizar
 }

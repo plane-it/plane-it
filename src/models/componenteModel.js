@@ -12,6 +12,16 @@ function buscarEspecificacoes(fkServidor) {
     return database.executar(sql)
 }
 
+function buscarComponentes(servidor) {
+    const sql = `
+        SELECT * FROM tbComponente
+        WHERE fkServ = ${servidor};
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 module.exports = {
-    buscarEspecificacoes
+    buscarEspecificacoes,
+    buscarComponentes
 }

@@ -76,6 +76,26 @@ function enviarResposta(req, res) {
     }
 }
 
+function sianlizar(req, res) {
+    const { idComp, motivo, idResposta } = req.body
+
+    if (!idComp || !motivo || !idResposta) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.sianlizar(idComp, motivo, idResposta).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+
 
 
 
@@ -83,5 +103,6 @@ module.exports = {
     enviarReq,
     buscarRespostas,
     buscarSolicitacoes,
-    enviarResposta
+    enviarResposta,
+    sianlizar
 }

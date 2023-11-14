@@ -18,5 +18,8 @@ router.post("/enviarResposta", (req, res) => {
     requisicoesController.enviarResposta(req, res)
 })
 
+router.post("/sianlizar", (req, res) => {
+    requisicoesController.sianlizar(req, res)
+})
 
 module.exports = router
