@@ -34,7 +34,7 @@ function getValores(idServidor, data, tipoComponente){
             FROM tbRegistro r
             JOIN tbMetrica m ON r.fkMetrica = m.idMetrica
             JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
-            JOIN tbComponente c ON c.idComp = m.fkComponente
+            JOIN tbComponente c ON c.idComp = r.fkComp
         WHERE r.fkServidor = ${idServidor} AND DATE(r.dataHora) = DATE("${data}") AND c.fkTipoComponente = ${tipoComponente}
         GROUP BY 
             HOUR(r.dataHora),
