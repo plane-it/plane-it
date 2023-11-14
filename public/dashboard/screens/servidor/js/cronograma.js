@@ -161,7 +161,7 @@ async function getWeekly(tipoComponente){
   dashWeekly.data.datasets[0].backgroundColor = colors
   dashWeekly.update()
 
-  getKpi(data[0].avgValues)
+  getKpi(data[0].avgValues, data[0].uni)
 }
 getWeekly(1)
 
@@ -244,7 +244,12 @@ async function getHistory(date){
 }
 getHistory("2023-11-06")
 
-function getKpi(value){
-  
+function getKpi(value, uni){
+  const saudavel = document.querySelector("#saudavel")
+  const alerta = document.querySelector("#alerta")
+  const risco = document.querySelector("#risco")
 
+  saudavel.innerText = `Menores que ${(value*0.8).toFixed(1)}${uni}`
+  alerta.innerText = `Maiores que ${(value*0.9).toFixed(1)}${uni}`
+  risco.innerText = `Maiores que ${(value).toFixed(1)}${uni}`
 }
