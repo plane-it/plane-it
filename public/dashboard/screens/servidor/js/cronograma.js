@@ -235,11 +235,7 @@ async function getHistory(date){
     dashHistory.options.scales.x.max = Math.max(orderedData)
     dashHistory.data.labels = [...orderLabels, "20:10"]
     dashHistory.update()
-
-    // const ocoupiedSpace = (orderedData.length)/16
-
-    // const barsize = scrollbar.offsetWidth / ocoupiedSpace
-    // bar.style.width = barsize+"px"
+    handleScrollSize(orderedData.length)
   }
 }
 getHistory("2023-11-06")
@@ -252,4 +248,13 @@ function getKpi(value, uni){
   saudavel.innerText = `Menores que ${(value*0.8).toFixed(1)}${uni}`
   alerta.innerText = `Maiores que ${(value*0.9).toFixed(1)}${uni}`
   risco.innerText = `Maiores que ${(value).toFixed(1)}${uni}`
+}
+
+function handleScrollSize(size){
+    const ocoupiedSpace = (size+31)/16 
+
+    const barsize = ocoupiedSpace >= 1
+      ? scrollbar.offsetWidth / ocoupiedSpace
+      : scrollbar.offsetWidth
+    bar.style.width = barsize+"px"
 }
