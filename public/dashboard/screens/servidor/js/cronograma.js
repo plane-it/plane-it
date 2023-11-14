@@ -194,13 +194,13 @@ async function getDaily(date){
     console.log(dataDaily)
     dataDaily.map((item) => {
       if(item.type == 1){
-        cpu.innerText = item.value+item.uni
+        cpu.innerText = item.value.toFixed(1)+item.uni
       }
       else if(item.type == 2){
-        ram.innerText = item.value+item.uni
+        ram.innerText = item.value.toFixed(1)+item.uni
       }
       else if(item.type == 3){
-        disk.innerText = item.value+item.uni
+        disk.innerText = item.value.toFixed(1)+item.uni
       }
     })
   }
