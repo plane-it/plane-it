@@ -251,7 +251,7 @@ function getKpi(value, uni){
 }
 
 function handleScrollSize(size){
-    const ocoupiedSpace = (size+31)/16 
+    const ocoupiedSpace = (size)/16 
 
     const barsize = ocoupiedSpace >= 1
       ? scrollbar.offsetWidth / ocoupiedSpace
