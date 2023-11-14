@@ -226,6 +226,7 @@ async function getHistory(date){
   if(data.length == 0){
     dashHistory.data.datasets[0].data = []
     dashHistory.update()
+    handleScrollSize(0)
   }
   else{
     const orderedData = data.map((item) => item.value)
