@@ -224,20 +224,35 @@ async function getHistory(type, date){
 
   const data = await res.json()
 
+  const orderedData = data.map((item) => item.value)
+  const orderedLabels = data.map((item) => item.hour + ":" + item.minute)
+
   if(data.length == 0){
-    dashHistory.data.datasets[0].data = []
-    dashHistory.update()
     handleScrollSize(0)
   }
-  else{
-    const orderedData = data.map((item) => item.value)
-    const orderLabels = data.map((item) => item.hour + ":" + item.minute)
-    dashHistory.data.datasets[0].data = orderedData
-    dashHistory.options.scales.x.max = Math.max(orderedData)
-    dashHistory.data.labels = [...orderLabels, "20:10"]
-    dashHistory.update()
+  else if(data.length == 1){
+    if(data[0].hour == 23 && data[0].minute == 55){
+      orderedData.shift(0)
+      orderedLabels.shift("23:50")
+    }
+    else{
+      let lastHour = data[0].hour
+      let lastMinute = data[0].minute + 5
+
+      if(lastMinute == 60){
+        lastHour = lastHour + 1
+        lastMinute = 0
+      }
+
+      orderedData.push(0)
+      orderedLabels.push(lastHour + ":" + lastMinute)
+    } 
     handleScrollSize(orderedData.length)
   }
+  dashHistory.data.datasets[0].data = orderedData
+  dashHistory.options.scales.x.max = Math.max(orderedData)
+  dashHistory.data.labels = orderedLabels
+  dashHistory.update()
 }
 getHistory(1,timeline.value)
 
