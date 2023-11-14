@@ -235,7 +235,6 @@ async function getHistory(date){
     dashHistory.options.scales.x.max = Math.max(orderedData)
     dashHistory.data.labels = [...orderLabels, "20:10"]
     dashHistory.update()
-
     handleScrollSize(orderedData.length)
   }
 }
