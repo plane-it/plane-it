@@ -3,6 +3,7 @@ const dashHist = document.querySelector("#dashHist")
 const scrollbar = document.querySelector("#scrollbar")
 const bar = document.querySelector("#bar")
 const timeline = document.querySelector("#timelineDate")
+const component = document.querySelector("#component")
 
 let yesterday = new Date()
 yesterday.setDate(new Date().getDate()-2)
@@ -206,7 +207,7 @@ async function getDaily(date){
 }
 getDaily(timeline.value)
 
-async function getHistory(date){
+async function getHistory(type, date){
   const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
 
   const res = await fetch("/cronograma/valores", {
@@ -217,7 +218,7 @@ async function getHistory(date){
     body: JSON.stringify({
       idServidor: serverId,
       data: date,
-      type: 1,
+      type: type,
     })
   })
 
@@ -238,7 +239,7 @@ async function getHistory(date){
     handleScrollSize(orderedData.length)
   }
 }
-getHistory(timeline.value)
+getHistory(1,timeline.value)
 
 function getKpi(value, uni){
   const saudavel = document.querySelector("#saudavel")
@@ -268,5 +269,5 @@ function handleScrollSize(size){
 
 function updateTimeline(date){
   getDaily(date)
-  getHistory(date)
+  getHistory(component.value, date)
 }
