@@ -262,3 +262,8 @@ function handleScrollSize(size){
 
     bar.style.width = barsize+"%"
 }
+
+function updateTimeline(date){
+  getDaily(date)
+  getHistory()
+}
