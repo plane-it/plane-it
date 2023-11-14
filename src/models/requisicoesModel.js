@@ -5,11 +5,20 @@ function enviarReq(motivo, descricao, requisitante, servidor) {
     INSERT INTO tbPedidosInspecao VALUES (NULL, '${motivo}', '${descricao}', ${servidor}, ${requisitante})
     `
     return database.executar(sql)
+}
 
+function buscarRespostas(servidor) {
+    const sql = `
+    SELECT * FROM tbRespostaInspecao 
+    JOIN tbPedidosInspecao ON fkPedido = idPedidoInspecao
+    WHERE fkServidor = ${servidor};
+    `
+    console.log(sql)
+    return database.executar(sql)
 }
 
 
 module.exports = {
     enviarReq,
-
+    buscarRespostas
 }

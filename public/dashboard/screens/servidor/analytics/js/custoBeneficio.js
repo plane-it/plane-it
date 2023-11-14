@@ -190,6 +190,22 @@ function verRespostas() {
     window.location = "respostasInspecao.html"
 }
 
+function confirmarEnviarAnalise() {
+    return Swal.fire({
+        title: 'Confirmação',
+        text: "Você deseja enviar esta análise?",
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: 'rgba(244, 69, 69, 1)',
+        confirmButtonText: 'Sim, enviar!',
+        confirmButtonColor: '#254D32',
+        iconColor: 'rgba(244, 69, 69, 1)'
+    }).then((result) => {
+        return Promise.resolve(result.isConfirmed);
+    })
+}
+
 function enviarAnalise() {
     var motivo = iptMotivo.value;
     var descricao = iptProblema.value;
@@ -197,28 +213,51 @@ function enviarAnalise() {
     var servidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
 
 
-    if (motivo == "" || motivo == undefined || descricao == "" || descricao == undefined || requisitante == "" || requisitante == undefined || servidor == "" || servidor == undefined) {
-        alert("Requisição incompleta")
-    } else {
-        fetch("/requisicoes/enviarReq", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "motivo": motivo,
-                "descricao": descricao,
-                "requisitante": requisitante,
-                "servidor": servidor
-            })
-        }).then((res) => res.json())
-            .then((res) => {
-                fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
-                frente.style = "display:none"
-            }).catch(function (error) {
-                console.error("Error:", error);
-            });
-    }
+    if (motivo != "" && motivo != undefined && descricao != "" && descricao != undefined && requisitante != "" && requisitante != undefined && servidor != "" && servidor != undefined) {
+        (async () => {
+            try {
+                var validou = await confirmarEnviarAnalise();
+                if (validou) {
+                    fetch("/requisicoes/enviarReq", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "motivo": motivo,
+                            "descricao": descricao,
+                            "requisitante": requisitante,
+                            "servidor": servidor
+                        })
+                    }).then((res) => res.json())
+                        .then((res) => {
+                            if (!res.error) {
+                                iptMotivo.value = "";
+                                iptProblema.value = "";
     
-
+                                Swal.fire("Muito Bem!", "Solicitação enviada com sucesso!", "success");
+                                setTimeout(() => {
+                                    fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
+                                    frente.style = "display:none"
+                                }, 2000);
+                            } else {
+                                alert('Erro ao solicitar a inspeção')
+                            }
+    
+                        }).catch(function (error) {
+                            console.error("Error:", error);
+                            Swal.fire("ERRO", res.error, "error")
+    
+                        });
+                }
+            }
+            catch (error) {
+                console.error(error)
+            }
+        })();
+    } else {
+        alert("Requisição incompleta")
+    }
 }
+
+

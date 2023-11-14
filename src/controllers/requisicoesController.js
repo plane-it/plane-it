@@ -9,9 +9,26 @@ function enviarReq(req, res) {
     else {
         requisicoesModel.enviarReq(motivo, descricao, requisitante, servidor).then(
             function (resultado) {
-                if (resultado.length > 0) {
-                    res.json(resultado);
-                }
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function buscarRespostas(req, res) {
+    const { servidor } = req.body
+
+    if (!servidor) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.buscarRespostas(servidor).then(
+            function (resultado) {
+                res.json(resultado);
             }
         ).catch(
             function (erro) {
@@ -23,5 +40,6 @@ function enviarReq(req, res) {
 
 
 module.exports = {
-    enviarReq
+    enviarReq,
+    buscarRespostas
 }
