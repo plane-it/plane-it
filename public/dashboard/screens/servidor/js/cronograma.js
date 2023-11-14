@@ -222,7 +222,6 @@ async function getHistory(date){
   })
 
   const data = await res.json()
-  console.log(data)
 
   if(data.length == 0){
     dashHistory.data.datasets[0].data = []
@@ -239,7 +238,7 @@ async function getHistory(date){
     handleScrollSize(orderedData.length)
   }
 }
-getHistory("2023-11-06")
+getHistory(timeline.value)
 
 function getKpi(value, uni){
   const saudavel = document.querySelector("#saudavel")
@@ -252,6 +251,10 @@ function getKpi(value, uni){
 }
 
 function handleScrollSize(size){
+    if(size == 0){
+      bar.style.width = "100%"
+      return
+    }
     const ocoupiedSpace = (16/size) * 100
 
     const barsize = ocoupiedSpace > 100
