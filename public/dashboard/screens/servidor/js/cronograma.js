@@ -271,3 +271,8 @@ function updateTimeline(date){
   getDaily(date)
   getHistory(component.value, date)
 }
+
+function updateComponent(type){
+  getWeekly(type)
+  getHistory(type, timeline.value)
+}
