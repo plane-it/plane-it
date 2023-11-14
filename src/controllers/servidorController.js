@@ -152,12 +152,12 @@ function buscarErrosMensais(req, res) {
         )
 }
 function buscarAlertas(req,res){
-    const {fkServidor} = req.body
-    if (!fkServidor) {
+    const {fkAeroporto} = req.body
+    if (!fkAeroporto) {
         res.status(400).json({ error: "Existem parametros faltando" })
     }
     else {
-        servidorModel.buscarAlertas(fkServidor).then(
+        servidorModel.buscarAlertas(fkAeroporto).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
@@ -173,7 +173,6 @@ function buscarAlertas(req,res){
     }
 
 }
-
 
 module.exports = {
     buscarServidor,

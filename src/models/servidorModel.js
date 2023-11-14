@@ -77,11 +77,11 @@ function buscarErrosMensais(fkServidor, mesLimite, anoAtual, fkComponente) {
     return database.executar(sql)
 }
 
-function buscarAlertas(fkServidor){
+function buscarAlertas(fkAeroporto){
     const sql = `
-    SELECT sistemaOp,sum(alerta) as 'Qtd de alerta' FROM tbRegistro 
-    JOIN tbServidor ON ${fkServidor} = idServ 
-    GROUP BY sistemaOp;
+    SELECT sistemaOp,sum(alerta) as 'qtdAlertas',apelido FROM tbRegistro JOIN tbServidor ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = ${fkAeroporto}
+    GROUP BY idServ;
     `
     console.log(sql)
     return database.executar(sql)

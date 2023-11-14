@@ -2,10 +2,9 @@
 buscarAlertaServidor();
 
 function buscarAlertaServidor() {
-
-  fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
-
-  if (fkServidor == "" || fkServidor == undefined) {
+  fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
+  console.log(fkAeroporto)
+  if (fkAeroporto == "" || fkAeroporto == undefined) {
     alert("Servidor não encontrado!")
   } else {
     fetch("/servidor/buscarAlertas", {
@@ -14,120 +13,117 @@ function buscarAlertaServidor() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "fkServidor": fkServidor
+        "fkAeroporto": fkAeroporto
       })
     }).then((res) => res.json())
       .then((res) => {
         console.log(res)
         if (res.error) {
           console.log("Aconteceu algum erro")
-        }
-        else {
-          const resultado = res[0][0];
-          if (resultado.qtsAlertasCpu > 20) {
-            cpuEstado.innerHTML = "Risco";
-          } else if (resultado.qtsAlertasCpu <= 20 && resultado.qtsAlertasCpu > 10) {
-            cpuEstado.innerHTML = "Alerta";
-          } else {
-            cpuEstado.innerHTML = "Estável";
+         }
+         else {
+          resposta = ''
+          alertas = []
+          nomes = []
+          for(i = 0; i <res.length;i++){
+            resposta = res[i]
+            alertas.push(resposta.qtdAlertas)
+            nomes.push(resposta.apelido)
           }
+          // if (resposta.qtsAlertas > 20) {
+          //   cpuEstado.innerHTML = "Risco";
+          // } else if (resultado.qtsAlertas <= 20 && resultado.qtsAlertas > 10) {
+          //   cpuEstado.innerHTML = "Alerta";
+          // } else {
+          //   cpuEstado.innerHTML = "Estável";
+          // }
 
 
-          if (resultado.qtsAlertasRam > 20) {
-            ramEstado.innerHTML = "Risco";
-          } else if (resultado.qtsAlertasRam <= 20 && resultado.qtsAlertasRam > 10) {
-            ramEstado.innerHTML = "Alerta";
-          } else {
-            ramEstado.innerHTML = "Estável";
-          }
+          //  if (resultado.qtsAlertasRam > 20) {
+          //    ramEstado.innerHTML = "Risco";
+          //  } else if (resultado.qtsAlertasRam <= 20 && resultado.qtsAlertasRam > 10) {
+          //    ramEstado.innerHTML = "Alerta";
+          //  } else {
+          //    ramEstado.innerHTML = "Estável";
+          //  }
 
 
-          if (resultado.qtsAlertasDisco > 20) {
-            discoEstado.innerHTML = "Risco";
-          } else if (resultado.qtsAlertasDisco <= 20 && resultado.qtsAlertasDisco > 10) {
-            discoEstado.innerHTML = "Alerta";
-          } else {
-            discoEstado.innerHTML = "Estável";
-          }
+          //  if (resultado.qtsAlertasDisco > 20) {
+          //    discoEstado.innerHTML = "Risco";
+          //  } else if (resultado.qtsAlertasDisco <= 20 && resultado.qtsAlertasDisco > 10) {
+          //    discoEstado.innerHTML = "Alerta";
+          //  } else {
+          //    discoEstado.innerHTML = "Estável";
+          //  }
 
-          buscarErrosMensais(1)
-          plotarGrafico(res)
+          //  buscarErrosMensais()
+           plotarGrafico(alertas,nomes)
         }
       }).catch(function (res) {
-
+        console.log(res)
       });
   }
 }
-function plotarGrafico(res){
-    var dados = []
-    var nomesSO = []
-    var resposta = ''
-    for(i = 0; i < res.length; i++){
-        resposta = res[i]
-    }
-    dados.push(resposta[1])
-    nomesSO.push(resposta[0])
-    ctx = document.getElementById('chartPerformance').getContext("2d");
-    graficoAnual = new Chart(ctx, {
-             type: 'bar',
+  function plotarGrafico(alertas,nomes){
+     const ctx = document.getElementById('chartPerformance').getContext("2d");
+     graficoAnual = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: nomes,
+                datasets: [{
+                 borderColor: '#3A7D44',
+                  backgroundColor: '#3A7D44',
+                  data: alertas
+                }
+                ]
+              },
+              options: {
+                legend: {
+                  display: false,
+                  position: 'top'
+                },
+                scales: {
+                  yAxes: [{
         
-             data: {
+                    ticks: {
+                      fontColor: "#9f9f9f",
+                      beginAtZero: false,
+                      maxTicksLimit: 5,
+                      adding: 20
+                    },
+                    gridLines: {
+                      drawBorder: true,
+                     zeroLineColor: "#fff",
+                     color: 'transparent'
+                    }
         
-               labels: nomesSO,
-               datasets: [{
-                borderColor: '#3A7D44',
-                 backgroundColor: '#3A7D44',
-                 data: dados
-               }
-               ]
-             },
-             options: {
-               legend: {
-                 display: false,
-                 position: 'top'
-               },
-               scales: {
-                 yAxes: [{
+                  }],
         
-                   ticks: {
-                     fontColor: "#9f9f9f",
-                     beginAtZero: false,
-                     maxTicksLimit: 5,
-                     adding: 20
-                   },
-                   gridLines: {
-                     drawBorder: true,
-                    zeroLineColor: "#fff",
-                    color: 'transparent'
-                   }
-        
-                 }],
-        
-                 xAxes: [{
-                barPercentage: 1.6,
-                   gridLines: {
-                     drawBorder: false,
-                     color: 'rgba(0,0,0)',
-                     zeroLineColor: "transparent",
-                     display: false,
-                   },
-                   ticks: {
-                     padding: 8,
-                     fontColor: "#9f9f9f"
-                   }
-                 }]
-               },
-             }
-           });
-}
-// var dataAtual = new Date();
-// var anoAtual = dataAtual.getFullYear();
-// var graficoAnual;
+                  xAxes: [{
+                 barPercentage: 1,
+                    gridLines: {
+                      drawBorder: false,
+                      color: 'rgba(0,0,0)',
+                      zeroLineColor: "transparent",
+                      display: false,
+                    },
+                    ticks: {
+                      padding: 8,
+                      fontColor: "#9f9f9f"
+                    }
+                  }]
+                },
+              }
+            });
+ }
+//  var dataAtual = new Date();
+//  var anoAtual = dataAtual.getFullYear();
+//  var graficoAnual;
 
-// function buscarErrosMensais(fkComponente) {
+//  function buscarErrosMensais(fkComponente) {
 
 
-//   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
+//    fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
 //   mesLimite = dataAtual.getMonth() + 1;
 //   anoAtual = anoAtual;
 
