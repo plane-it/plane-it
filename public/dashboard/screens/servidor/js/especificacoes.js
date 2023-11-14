@@ -1,6 +1,14 @@
+verifsolicitacaoId();
+function verifsolicitacaoId() {
+  if (localStorage.solicitacaoId != null) {
+    var elementos = document.querySelectorAll('.respostaReq');
+    elementos.forEach(function(elemento) {
+      elemento.style.display = 'block';
+    });
+  }
+}
 
 buscarEspecificacoes();
-
 function buscarEspecificacoes() {
 
     fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;

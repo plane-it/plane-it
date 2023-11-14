@@ -38,8 +38,28 @@ function buscarRespostas(req, res) {
     }
 }
 
+function buscarSolicitacoes(req, res) {
+    const { aeroporto } = req.body
+
+    if (!aeroporto) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.buscarSolicitacoes(aeroporto).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 
 module.exports = {
     enviarReq,
-    buscarRespostas
+    buscarRespostas,
+    buscarSolicitacoes
 }

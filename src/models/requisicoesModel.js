@@ -17,8 +17,20 @@ function buscarRespostas(servidor) {
     return database.executar(sql)
 }
 
+function buscarSolicitacoes(aeroporto) {
+    const sql = `
+    SELECT * FROM tbPedidosInspecao
+    JOIN tbServidor ON idServ = fkServidor
+    JOIN tbColaborador ON idColab = fkRequisitante
+    WHERE tbServidor.fkAeroporto = ${aeroporto};    
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 
 module.exports = {
     enviarReq,
-    buscarRespostas
+    buscarRespostas,
+    buscarSolicitacoes
 }

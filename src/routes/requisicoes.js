@@ -10,5 +10,9 @@ router.post("/buscarRespostas", (req, res) => {
     requisicoesController.buscarRespostas(req, res)
 })
 
+router.post("/buscarSolicitacoes", (req, res) => {
+    requisicoesController.buscarSolicitacoes(req, res)
+})
+
 
 module.exports = router
