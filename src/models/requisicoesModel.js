@@ -11,6 +11,7 @@ function buscarRespostas(servidor) {
     const sql = `
     SELECT * FROM tbRespostaInspecao 
     JOIN tbPedidosInspecao ON fkPedido = idPedidoInspecao
+    JOIN tbColaborador ON idColab = fkRespondente
     WHERE fkServidor = ${servidor};
     `
     console.log(sql)

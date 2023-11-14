@@ -18,6 +18,20 @@ function buscarResposta() {
             .then((res) => {
                 if (!res.error) {
                     console.log(res)
+                    for(let i=0; i < res.length ; i++) {
+                        reqs.innerHTML+=`                        
+                        <tr>
+                        <td>
+                          ${res[i].motivo}
+                        </td>
+                        <td>
+                          ${res[i].nome}
+                        </td>
+                        <td>
+                        <a class="a-td" onclick="detalhes(${res[i].idRespostaInspecao}, '${res[i].nome}')">Acessar</a>
+                        </td>
+                      </tr>`
+                    }
                 } else {
                     alert('Erro ao solicitar a inspeção')
                 }
@@ -26,6 +40,14 @@ function buscarResposta() {
                 console.error("Error:", error);
             });
     }
+}
+
+function detalhes(resposta, respondente) {
+    tela1.style.display = "none";
+    tela2.style.display = "block";
+
+    identificandoRespondente.innerHTML = `Análise fornecida por ${respondente}`
+    analiseObtida.innerHTML = resposta;
 }
 
 
