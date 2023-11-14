@@ -161,7 +161,7 @@ async function getWeekly(tipoComponente){
   dashWeekly.data.datasets[0].backgroundColor = colors
   dashWeekly.update()
 
-  getKpi(data[0].avgValues, data[0].uni)
+  getKpi(data[0].metrica, data[0].uni)
 }
 getWeekly(1)
 
@@ -245,9 +245,11 @@ function getKpi(value, uni){
   const alerta = document.querySelector("#alerta")
   const risco = document.querySelector("#risco")
 
-  saudavel.innerText = `Menores que ${(value*0.8).toFixed(1)}${uni}`
-  alerta.innerText = `Maiores que ${(value*0.9).toFixed(1)}${uni}`
-  risco.innerText = `Maiores que ${(value).toFixed(1)}${uni}`
+  const floatValue = Number(value)
+
+  saudavel.innerText = `Menores que ${(floatValue*0.8).toFixed(1)}${uni}`
+  alerta.innerText = `Maiores que ${(floatValue*0.9).toFixed(1)}${uni}`
+  risco.innerText = `Maiores que ${(floatValue).toFixed(1)}${uni}`
 }
 
 function handleScrollSize(size){
