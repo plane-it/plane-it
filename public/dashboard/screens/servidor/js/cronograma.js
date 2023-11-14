@@ -278,7 +278,7 @@ function getKpi(value, uni){
 
   const floatValue = Number(value)
 
-  saudavel.innerText = `Menores que ${(floatValue*0.8).toFixed(1)}${uni}`
+  saudavel.innerText = `Menores igual que ${(floatValue*0.9).toFixed(1)}${uni}`
   alerta.innerText = `Maiores que ${(floatValue*0.9).toFixed(1)}${uni}`
   risco.innerText = `Maiores que ${(floatValue).toFixed(1)}${uni}`
 }
