@@ -249,8 +249,23 @@ async function getHistory(type, date){
     } 
     handleScrollSize(orderedData.length)
   }
+
+
+  const colors = orderedData.map((item) => {
+    if(data[0].metrica * 0.8 > item){
+      return "#28a745"
+    }
+    else if(data[0].metrica * 0.9 > item){
+      return "#ffc107"
+    }
+    else{
+      return "#dc3545"
+    }
+  })
+
   dashHistory.data.datasets[0].data = orderedData
   dashHistory.options.scales.x.max = Math.max(orderedData)
+  dashHistory.data.datasets[0].backgroundColor = colors
   dashHistory.data.labels = orderedLabels
   dashHistory.update()
 }
