@@ -252,13 +252,13 @@ async function getHistory(type, date){
   const colors = orderedData.map((item) => {
     console.log(item)
     if(data[0].metrica < item){
-      return "#28a745"
+      return "#dc3545"
     }
     else if(data[0].metrica * 0.9 < item){
       return "#ffc107"
     }
     else{
-      return "#dc3545"
+      return "#28a745"
     }
   })
 
