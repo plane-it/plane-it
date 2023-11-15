@@ -9,6 +9,10 @@ router.post("/buscarEspecificacoes", (req, res) => {
 router.post("/buscarComponentes", (req, res) => {
     componenteController.buscarComponentes(req, res)
 })
+router.post("/buscarSpecs", (req, res) => {
+    componenteController.buscarSpecs(req, res)
+})
+
 
 
 module.exports = router

@@ -21,7 +21,18 @@ function buscarComponentes(servidor) {
     return database.executar(sql)
 }
 
+function buscarSpecs(idComp) {
+    const sql = `
+        SELECT * FROM tbSpecs
+        JOIN tbComponente ON fkComponente = idComp
+        WHERE idComp = ${idComp};
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 module.exports = {
     buscarEspecificacoes,
-    buscarComponentes
+    buscarComponentes,
+    buscarSpecs
 }

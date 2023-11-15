@@ -46,7 +46,27 @@ function buscarComponentes(req, res) {
     }
 }
 
+function buscarSpecs(req, res) {
+    const { idComp } = req.body
+
+    if (!idComp) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        componenteModel.buscarSpecs(idComp).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     buscarEspecificacoes,
-    buscarComponentes
+    buscarComponentes,
+    buscarSpecs
 }

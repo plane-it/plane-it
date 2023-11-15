@@ -10,10 +10,29 @@ var chartBarras;
 
 var moedaAtual = "BRL";
 
+var idCpu;
+var cpuValorBRL;
+var cpuValorAtual;
+var maxMhzCpu;
+
+var idRam;
+var ramValorBRL;
+var ramValorAtual;
+var maxGbRam;
+
+var idDisco;
+var discoValorBRL;
+var discoValorAtual;
+var maxGbDisco;
+
+var custoTotalBRL;
+var custoTotalAtual;
+
 document.getElementById('slctMoeda').addEventListener('change', function () {
     var selectedOption = this.options[this.selectedIndex];
     var currencyName = selectedOption.getAttribute('data-currency-name');
-    atualizarMoeda(currencyName);
+    var currencyValue = selectedOption.value;
+    atualizarMoeda(currencyName, currencyValue);
 });
 
 function buscarMoedas() {
@@ -39,7 +58,7 @@ function buscarMoedas() {
     });
 
 }
-function atualizarMoeda(moeda) {
+function atualizarMoeda(moeda, valor) {
     var elements = document.getElementsByClassName('nomeMoeda');
     for (var i = 0; i < elements.length; i++) {
         elements[i].innerHTML = moeda;
@@ -51,9 +70,98 @@ function atualizarMoeda(moeda) {
         chartBarras.destroy();
     }
     moedaAtual = moeda;
+
+    cpuValorAtual = cpuValorBRL*valor;
+    ramValorAtual = ramValorBRL*valor;
+    discoValorAtual = discoValorBRL*valor;
+    custoTotalAtual = custoTotalBRL*valor
+
+    alert("disco valor em brl: " + discoValorBRL + " discovalor nesta moeda: " + discoValorAtual + " currency: " + valor)
+
+    cpuEstado.innerHTML = (maxMhzCpu/cpuValorAtual).toFixed(2);
+    ramEstado.innerHTML = (maxGbRam/ramValorAtual).toFixed(2);
+    discoEstado.innerHTML = (maxGbDisco/discoValorAtual).toFixed(2);
+    custoTotal.innerHTML = "$ " + custoTotalAtual.toFixed(2);
+
     chartFunc = garficoFunc(moeda);
     chartBarras = graficoBarras(moeda);
 }
+
+
+buscarIdComps()
+function buscarIdComps() {
+    let servidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
+
+    if (servidor != "" && servidor != undefined) {
+        fetch("/componente/buscarComponentes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "servidor": servidor
+            })
+        }).then((res) => res.json())
+            .then(async (res) => {
+                if (!res.error) {
+                    for (let i = 0; i < res.length; i++) {
+                        if (res[i].fktipoComponente == 1) {
+                            idCpu = res[i].idComp;
+                            cpuValorBRL = parseFloat(res[i].preco);
+                            await buscarSpecs(idCpu);
+                        } else if (res[i].fktipoComponente == 2) {
+                            idRam = res[i].idComp;
+                            ramValorBRL = parseFloat(res[i].preco);
+                            await buscarSpecs(idRam);
+                        } else if (res[i].fktipoComponente == 3) {
+                            idDisco = res[i].idComp;
+                            discoValorBRL = parseFloat(res[i].preco);
+                            await buscarSpecs(idDisco);
+                        }
+                    }
+                    custoTotalBRL = (cpuValorBRL+ramValorBRL+discoValorBRL)
+                    custoTotal.innerHTML = (cpuValorBRL+ramValorBRL+discoValorBRL).toFixed(2);
+                } else {
+                    Swal.fire("Erro!", "Componentes não encontrados", "error");
+                }
+            }).catch(function (error) {
+                console.error("Error:", error);
+            });
+    }
+}
+function buscarSpecs(idComp){
+    if (idComp != "" && idComp != undefined) {
+        fetch("/componente/buscarSpecs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "idComp": idComp
+            })
+        }).then((res) => res.json())
+            .then((res) => {
+                if (!res.error) {
+                    if (res[0].fktipoComponente == 1 && res[0].fkUnidadeMedida == 4) {
+                        maxMhzCpu = parseFloat(res[0].valor);
+                        cpuEstado.innerHTML = (maxMhzCpu/cpuValorBRL).toFixed(2);
+                    } else if (res[0].fktipoComponente == 2 && res[0].fkUnidadeMedida == 3) {
+                        maxGbRam = parseFloat(res[0].valor);
+                        ramEstado.innerHTML = (maxGbRam/ramValorBRL).toFixed(2);
+                    } else if (res[0].fktipoComponente == 3 && res[0].fkUnidadeMedida == 3) {
+                        maxGbDisco = parseFloat(res[0].valor);
+                        discoEstado.innerHTML = (maxGbDisco/discoValorBRL).toFixed(2);
+                    }
+                    
+                } else {
+                    Swal.fire("Erro!", "Componentes não encontrados", "error");
+                }
+            }).catch(function (error) {
+                console.error("Error:", error);
+            });
+    }
+}
+
 
 function mudarComponente() {
     var elements = document.getElementsByClassName('medidaComponente');
