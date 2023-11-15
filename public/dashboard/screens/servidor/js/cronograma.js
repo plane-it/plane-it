@@ -108,20 +108,17 @@ dashHist.addEventListener("wheel", (e) => {
     dashHistory.options.scales.x.min = currentMin-1
   }
   dashHistory.update()
-  // scrollBar()
+  scrollBar()
 })
 
 function scrollBar(){
   const newMin = dashHistory.options.scales.x.min
   const barPercentage = bar.style.width.split("%")[0]
 
-  const step = (100 - barPercentage) / dashHistory.data.datasets[0].data.length
+  const step = (100 - barPercentage) / (dashHistory.data.datasets[0].data.length - 16)
+  const currentStep = step*newMin
 
-  const nonOcoupiedSpace = step * newMin
-  console.log(nonOcoupiedSpace)
-  // const scrollStepSize = nonOcoupiedSpace / (data.length-16)
-
-  bar.style.marginLeft = nonOcoupiedSpace + "%"
+  bar.style.marginLeft = currentStep + "%"
 }
 
 async function getWeekly(tipoComponente){
