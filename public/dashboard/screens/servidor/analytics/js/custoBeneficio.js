@@ -3,6 +3,7 @@ nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR;
 buscarMoedas();
 garficoFunc("BRL", "MHz");
 graficoBarras("BRL", "MHz");
+atualizarMoeda("BRL")
 
 var chartFunc;
 var chartBarras;
@@ -235,11 +236,15 @@ function enviarAnalise() {
                                 iptMotivo.value = "";
                                 iptProblema.value = "";
     
-                                Swal.fire("Muito Bem!", "Solicitação enviada com sucesso!", "success");
-                                setTimeout(() => {
+                                Swal.fire({
+                                    title: 'Muito Bem!',
+                                    text: 'Solicitação enviada com sucesso!',
+                                    icon: 'success',
+                                    confirmButtonColor: '#254D32'
+                                  }).then(() => {
                                     fundo.style = "filter: opacity(100%) blur(0px); backdrop-filter: opacity(100%) blur(0px);"
                                     frente.style = "display:none"
-                                }, 2000);
+                                  });
                             } else {
                                 alert('Erro ao solicitar a inspeção')
                             }

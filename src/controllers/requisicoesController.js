@@ -95,6 +95,45 @@ function sianlizar(req, res) {
     }
 }
 
+function buscarSinalizados(req, res) {
+    const { idResposta } = req.body
+
+    if (!idResposta) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.buscarSinalizados(idResposta).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function revogarSinalizacao(req, res) {
+    const { idResposta, idComponente } = req.body
+
+    if (!idResposta || !idComponente) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        requisicoesModel.revogarSinalizacao(idResposta, idComponente).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+
 
 
 
@@ -104,5 +143,7 @@ module.exports = {
     buscarRespostas,
     buscarSolicitacoes,
     enviarResposta,
-    sianlizar
+    sianlizar,
+    buscarSinalizados,
+    revogarSinalizacao
 }

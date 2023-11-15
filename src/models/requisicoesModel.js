@@ -23,7 +23,11 @@ function buscarSolicitacoes(aeroporto) {
     SELECT * FROM tbPedidosInspecao
     JOIN tbServidor ON idServ = fkServidor
     JOIN tbColaborador ON idColab = fkRequisitante
-    WHERE tbServidor.fkAeroporto = ${aeroporto};    
+    WHERE tbServidor.fkAeroporto = ${aeroporto}
+    AND NOT EXISTS (
+        SELECT 1 FROM tbRespostaInspecao
+        WHERE tbPedidosInspecao.idPedidoInspecao = tbRespostaInspecao.fkPedido
+    );    
     `
     console.log(sql)
     return database.executar(sql)
@@ -51,11 +55,33 @@ function sianlizar(idComp, motivo, idResposta) {
     return database.executar(sql)
 }
 
+function buscarSinalizados(idResposta) {
+    const sql = `
+    SELECT * FROM tbComponentesSinalizados
+    JOIN tbComponente ON idComp = fkComponente
+    JOIN tbTipoComponente ON idTipoComponente = fktipoComponente
+    WHERE fkRespostaInspecao = ${idResposta}; 
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
+function revogarSinalizacao(idResposta, idComponente) {
+    const sql = `
+    DELETE FROM tbComponentesSinalizados WHERE fkRespostaInspecao = ${idResposta} AND fkComponente = ${idComponente}
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
+
 
 module.exports = {
     enviarReq,
     buscarRespostas,
     buscarSolicitacoes,
     enviarResposta,
-    sianlizar
+    sianlizar,
+    buscarSinalizados,
+    revogarSinalizacao,
 }

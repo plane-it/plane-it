@@ -152,6 +152,10 @@ async function enviar() {
                     Promise.all(promises)
                         .then(() =>
                             Swal.fire("Sucesso!", "Componentes sinalizados, resposta enviada!", "success")
+                            .then(() => {
+                                // Redirecionar para a página inspecao.html
+                                window.location.href = 'requisicao.html';
+                            })
                         )
 
                         .catch((error) => {

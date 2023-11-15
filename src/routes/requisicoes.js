@@ -22,4 +22,14 @@ router.post("/sianlizar", (req, res) => {
     requisicoesController.sianlizar(req, res)
 })
 
+router.post("/buscarSinalizados", (req, res) => {
+    requisicoesController.buscarSinalizados(req, res)
+})
+
+router.post("/revogarSinalizacao", (req, res) => {
+    requisicoesController.revogarSinalizacao(req, res)
+})
+
+
+
 module.exports = router
