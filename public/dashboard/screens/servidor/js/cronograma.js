@@ -281,6 +281,8 @@ function getKpi(value, uni){
 }
 
 function handleScrollSize(size){
+    dashHistory.options.scales.x.max = 15
+    dashHistory.options.scales.x.min = 0
     if(size == 0){
       bar.style.width = "100%"
       return
