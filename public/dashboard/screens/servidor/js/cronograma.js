@@ -252,7 +252,6 @@ async function getHistory(type, date){
   handleScrollSize(orderedData.length)
 
   const colors = orderedData.map((item) => {
-    console.log(item)
     if(data[0].metrica < item){
       return "#dc3545"
     }
@@ -286,6 +285,7 @@ function getKpi(value, uni){
 function handleScrollSize(size){
     dashHistory.options.scales.x.max = 15
     dashHistory.options.scales.x.min = 0
+    scrollBar()
     if(size == 0){
       bar.style.width = "100%"
       return
