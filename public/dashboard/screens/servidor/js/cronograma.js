@@ -229,7 +229,7 @@ async function getHistory(type, date){
   const data = await res.json()
 
   const orderedData = data.map((item) => item.value)
-  const orderedLabels = data.map((item) => item.hour + ":" + item.minute)
+  const orderedLabels = data.map((item) => item.hour + ":" + String(item.minute).padStart(2, "0"))
 
   if(data.length == 1){
     if(data[0].hour == 23 && data[0].minute == 55){
@@ -246,7 +246,7 @@ async function getHistory(type, date){
       }
 
       orderedData.push(0)
-      orderedLabels.push(lastHour + ":" + lastMinute)
+      orderedLabels.push(lastHour + ":" + String(lastMinute).padStart(2, "0"))
     } 
   }
   handleScrollSize(orderedData.length)
@@ -269,7 +269,7 @@ async function getHistory(type, date){
   dashHistory.data.labels = orderedLabels
   dashHistory.update()
 }
-getHistory(1,"2023-11-06")
+getHistory(1, timeline.value)
 
 function getKpi(value, uni){
   const saudavel = document.querySelector("#saudavel")
