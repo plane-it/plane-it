@@ -264,6 +264,7 @@ async function getHistory(type, date){
   })
 
   dashHistory.data.datasets[0].data = orderedData
+  dashHistory.data.datasets[0].label = data[0] ? data[0].uniName : ""
   dashHistory.data.datasets[0].backgroundColor = colors
   dashHistory.data.labels = orderedLabels
   dashHistory.update()
