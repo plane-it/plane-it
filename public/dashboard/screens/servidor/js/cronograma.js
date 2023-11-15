@@ -164,6 +164,7 @@ async function getWeekly(tipoComponente){
 
   dashWeekly.data.datasets[0].data = values
   dashWeekly.data.datasets[0].backgroundColor = colors
+  dashWeekly.data.datasets[0].label = data[0] ? data[0].uniName : ""
   dashWeekly.update()
 
   getKpi(data[0].metrica, data[0].uni)
