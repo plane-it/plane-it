@@ -250,10 +250,11 @@ async function getHistory(type, date){
   handleScrollSize(orderedData.length)
 
   const colors = orderedData.map((item) => {
-    if(data[0].metrica * 0.8 > item){
+    console.log(item)
+    if(data[0].metrica < item){
       return "#28a745"
     }
-    else if(data[0].metrica * 0.9 > item){
+    else if(data[0].metrica * 0.9 < item){
       return "#ffc107"
     }
     else{
@@ -266,7 +267,7 @@ async function getHistory(type, date){
   dashHistory.data.labels = orderedLabels
   dashHistory.update()
 }
-getHistory(1,timeline.value)
+getHistory(1,"2023-11-06")
 
 function getKpi(value, uni){
   const saudavel = document.querySelector("#saudavel")
