@@ -67,6 +67,8 @@ const dashHistory = new Chart(dashHist, {
         label: '# of Votes',
         data: [],
         backgroundColor: ['#dc3545','#ffc107', '#28a745'],
+        pointRadius: 5,
+        hoverRadius: 10,
       }]
     },
     options: {
