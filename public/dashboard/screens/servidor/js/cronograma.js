@@ -1,6 +1,5 @@
 const dash = document.querySelector("#dash")
 const dashHist = document.querySelector("#dashHist")
-const scrollbar = document.querySelector("#scrollbar")
 const bar = document.querySelector("#bar")
 const timeline = document.querySelector("#timelineDate")
 const component = document.querySelector("#component")
@@ -114,14 +113,22 @@ dashHist.addEventListener("wheel", (e) => {
   scrollBar()
 })
 
+bar.addEventListener("input",(e) => {
+  const step = 100 / (dashHistory.data.datasets[0].data.length - 16)
+  const position = Math.round(e.target.value / step)
+
+  dashHistory.options.scales.x.min = position
+  dashHistory.options.scales.x.max = position + 15
+  dashHistory.update()
+})
+
 function scrollBar(){
   const newMin = dashHistory.options.scales.x.min
-  const barPercentage = bar.style.width.split("%")[0]
 
-  const step = (100 - barPercentage) / (dashHistory.data.datasets[0].data.length - 16)
+  const step = 100 / (dashHistory.data.datasets[0].data.length - 16)
   const currentStep = step*newMin
 
-  bar.style.marginLeft = currentStep + "%"
+  bar.value = currentStep
 }
 
 async function getWeekly(tipoComponente){
@@ -237,12 +244,12 @@ async function getHistory(type, date){
 
   if(data.length == 0){
     dashHist.style.display = "none"
-    scrollbar.style.display = "none"
+    bar.style.display = "none"
     noData.style.display = "flex"
   }
   else{
     dashHist.style.display = "block"
-    scrollbar.style.display = "block"
+    bar.style.display = "block"
     noData.style.display = "none"
   }
   if(data.length == 1){
@@ -333,7 +340,7 @@ function handleScrollSize(size){
     dashHistory.options.scales.x.min = 0
     scrollBar()
     if(size == 0){
-      bar.style.width = "100%"
+      bar.style.setProperty("--scrollbar", "100%")
       return
     }
     const ocoupiedSpace = (16/size) * 100
@@ -342,7 +349,7 @@ function handleScrollSize(size){
       ? 100
       : ocoupiedSpace
 
-    bar.style.width = barsize+"%"
+    bar.style.setProperty("--scrollbar", barsize+"%")
 }
 
 function updateTimeline(date){
