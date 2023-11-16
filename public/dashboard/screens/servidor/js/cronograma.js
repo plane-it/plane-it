@@ -253,17 +253,19 @@ async function getHistory(type, date){
     } 
   }
   else{
+    let totalAdded = 0
     orderedLabels.forEach((item, index) => {
       if(
         index != data.length-1 &&
         (
-          data[index].hour != data[index+1].hour ^
+          (data[index].hour != data[index+1].hour &&  data[index+1].minute == 0) ^
           data[index].minute != data[index+1].minute - 5
         )
       ){
         const toAddValue = []
         let minute = data[index].minute + 5
         let hour = data[index].hour
+
         while(minute != data[index+1].minute || hour != data[index+1].hour){
           if(minute == 60){
             minute = 0
@@ -272,8 +274,9 @@ async function getHistory(type, date){
           toAddValue.push(hour + ":" + String(minute).padStart(2, "0"))
           minute = minute + 5
         }
-        orderedLabels.splice(index+1,0, ...toAddValue)
-        orderedData.splice(index+1,0, ...toAddValue.map(() => 0))
+        orderedLabels.splice(index+1+totalAdded, 0, ...toAddValue)
+        orderedData.splice(index+1+totalAdded, 0, ...toAddValue.map(() => 0))
+        totalAdded = totalAdded + toAddValue.length
       }
     })
   }
