@@ -1,7 +1,7 @@
 nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR;
 
 buscarMoedas();
-atualizarMoeda("BRL")
+atualizarMoeda("BRL", 1)
 
 var chartFunc;
 var chartBarras;
