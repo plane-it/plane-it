@@ -10,6 +10,9 @@
 .noPadding{
     padding: 0;
 }
+.noMargin{
+    margin: 0;
+}
 .cardMonth{
     width: 30%;
     min-width: calc(300px );
@@ -118,6 +121,8 @@
 }
 
 .selectParts{
+    min-width: 120px;
+    height: 35px;
     padding: 0.2rem 0.5rem;
     border-radius: 5px;
     border: 1px solid #3A7D44;
