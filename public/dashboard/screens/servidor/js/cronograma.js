@@ -199,7 +199,6 @@ async function getDaily(date){
   disk.innerText = ""
 
   if(dataDaily.length > 0){
-    console.log(dataDaily)
     dataDaily.map((item) => {
       if(item.type == 1){
         cpu.innerText = item.value.toFixed(1)+item.uni
@@ -252,6 +251,31 @@ async function getHistory(type, date){
       orderedData.push(0)
       orderedLabels.push(lastHour + ":" + String(lastMinute).padStart(2, "0"))
     } 
+  }
+  else{
+    orderedLabels.forEach((item, index) => {
+      if(
+        index != data.length-1 &&
+        (
+          data[index].hour != data[index+1].hour ^
+          data[index].minute != data[index+1].minute - 5
+        )
+      ){
+        const toAddValue = []
+        let minute = data[index].minute + 5
+        let hour = data[index].hour
+        while(minute != data[index+1].minute || hour != data[index+1].hour){
+          if(minute == 60){
+            minute = 0
+            hour = hour + 1
+          }
+          toAddValue.push(hour + ":" + String(minute).padStart(2, "0"))
+          minute = minute + 5
+        }
+        orderedLabels.splice(index+1,0, ...toAddValue)
+        orderedData.splice(index+1,0, ...toAddValue.map(() => 0))
+      }
+    })
   }
   handleScrollSize(orderedData.length)
 
