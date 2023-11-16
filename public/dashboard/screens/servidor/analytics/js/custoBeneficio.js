@@ -1,12 +1,12 @@
 nomeServ.innerHTML = "Análise de " + sessionStorage.NOME_SERVIDOR;
 
 buscarMoedas();
-garficoFunc("BRL", "MHz");
-graficoBarras("BRL", "MHz");
 atualizarMoeda("BRL")
 
 var chartFunc;
 var chartBarras;
+var chartRadar;
+var chartPizza;
 
 var moedaAtual = "BRL";
 
@@ -58,6 +58,7 @@ function buscarMoedas() {
     });
 
 }
+
 function atualizarMoeda(moeda, valor) {
     var elements = document.getElementsByClassName('nomeMoeda');
     for (var i = 0; i < elements.length; i++) {
@@ -69,6 +70,13 @@ function atualizarMoeda(moeda, valor) {
     if (chartBarras) {
         chartBarras.destroy();
     }
+    if (chartRadar) {
+        chartRadar.destroy();
+    }
+    if (chartPizza) {
+        chartPizza.destroy();
+    }
+
     moedaAtual = moeda;
 
     cpuValorAtual = cpuValorBRL*valor;
@@ -76,15 +84,15 @@ function atualizarMoeda(moeda, valor) {
     discoValorAtual = discoValorBRL*valor;
     custoTotalAtual = custoTotalBRL*valor
 
-    alert("disco valor em brl: " + discoValorBRL + " discovalor nesta moeda: " + discoValorAtual + " currency: " + valor)
-
     cpuEstado.innerHTML = (maxMhzCpu/cpuValorAtual).toFixed(2);
     ramEstado.innerHTML = (maxGbRam/ramValorAtual).toFixed(2);
     discoEstado.innerHTML = (maxGbDisco/discoValorAtual).toFixed(2);
     custoTotal.innerHTML = "$ " + custoTotalAtual.toFixed(2);
 
-    chartFunc = garficoFunc(moeda);
-    chartBarras = graficoBarras(moeda);
+    chartFunc = garficoFunc(moeda, "MHz");
+    chartBarras = graficoBarras(moeda, "MHz");
+    chartRadar = graficoRadar(cpuValorAtual, ramValorAtual, discoValorAtual, custoTotalAtual);
+    chartPizza = graficoPizza(cpuValorAtual, ramValorAtual, discoValorAtual)
 }
 
 
@@ -119,8 +127,19 @@ function buscarIdComps() {
                             await buscarSpecs(idDisco);
                         }
                     }
+
                     custoTotalBRL = (cpuValorBRL+ramValorBRL+discoValorBRL)
                     custoTotal.innerHTML = (cpuValorBRL+ramValorBRL+discoValorBRL).toFixed(2);
+
+                    if (chartRadar) {
+                        chartRadar.destroy();
+                        chartRadar = graficoRadar(cpuValorBRL, ramValorBRL, discoValorBRL, custoTotalBRL);
+                    }
+                    if (chartPizza) {
+                        chartPizza.destroy();
+                        chartPizza = graficoPizza(cpuValorBRL, ramValorBRL, discoValorBRL);
+                    }
+
                 } else {
                     Swal.fire("Erro!", "Componentes não encontrados", "error");
                 }
@@ -187,6 +206,7 @@ function mudarComponente() {
     if (chartBarras) {
         chartBarras.destroy();
     }
+
     chartFunc = garficoFunc(moedaAtual, medidaComponente);
     chartBarras = graficoBarras(moedaAtual, medidaComponente);
 }
@@ -215,14 +235,14 @@ function garficoFunc(moeda, medidaComponente) {
                 label: 'Mediana',
                 data: valoresY,
                 fill: false,
-                borderColor: '#3A7D44',
+                borderColor: 'rgba(255, 99, 132, 1)',
                 tension: 0.1
             },
             {
                 label: 'Desempenho do Componente',
                 data: valoresDesempenho,
                 fill: false,
-                borderColor: '#FF0000',
+                borderColor: '#8eac7e',
                 tension: 0.1
             }]
         },
@@ -248,8 +268,8 @@ function garficoFunc(moeda, medidaComponente) {
 
 }
 function graficoBarras(moeda, medidaComponente) {
-    var ctx = document.getElementById('barras').getContext('2d');
-    var chart = new Chart(ctx, {
+    var ctxBar = document.getElementById('barras').getContext('2d');
+    var chartBarras = new Chart(ctxBar, {
         type: 'bar',
         data: {
             labels: ['CPU Específica', 'Mediana dos Servidores'],
@@ -257,11 +277,11 @@ function graficoBarras(moeda, medidaComponente) {
                 label: `Desempenho por ${moeda} (${medidaComponente}/$)`,
                 data: [5.17, 4.2],
                 backgroundColor: [
-                    '#FF0000',
-                    '#3A7D44'
+                    'rgba(244, 69, 69, 0.604) ',
+                    '#8eac7e'
                 ],
                 borderColor: [
-                    '#FF0000',
+                    'rgba(255, 99, 132, 1)',
                     '#3A7D44'
                 ],
                 borderWidth: 1
@@ -283,8 +303,80 @@ function graficoBarras(moeda, medidaComponente) {
             aspectRatio: 1.2
         }
     });
-    return chart;
+    return chartBarras;
 }
+
+function graficoRadar(cpuValor, ramValor, discoValor, orcamentoTotal) {
+    var dados = {
+        labels: ['CPU', 'RAM', 'Disco'],
+        datasets: [{
+            label: 'Distribuição de Orçamento',
+            data: [cpuValor, ramValor, discoValor],
+            backgroundColor: ['rgba(244, 69, 69, 0.604) ', '#8eac7e', 'rgba(255, 206, 86, 0.6)'],
+            borderColor: ['rgba(255, 99, 132, 1)', '#3A7D44', 'rgba(255, 206, 86, 1)'],
+            borderWidth: 2,
+        }],
+    };
+
+    var opcoes = {
+        scales: {
+            r: {
+                beginAtZero: true,
+                max: orcamentoTotal * 1.1,
+                ticks: {
+                    stepSize: orcamentoTotal / 10,
+                    display: false 
+                },
+                gridLines: {
+                    display: false
+                }
+            },
+        },
+        aspectRatio: 1.2
+    };
+
+    var ctx = document.getElementById('graficoRadar').getContext('2d');
+
+    var graficoRadar = new Chart(ctx, {
+        type: 'radar',
+        data: dados,
+        options: opcoes,
+    });
+
+    return graficoRadar;
+}
+
+function graficoPizza(cpuValor, ramValor, discoValor) {
+    var dados = {
+        labels: ['CPU', 'RAM', 'Disco'],
+        datasets: [{
+            label: 'Distribuição de Orçamento',
+            data: [cpuValor, ramValor, discoValor],
+            backgroundColor: ['rgba(244, 69, 69, 0.604) ', '#8eac7e', 'rgba(255, 206, 86, 0.6)'],
+            borderColor: ['rgba(255, 99, 132, 1)', '#3A7D44', 'rgba(255, 206, 86, 1)'],
+            borderWidth: 2,
+        }],
+    };
+
+    var opcoes = {
+        aspectRatio: 1.2
+    };
+
+    var ctx = document.getElementById('graficoPizza').getContext('2d');
+
+    var graficoPizza = new Chart(ctx, {
+        type: 'pie',
+        data: dados,
+        options: opcoes,
+    });
+
+    return graficoPizza;
+}
+
+
+
+
+
 
 
 function aparecerTela() {
