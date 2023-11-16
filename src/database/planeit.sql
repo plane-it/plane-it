@@ -46,7 +46,7 @@ create table tbColaborador(
 
 create table tbServidor(
 	idServ int primary key auto_increment,
-	codAutentic char(6) not null, -- Cerca de 1 milhão e 300 mil possibilidades
+	codAutentic char(17) not null, -- Cerca de 1 milhão e 300 mil possibilidades
 	apelido varchar(50) not null,
 	sistemaOp varchar(25),
 	ip varchar(12),	
@@ -101,6 +101,7 @@ create table tbMetrica(
 CREATE TABLE tbProcessos(
 	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
+	totalProcessos INT,
 	fkServidor INT,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
@@ -108,7 +109,7 @@ CREATE TABLE tbProcessos(
 create table tbRegistro(
 	idRegst int primary key auto_increment,
 	valor varchar(100) not null,
-	dataHora dateTime default now(),
+	dataHora dateTime default(now()),
     alerta boolean,
     fkServidor int,
 		foreign key (fkServidor) references tbServidor(idServ),
