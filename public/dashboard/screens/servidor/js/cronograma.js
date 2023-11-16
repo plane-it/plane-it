@@ -4,6 +4,7 @@ const scrollbar = document.querySelector("#scrollbar")
 const bar = document.querySelector("#bar")
 const timeline = document.querySelector("#timelineDate")
 const component = document.querySelector("#component")
+const noData = document.querySelector("#noData")
 
 let yesterday = new Date()
 yesterday.setDate(new Date().getDate()-2)
@@ -214,7 +215,7 @@ async function getDaily(date){
 }
 getDaily(timeline.value)
 
-async function getHistory(type, date){
+async function getHistory(type, date){ 
   const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
 
   const res = await fetch("/cronograma/valores", {
@@ -234,6 +235,16 @@ async function getHistory(type, date){
   const orderedData = data.map((item) => item.value)
   const orderedLabels = data.map((item) => item.hour + ":" + String(item.minute).padStart(2, "0"))
 
+  if(data.length == 0){
+    dashHist.style.display = "none"
+    scrollbar.style.display = "none"
+    noData.style.display = "flex"
+  }
+  else{
+    dashHist.style.display = "block"
+    scrollbar.style.display = "block"
+    noData.style.display = "none"
+  }
   if(data.length == 1){
     if(data[0].hour == 23 && data[0].minute == 55){
       orderedData.shift(0)

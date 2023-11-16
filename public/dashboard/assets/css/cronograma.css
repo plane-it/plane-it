@@ -171,3 +171,10 @@
 .red{
     background: #dc3545
 }
+
+.txt-bold{
+    font-weight: 800 !important;
+}
+.txt-normal{
+    text-align: center;
+}
