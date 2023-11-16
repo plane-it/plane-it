@@ -41,7 +41,8 @@ function getValores(idServidor, data, tipoComponente){
             um.sinal,
             m.valor,
             HOUR(r.dataHora),
-            FLOOR(MINUTE(r.dataHora)/5)*5;
+            FLOOR(MINUTE(r.dataHora)/5)*5
+        ORDER BY hour, minute;
     `
 
     return database.executar(sql)
