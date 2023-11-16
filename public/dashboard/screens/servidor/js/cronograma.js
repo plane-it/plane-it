@@ -83,7 +83,7 @@ const dashHistory = new Chart(dashHist, {
        },
         y: {
           beginAtZero: true,
-        }
+       }
       },
       plugins: {
         legend: {
@@ -254,7 +254,7 @@ async function getHistory(type, date){
   }
   else{
     let totalAdded = 0
-    orderedLabels.forEach((item, index) => {
+    orderedLabels.forEach((_, index) => {
       if(
         index != data.length-1 &&
         (
@@ -293,6 +293,9 @@ async function getHistory(type, date){
       return "#28a745"
     }
   })
+
+  dashHistory.options.scales.y.max = Math.round(Math.max(...orderedData)*1.1)
+  dashHistory.update()
 
   dashHistory.data.datasets[0].data = orderedData
   dashHistory.data.datasets[0].label = data[0] ? data[0].uniName : ""
