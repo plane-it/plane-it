@@ -124,6 +124,7 @@ function scrollBar(){
 }
 
 async function getWeekly(tipoComponente){
+  const metric = document.querySelector("#metric")
   const serverId = sessionStorage.ID_SERVIDOR_ESCOLHIDO
 
   const res = await fetch("/cronograma/medidaSemanal", {
@@ -161,6 +162,8 @@ async function getWeekly(tipoComponente){
     if(!item) return 0
     return Math.round(item.avgValues * 10) / 10
   })
+
+  metric.innerText = data[0] ? `${data[0].uniName} - ${data[0].uni}` : ""
 
   dashWeekly.data.datasets[0].data = values
   dashWeekly.data.datasets[0].backgroundColor = colors
