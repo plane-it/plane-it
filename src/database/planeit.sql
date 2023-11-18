@@ -127,3 +127,40 @@ create table tbChamados(
 	fkRegistro int,
 		foreign key (fkRegistro) references tbRegistro(idRegst)
 );
+
+create table tbPedidosInspecao(
+	idPedidoInspecao int primary key auto_increment,
+	motivo varchar(45) not null,
+	descricao varchar(500) not null,
+	fkServidor int not null,
+		foreign key (fkServidor) references tbServidor(idServ),
+	fkRequisitante int not null,
+		foreign key (fkRequisitante) references tbColaborador(idColab)
+);
+
+create table tbRespostaInspecao(
+	idRespostaInspecao int primary key auto_increment,
+	resposta varchar(500) not null,
+	fkRespondente int not null,
+		foreign key (fkRespondente) references tbColaborador(idColab),
+	fkPedido int not null,
+		foreign key (fkPedido) references tbPedidosInspecao(idPedidoInspecao)
+);
+
+create table tbComponenteSinalizados(
+	fkRespostaInspecao int,
+		foreign key (fkRespostaInspecao) references tbRespostaInspecao(idRespostaInspecao),
+	fkComponente int, 
+		foreign key (fkComponente) references tbComponente(idComp),
+	motivo varchar(100) not null,	
+	primary key (fkRespostaInspecao, fkComponente)
+);
+
+create table tbSpecs (
+	idSpec int primary key auto_increment,
+	valor char(20) not null,
+	fkComponente int,
+		foreign key (fkComponente) references tbComponente(idComp),
+	fkUnidadeMedida int,
+		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
+);

@@ -1,6 +1,17 @@
 
 buscarEstadoServidor();
 
+verifID_SOLICITACAO();
+function verifID_SOLICITACAO() {
+  if (localStorage.ID_SOLICITACAO != undefined) {
+    var elementos = document.querySelectorAll('.respostaReq');
+    elementos.forEach(function(elemento) {
+      elemento.style.display = 'block';
+    });
+  }
+}
+
+
 function buscarEstadoServidor() {
 
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
