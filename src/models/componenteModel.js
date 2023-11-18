@@ -31,8 +31,26 @@ function buscarSpecs(idComp) {
     return database.executar(sql)
 }
 
+function buscarMedianPreco(idEmpresa) {
+    const sql = `
+    CALL MedianPriceByComponentType(${idEmpresa});
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
+function buscarMedianBeneficio(idEmpresa) {
+    const sql = `
+    CALL MedianBeneficioByType(${idEmpresa});
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 module.exports = {
     buscarEspecificacoes,
     buscarComponentes,
-    buscarSpecs
+    buscarSpecs,
+    buscarMedianPreco,
+    buscarMedianBeneficio
 }

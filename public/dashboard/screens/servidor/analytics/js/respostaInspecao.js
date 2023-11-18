@@ -1,5 +1,6 @@
 nomeServ.innerHTML = "Análises";
 apresentacaoServers.innerHTML = "Histórico de análises realizadas para o " + sessionStorage.NOME_SERVIDOR;
+voltar.href = 'custoBeneficio.html';
 
 var idRespostaBackup;
 

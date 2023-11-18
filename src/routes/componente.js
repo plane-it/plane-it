@@ -12,7 +12,11 @@ router.post("/buscarComponentes", (req, res) => {
 router.post("/buscarSpecs", (req, res) => {
     componenteController.buscarSpecs(req, res)
 })
-
-
+router.post("/buscarMedianPreco", (req, res) => {
+    componenteController.buscarMedianPreco(req, res)
+})
+router.post("/buscarMedianBeneficio", (req, res) => {
+    componenteController.buscarMedianBeneficio(req, res)
+})
 
 module.exports = router

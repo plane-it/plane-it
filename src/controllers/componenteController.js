@@ -65,8 +65,48 @@ function buscarSpecs(req, res) {
     }
 }
 
+function buscarMedianPreco(req, res) {
+    const { idEmpresa } = req.body
+
+    if (!idEmpresa) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        componenteModel.buscarMedianPreco(idEmpresa).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function buscarMedianBeneficio(req, res) {
+    const { idEmpresa } = req.body
+
+    if (!idEmpresa) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        componenteModel.buscarMedianBeneficio(idEmpresa).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
 module.exports = {
     buscarEspecificacoes,
     buscarComponentes,
-    buscarSpecs
+    buscarSpecs,
+    buscarMedianPreco,
+    buscarMedianBeneficio
 }
