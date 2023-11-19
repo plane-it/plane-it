@@ -1,4 +1,6 @@
 
+localStorage.removeItem('ID_SOLICITACAO')
+
 buscarServidor();
 
 

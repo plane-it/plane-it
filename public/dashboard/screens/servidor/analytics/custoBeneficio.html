@@ -20,6 +20,7 @@
 <!-- <link rel="stylesheet" href="../../../assets/css/bootstrap.css"> -->
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="../../../assets/demo/demo.css" rel="stylesheet" />
+
 </head>
 
 <body class="">
@@ -47,7 +48,7 @@
                             <p>Analytics</p>
                         </a>
                         <div class="li-dropdown-content">
-                            <a href="analytics/custoBeneficio.html" class="adm">Custo-benefício</a>
+                            <a class="adm">Custo-benefício</a>
                         </div>
                     </li>
                     <li>
@@ -58,7 +59,7 @@
                     </li>
 
                     <li>
-                        <a href="../../listas/listaServidores.html">
+                        <a href="../../listas/listaServidores.html" id="btnVoltar">
                             <i class="nc-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
@@ -144,7 +145,7 @@
                         </div>
                     </div>
                     <div class="col-md-5 pr-1 blackFont">
-                        <div class="form-group pilha">
+                        <div class="form-group pilha" style="display: none;">
                             <label>Quantidade de chamados abertos no último mês: </label>
                             <a>23</a>
                         </div>
@@ -152,7 +153,7 @@
                 </div>
                 <div class="row" style="display: flex; justify-content: space-evenly;">
                     <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
+                        <div class="card card-stats" id="cardCPU">
                             <div class="card-body">
                                 <div class="numbers left">
                                     <p class="card-category">CPU</p>
@@ -172,7 +173,7 @@
                                     </div>
                                     <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                            <p class="card-category"><a class="medidaComponente"></a> por <a class="nomeMoeda"></a></p>
+                                            <p class="card-category">Mhz por <a class="nomeMoeda"></a></p>
                                             <p class="card-category">gasto</p>
                                             <p class="card-title" id="cpuEstado">--</p>
                                             <p></p>
@@ -187,7 +188,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
+                        <div class="card card-stats" id="cardRAM">
                             <div class="card-body">
                                 <div class="numbers left">
                                     <p class="card-category">RAM</p>
@@ -222,7 +223,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
+                        <div class="card card-stats" id="cardDISCO">
                             <div class="card-body">
                                 <div class="numbers left">
                                     <p class="card-category">Disco</p>
@@ -259,7 +260,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
+                        <div class="card card-stats" id="cardTOTAL">
                             <div class="card-body">
                                 <div class="numbers left">
                                     <p class="card-category">Geral</p>
@@ -335,6 +336,40 @@
                             </div>
                             <div class="card-footer ">
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h5 class="card-title">Distribuição de orçamento</h5>
+                            </div>
+                            <div class="card-body two-graphics">
+                                <div style="height: 300px; width: 420px;">
+                                    <canvas id="graficoRadar"></canvas>
+                                </div>
+                                <div style="height: 300px; width: 420px;">
+                                    <canvas id="graficoPizza"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Análises</h5>
+                                <p class="card-category">Já possuí uma solicitação de snálise?</p>
+                            </div>
+                            <div class="card-body">
+                                    <div class="update px-3 alinhado-final">
+                                        <button class="btn btn-primary btn-round" style="background-color: #254D32;" onclick="verRespostas()">Verificar respostas</button>
+                                    </div>
+                            </div>
+                            <div class="card-footer"></div>
                         </div>
                     </div>
                 </div>
@@ -503,6 +538,7 @@
             </div>
         </div>
         <!--   Core JS Files   -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../../assets/js/core/jquery.min.js"></script>
         <script src="../../../assets/js/core/popper.min.js"></script>
         <script src="../../../assets/js/core/bootstrap.min.js"></script>
@@ -523,6 +559,7 @@
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 
 
