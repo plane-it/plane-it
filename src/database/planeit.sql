@@ -176,7 +176,7 @@ create table voos(
     horaChegadaPrevista datetime,
     horaChegadaReal datetime,
     situacao varchar(30)
-;
+);
 
 drop procedure if exists deleteByMonth;
 DROP TEMPORARY TABLE if exists TEMP;
