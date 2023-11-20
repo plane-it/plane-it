@@ -226,6 +226,7 @@ function buscarUltimosRegistrosLive(tipo) {
                   console.log("Aconteceu algum erro (res.error = true)")
               }
               else {
+                  textMetrica.innerHTML = res[0].sinal
                   for (let i = 0; i < res.length; i++) {
                       hora = formataHora(res[i].dataHora)
                       dadosObtidosHora[i] = hora
