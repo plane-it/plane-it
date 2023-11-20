@@ -226,7 +226,8 @@ function buscarUltimosRegistrosLive(tipo) {
                   console.log("Aconteceu algum erro (res.error = true)")
               }
               else {
-                  textMetrica.innerHTML = res[0].sinal
+                  const metrica = res[0].sinal
+                  textMetrica.innerHTML = metrica
                   for (let i = 0; i < res.length; i++) {
                       hora = formataHora(res[i].dataHora)
                       dadosObtidosHora[i] = hora
@@ -247,7 +248,7 @@ function buscarUltimosRegistrosLive(tipo) {
                       plotarGrafico(dadosObtidosHora, dadosObtidosValor)
                       ultimoIdInserido = res[res.length - 1].idRegst
                   }
-                  atualizarKPI()
+                  atualizarKPI(metrica)
               }
             })
             .catch(function (res) {
@@ -257,7 +258,7 @@ function buscarUltimosRegistrosLive(tipo) {
     }
 }
 
-function atualizarKPI() {
+function atualizarKPI(metrica) {
     // Media 
     somaValoresRegistros = 0;
 
@@ -269,7 +270,7 @@ function atualizarKPI() {
     }
 
     mediaRegistrosPlotados = (somaValoresRegistros / dadosObtidosValor.length).toFixed(2);
-    kpiMedia.innerHTML = mediaRegistrosPlotados
+    kpiMedia.innerHTML = mediaRegistrosPlotados + metrica
 
     // Alertas
     kpiQtd.innerHTML = qtdAlertas
