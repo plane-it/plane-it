@@ -1,16 +1,27 @@
+var graficoPlotado;
+var graficoAnual;
 
-buscarEstadoServidor();
+var dataAtual = new Date();
+var anoAtual = dataAtual.getFullYear();
+
+var dadosObtidosHora = [];
+var dadosObtidosValor = [];
+var ultimoIdInserido;
+
+var qtdAlertas = 0;
+let interval;
+
+selectUpdate(1);
 
 verifID_SOLICITACAO();
 function verifID_SOLICITACAO() {
   if (localStorage.ID_SOLICITACAO != undefined) {
     var elementos = document.querySelectorAll('.respostaReq');
-    elementos.forEach(function(elemento) {
+    elementos.forEach(function (elemento) {
       elemento.style.display = 'block';
     });
   }
 }
-
 
 function buscarEstadoServidor() {
 
@@ -68,14 +79,7 @@ function buscarEstadoServidor() {
       });
   }
 }
-
-var dataAtual = new Date();
-var anoAtual = dataAtual.getFullYear();
-var graficoAnual;
-
 function buscarErrosMensais(fkComponente) {
-
-
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
   mesLimite = dataAtual.getMonth() + 1;
   anoAtual = anoAtual;
@@ -121,7 +125,6 @@ function buscarErrosMensais(fkComponente) {
       });
   }
 }
-
 function plotarGraficoAnual(labels, data) {
   if (typeof graficoAnual !== 'undefined') {
     graficoAnual.destroy()
@@ -148,6 +151,9 @@ function plotarGraficoAnual(labels, data) {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
       legend: {
         display: false,
         position: 'top'
@@ -191,194 +197,197 @@ function plotarGraficoAnual(labels, data) {
     }
   });
 }
-
-
-var dadosObtidosHora = [];
-var dadosObtidosValor = [];
-var ultimoIdInserido;
-
-var qtdAlertas = 0;
-let interval;
-
-buscarUltimosRegistrosLive(1)
 function buscarUltimosRegistrosLive(tipo) {
-    fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
-    fkTipoComponente = tipo;
+  fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
+  fkTipoComponente = tipo;
 
-    if (fkServidor == "" || fkServidor == undefined) {
-        alert("Servidor não encontrado!")
-    } else {
-        if(interval != undefined) clearInterval(interval)
-        interval = setInterval(() => {
-          fetch("/registros/buscarUltimosRegistrosLive", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                  "fkServidor": fkServidor,
-                  "fkTipoComponente": fkTipoComponente
-              })
-          })
-          .then((res) => res.json())
-          .then((res) => {
-              if (res.error) {
-                  console.log("Aconteceu algum erro (res.error = true)")
-              }
-              else {
-                  const metrica = res[0].sinal
-                  textMetrica.innerHTML = metrica
-                  for (let i = 0; i < res.length; i++) {
-                      hora = formataHora(res[i].dataHora)
-                      dadosObtidosHora[i] = hora
-
-                      valor = res[i].valor
-                      dadosObtidosValor[i] = valor
-
-                      if (res[i].alerta == 1) {
-                          qtdAlertas += 1;
-                      }
-
-                      if (i == res.length - 1) {
-                          ultimoCapturado = res[i].idRegst;
-                      }
-                  }
-
-                  if (ultimoCapturado != ultimoIdInserido) {
-                      plotarGrafico(dadosObtidosHora, dadosObtidosValor)
-                      ultimoIdInserido = res[res.length - 1].idRegst
-                  }
-                  atualizarKPI(metrica)
-              }
-            })
-            .catch(function (res) {
-              console.log(res)
-            });
-        }, 1000)
-    }
-}
-
-function atualizarKPI(metrica) {
-    // Media 
-    somaValoresRegistros = 0;
-
-    for (let i = 0; i < dadosObtidosValor.length; i++) {
-        if (!isNaN(parseFloat(dadosObtidosValor[i]))) {
-            let numeroConvertido = parseFloat(dadosObtidosValor[i]);
-            somaValoresRegistros += numeroConvertido;
-        }
-    }
-
-    mediaRegistrosPlotados = (somaValoresRegistros / dadosObtidosValor.length).toFixed(2);
-    kpiMedia.innerHTML = mediaRegistrosPlotados + metrica
-
-    // Alertas
-    kpiQtd.innerHTML = qtdAlertas
-    qtdAlertas = 0;
-
-}
-
-
-buscarLimite(1)
-function buscarLimite(tipo) {
-    fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
-    if (fkServidor == "" || fkServidor == undefined) {
-        alert("Servidor não encontrado!")
-    } else {
-        fetch("/componente/buscarEspecificacoes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "fkServidor": fkServidor
-            })
-        }).then((res) => res.json())
-            .then((res) => {
-                if (res.error) {
-                    console.log("Aconteceu algum erro (res.error = true)")
-                }
-                else {
-                    for(let i = 0; i < res.length; i++) {
-                        if (res[i].tipo == tipo) {
-                            console.log(res[i])
-                            const limite = res[i].valor;
-                            kpiLimite.innerHTML = limite + res[i].sinal
-                        }
-                    }
-                }
-            }).catch(function (res) {
-                console.log(res)
-                console.log("Aconteceu algum erro (res.error = false)")
-            });
-    }
-}
-
-function plotarGrafico(dadosObtidosHora, dadosObtidosValor) {
-    var ctx = document.getElementById("chartVelocidadeDisco");
-
-    var dataFirst = {
-        data: dadosObtidosValor,
-        fill: false,
-        label: "Uso de disco",
-        borderColor: "#3A7D44",
-        backgroundColor: "transparent",
-        pointBorderColor: "#3A7D44",
-        pointRadius: 4,
-        pointHoverRadius: 4,
-        pointBorderWidth: 8,
-    };
-
-    var speedData = {
-        labels: dadosObtidosHora,
-        datasets: [dataFirst],
-    };
-
-    var chartOptions = {
-        legend: {
-            display: false,
-            position: "top",
+  if (fkServidor == "" || fkServidor == undefined) {
+    alert("Servidor não encontrado!")
+  } else {
+    if (interval != undefined) clearInterval(interval)
+    interval = setInterval(() => {
+      fetch("/registros/buscarUltimosRegistrosLive", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
-    };
+        body: JSON.stringify({
+          "fkServidor": fkServidor,
+          "fkTipoComponente": fkTipoComponente
+        })
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.error) {
+            console.log("Aconteceu algum erro (res.error = true)")
+          }
+          else {
+            if (fkTipoComponente == 1) {
+              for (let i = 0; i < res.length; i++) {
+                if (res[i].fktipoComponente == 1 && res[i].sinal == "MHz") {
+                  var metrica = "MHz";
+                }
+              }
+            } else {
+              var metrica = res[0].sinal;
+            }
+            textMetrica.innerHTML = metrica
+            for (let i = 0; i < res.length; i++) {
+              hora = formataHora(res[i].dataHora)
+              dadosObtidosHora[i] = hora
 
-    var lineChart = new Chart(ctx, {
-        type: "line",
-        hover: false,
-        data: speedData,
-        options: chartOptions,
-    });
+              if (fkTipoComponente == 1) {
+                if (res[i].sinal = 'MHz') {
+                  valor = res[i].valor
+                  dadosObtidosValor[i] = valor;
+                }
+              } else {
+                valor = res[i].valor
+                dadosObtidosValor[i] = valor;
+              }
+
+              if (res[i].alerta == 1) {
+                qtdAlertas += 1;
+              }
+              if (i == res.length - 1) {
+                ultimoCapturado = res[i].idRegst;
+              }
+            }
+
+            if (ultimoCapturado != ultimoIdInserido) {
+              if (graficoPlotado) {
+                graficoPlotado.destroy();
+              }
+              graficoPlotado = plotarGrafico(dadosObtidosHora, dadosObtidosValor);
+              ultimoIdInserido = res[res.length - 1].idRegst;
+            }
+            atualizarKPI(metrica);
+          }
+        })
+        .catch(function (res) {
+        });
+    }, 1000)
+  }
+}
+function atualizarKPI(metrica) {
+  somaValoresRegistros = 0;
+
+  for (let i = 0; i < dadosObtidosValor.length; i++) {
+    if (!isNaN(parseFloat(dadosObtidosValor[i]))) {
+      let numeroConvertido = parseFloat(dadosObtidosValor[i]);
+      somaValoresRegistros += numeroConvertido;
+    }
+  }
+
+  mediaRegistrosPlotados = (somaValoresRegistros / dadosObtidosValor.length).toFixed(2);
+  kpiMedia.innerHTML = mediaRegistrosPlotados + metrica
+
+  // Alertas
+  kpiQtd.innerHTML = qtdAlertas
+  qtdAlertas = 0;
 
 }
-
+function buscarLimite(tipo) {
+  fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
+  if (fkServidor == "" || fkServidor == undefined) {
+    alert("Servidor não encontrado!")
+  } else {
+    fetch("/componente/buscarEspecificacoes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "fkServidor": fkServidor
+      })
+    }).then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          console.log("Aconteceu algum erro (res.error = true)")
+        }
+        else {
+          for (let i = 0; i < res.length; i++) {
+            if (res[i].tipo == tipo) {
+              if (tipo == 1 && res[i].fkUnidadeMedida == 4) {
+                var limite = res[i].valor;
+                kpiLimite.innerHTML = limite + res[i].sinal
+              } else if (tipo != 1) {
+                var limite = res[i].valor;
+                kpiLimite.innerHTML = limite + res[i].sinal
+              }
+            }
+          }
+        }
+      }).catch(function (res) {
+        console.log("Aconteceu algum erro (res.error = false)")
+      });
+  }
+}
 function formataData(dataISO) {
-    let data = new Date(dataISO);
+  let data = new Date(dataISO);
 
-    let dia = data.getUTCDate();
-    let mes = data.getUTCMonth() + 1;
-    let ano = data.getUTCFullYear();
+  let dia = data.getUTCDate();
+  let mes = data.getUTCMonth() + 1;
+  let ano = data.getUTCFullYear();
 
-    if (dia < 10) dia = '0' + dia;
-    if (mes < 10) mes = '0' + mes;
+  if (dia < 10) dia = '0' + dia;
+  if (mes < 10) mes = '0' + mes;
 
-    return `${dia}/${mes}/${ano}`;
+  return `${dia}/${mes}/${ano}`;
 }
-
 function formataHora(dataISO) {
-    let data = new Date(dataISO);
+  let data = new Date(dataISO);
 
-    let hora = data.getUTCHours() - 3;
-    let minuto = data.getUTCMinutes();
-    let segundo = data.getUTCSeconds();
+  let hora = data.getUTCHours() - 3;
+  let minuto = data.getUTCMinutes();
+  let segundo = data.getUTCSeconds();
 
-    if (hora < 10) hora = '0' + hora;
-    if (minuto < 10) minuto = '0' + minuto;
-    if (segundo < 10) segundo = '0' + segundo;
+  if (hora < 10) hora = '0' + hora;
+  if (minuto < 10) minuto = '0' + minuto;
+  if (segundo < 10) segundo = '0' + segundo;
 
-    return `${hora}:${minuto}:${segundo}`;
+  return `${hora}:${minuto}:${segundo}`;
 }
+function plotarGrafico(dadosObtidosHora, dadosObtidosValor) {
+  var ctx = document.getElementById("chartVelocidadeDisco");
 
-function selectUpdate(tipo){
-  buscarErrosMensais(tipo)
-  buscarUltimosRegistrosLive(tipo)
-  buscarLimite(tipo)
+  var dataFirst = {
+    data: dadosObtidosValor,
+    fill: false,
+    label: "Uso de disco",
+    borderColor: "#3A7D44",
+    backgroundColor: "transparent",
+    pointBorderColor: "#3A7D44",
+    pointRadius: 4,
+    pointHoverRadius: 4,
+    pointBorderWidth: 8,
+  };
+
+  var speedData = {
+    labels: dadosObtidosHora,
+    datasets: [dataFirst],
+  };
+
+  var chartOptions = {
+    maintainAspectRatio: false, // Adicione esta linha
+    legend: {
+      display: false,
+      position: "top",
+    },
+  };
+
+  var lineChart = new Chart(ctx, {
+    type: "line",
+    hover: false,
+    data: speedData,
+    options: chartOptions,
+  });
+
+  return lineChart;
+}
+function selectUpdate(tipo) {
+  buscarErrosMensais(tipo);
+  buscarUltimosRegistrosLive(tipo);
+  buscarLimite(tipo);
+  buscarEstadoServidor();
 }

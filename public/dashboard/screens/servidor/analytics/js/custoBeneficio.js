@@ -65,15 +65,6 @@ window.onload = async function() {
     });
 };
 
-// if (chartRadar) {
-//     chartRadar.destroy();
-//     chartRadar = graficoRadar(cpuValorBRL, ramValorBRL, discoValorBRL, custoTotalBRL);
-// }
-// if (chartPizza) {
-//     chartPizza.destroy();
-//     chartPizza = graficoPizza(cpuValorBRL, ramValorBRL, discoValorBRL);
-// }
-
 
 // FUNÇÕES INICIAIS
 function buscarMoedas() {
