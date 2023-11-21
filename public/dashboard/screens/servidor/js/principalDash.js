@@ -11,6 +11,8 @@ var ultimoIdInserido;
 var qtdAlertas = 0;
 let interval;
 
+var limite;
+
 selectUpdate(1);
 
 verifID_SOLICITACAO();
@@ -233,8 +235,8 @@ function buscarUltimosRegistrosLive(tipo) {
             }
             textMetrica.innerHTML = metrica
             for (let i = 0; i < res.length; i++) {
-              hora = formataHora(res[i].dataHora)
-              dadosObtidosHora[i] = hora
+              hora = formataHora(res[i].dataHora);
+              dadosObtidosHora[i] = hora;
 
               if (fkTipoComponente == 1) {
                 if (res[i].sinal = 'MHz') {
@@ -279,8 +281,14 @@ function atualizarKPI(metrica) {
     }
   }
 
-  mediaRegistrosPlotados = (somaValoresRegistros / dadosObtidosValor.length).toFixed(2);
-  kpiMedia.innerHTML = mediaRegistrosPlotados + metrica
+  mediaRegistrosPlotados = somaValoresRegistros / dadosObtidosValor.length;
+  if(mediaRegistrosPlotados >= limite) {
+    cardMed.style = "rgba(244, 69, 69, 0.604) !important;"
+  } else {
+    cardMed.style = "#cdeabe !important;"
+  }
+
+  kpiMedia.innerHTML = mediaRegistrosPlotados.toFixed(2) + metrica
 
   // Alertas
   kpiQtd.innerHTML = qtdAlertas
@@ -309,10 +317,10 @@ function buscarLimite(tipo) {
           for (let i = 0; i < res.length; i++) {
             if (res[i].tipo == tipo) {
               if (tipo == 1 && res[i].fkUnidadeMedida == 4) {
-                var limite = res[i].valor;
+                limite = res[i].valor;
                 kpiLimite.innerHTML = limite + res[i].sinal
               } else if (tipo != 1) {
-                var limite = res[i].valor;
+                limite = res[i].valor;
                 kpiLimite.innerHTML = limite + res[i].sinal
               }
             }
