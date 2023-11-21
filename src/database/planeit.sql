@@ -186,6 +186,12 @@ create table voos(
     horaChegadaReal datetime,
     situacao varchar(30)
 );
+create table tbFeriados(
+	idFeriado int primary key auto_increment,
+    dia varchar(2),
+    mes varchar (10),
+    titulo varchar(50)
+);
 
 create table tbFeriados(
 	idFeriado int primary key auto_increment,
