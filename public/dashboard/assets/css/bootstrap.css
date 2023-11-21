@@ -16737,7 +16737,8 @@ input[type=submit].btn-block {
 }
 
 .card-title {
-    margin-bottom: .75rem
+    margin-bottom: .75rem;
+    justify-content: center;
 }
 
 .card-subtitle {

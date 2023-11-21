@@ -223,14 +223,40 @@
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
                       <div class="text-cpi">
+                        <i class="nc-icon nc-chart-bar-32"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Alertas totais</p>
+                      <p class="card-title" id="alertaServidores">--</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <hr />
+                <div class="stats"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <div class="text-cpi">
                         <i class="nc-icon nc-tile-56"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Servidor bom</p>
-                      <p class="card-title" id="cpuEstado">--</p>
+                      <p class="card-category">Servidor Bom</p>
+                      <p class="card-title" id="statusBom">--</p>
                       <p></p>
                     </div>
                   </div>
@@ -256,33 +282,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Servidor ruim</p>
-                      <p class="card-title" id="ramEstado">--</p>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <hr />
-                <div class="stats"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <div class="text-cpi">
-                        <i class="nc-icon nc-tile-56"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Servidor médio</p>
-                      <p class="card-title" id="discoEstado">--</p>
+                      <p class="card-title" id="statusRuim">--</p>
                       <p></p>
                     </div>
                   </div>
@@ -302,27 +302,14 @@
             <div class="card">
               <div class="row grafico-container">
                 <div class="form-group grafico">
-                  <h5 class="card-title">Análise anual</h5>
+                  <h5 class="card-title">Alertas</h5>
                   <p class="card-category">
-                  Alertas dos servidores por sistema operacional  
+                    Quantidade de cada servidor
                   </p>
                 </div>
                 <div class="form-group grafico">
-                  <label>Selecione o mês: </label>
-                  <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto" onchange="buscarErrosMensais(this.value)">
-                    <option value=""> </option>
-                    <option value="">Janeiro</option>
-                    <option value="">Fevereiro</option>
-                    <option value="">Março</option>
-                    <option value="">Abril</option>
-                    <option value="">Maio</option>
-                    <option value="">Junho</option>
-                    <option value="">Julho</option>
-                    <option value="">Agosto</option>
-                    <option value="">Setembro</option>
-                    <option value="">Outubro</option>
-                    <option value="">Novembro</option>
-                    <option value="">Dezembro</option>
+                  <label>Selecione a função: </label>
+                  <select type="text" class="form-control" id="funcaoServidor" onchange="alterarGrafico(this.value)">
                   </select>
                 </div>
               </div>
@@ -336,7 +323,7 @@
             </div>
           </div>
           <!-- Fim do grafico cpu -->
-          <!-- <div class="col-md-8">
+          <div class="col-md-8">
               <div class="card card-chart">
                 <div class="card-header">
                   <h5 class="card-title">Memória RAM</h5>
@@ -352,9 +339,9 @@
                   <div class="card-stats"></div>
                 </div>
               </div>
-            </div> -->
+            </div> 
           <!-- Fim do grafico ram -->
-          <!-- <div class="col-md-4">
+          <div class="col-md-4">
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">Disco Rigído</h5>
@@ -368,8 +355,8 @@
                   <div class="stats"></div>
                 </div>
               </div>
-            </div> -->
-          <!-- Fim do grafico disco -->
+            </div>
+          <!-- Fim do grafico disco
         </div>
       </div>
       <footer class="footer footer-black footer-white">
@@ -403,7 +390,7 @@
     </div>
   </div>
   
-  <!--   Core JS Files   -->
+  <--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
