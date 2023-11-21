@@ -165,6 +165,15 @@ create table tbSpecs (
 		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
 );
 
+create table tbClima(
+	id int primary key auto_increment,
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora longtext,
+	precipitacao double
+);
+
 create table voos(
 	id int primary key auto_increment,
     siglaEmpresaAerea varchar(20),
@@ -176,6 +185,13 @@ create table voos(
     horaChegadaPrevista datetime,
     horaChegadaReal datetime,
     situacao varchar(30)
+);
+
+create table tbFeriados(
+	idFeriado int primary key auto_increment,
+    dia varchar(2),
+    mes varchar (10),
+    titulo varchar(50)
 );
 
 drop procedure if exists deleteByMonth;
