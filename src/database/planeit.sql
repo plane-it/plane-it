@@ -46,7 +46,7 @@ create table tbColaborador(
 
 create table tbServidor(
 	idServ int primary key auto_increment,
-	codAutentic char(6) not null, -- Cerca de 1 milhão e 300 mil possibilidades
+	codAutentic char(17) not null, -- Cerca de 1 milhão e 300 mil possibilidades
 	apelido varchar(50) not null,
 	sistemaOp varchar(25),
 	ip varchar(12),	
@@ -101,6 +101,7 @@ create table tbMetrica(
 CREATE TABLE tbProcessos(
 	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
+	totalProcessos INT,
 	fkServidor INT,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
@@ -108,7 +109,7 @@ CREATE TABLE tbProcessos(
 create table tbRegistro(
 	idRegst int primary key auto_increment,
 	valor varchar(100) not null,
-	dataHora dateTime default now(),
+	dataHora dateTime default(now()),
     alerta boolean,
     fkServidor int,
 		foreign key (fkServidor) references tbServidor(idServ),
@@ -126,3 +127,85 @@ create table tbChamados(
 	fkRegistro int,
 		foreign key (fkRegistro) references tbRegistro(idRegst)
 );
+
+create table tbPedidosInspecao(
+	idPedidoInspecao int primary key auto_increment,
+	motivo varchar(45) not null,
+	descricao varchar(500) not null,
+	fkServidor int not null,
+		foreign key (fkServidor) references tbServidor(idServ),
+	fkRequisitante int not null,
+		foreign key (fkRequisitante) references tbColaborador(idColab)
+);
+
+create table tbRespostaInspecao(
+	idRespostaInspecao int primary key auto_increment,
+	resposta varchar(500) not null,
+	fkRespondente int not null,
+		foreign key (fkRespondente) references tbColaborador(idColab),
+	fkPedido int not null,
+		foreign key (fkPedido) references tbPedidosInspecao(idPedidoInspecao)
+);
+
+create table tbComponenteSinalizados(
+	fkRespostaInspecao int,
+		foreign key (fkRespostaInspecao) references tbRespostaInspecao(idRespostaInspecao),
+	fkComponente int, 
+		foreign key (fkComponente) references tbComponente(idComp),
+	motivo varchar(100) not null,	
+	primary key (fkRespostaInspecao, fkComponente)
+);
+
+create table tbSpecs (
+	idSpec int primary key auto_increment,
+	valor char(20) not null,
+	fkComponente int,
+		foreign key (fkComponente) references tbComponente(idComp),
+	fkUnidadeMedida int,
+		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
+);
+
+create table tbClima(
+	id int primary key auto_increment,
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora longtext,
+	precipitacao double
+);
+
+create table voos(
+	id int primary key auto_increment,
+    siglaEmpresaAerea varchar(20),
+    nVoo varchar(20),
+    siglaAeroportoOrigem varchar(20),
+    horaPartidaPrevista datetime,
+    horaPartidaReal datetime,
+    siglaAeroportoDestino varchar(30),
+    horaChegadaPrevista datetime,
+    horaChegadaReal datetime,
+    situacao varchar(30)
+);
+
+create table tbFeriados(
+	idFeriado int primary key auto_increment,
+    dia varchar(2),
+    mes varchar (10),
+    titulo varchar(50)
+);
+
+drop procedure if exists deleteByMonth;
+DROP TEMPORARY TABLE if exists TEMP;
+DELIMITER $$
+CREATE PROCEDURE deleteByMonth(deleteYear int,deleteMonth INT)
+BEGIN 
+    CREATE TEMPORARY TABLE temp
+	SELECT id FROM voos
+	WHERE
+		(YEAR(horaPartidaPrevista) = deleteYear or YEAR(horaPartidaReal) = deleteYear) and
+		(MONTH(horaPartidaPrevista) = deleteMonth OR MONTH(horaPartidaReal) = deleteMonth);
+
+    DELETE FROM voos WHERE id IN (SELECT id FROM temp);
+
+    DROP TEMPORARY TABLE temp;
+END $$
