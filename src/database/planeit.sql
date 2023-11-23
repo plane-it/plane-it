@@ -20,6 +20,7 @@ create table tbEmpresa(
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
 	nomeAeroporto varchar(45),
+    siglaAeroporto varchar(10),
 	pais varchar(45),
 	cidade varchar(45),
 	endereco varchar(45),
@@ -187,12 +188,16 @@ create table voos(
     situacao varchar(30)
 );
 
+select * from voos;
+
 create table tbFeriados(
 	idFeriado int primary key auto_increment,
     dia varchar(2),
     mes varchar (10),
     titulo varchar(50)
 );
+
+select * from tbferiados;
 
 drop procedure if exists deleteByMonth;
 DROP TEMPORARY TABLE if exists TEMP;

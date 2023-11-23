@@ -23,6 +23,8 @@ function buscarAeroporto() {
                 }
                 else {
 
+                    sessionStorage.SIGLA_AEROPORTO = res.siglaAeroporto;
+
                     console.log(res)
 
                     for(let i = 0; i < res.length; i++) {
