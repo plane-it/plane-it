@@ -31,7 +31,7 @@ router.post("/alertasPorServidor",function(req,res){
     servidorController.alertasPorServidor(req,res)
 })
 
-router.post("/buscarDesempenho",function(res,res){
+router.post("/buscarDesempenho",function(req,res){
     servidorController.buscarDesempenho(req,res)
 })
 module.exports = router

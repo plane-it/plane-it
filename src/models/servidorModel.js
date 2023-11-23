@@ -101,16 +101,16 @@ function alertasPorServidor(funcionalidade,fkAeroporto){
     console.log(sql)
     return database.executar(sql)
 }
-// function buscarDesempenho(fkAeroporto){
-//     const sql = `
-//     SELECT idRegst,tbRegistro.valor,tbMetrica.valor,nome,fkServidor FROM tbRegistro JOIN 
-//     tbServidor ON fkServidor = idServ JOIN tbMetrica ON fkMetrica = idMetrica JOIN 
-//     tbComponente ON fkComp = idComp JOIN tbAeroporto ON fkAeroporto = idAeroporto 
-//     AND idAeroporto = ${fkAeroporto};
-//     `
-//     console.log(sql)
-//     return database.executar(sql)
-// }
+
+function buscarDesempenho(fkAeroporto){
+    const sql = `
+    SELECT SUM(alerta) AS 'desempenho',tipo FROM tbRegistro JOIN tbComponente ON fkComp = idComp 
+    JOIN tbServidor on fkServidor = idServ JOIN tbTipoComponente on idTipoComponente = fkTipoComponente 
+    JOIN tbAeroporto on fkAeroporto = idAeroporto WHERE idaeroporto = ${fkAeroporto} GROUP BY tipo; 
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
 
 module.exports = {
     buscarServidor,
@@ -121,6 +121,6 @@ module.exports = {
     buscarEstadoServidor,
     buscarErrosMensais,
     buscarAlertas,
-    // buscarDesempenho
+    buscarDesempenho,
     alertasPorServidor
 }
