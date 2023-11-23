@@ -103,19 +103,35 @@ function buscarEstadoServidores(fk, adm) {
 }
 
 function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
-    const sql = `
-    SELECT * FROM (
-        SELECT r.*, c.*, um.sinal 
-        FROM tbRegistro r
-        JOIN tbComponente c ON r.fkComp = c.idComp 
-        JOIN tbMetrica m ON m.fkComponente = c.idComp
-        JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
-        WHERE c.fktipoComponente = ${fkTipoComponente} AND c.fkServ = ${fkServidor}
-        ORDER BY r.idRegst DESC
-        LIMIT 10
-    ) AS sub
-    ORDER BY sub.idRegst ASC;
-    `
+    if (fkTipoComponente == 1) {
+        var sql = ` SELECT * FROM (
+            SELECT r.*, c.*, um.sinal 
+            FROM tbRegistro r
+            JOIN tbComponente c ON r.fkComp = c.idComp 
+            JOIN tbMetrica m ON m.fkComponente = c.idComp
+            JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
+            WHERE c.fktipoComponente = ${fkTipoComponente} AND c.fkServ = ${fkServidor}
+            AND sinal = "MHZ"
+            ORDER BY r.idRegst DESC
+            LIMIT 10
+        ) AS sub
+        ORDER BY sub.idRegst ASC;
+        `
+    } else {
+        var sql = ` SELECT * FROM (
+            SELECT r.*, c.*, um.sinal 
+            FROM tbRegistro r
+            JOIN tbComponente c ON r.fkComp = c.idComp 
+            JOIN tbMetrica m ON m.fkComponente = c.idComp
+            JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
+            WHERE c.fktipoComponente = ${fkTipoComponente} AND c.fkServ = ${fkServidor}
+            ORDER BY r.idRegst DESC
+            LIMIT 10
+        ) AS sub
+        ORDER BY sub.idRegst ASC;
+        `
+    }
+    
     return database.executar(sql)
 }
 

@@ -239,7 +239,7 @@ function buscarUltimosRegistrosLive(tipo) {
               dadosObtidosHora[i] = hora;
 
               if (fkTipoComponente == 1) {
-                if (res[i].sinal = 'MHz') {
+                if (res[i].sinal == 'MHz') {
                   valor = res[i].valor
                   dadosObtidosValor[i] = valor;
                 }
