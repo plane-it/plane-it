@@ -1,8 +1,7 @@
+fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
 buscarAlertaServidor();
 dados = ''
 function buscarAlertaServidor() {
-  fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
-  console.log(fkAeroporto)
   if (fkAeroporto == "" || fkAeroporto == undefined) {
     alert("Servidor não encontrado!")
   } else {
@@ -35,21 +34,52 @@ function buscarAlertaServidor() {
             'Nome': nomes, 'Função': funcao,'Alertas': alertas
           }
           //Limpando strings iguais
-          funcaoServidor.innerHTML = `<option value></option>`
+          funcaoServidor.innerHTML = `<option value = "Geral"> Geral </option>`
           for(i = 0;i < funcao.length; i++){
-              funcaoServidor.innerHTML += `
-              <option value = "${funcao[i]}" id = "servidoresFuncoes">${funcao[i]}</option>`      
+            if(funcao[i] == funcao[funcao.length-1]){
+            }else{
+              console.log(funcao[i],funcao[i-1])
+            }
+                  
           }
           plotarGrafico(dados)
+          // desempenhoComponente()
         } 
       }).catch(function (res) {
         console.log(res)
       });
   }
 }
+// function desempenhoComponente() {
+//   fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
+//   if (fkAeroporto == "" || fkAeroporto == undefined) {
+//     alert("Servidor não encontrado!")
+//   } else {
+//     fetch("/servidor/buscarDesempenho", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({
+//         "fkAeroporto": fkAeroporto
+//       })
+//     }).then((res) => res.json())
+//       .then((res) => {
+//         console.log(res)
+//         if (res.error) {
+//           console.log("Aconteceu algum erro")
+//          }
+//          else {
+//           console.log(1)
+//         } 
+//       }).catch(function (res) {
+//         console.log(res)
+//       });
+//   }
+// }
 
 function plotarGrafico(dados){
-     const ctx = document.getElementById('chartPerformance').getContext("2d");
+     ctx = document.getElementById('chartPerformance').getContext("2d");
      graficoAnual = new Chart(ctx, {
               type: 'bar',
               data: {
@@ -98,122 +128,46 @@ function plotarGrafico(dados){
             });
  }
  function alterarGrafico(value){
-  console.log(dados)
-  const registro = dados.Alertas
-  const servidores = dados.Função
-  servidorAlvo =  []
-  registrosAlvo = []
-  apelidos = ''
-  console.log(registro,servidores)
-  if(servidores.indexOf(value) != -1){
-    apelidos = servidores.indexOf(value)
-    servidorAlvo.push(servidores[servidores.indexOf(value)])
-  }
-  for(i = 0; i < registro.length;i++){
-    if(apelidos == i){ 
-      registrosAlvo.push(registro[i])
-      
-    }
-  }
-  console.log(servidorAlvo,registrosAlvo)
-  if(value != ""){
-  const ctx = document.getElementById('chartPerformance').getContext("2d");
-  grafico = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: servidorAlvo,
-      datasets: [{
-       borderColor: '#3A7D44',
-        backgroundColor: '#3A7D44',
-        data: registrosAlvo
-      }
-      ]
-    },
-    options: {
-      legend: {
-        display: true,
-        position: 'top'
+
+  console.log(value)
+  nomesAlvo = []
+  alertasAlvo = []
+  if(value != "Geral"){
+    funcionalidade = value
+    fetch("/servidor/alertasPorServidor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      scales: {
-        yAxes: [{
-          ticks: {
-            fontColor: "#9f9f9f",
-            beginAtZero: false,
-            maxTicksLimit: 5,
-            adding: 20
-          },
-          gridLines: {
-            drawBorder: true,
-           zeroLineColor: "#fff",
-           color: 'transparent'
-          }
-        }],
-        xAxes: [{
-       barPercentage: 1,
-          gridLines: {
-            drawBorder: false,
-            color: 'rgba(0,0,0)',
-            zeroLineColor: "transparent",
-            display: false,
-          },
-          ticks: {
-            padding: 8,
-            fontColor: "#9f9f9f"
-          }
-        }]
-      },
-    }
-  });
+      body: JSON.stringify({
+        "fkAeroporto": fkAeroporto,
+        "funcionalidade": funcionalidade
+      })
+    }).then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        if (res.error) {
+          console.log("Aconteceu algum erro")
+         }
+         else {
+        for(i = 0; i < res.length;i++){
+          resposta = res[i]
+          nomesAlvo.push(resposta.apelido)
+          alertasAlvo.push(resposta.alerta)
+        }  
+        dados = {
+          'Nome': nomesAlvo, 'Alertas': alertasAlvo
+        } 
+        console.log(dados)
+        plotarGrafico(dados)
+        } 
+      }).catch(function (res) {
+        console.log(res)
+      });
   }else{
-    const ctx = document.getElementById('chartPerformance').getContext("2d");
-     graficoAnual = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: dados.Nome,
-                datasets: [{
-                 borderColor: '#3A7D44',
-                  backgroundColor: '#3A7D44',
-                  data: dados.Alertas
-                }
-                ]
-              },
-              options: {
-                legend: {
-                  display: false,
-                  position: 'top'
-                },
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      fontColor: "#9f9f9f",
-                      beginAtZero: false,
-                      maxTicksLimit: 5,
-                      adding: 20
-                    },
-                    gridLines: {
-                      drawBorder: true,
-                     zeroLineColor: "#fff",
-                     color: 'transparent'
-                    }
-                  }],
-                  xAxes: [{
-                 barPercentage: 1,
-                    gridLines: {
-                      drawBorder: false,
-                      color: 'rgba(0,0,0)',
-                      zeroLineColor: "transparent",
-                      display: false,
-                    },
-                    ticks: {
-                      padding: 8,
-                      fontColor: "#9f9f9f"
-                    }
-                  }]
-                },
-              }
-            });
+    plotarGrafico(dados)
   }
-  
+    
  }
 //  var dataAtual = new Date();
 //  var anoAtual = dataAtual.getFullYear();

@@ -296,7 +296,7 @@
           </div>
         </div>
         <!--Inicio dos gráficos-->
-        <!-- Grafico cpu -->
+        <!-- Grafico de alertas -->
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -322,13 +322,13 @@
               </div>
             </div>
           </div>
-          <!-- Fim do grafico cpu -->
-          <div class="col-md-8">
+          <!-- Fim do grafico de alertas -->
+          <div class="col-md-7">
               <div class="card card-chart">
                 <div class="card-header">
-                  <h5 class="card-title">Memória RAM</h5>
+                  <h5 class="card-title">Desempenho de componente</h5>
                   <p class="card-category">
-                    Porcentagem de uso nos ultimos dias
+                    componente com mais alertas
                   </p>
                 </div>
                 <div class="card-body">
@@ -340,23 +340,24 @@
                 </div>
               </div>
             </div> 
-          <!-- Fim do grafico ram -->
-          <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">Disco Rigído</h5>
-                  <p class="card-category">Espaço livre nos ultimos dias</p>
-                </div>
-                <div class="card-body">
-                  <canvas id="chartEmail" class="graficoDiscoUso"></canvas>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats"></div>
-                </div>
+          <!-- Fim do grafico de componente -->
+          <div class="col-md-5">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-title"></h5>
+                <p class="card-category">
+                </p>
+              </div>
+              <div class="card-body">
+                <canvas id="speedChart" class="graficoRamUso"></canvas>
+              </div>
+              <div class="card-footer">
+                <hr />
+                <div class="card-stats"></div>
               </div>
             </div>
-          <!-- Fim do grafico disco
+          </div> 
+          <!-- Fim do grafico de tempo medio-->
         </div>
       </div>
       <footer class="footer footer-black footer-white">
@@ -390,7 +391,7 @@
     </div>
   </div>
   
-  <--   Core JS Files   -->
+  <!--Core JS Files-->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>

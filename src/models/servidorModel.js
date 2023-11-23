@@ -90,6 +90,27 @@ function buscarAlertas(fkAeroporto){
     return database.executar(sql)
 }
 
+function alertasPorServidor(funcionalidade,fkAeroporto){
+    const sql = `
+    SELECT sum(alerta) AS 'alerta',apelido,funcao FROM tbRegistro JOIN tbServidor ON fkServidor = idServ 
+    JOIN tbAeroporto
+    ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto} AND 
+    funcao = '${funcionalidade}'
+    GROUP BY funcao,apelido;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+// function buscarDesempenho(fkAeroporto){
+//     const sql = `
+//     SELECT idRegst,tbRegistro.valor,tbMetrica.valor,nome,fkServidor FROM tbRegistro JOIN 
+//     tbServidor ON fkServidor = idServ JOIN tbMetrica ON fkMetrica = idMetrica JOIN 
+//     tbComponente ON fkComp = idComp JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+//     AND idAeroporto = ${fkAeroporto};
+//     `
+//     console.log(sql)
+//     return database.executar(sql)
+// }
 
 module.exports = {
     buscarServidor,
@@ -99,5 +120,7 @@ module.exports = {
     buscarAeroporto,
     buscarEstadoServidor,
     buscarErrosMensais,
-    buscarAlertas
+    buscarAlertas,
+    // buscarDesempenho
+    alertasPorServidor
 }

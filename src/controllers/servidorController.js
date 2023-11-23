@@ -171,8 +171,51 @@ function buscarAlertas(req,res){
             }
         );
     }
-
 }
+
+function alertasPorServidor(req,res){
+    const{fkAeroporto} = req.body
+    const {funcionalidade} = req.body
+    if (!funcionalidade) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        servidorModel.alertasPorServidor(funcionalidade,fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+// function buscarDesempenho(req,res){
+//     const {fkAeroporto} = req.body
+//     if (!fkAeroporto) {
+//         res.status(400).json({ error: "Existem parametros faltando" })
+//     }
+//     else {
+//         servidorModel.buscarDesempenho(fkAeroporto).then(
+//             function (resultado) {
+//                 if (resultado.length > 0) {
+//                     res.json(resultado);
+//                 } else {
+//                     res.status(403).json({ error: "Sem Servidores!" });
+//                 }
+//             }
+//         ).catch(
+//             function (erro) {
+//                 res.status(500).json(erro.sqlMessage);
+//             }
+//         );
+//     }
+// }
 
 module.exports = {
     buscarServidor,
@@ -182,5 +225,7 @@ module.exports = {
     buscarAeroporto,
     buscarEstadoServidor,
     buscarErrosMensais,
-    buscarAlertas
+    buscarAlertas,
+    // buscarDesempenho,
+    alertasPorServidor
 }
