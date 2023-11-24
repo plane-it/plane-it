@@ -211,9 +211,7 @@ function plotarGraficoAnual(labels, data) {
   });
 }
 
-setInterval(function() {
-  buscarUltimosRegistrosLive(tipo);
-}, 5000);
+
 
 function buscarUltimosRegistrosLive(tipo) {
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
@@ -322,7 +320,7 @@ function atualizarKPI(metrica) {
     cardQtd.style = "background-color: #cdeabe !important;"
   }
 
-  kpiMedia.innerHTML = mediana.toFixed(2) + metrica
+  kpiMedia.innerHTML = mediana.toFixed(2) + " " + metrica
 
   // Alertas
   kpiQtd.innerHTML = qtdAlertas
@@ -352,10 +350,10 @@ function buscarLimite(tipo) {
             if (res[i].tipo == tipo) {
               if (tipo == 1 && res[i].fkUnidadeMedida == 4) {
                 limite = res[i].valor;
-                kpiLimite.innerHTML = limite + res[i].sinal
+                kpiLimite.innerHTML = limite + " " + res[i].sinal
               } else if (tipo != 1) {
                 limite = res[i].valor;
-                kpiLimite.innerHTML = limite + res[i].sinal
+                kpiLimite.innerHTML = limite + " " + res[i].sinal
               }
             }
           }
@@ -429,7 +427,9 @@ function plotarGrafico(dadosObtidosHora, dadosObtidosValor) {
 }
 function selectUpdate(tipo) {
   buscarErrosMensais(tipo);
-  buscarUltimosRegistrosLive(tipo);
+  setInterval(function() {
+    buscarUltimosRegistrosLive(tipo);
+  }, 5000);
   buscarLimite(tipo);
   buscarEstadoServidor();
 }
