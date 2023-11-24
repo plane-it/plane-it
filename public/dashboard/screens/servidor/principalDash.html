@@ -130,7 +130,7 @@
       <div class="content">
         <div class="row" style="display: flex; justify-content: space-evenly;">
           <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
+            <div class="card card-stats" id="cpuKPI">
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
@@ -160,7 +160,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
+            <div class="card card-stats" id="ramKPI">
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
@@ -190,7 +190,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
+            <div class="card card-stats" id="discoKPI">
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
@@ -264,8 +264,8 @@
                 </div>
               </div>
               <div class="col-4 max-h-100 d-flex gap-1 flex-column justify-content-between">
-                <div class="card card-stats no-margin h-100" id="cardMed">
-                  <div class="card-body card sem-margem padding-little-card">
+                <div class="card card-stats no-margin h-100" >
+                  <div class="card-body card sem-margem padding-little-card" id="cardMed">
                     <div class="row">
                       <div class="col-5 col-md-4">
                         <div class="icon-big text-center icon-warning">
@@ -280,15 +280,15 @@
                       </div>
                       <div class="col-7 col-md-8">
                         <div class="numbers">
-                          <p class="card-category">Média dos últimos registros</p>
+                          <p class="card-category">Mediana dos últimos registros</p>
                           <p class="card-title" id="kpiMedia">--</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card card-stats no-margin h-100" id="cardQtd">
-                  <div class="card-body card sem-margem padding-little-card">
+                <div class="card card-stats no-margin h-100" >
+                  <div class="card-body card sem-margem padding-little-card" id="cardQtd">
                     <div class="row">
                       <div class="col-5 col-md-4">
                         <div class="icon-big text-center icon-warning">

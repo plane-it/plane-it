@@ -13,6 +13,8 @@ let interval;
 
 var limite;
 
+var metrica;
+
 selectUpdate(1);
 
 verifID_SOLICITACAO();
@@ -49,28 +51,37 @@ function buscarEstadoServidor() {
           const resultado = res[0][0];
           if (resultado.qtsAlertasCpu > 20) {
             cpuEstado.innerHTML = "Risco";
+            cpuKPI.style = 'background-color: rgba(244, 69, 69, 0.604) !important;'
           } else if (resultado.qtsAlertasCpu <= 20 && resultado.qtsAlertasCpu > 10) {
             cpuEstado.innerHTML = "Alerta";
+            cpuKPI.style = 'background-color: rgb(233, 186, 147);'
           } else {
             cpuEstado.innerHTML = "Estável";
+            cpuKPI.style = 'background-color: #cdeabe !important;'
           }
 
 
           if (resultado.qtsAlertasRam > 20) {
             ramEstado.innerHTML = "Risco";
+            ramKPI.style = 'background-color: rgba(244, 69, 69, 0.604) !important;'
           } else if (resultado.qtsAlertasRam <= 20 && resultado.qtsAlertasRam > 10) {
             ramEstado.innerHTML = "Alerta";
+            ramKPI.style = 'background-color: rgb(233, 186, 147);'
           } else {
             ramEstado.innerHTML = "Estável";
+            ramKPI.style = 'background-color: #cdeabe !important;'
           }
 
 
           if (resultado.qtsAlertasDisco > 20) {
             discoEstado.innerHTML = "Risco";
+            discoKPI.style = 'background-color: rgba(244, 69, 69, 0.604) !important;'
           } else if (resultado.qtsAlertasDisco <= 20 && resultado.qtsAlertasDisco > 10) {
             discoEstado.innerHTML = "Alerta";
+            discoKPI.style = 'background-color: rgb(233, 186, 147);'
           } else {
             discoEstado.innerHTML = "Estável";
+            discoKPI.style = 'background-color: #cdeabe !important;'
           }
 
           buscarErrosMensais(1)
@@ -199,9 +210,15 @@ function plotarGraficoAnual(labels, data) {
     }
   });
 }
+
+setInterval(function() {
+  buscarUltimosRegistrosLive(tipo);
+}, 5000);
+
 function buscarUltimosRegistrosLive(tipo) {
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
   fkTipoComponente = tipo;
+  let valorAnterior = null;
 
   if (fkServidor == "" || fkServidor == undefined) {
     alert("Servidor não encontrado!")
@@ -224,15 +241,7 @@ function buscarUltimosRegistrosLive(tipo) {
             console.log("Aconteceu algum erro (res.error = true)")
           }
           else {
-            if (fkTipoComponente == 1) {
-              for (let i = 0; i < res.length; i++) {
-                if (res[i].fktipoComponente == 1 && res[i].sinal == "MHz") {
-                  var metrica = "MHz";
-                }
-              }
-            } else {
-              var metrica = res[0].sinal;
-            }
+            metrica = res[0].sinal;
             textMetrica.innerHTML = metrica
             for (let i = 0; i < res.length; i++) {
               hora = formataHora(res[i].dataHora);
@@ -240,11 +249,11 @@ function buscarUltimosRegistrosLive(tipo) {
 
               if (fkTipoComponente == 1) {
                 if (res[i].sinal == 'MHz') {
-                  valor = res[i].valor
+                  valor = res[i].valorRegistro;
                   dadosObtidosValor[i] = valor;
                 }
               } else {
-                valor = res[i].valor
+                valor = res[i].valorRegistro;
                 dadosObtidosValor[i] = valor;
               }
 
@@ -256,14 +265,22 @@ function buscarUltimosRegistrosLive(tipo) {
               }
             }
 
-            if (ultimoCapturado != ultimoIdInserido) {
+            // Invertendo os arrays
+            dadosObtidosHora.reverse();
+            dadosObtidosValor.reverse();
+
+            // Atualizando o gráfico apenas se o valor for diferente do valor anterior
+            if (valor !== valorAnterior) {
               if (graficoPlotado) {
                 graficoPlotado.destroy();
               }
               graficoPlotado = plotarGrafico(dadosObtidosHora, dadosObtidosValor);
               ultimoIdInserido = res[res.length - 1].idRegst;
+
+              atualizarKPI(metrica);
             }
-            atualizarKPI(metrica);
+
+            valorAnterior = valor;
           }
         })
         .catch(function (res) {
@@ -271,30 +288,47 @@ function buscarUltimosRegistrosLive(tipo) {
     }, 1000)
   }
 }
+
+
 function atualizarKPI(metrica) {
-  somaValoresRegistros = 0;
+  let valores = [];
 
   for (let i = 0; i < dadosObtidosValor.length; i++) {
     if (!isNaN(parseFloat(dadosObtidosValor[i]))) {
       let numeroConvertido = parseFloat(dadosObtidosValor[i]);
-      somaValoresRegistros += numeroConvertido;
+      valores.push(numeroConvertido);
     }
   }
 
-  mediaRegistrosPlotados = somaValoresRegistros / dadosObtidosValor.length;
-  if(mediaRegistrosPlotados >= limite) {
-    cardMed.style = "rgba(244, 69, 69, 0.604) !important;"
+  valores.sort((a, b) => a - b);
+
+  let mediana;
+  if (valores.length % 2 === 0) {
+    mediana = (valores[valores.length / 2 - 1] + valores[valores.length / 2]) / 2;
   } else {
-    cardMed.style = "#cdeabe !important;"
+    mediana = valores[(valores.length - 1) / 2];
   }
 
-  kpiMedia.innerHTML = mediaRegistrosPlotados.toFixed(2) + metrica
+
+  if (mediana >= limite) {
+    cardMed.style = "background-color: rgba(244, 69, 69, 0.604) !important;"
+  } else {
+    cardMed.style = "background-color: #cdeabe !important;"
+  }
+
+  if (qtdAlertas >= 5) {
+    cardQtd.style = "background-color: rgba(244, 69, 69, 0.604) !important;"
+  } else {
+    cardQtd.style = "background-color: #cdeabe !important;"
+  }
+
+  kpiMedia.innerHTML = mediana.toFixed(2) + metrica
 
   // Alertas
   kpiQtd.innerHTML = qtdAlertas
   qtdAlertas = 0;
-
 }
+
 function buscarLimite(tipo) {
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
   if (fkServidor == "" || fkServidor == undefined) {
