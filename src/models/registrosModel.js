@@ -129,7 +129,8 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
         `
     } else {
         var sql = `
-        SELECT 
+        SELECT
+        tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
         tbRegistro.alerta,
@@ -142,15 +143,17 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
         tbMetrica ON fkMetrica = idMetrica 
     JOIN 
         tbUnidadeMedida ON idUnidadeMedida = fkUnidadeMedida
-	JOIN 
-		tbComponente ON idComp = fkComp
+    JOIN 
+        tbComponente ON idComp = fkComp
     WHERE 
         fkServidor = ${fkServidor}
     AND 
-		fktipoComponente = ${fkTipoComponente}
+        sinal = "Gb"
+    AND 
+        fktipoComponente = ${fkTipoComponente}
     ORDER BY 
         tbRegistro.idRegst DESC
-    LIMIT 10;
+    LIMIT 10;    
         `
     }
 

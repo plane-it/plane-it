@@ -15,9 +15,14 @@ var limite;
 
 var metrica;
 
-selectUpdate(1);
+var intervalId;
 
-verifID_SOLICITACAO();
+
+window.onload = function() {
+  selectUpdate(1);
+  verifID_SOLICITACAO();
+};
+
 function verifID_SOLICITACAO() {
   if (localStorage.ID_SOLICITACAO != undefined) {
     var elementos = document.querySelectorAll('.respostaReq');
@@ -84,8 +89,6 @@ function buscarEstadoServidor() {
             discoKPI.style = 'background-color: #cdeabe !important;'
           }
 
-          buscarErrosMensais(1)
-
         }
       }).catch(function (res) {
 
@@ -130,18 +133,19 @@ function buscarErrosMensais(fkComponente) {
             }
           }
 
+          if (graficoAnual) {
+            graficoAnual.destroy();
+          }
+          
           plotarGraficoAnual(meses, data)
-
+          
         }
       }).catch(function (res) {
-
+        console.log("buscarErrosMensais");
       });
   }
 }
 function plotarGraficoAnual(labels, data) {
-  if (typeof graficoAnual !== 'undefined') {
-    graficoAnual.destroy()
-  }
   ctx = document.getElementById('chartHours').getContext("2d");
 
   graficoAnual = new Chart(ctx, {
@@ -425,11 +429,19 @@ function plotarGrafico(dadosObtidosHora, dadosObtidosValor) {
 
   return lineChart;
 }
+
 function selectUpdate(tipo) {
   buscarErrosMensais(tipo);
-  setInterval(function() {
-    buscarUltimosRegistrosLive(tipo);
-  }, 5000);
+  
+  // Limpa o intervalo existente
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
   buscarLimite(tipo);
   buscarEstadoServidor();
+
+  intervalId = setInterval(function() {
+    buscarUltimosRegistrosLive(tipo);
+  }, 3000);
 }
