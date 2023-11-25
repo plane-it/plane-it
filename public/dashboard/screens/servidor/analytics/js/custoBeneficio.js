@@ -107,22 +107,41 @@ function buscarIdComps() {
             }).then((res) => res.json())
                 .then(async (res) => {
                     if (!res.error) {
-                        for (let i = 0; i < res.length; i++) {
-                            if (res[i].fktipoComponente == 1) {
-                                idCpu = res[i].idComp;
-                                cpuValorBRL = parseFloat(res[i].preco);
+                        let promises = res.map(async (item) => {
+                            if (item.fktipoComponente == 1) {
+                                idCpu = item.idComp;
+                                cpuValorBRL = parseFloat(item.preco);
                                 await buscarSpecs(idCpu);
-                            } else if (res[i].fktipoComponente == 2) {
-                                idRam = res[i].idComp;
-                                ramValorBRL = parseFloat(res[i].preco);
+                            } else if (item.fktipoComponente == 2) {
+                                idRam = item.idComp;
+                                ramValorBRL = parseFloat(item.preco);
                                 await buscarSpecs(idRam);
-                            } else if (res[i].fktipoComponente == 3) {
-                                idDisco = res[i].idComp;
-                                discoValorBRL = parseFloat(res[i].preco);
+                            } else if (item.fktipoComponente == 3) {
+                                idDisco = item.idComp;
+                                discoValorBRL = parseFloat(item.preco);
                                 await buscarSpecs(idDisco);
                             }
-                        }
-                        resolve();
+                        });
+                    
+                        Promise.all(promises).then(() => {
+                            if (maxMhzCpu == undefined && maxGbDisco == undefined && maxGbRam == undefined) {
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'Informações Insuficientes',
+                                    text: 'Este servidor ainda não reuniu dados suficientes para realizar uma análise de custo-benefício eficaz. Por gentileza, inicie o aplicativo de coleta de dados para adquirir as informações necessárias.',
+                                    confirmButtonColor: '#3A7D44',
+                                    iconColor: '#3A7D44'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location="../principalDash.html"
+                                    }
+                                })
+                            }
+                            resolve();
+                        }).catch((error) => {
+                            console.error("Error:", error);
+                            reject(error);
+                        });                        
                     } else {
                         Swal.fire("Erro!", "Componentes não encontrados", "error");
                         reject();
@@ -134,10 +153,9 @@ function buscarIdComps() {
         }
     });
 }
-
-function buscarSpecs(idComp) {
+async function buscarSpecs(idComp) {
     if (idComp != "" && idComp != undefined) {
-        fetch("/componente/buscarSpecs", {
+        await fetch("/componente/buscarSpecs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -167,6 +185,7 @@ function buscarSpecs(idComp) {
             });
     }
 }
+
 
 function buscarMedianPreco() {
     return new Promise((resolve, reject) => {
