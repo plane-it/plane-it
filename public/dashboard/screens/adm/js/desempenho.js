@@ -1,7 +1,7 @@
 fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO
 buscarAlertaEstado()
-buscarAlertaFuncao()
 desempenhoComponente()
+buscarDadosComponentes()
 dados = ''
 function buscarAlertaEstado() {
   funcaoServidor.innerHTML = ''
@@ -138,7 +138,6 @@ function buscarAlertaEstado() {
         dados = {
           'Nome': nomesAlvo, 'Alertas': alertasAlvo
         } 
-        console.log(dados)
         corGrafico = '#0c701a'
         plotarAlertasServidores(dados,corGrafico)
         } 
@@ -169,7 +168,6 @@ function buscarAlertaEstado() {
         dados = {
           'Nome': nomesAlvo, 'Alertas': alertasAlvo
         } 
-        console.log(dados)
         corGrafico = '#F7D917'
         plotarAlertasServidores(dados,corGrafico)
         } 
@@ -202,26 +200,38 @@ function desempenhoComponente() {
           tipoComponente = []
           for(i = 0; i < res.length; i++){
             resposta = res[i]
-            console.log(resposta)
+            alertaComponente.push(resposta.qtdAlerta)
+            tipoComponente.push(resposta.tipo)
           }
           dados = {
             "Componente": tipoComponente, "Alertas": alertaComponente
           }
-          plotarGraficoComponente(dados)
+          const quantidadeAlerta = dados.Alertas
+          corGrafico = []
+          for(i=0; i< quantidadeAlerta.length;i++){
+            if(quantidadeAlerta[i] > 6){
+              corGrafico.push("#861A22")
+            }else if(quantidadeAlerta[i] <= 6 && quantidadeAlerta[i] > 4){
+              corGrafico.push('#F7D917')
+            }else{
+              corGrafico.push('#0c701a')
+            }
+          }
+          console.log(corGrafico)
+          plotarGraficoComponente(dados,corGrafico)
         } 
       }).catch(function (res) {
         console.log(res)
       });
 }
-
-function plotarGraficoComponente(dados){
+function plotarGraficoComponente(dados,corGrafico){
   ctx = document.getElementById('chartComponente').getContext("2d");
-  graficoAnual = new Chart(ctx, {
-    type: 'pie',
+  graficoComp = new Chart(ctx, {
+    type: 'bar',
               data: {
                 labels: dados.Componente,
                 datasets: [{
-                  backgroundColor: '#3A7D44',
+                  backgroundColor: corGrafico,
                   data: dados.Alertas
                 }
                 ]
@@ -229,7 +239,7 @@ function plotarGraficoComponente(dados){
               options: {
                 legend: {
                   display: false,
-                  position: 'top'
+                  position: 'top',
                 },
                 scales: {
                   yAxes: [{
@@ -241,8 +251,8 @@ function plotarGraficoComponente(dados){
                     },
                     gridLines: {
                       drawBorder: true,
-                     zeroLineColor: "#fff",
-                     color: 'transparent'
+                      zeroLineColor: "#fff",
+                      color: 'transparent'
                     }
                   }],
                   xAxes: [{
@@ -258,77 +268,83 @@ function plotarGraficoComponente(dados){
                       fontColor: "#9f9f9f"
                     }
                   }]
-                },
-              }
+               },
+                events: ['click'],
+                onClick: event =>{  
+                  const datasetIndex =  graficoComp.getElementAtEvent(event)[0]._datasetIndex;
+                  const model =  graficoComp.getElementsAtEvent(event)[datasetIndex]._model;
+                  onBarClicked(model.label);
+                }
+              },
             });
- }
- function buscarAlertaFuncao() {
-  if (fkAeroporto == "" || fkAeroporto == undefined) {
-    alert("Servidores não encontrados!")
-  } else {
-    fetch("/servidor/alertasFuncoes", {
+}
+function onBarClicked(componente){
+container.classList.remove('col-md-12')
+container.classList.add('col-md-3')
+dados = ''
+    fetch("/servidor/buscarAlertasComponente", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "fkAeroporto": fkAeroporto
+        "fkAeroporto": fkAeroporto,
+        "componente":componente
       })
     }).then((res) => res.json())
       .then((res) => {
         console.log(res)
-        alertas = []
-        funcao = []
         if (res.error) {
           console.log("Aconteceu algum erro")
          }
          else {
-          for(i = 0; i <res.length;i++){
+          alerta = []
+          apelido = []
+          nome = []
+          for(i=0; i < res.length;i++){
             resposta = res[i]
-            alertas.push(resposta.qtdAlerta)
-            funcao.push(resposta.funcao)
+            alerta.push(resposta.qtdAlerta)
+            apelido.push(resposta.apelido)
+            nome.push(resposta.nome)
           }
           dados = {
-            'Função': funcao,'Alertas': alertas
-          }   
-          console.log(dados)      
-          //Chamando a função de criação de grafico
-          plotarGraficoFuncoes(dados)
+            "Nome": nome, "Servidor": apelido, "Alertas": alerta, "Tipo": componente
+          }
+          const quantidadeAlerta = dados.Alertas
+          corGrafico = []
+          for(i=0; i< quantidadeAlerta.length;i++){
+            if(quantidadeAlerta[i] > 6){
+              corGrafico.push("#861A22")
+            }else if(quantidadeAlerta[i] >= 3 && quantidadeAlerta[i] <= 6){
+              corGrafico.push('#F7D917')
+            }else{
+              corGrafico.push('#0c701a')
+            }
+          }
+          plotarAlertasComp(dados,corGrafico)
         } 
       }).catch(function (res) {
         console.log(res)
       });
-  }
 }
 
-function plotarGraficoFuncoes(dados){
-  const dadosAlertas = dados.Alertas;
-  const dadosFuncoes = dados.Função
-  graficoFuncao = []
-  graficoAlerta = []
-
-  for(i= 0; i < dadosAlertas.length; i++){
-    graficoAlerta.push(dadosAlertas[i])
-  }
-  for(i =0; i < dadosFuncoes.length; i++){
-    graficoFuncao.push(dadosFuncoes[i])
-  }
-  console.log(graficoFuncao)
-    statusServidores = document.getElementById('chartServ').getContext("2d");
-    graficoServidores = new Chart(statusServidores, {
+function plotarAlertasComp(dados,corGrafico){ 
+  graficoAlertComp = ''
+  ctx = document.getElementById('chartAnaliseComp').getContext("2d");
+  graficoAlertComp = new Chart(ctx, {
     type: 'bar',
               data: {
-                labels: graficoFuncao,
+                labels: dados.Nome,
                 datasets: [{
-                  backgroundColor: "#0483r3v",
-                  data: graficoAlerta
+                  backgroundColor: corGrafico,
+                  data: dados.Alertas
                 }
                 ]
               },
               options: {
                 legend: {
                   display: false,
-                  position: 'top'
+                  position: 'top',
                 },
                 scales: {
                   yAxes: [{
@@ -340,8 +356,8 @@ function plotarGraficoFuncoes(dados){
                     },
                     gridLines: {
                       drawBorder: true,
-                     zeroLineColor: "#fff",
-                     color: 'transparent'
+                      zeroLineColor: "#fff",
+                      color: 'transparent'
                     }
                   }],
                   xAxes: [{
@@ -358,8 +374,9 @@ function plotarGraficoFuncoes(dados){
                     }
                   }]
                 },
-              }
+              },
             });
 }
+
 
 

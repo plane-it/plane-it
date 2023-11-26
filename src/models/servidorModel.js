@@ -86,7 +86,7 @@ function alertasEstadoRuim(fkAeroporto){
     AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
     JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto} AND dataHora < NOW() - INTERVAL 1 DAY 
     GROUP BY idserv
-    HAVING SUM(alerta) > 6;`
+    HAVING SUM(alerta) > 4;`
     console.log(sql)
     return database.executar(sql)
 }
@@ -100,7 +100,7 @@ function alertasEstadoBom(fkAeroporto){
     AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
     JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
     AND dataHora < NOW() - INTERVAL 1 DAY GROUP BY idserv
-    HAVING SUM(alerta) > 0 && SUM(alerta) <= 4 ORDER BY SUM(alerta) DESC;
+    HAVING SUM(alerta) >= 0 && SUM(alerta) <= 2 ORDER BY SUM(alerta) DESC;
     `
     console.log(sql)
     return database.executar(sql)
@@ -115,28 +115,32 @@ function alertasEstadoMedio(fkAeroporto){
     AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
     JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
     AND dataHora < NOW() - INTERVAL 1 DAY GROUP BY idserv
-    HAVING SUM(alerta) > 4 && SUM(alerta) <= 6 ORDER BY SUM(alerta) DESC;
+    HAVING SUM(alerta) > 2 && SUM(alerta) <= 4 ORDER BY SUM(alerta) DESC;
     `
     console.log(sql)
     return database.executar(sql)
 }
 
-function alertasFuncoes(fkAeroporto){
-    const sql = `
-    SELECT SUM(alerta) AS 'qtdAlerta', funcao FROM tbRegistro JOIN tbServidor ON fkServidor = idServ 
-    JOIN tbAeroporto ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto}
-    GROUP BY funcao ORDER BY SUM(alerta) DESC;   
-    `
-    console.log(sql)
-    return database.executar(sql)
-}
 
 function buscarDesempenho(fkAeroporto){
     const sql = `
-    SELECT SUM(alerta) AS 'qtdAlerta',tipo,nome,apelido FROM tbRegistro JOIN tbComponente ON fkComp = idComp 
-    JOIN tbServidor ON fkServidor = idServ JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente 
-    JOIN tbAeroporto ON fkAeroporto = idAeroporto WHERE idaeroporto = ${fkAeroporto} GROUP BY tipo,nome,apelido
-    HAVING SUM(alerta) > 0 && SUM(alerta) <= 4 ORDER BY SUM(alerta) DESC;
+    SELECT SUM(alerta) AS 'qtdAlerta',tipo FROM tbRegistro JOIN tbComponente ON fkComp = idComp
+    JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente JOIN tbServidor 
+    ON fkServidor = idServ JOIN tbAeroporto
+    ON fkAeroporto = fkAeroporto WHERE idAeroporto = ${fkAeroporto} GROUP BY tipo;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
+function buscarAlertasComponente(fkAeroporto,componente){
+    const sql = `
+    SELECT SUM(alerta) AS 'qtdAlerta',tipo,apelido,nome FROM tbRegistro JOIN tbComponente ON fkComp = idComp
+    JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente JOIN tbServidor 
+    ON fkServidor = idServ JOIN tbAeroporto
+    ON fkAeroporto = fkAeroporto WHERE idAeroporto = ${fkAeroporto} AND tipo = '${componente}' GROUP BY 
+    tipo,apelido,nome
+    HAVING SUM(alerta) > 0 LIMIT 4; 
     `
     console.log(sql)
     return database.executar(sql)
@@ -154,5 +158,5 @@ module.exports = {
     alertasEstadoRuim,
     alertasEstadoBom,
     alertasEstadoMedio,
-    alertasFuncoes
+    buscarAlertasComponente
 }

@@ -353,9 +353,9 @@
           <div class="col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-title">Desempenho de componente</h5>
+                <h5 class="card-title">Desempenho dos componentes</h5>
                 <p class="card-category">
-                  componente com mais alertas
+                  alertas das últimas 24h
                 </p>
               </div>
               <div class="card-body">
@@ -369,17 +369,16 @@
           </div> 
           <!-- Fim do grafico de componentes -->
           <!-- Inicio do grafico funcao -->
-          <div class="col-md-6">
+          <div class="col-md-12" id="container">
             <div class="card">
               <div class="row grafico-container">
                 <div class="form-group grafico">
-                  <h5 class="card-title">Funcões dos servidores</h5>
+                  <h5 class="card-title">Registros</h5>
                   <p class="card-category">
                     alertas das últimas 24h
                   </p>
                 </div>
                 <div class="form-group grafico">
-                  
                 </div>
               </div>
               <div class="card-body">
@@ -391,6 +390,23 @@
               </div>
             </div>
           </div>
+          <div class="col-md-9">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-title">Componente com mais alertas</h5>
+                <p class="card-category">
+                  alertas das últimas 24h
+                </p>
+              </div>
+              <div class="card-body">
+                <canvas id="chartAnaliseComp" class="graficoComponenteAnalise"></canvas>
+              </div>
+              <div class="card-footer">
+                <hr />
+                <div class="card-stats"></div>
+              </div>
+            </div>
+          </div> 
         </div>
       </div>
       <footer class="footer footer-black footer-white">
