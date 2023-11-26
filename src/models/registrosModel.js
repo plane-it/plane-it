@@ -1,4 +1,4 @@
-const database = require("../database/config")
+const database = require('../database/config')
 
 function buscarAlertas(fkEmpresa, anoAtual) {
     const sql = `
@@ -122,7 +122,7 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     WHERE 
         fkServidor = ${fkServidor}
     AND 
-        sinal = "MHz"
+        sinal = 'MHz'
     ORDER BY 
         tbRegistro.idRegst DESC
     LIMIT 10;
@@ -148,7 +148,7 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     WHERE 
         fkServidor = ${fkServidor}
     AND 
-        sinal = "Gb"
+        sinal = 'Gb'
     AND 
         fktipoComponente = ${fkTipoComponente}
     ORDER BY 

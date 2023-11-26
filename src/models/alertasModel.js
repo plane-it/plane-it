@@ -18,7 +18,7 @@ function listar(id) {
                     )
                 ) / 5
             ) * 5 MINUTE
-        ) as "datahora", (
+        ) as 'datahora', (
             select rs.valor
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -26,11 +26,11 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "CPU"
+                tc.tipo = 'CPU'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "cpu", (
+        ) as 'cpu', (
             select u.sinal
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -38,11 +38,11 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "CPU"
+                tc.tipo = 'CPU'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "cpuUni",(
+        ) as 'cpuUni',(
             select rs.valor
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -50,11 +50,11 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "RAM"
+                tc.tipo = 'RAM'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "ram", (
+        ) as 'ram', (
             select u.sinal
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -62,11 +62,11 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "RAM"
+                tc.tipo = 'RAM'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "ramUni", (
+        ) as 'ramUni', (
             select rs.valor
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -74,12 +74,12 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "Disco"
+                tc.tipo = 'Disco'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit
                 1
-        ) as "disco",(
+        ) as 'disco',(
             select u.sinal
             from tbRegistro rs
                 join tbMetrica m on m.idMetrica = rs.fkMetrica
@@ -87,12 +87,12 @@ function listar(id) {
                 join tbUnidadeMedida u on u.idUnidadeMedida = m.fkUnidadeMedida
                 join tbTipoComponente tc on tc.idTipoComponente = c.fkTipoComponente
             where
-                tc.tipo = "Disco"
+                tc.tipo = 'Disco'
                 and rs.fkServidor = r.fkServidor
             order by rs.idRegst
             limit 1
-        ) as "discoUni",
-        s.apelido as "servidor"
+        ) as 'discoUni',
+        s.apelido as 'servidor'
         FROM tbRegistro r
             JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
             JOIN tbServidor s ON s.idServ = r.fkServidor

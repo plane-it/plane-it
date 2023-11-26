@@ -1,4 +1,4 @@
-const database = require("../database/config")
+const database = require('../database/config')
 
 function buscarEspecificacoes(fkServidor) {
     const sql = `
