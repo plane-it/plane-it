@@ -44,7 +44,8 @@ function buscarAeroporto(fkEmpresa) {
 }
 
 function buscarEstadoServidor(fkServidor) {
-    const sql = `CALL buscarEstadoDeServidor(${fkServidor});`
+    // const sql = `CALL buscarEstadoDeServidor(${fkServidor});`
+    const sql = `EXEC buscarEstadoDeServidor @_fkServ = ${fkServidor}`
     return database.executar(sql)
 }
 
