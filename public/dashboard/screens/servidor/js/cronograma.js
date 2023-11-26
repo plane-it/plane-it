@@ -372,7 +372,6 @@ async function getHolidays(){
   const res = await data.json()
   const today = new Date()
  
-  console.log(today)
   for(let i = 0; i < res.length; i++){
     if(
       months[res[i].mes] > today.getMonth()+1 ||
