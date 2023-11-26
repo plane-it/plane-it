@@ -5970,7 +5970,7 @@ a.badge-dark:focus {
 .alert-warning {
     color: #856404;
     background-color: #fd7e14;
-    border-color: #ffeeba
+    border-color: #ffeeba;
 }
 
 .alert-warning hr {
@@ -6016,9 +6016,9 @@ a.badge-dark:focus {
 }
 
 .alert-seguro {
-    color: #1b1e21;
-    background-color: #e9ba93;
-    border-color: #c6c8ca
+    color: #1b1e21 !important;
+    background-color: #e9ba93 !important;
+    border-color: #c6c8ca !important;
 }
 
 .alert-dark hr {
@@ -17462,9 +17462,9 @@ a.badge-dark:focus {
 }
 
 .alert-warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border-color: #ffeeba !important;
 }
 
 .alert-warning hr {

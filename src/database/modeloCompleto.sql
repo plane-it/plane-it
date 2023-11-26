@@ -480,3 +480,6 @@ update tbRegistro set dataHora = '2023-06-10 17:12:55' WHERE idRegst in (28,29,3
 update tbRegistro set dataHora = '2023-07-10 17:12:55' WHERE idRegst in (24,25,26,27);
 update tbRegistro set dataHora = '2023-08-10 17:12:55' WHERE idRegst in (20,21,22,23);
 update tbRegistro set dataHora = '2023-09-10 17:12:55' WHERE idRegst in (16,17,18,19);
+
+UPDATE tbMetrica SET fkComponente = 1 WHERE idMetrica = 17;
+INSERT INTO tbMetrica VALUES (NULL, 80, 1, 2);
