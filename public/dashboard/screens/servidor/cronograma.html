@@ -27,68 +27,57 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="../index.html" class="simple-text logo-mini">
+        <a href="/index.html" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../../assets/img/planeIt/logoSemNome.png">
+            <img src="../../assets/img/planeIt/logoSemNome.ico">
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="../index.html" class="simple-text logo-normal">
+        <a href="/dashboard/screens/index.html" class="simple-text logo-normal">
           Plane - it
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./index.html">
+            <a href="./principalDash.html">
               <i class="nc-icon nc-layout-11"></i>
-              <p>Menu</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="./alertas.html">
-              <i class="nc-icon nc-bell-55"></i>
-              <p>Alertas</p>
-            </a>
-          </li>
-          <li>
-            <a href="./chamados.html">
-              <i class="nc-icon nc-email-85"></i>
-              <p>Chamados</p>
-            </a>
-          </li>
+                            <p>Geral</p>
 
-          <li>
-              <a href="#" class="dropbtn adm">
-                <i class="nc-icon nc-single-copy-04"></i>
-                <p>Cadastro</p>
-              </a>
-              <div class="dropdown-content">
-                <a href="../../../dashboard/screens/adm/addFuncinario.html" class="dashboardDrop">Funcionários</a>
-                <a href="../../screens/adm/addAeroporto.html">Aeroportos</a>
-                <a href="../../screens/adm/addServidor.html">Servidores</a>
-              </div>
-          </li>
-
-          <li>
-            <a href="#" class="dropbtn adm">
-              <i class="nc-icon nc-tile-56"></i>
-              <p>Informações Gerais</p>
             </a>
-            <div class="dropdown-content">
-              <a href="../../listas/listaFuncionarios.html" class="adm">Funcionários</a>
-              <a href="../../listas/listaAeroportos.html">Aeroportos</a>
-            </div>
-
-            <li class="analista">
-              <a href="../dashboard/screens/listas/listaServidores.html">
-                <i class="nc-icon nc-tile-56"></i>
-                <p>Lista de servidores</p>
-              </a>
-            </li>
+          </li>
+        <li class="adm">
+          <a href="#" class="dropbtn adm">
+            <i class="nc-icon nc-chart-pie-36"></i>
+            <p>Analytics</p>
+          </a>
+          <div class="li-dropdown-content">
+              <a href="analytics/custoBeneficio.html" class="adm">Custo-benefício</a>
+          </div>
+        </li>
+        <li class="active">
+          <a href="./especificacoes.html">
+            <i class="nc-icon nc-tile-56"></i>
+            <p>Especificações</p>
+          </a>
+        </li>
+        <li class="analista respostaReq" style="display: none;">
+          <a href="../servidor/analytics/responderInspecao.html">
+            <i class="nc-icon nc-alert-circle-i"></i>
+            <p>Responder Inspeção</p>
+          </a>
+        </li> 
+        <li>
+            <a href="../listas/listaServidores.html">
+              <i class="nc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                  class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                </svg>
+              </i>
+              <p>Voltar</p>
+            </a>
           </li>
         </ul>
       </div>
