@@ -49,11 +49,13 @@ function buscarEstadoServidor() {
       })
     }).then((res) => res.json())
       .then((res) => {
+        console.log(res)
         if (res.error) {
           console.log("Aconteceu algum erro (res.error = true)")
         }
         else {
-          const resultado = res[0][0];
+          const resultado = res[0];
+          console.log(resultado)
           if (resultado.qtsAlertasCpu > 20) {
             cpuEstado.innerHTML = "Risco";
             cpuKPI.style = 'background-color: rgba(244, 69, 69, 0.604) !important;'
