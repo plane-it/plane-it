@@ -105,7 +105,7 @@ function buscarEstadoServidores(fk, adm) {
 function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     if (fkTipoComponente == 1) {
         var sql = `
-        SELECT
+        SELECT top 10
         tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
@@ -124,12 +124,11 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     AND 
         sinal = 'MHz'
     ORDER BY 
-        tbRegistro.idRegst DESC
-    LIMIT 10;
+        tbRegistro.idRegst DESC;
         `
     } else {
         var sql = `
-        SELECT
+        SELECT top 10
         tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
@@ -152,8 +151,7 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     AND 
         fktipoComponente = ${fkTipoComponente}
     ORDER BY 
-        tbRegistro.idRegst DESC
-    LIMIT 10;    
+        tbRegistro.idRegst DESC  
         `
     }
 
