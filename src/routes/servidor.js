@@ -23,15 +23,23 @@ router.post("/buscarErrosMensais", function (req,res) {
     servidorController.buscarErrosMensais(req,res)
 })
 
-router.post("/buscarAlertas",function(req,res){
-    servidorController.buscarAlertas(req,res)
+router.post("/alertasEstadoRuim",function(req,res){
+    servidorController.alertasEstadoRuim(req,res)
 })
 
-router.post("/alertasPorServidor",function(req,res){
-    servidorController.alertasPorServidor(req,res)
+router.post("/alertasEstadoBom",function(req,res){
+    servidorController.alertasEstadoBom(req,res)
+})
+
+router.post("/alertasEstadoMedio",function(req,res){
+    servidorController.alertasEstadoMedio(req,res)
 })
 
 router.post("/buscarDesempenho",function(req,res){
     servidorController.buscarDesempenho(req,res)
+})
+
+router.post("/alertasFuncoes",function(req,res){
+    servidorController.alertasFuncoes(req,res)
 })
 module.exports = router

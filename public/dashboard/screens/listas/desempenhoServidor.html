@@ -215,7 +215,7 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="row" style="display: flex; justify-content: space-evenly;">
+        <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body">
@@ -249,7 +249,7 @@
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
                       <div class="text-cpi">
-                        <i class="nc-icon nc-tile-56"></i>
+                        <i class="nc-icon nc-sound-wave"></i>
                       </div>
                     </div>
                   </div>
@@ -275,7 +275,33 @@
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
                       <div class="text-cpi">
-                        <i class="nc-icon nc-tile-56"></i>
+                        <i class="nc-icon nc-sound-wave"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Servidor Médio</p>
+                      <p class="card-title" id="statusMedio">--</p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <hr />
+                <div class="stats"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <div class="text-cpi">
+                        <i class="nc-icon nc-sound-wave"></i>
                       </div>
                     </div>
                   </div>
@@ -296,20 +322,20 @@
           </div>
         </div>
         <!--Inicio dos gráficos-->
-        <!-- Grafico de alertas -->
+        <!-- incio do grafico servidores -->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="card">
               <div class="row grafico-container">
                 <div class="form-group grafico">
-                  <h5 class="card-title">Alertas</h5>
+                  <h5 class="card-title">Servidores </h5>
                   <p class="card-category">
-                    Quantidade de cada servidor
+                    alertas das últimas 24h
                   </p>
                 </div>
                 <div class="form-group grafico">
-                  <label>Selecione a função: </label>
-                  <select type="text" class="form-control" id="funcaoServidor" onchange="alterarGrafico(this.value)">
+                  <label >Altere o filtro</label>
+                  <select type="text" class="form-control" id="funcaoServidor" onchange="alterarEstadoServidores(this.value)">
                   </select>
                 </div>
               </div>
@@ -322,34 +348,18 @@
               </div>
             </div>
           </div>
-          <!-- Fim do grafico de alertas -->
-          <div class="col-md-7">
-              <div class="card card-chart">
-                <div class="card-header">
-                  <h5 class="card-title">Desempenho de componente</h5>
-                  <p class="card-category">
-                    componente com mais alertas
-                  </p>
-                </div>
-                <div class="card-body">
-                  <canvas id="chartComponente" class="graficoComponente"></canvas>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="card-stats"></div>
-                </div>
-              </div>
-            </div> 
-          <!-- Fim do grafico de componente -->
-          <div class="col-md-5">
+          <!-- fim do grafico servidores -->
+          <!-- Inicio do grafico componente -->
+          <div class="col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-title"></h5>
+                <h5 class="card-title">Desempenho de componente</h5>
                 <p class="card-category">
+                  componente com mais alertas
                 </p>
               </div>
               <div class="card-body">
-                <canvas id="speedChart" class="graficoRamUso"></canvas>
+                <canvas id="chartComponente" class="graficoComponente"></canvas>
               </div>
               <div class="card-footer">
                 <hr />
@@ -357,7 +367,30 @@
               </div>
             </div>
           </div> 
-          <!-- Fim do grafico de tempo medio-->
+          <!-- Fim do grafico de componentes -->
+          <!-- Inicio do grafico funcao -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="row grafico-container">
+                <div class="form-group grafico">
+                  <h5 class="card-title">Funcões dos servidores</h5>
+                  <p class="card-category">
+                    alertas das últimas 24h
+                  </p>
+                </div>
+                <div class="form-group grafico">
+                  
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="chartServ" class="grafico"></canvas>
+              </div>
+              <div class="card-footer">
+                <hr />
+                <div class="stats"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <footer class="footer footer-black footer-white">

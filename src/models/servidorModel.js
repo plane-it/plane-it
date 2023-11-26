@@ -77,26 +77,55 @@ function buscarErrosMensais(fkServidor, mesLimite, anoAtual, fkComponente) {
     return database.executar(sql)
 }
 
-function buscarAlertas(fkAeroporto){
+function alertasEstadoRuim(fkAeroporto){
     const sql = `
     SELECT sum(alerta) AS 'qtdAlerta',funcao,apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
     JOIN tbServidor 
     ON fkServidor = idServ
     JOIN tbAeroporto ON fkAeroporto = idAeroporto 
     AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
-    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto} GROUP BY idserv;
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto} AND dataHora < NOW() - INTERVAL 1 DAY 
+    GROUP BY idserv
+    HAVING SUM(alerta) > 6;`
+    console.log(sql)
+    return database.executar(sql)
+}
+
+function alertasEstadoBom(fkAeroporto){
+    const sql = `
+    SELECT sum(alerta) AS 'qtdAlerta',funcao,apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
+    JOIN tbServidor 
+    ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+    AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
+    AND dataHora < NOW() - INTERVAL 1 DAY GROUP BY idserv
+    HAVING SUM(alerta) > 0 && SUM(alerta) <= 4 ORDER BY SUM(alerta) DESC;
     `
     console.log(sql)
     return database.executar(sql)
 }
 
-function alertasPorServidor(funcionalidade,fkAeroporto){
+function alertasEstadoMedio(fkAeroporto){
     const sql = `
-    SELECT sum(alerta) AS 'alerta',apelido,funcao FROM tbRegistro JOIN tbServidor ON fkServidor = idServ 
-    JOIN tbAeroporto
-    ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto} AND 
-    funcao = '${funcionalidade}'
-    GROUP BY funcao,apelido;
+    SELECT sum(alerta) AS 'qtdAlerta',funcao,apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
+    JOIN tbServidor 
+    ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+    AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
+    AND dataHora < NOW() - INTERVAL 1 DAY GROUP BY idserv
+    HAVING SUM(alerta) > 4 && SUM(alerta) <= 6 ORDER BY SUM(alerta) DESC;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
+function alertasFuncoes(fkAeroporto){
+    const sql = `
+    SELECT SUM(alerta) AS 'qtdAlerta', funcao FROM tbRegistro JOIN tbServidor ON fkServidor = idServ 
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto}
+    GROUP BY funcao ORDER BY SUM(alerta) DESC;   
     `
     console.log(sql)
     return database.executar(sql)
@@ -104,9 +133,10 @@ function alertasPorServidor(funcionalidade,fkAeroporto){
 
 function buscarDesempenho(fkAeroporto){
     const sql = `
-    SELECT SUM(alerta) AS 'desempenho',tipo FROM tbRegistro JOIN tbComponente ON fkComp = idComp 
-    JOIN tbServidor on fkServidor = idServ JOIN tbTipoComponente on idTipoComponente = fkTipoComponente 
-    JOIN tbAeroporto on fkAeroporto = idAeroporto WHERE idaeroporto = ${fkAeroporto} GROUP BY tipo; 
+    SELECT SUM(alerta) AS 'qtdAlerta',tipo,nome,apelido FROM tbRegistro JOIN tbComponente ON fkComp = idComp 
+    JOIN tbServidor ON fkServidor = idServ JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente 
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto WHERE idaeroporto = ${fkAeroporto} GROUP BY tipo,nome,apelido
+    HAVING SUM(alerta) > 0 && SUM(alerta) <= 4 ORDER BY SUM(alerta) DESC;
     `
     console.log(sql)
     return database.executar(sql)
@@ -120,7 +150,9 @@ module.exports = {
     buscarAeroporto,
     buscarEstadoServidor,
     buscarErrosMensais,
-    buscarAlertas,
     buscarDesempenho,
-    alertasPorServidor
+    alertasEstadoRuim,
+    alertasEstadoBom,
+    alertasEstadoMedio,
+    alertasFuncoes
 }
