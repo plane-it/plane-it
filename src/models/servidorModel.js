@@ -1,4 +1,4 @@
-const database = require("../database/config")
+const database = require('../database/config')
 
 function buscarServidor(fkAeroporto) {
     const sql = `
@@ -9,7 +9,7 @@ function buscarServidor(fkAeroporto) {
 
 function cadastrarServidor(codAutenticacao, nomeServidor, SO, IP, funcao, fkAeroporto) {
     const sql = `
-        INSERT INTO tbServidor (codAutentic, apelido, sistemaOp, ip, funcao, fkAeroporto) VALUES("${codAutenticacao}","${nomeServidor}","${SO}","${IP}","${funcao}",${fkAeroporto});
+        INSERT INTO tbServidor (codAutentic, apelido, sistemaOp, ip, funcao, fkAeroporto) VALUES('${codAutenticacao}','${nomeServidor}','${SO}','${IP}','${funcao}',${fkAeroporto});
     `
     console.log(sql)
     return database.executar(sql)
@@ -18,9 +18,9 @@ function cadastrarServidor(codAutenticacao, nomeServidor, SO, IP, funcao, fkAero
 function cadastrarComponentes(idServidor, cpu, precoCpu, ram, precoRam, disco, precoDisco) {
     
     const sql = `
-        INSERT INTO tbComponente VALUES(null,"${cpu}", 1, "${precoCpu}",${idServidor}),
-                                       (null,"${ram}", 2, "${precoRam}",${idServidor}),
-                                       (null,"${disco}", 3,"${precoDisco}",${idServidor});
+        INSERT INTO tbComponente VALUES(null,'${cpu}', 1, '${precoCpu}',${idServidor}),
+                                       (null,'${ram}', 2, '${precoRam}',${idServidor}),
+                                       (null,'${disco}', 3,'${precoDisco}',${idServidor});
     `
     console.log(sql)
     return database.executar(sql)
@@ -28,10 +28,10 @@ function cadastrarComponentes(idServidor, cpu, precoCpu, ram, precoRam, disco, p
 
 function cadastrarLimite(idComponente, temperaturaCpu, limiteCpu, limiteRam, limiteDisco) {
     idComponente = parseInt(idComponente)
-    const sql = `  INSERT INTO tbMetrica VALUES(null,"${temperaturaCpu}",${idComponente},${1}),
-                                                (null,"${limiteCpu}",${idComponente},${2}),
-                                                (null,"${limiteRam}",${idComponente + 1},${3}),
-                                                (null,"${limiteDisco}",${idComponente + 2},${3});
+    const sql = `  INSERT INTO tbMetrica VALUES(null,'${temperaturaCpu}',${idComponente},${1}),
+                                                (null,'${limiteCpu}',${idComponente},${2}),
+                                                (null,'${limiteRam}',${idComponente + 1},${3}),
+                                                (null,'${limiteDisco}',${idComponente + 2},${3});
     `
     return database.executar(sql)
 }
@@ -44,7 +44,8 @@ function buscarAeroporto(fkEmpresa) {
 }
 
 function buscarEstadoServidor(fkServidor) {
-    const sql = `CALL buscarEstadoDeServidor(${fkServidor});`
+    // const sql = `CALL buscarEstadoDeServidor(${fkServidor});`
+    const sql = `EXEC buscarEstadoDeServidor @_fkServ = ${fkServidor}`
     return database.executar(sql)
 }
 
