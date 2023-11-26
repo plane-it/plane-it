@@ -8,7 +8,7 @@ function buscarAlertas(fkEmpresa, anoAtual) {
     JOIN tbAeroporto on fkAeroporto = idAeroporto
     JOIN tbEmpresa on fkEmpresa = idEmpr 
     WHERE idEmpr = ${fkEmpresa}
-        AND alerta = true
+        AND alerta = 1
         AND YEAR(dataHora) = ${anoAtual};
     `
     return database.executar(sql)
@@ -61,7 +61,7 @@ function buscarEstadoServidores(fk, adm) {
         AlertasPorServidor AS (
             SELECT fkServidor, COUNT(*) as alertasGerados
             FROM UltimosRegistros
-            WHERE alerta = true
+            WHERE alerta = 1
             GROUP BY fkServidor
         )
         SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
@@ -89,7 +89,7 @@ function buscarEstadoServidores(fk, adm) {
         AlertasPorServidor AS (
             SELECT fkServidor, COUNT(*) as alertasGerados
             FROM UltimosRegistros
-            WHERE alerta = true
+            WHERE alerta = 1
             GROUP BY fkServidor
         )
         SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
