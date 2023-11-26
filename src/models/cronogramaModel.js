@@ -16,7 +16,7 @@ function getMedidaSemanal(idServidor, tipoComponente) {
         JOIN tbComponente c ON c.idComp = r.fkComp
         JOIN tbMetrica m ON m.idMetrica = r.fkMetrica
         JOIN tbUnidadeMedida um ON um.idUnidadeMedida = m.fkUnidadeMedida
-        WHERE c.fkTipoComponente = 1 AND r.fkServidor = 1
+        WHERE c.fkTipoComponente = ${tipoComponente} AND r.fkServidor = ${idServidor}
         GROUP BY DATEPART(DW,r.datahora), m.valor, um.sinal, um.nome;
     `
 
