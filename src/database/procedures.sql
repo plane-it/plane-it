@@ -86,3 +86,40 @@ DELIMITER ;
 
 
 
+----------------------------------
+
+CREATE PROCEDURE buscarEstadoDeServidor
+    @_fkServ INT
+AS
+BEGIN
+    SELECT 
+        (SELECT SUM(case when cpu.alerta = 1 then 1 else 0 end) FROM
+            (SELECT TOP 50 * FROM tbServidor 
+                JOIN tbComponente ON fkServ = idServ 
+                JOIN tbRegistro ON fkComp = idComp 
+                    WHERE fkServ = @_fkServ
+                    AND fkTipoComponente = 1
+                    ORDER BY idComp DESC 
+            ) AS cpu
+        ) AS qtsAlertasCpu,
+        (SELECT SUM(case when ram.alerta = 1 then 1 else 0 end) FROM 
+            (SELECT TOP 50 * FROM tbServidor    
+                JOIN tbComponente ON fkServ = idServ     
+                JOIN tbRegistro ON fkComp = idComp 
+                    WHERE fkServ = @_fkServ
+                    AND fkTipoComponente = 2 
+                    ORDER BY idComp DESC 
+            ) AS ram
+        ) AS qtsAlertasRam,
+        (SELECT SUM(case when disco.alerta = 1 then 1 else 0 end) FROM 
+            (SELECT TOP 50 * FROM tbServidor 
+                JOIN tbComponente ON fkServ = idServ 
+                JOIN tbRegistro ON fkComp = idComp 
+                    WHERE fkServ = @_fkServ
+                    AND fkTipoComponente = 3 
+                    ORDER BY idComp DESC 
+            ) AS disco
+        ) AS qtsAlertasDisco;
+END;
+
+EXEC buscarEstadoDeServidor @_fkServ = 1;
