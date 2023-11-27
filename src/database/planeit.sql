@@ -4,9 +4,10 @@ USE planeit;
 
 create table tbFaleConosco(
 	idFaleConosco int primary key,
+	nome varchar(60),
+	assunto varchar(60),
 	mensagem varchar(255),
 	email varchar(255),
-	tefelone varchar(11)
 );
 
 create table tbEmpresa(

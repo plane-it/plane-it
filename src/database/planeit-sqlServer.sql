@@ -9,10 +9,11 @@ USE planeit;
 GO
 
 CREATE TABLE tbFaleConosco(
-	idFaleConosco INT PRIMARY KEY,
+	idFaleConosco INT PRIMARY KEY IDENTITY(1,1),
+	nome VARCHAR(60),
+	assunto VARCHAR(60)
 	mensagem VARCHAR(255),
-	email VARCHAR(255),
-	tefelone VARCHAR(11)
+	email VARCHAR(255)
 );
 
 CREATE TABLE tbEmpresa(

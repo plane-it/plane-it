@@ -2,7 +2,7 @@ var database = require('../database/config');
 
 function enviarReq(motivo, descricao, requisitante, servidor) {
     const sql = `
-    INSERT INTO tbPedidosInspecao VALUES (NULL, '${motivo}', '${descricao}', ${servidor}, ${requisitante})
+    INSERT INTO tbPedidosInspecao (motivo, descricao, fkServidor, fkRequisitante) VALUES ('${motivo}', '${descricao}', ${servidor}, ${requisitante})
     `
     return database.executar(sql)
 }
@@ -35,7 +35,7 @@ function buscarSolicitacoes(aeroporto) {
 
 function enviarResposta(pedido, resposta, respondente) {
     const sqlInsert = `
-    INSERT INTO tbRespostaInspecao VALUES (NULL, '${resposta}', ${respondente}, ${pedido})
+    INSERT INTO tbRespostaInspecao (resposta, respondente, fkPedido) VALUES ('${resposta}', ${respondente}, ${pedido})
     `
     return database.executar(sqlInsert).then(() => {
         const sqlSelect = `SELECT idRespostaInspecao FROM tbRespostaInspecao 
