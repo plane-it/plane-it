@@ -123,3 +123,62 @@ BEGIN
 END;
 
 EXEC buscarEstadoDeServidor @_fkServ = 1;
+
+CREATE PROCEDURE MedianBeneficioByType
+    @fkEmpresa INT
+AS
+BEGIN
+    -- Create a table variable to replace the temporary table
+    DECLARE @medians TABLE (
+        fktipoComponente INT,
+        valor_preco_ratio FLOAT,
+        rn INT,
+        cnt INT
+    )
+
+    -- Populate the table variable
+    INSERT INTO @medians
+    SELECT fktipoComponente, valor_preco_ratio,
+           ROW_NUMBER() OVER (
+               PARTITION BY fktipoComponente 
+               ORDER BY valor_preco_ratio
+           ) AS rn,
+           COUNT(*) OVER (
+               PARTITION BY fktipoComponente
+           ) AS cnt
+    FROM (
+        SELECT tbComponente.fktipoComponente, (tbSpecs.valor / tbComponente.preco) AS valor_preco_ratio
+        FROM tbSpecs
+        JOIN tbComponente ON tbSpecs.fkComponente = tbComponente.idComp
+        JOIN tbServidor ON tbComponente.fkServ = tbServidor.idServ
+        JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
+        WHERE tbAeroporto.fkEmpresa = @fkEmpresa
+    ) subquery1;
+
+    -- Select the median
+    SELECT fktipoComponente, AVG(valor_preco_ratio) AS median
+    FROM @medians
+    WHERE rn BETWEEN cnt / 2.0 AND cnt / 2.0 + 1
+    GROUP BY fktipoComponente;
+END;
+
+exec MedianBeneficioByType @fkEmpresa = 1;
+
+
+CREATE PROCEDURE MedianPriceByComponentType
+    @empresaID INT
+AS
+BEGIN
+    SELECT fktipoComponente, AVG(preco) AS median_val
+    FROM
+    (
+        SELECT fktipoComponente, preco, COUNT(*) OVER (PARTITION BY fktipoComponente) AS cnt, ROW_NUMBER() OVER (PARTITION BY fktipoComponente ORDER BY preco) AS rn
+        FROM tbComponente
+        JOIN tbServidor ON idServ = fkServ
+        JOIN tbAeroporto ON idAeroporto = fkAeroporto
+        WHERE fkEmpresa = @empresaID
+    ) AS subquery
+    WHERE rn IN (FLOOR((cnt + 1) / 2.0), FLOOR((cnt + 2) / 2.0))
+    GROUP BY fktipoComponente;
+END;
+exec MedianPriceByComponentType @empresaID = 1;
