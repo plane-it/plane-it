@@ -359,6 +359,7 @@
         resposta.json().then(function (resposta) {
 
           inputEmpresa.value = resposta[0].nomeEmpresa;
+          // sessionStorage.SIGLA_AEROPORTO = resposta[0].siglaAeroporto;
 
           for (var i = 0; i < resposta.length; i++) {
 

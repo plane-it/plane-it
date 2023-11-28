@@ -11,6 +11,7 @@ function buscarAeroporto(req, res) {
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
+                    // sessionStorage.SIGLA_AEROPORTO = res[0].siglaAeroporto
                 } else {
                     res.status(403).json({ error: "Sem Aeroportos!" });
                 }
@@ -78,9 +79,31 @@ function pegarDadosEmpresa(req, res) {
 
     )
 }
+function guardarAeroporto(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    aeroportoModel.pegarDadosEmpresa(idUsuario)
+    .then(
+        function(resultado){
+            console.log(resultado)
+            res.json(resultado);
+        }
+
+    ).catch(
+        function(erro){
+
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar o envio do formulario ",erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+
+        }
+
+    )
+}
 
 module.exports = {
     buscarAeroporto,
     cadastrarAeroporto,
-    pegarDadosEmpresa
+    pegarDadosEmpresa,
+    guardarAeroporto
 }

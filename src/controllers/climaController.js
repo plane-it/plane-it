@@ -22,13 +22,15 @@ function buscarFeriados(req, res) {
     
 }
 function buscarVoos(req, res) {
+
+    var siglaAeroportoOrigem = req.body.siglaAeroporto;
     
-        climaModel.buscarVoos().then(
+        climaModel.buscarVoos(siglaAeroportoOrigem).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
                 } else {
-                    res.status(403).json({ error: "Sem feriados!" });
+                    res.status(403).json({ error: "Sem voos!" });
                 }
             }
         ).catch(
@@ -39,7 +41,49 @@ function buscarVoos(req, res) {
     
 }
 
+function buscarClimaTabela(req, res) {
+
+    var regiao = req.body.regiao;
+    
+    climaModel.buscarClimaTabela(regiao).then(
+        function (resultado) {
+            if (resultado.length > 0) {
+                res.json(resultado);
+            } else {
+                res.status(403).json({ error: "Sem clima!" });
+            }
+        }
+    ).catch(
+        function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
+function buscarOutrosFeriados(req, res) {
+
+    var ids = req.body.ids;
+    
+    climaModel.buscarOutrosFeriados(ids).then(
+        function (resultado) {
+            if (resultado.length > 0) {
+                res.json(resultado);
+            } else {
+                res.status(403).json({ error: "Sem clima!" });
+            }
+        }
+    ).catch(
+        function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
 module.exports = {
     buscarFeriados,
-    buscarVoos
+    buscarVoos,
+    buscarClimaTabela,
+    buscarOutrosFeriados
 }

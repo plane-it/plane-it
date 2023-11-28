@@ -1,82 +1,291 @@
-buscarFeriados();
+buscarDataIgual();
 
-
-function buscarFeriados() {
-
-  var dataAtual = new Date();
-  var diaAtual = dataAtual.getDate();        
-  var mesNumero = dataAtual.getMonth() + 1;
-
-
-  var meses = {
-    1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 5: "maio", 6: "junho",
-    7: "julho", 8: "agosto", 9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro"
-  };
-  
-  var mesEscrito = meses[mesNumero];
-  
+function buscarDataIgual() {
+  dias = [];
+  meses = [];
 
   fetch("/clima/buscarFeriados", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({}),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.error) {
+        console.log("Aconteceu algum erro (res.error = true)");
+      } else {
+        for (let i = 0; i < res.length; i++) {
+          dias[i] = res[i].dia;
+          meses[i] = res[i].mes;
+        }
+      }
+    })
+    .catch(function (resposta) {});
+}
+
+buscarClimaTabela()
+
+function obterNomeMes(numero) {
+  switch (numero) {
+    case 1:
+      return "Janeiro";
+    case 2:
+      return "Fevereiro";
+    case 3:
+      return "Março";
+    case 4:
+      return "Abril";
+    case 5:
+      return "Maio";
+    case 6:
+      return "Junho";
+    case 7:
+      return "Julho";
+    case 8:
+      return "Agosto";
+    case 9:
+      return "Setembro";
+    case 10:
+      return "Outubro";
+    case 11:
+      return "Novembro";
+    case 12:
+      return "Dezembro";
+    default:
+      return "Mês inválido";
+  }
+}
+
+// Exemplo de uso
+let numeroMes = 3;
+let nomeMes = obterNomeMes(numeroMes);
+console.log(nomeMes); // Saída: Março
+
+
+var clima = [];
+var idEncontrado = [];
+var todosFeriados = [];
+
+function buscarClimaTabela() {
+  var naoAchouDia = [];
+  var naoAchouMes = [];
+  regiao = sessionStorage.getItem("REGIAO_AEROPORTO");
+  diaMostrado = "";
+
+  fetch("/clima/buscarClimaTabela", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
-      
+      regiao: sessionStorage.getItem("REGIAO_AEROPORTO"),
     }),
   })
-  .then((res) => res.json())
-  .then((res) => {
-      if (res.error) {
-          console.log("Aconteceu algum erro (res.error = true)")
-      }
-      else {
-        console.log("erro no js");
-          for(let i = 0; i < res.length; i++) {
-            tabelaFeriado.innerHTML += `                      
-              <tr>
-              <td>
-                ${res[i].dia}
-              </td>
-              <td>
-                ${res[i].mes}
-              </td>
-              <td>
-                ${res[i].titulo}
-              </td>
-            </tr>`
+    .then((res) => res.json())
+    .then((resposta) => {
+      if (resposta.error) {
+        console.log("Aconteceu algum erro (res.error = true)");
+      } else {
+        console.log(resposta)
+        for (let i = 0; i < resposta.length; i++) {
+          todosFeriados.push(resposta[i]);
+          idEncontrado.push(resposta[i].idFeriado); 
+          let previsao;
+          if (resposta[i].previsao < 2.5) {
+            previsao="Previsão boa"
+            styleBoa = "color: green"
+          } else if (resposta[i].previsao < 10) {
+            previsao="Previsâo moderada"
+          } else if (resposta[i].previsao < 50) {
+            previsao="Previsão preocupante"
+          } else {
+            previsao="Voos cancelados"
           }
 
-          for(let i = 0; i < res.length; i++) {
-            if(res[i].mes == mesEscrito){
-              if(diaAtual < res[i].dia){
-                dataFeriado.innerHTML = ` ${mesEscrito} - ${res[i].dia}`
-
-              }
-            } else{
-              // mesNumero += 1
-              dataFeriado.innerHTML = ` ${meses[mesNumero + 1]} - ${res[i].dia}`
-
-            }
-            }
           
-
           
-
-          
+          tabelaFeriado.innerHTML += `
+          <tr>
+          <td>
+          ${resposta[i].dia}
+          </td>
+          <td>
+          ${resposta[i].diaSemana}
+          </td>
+          <td>
+          ${obterNomeMes(parseInt(resposta[i].mes))} 
+          </td>
+          <td>
+          ${resposta[i].titulo}
+          </td>
+          <td id="previsaoMuda">
+          ${previsao}
+          </td>
+          </tr>`;
+        }
+        buscarOutrosFeriados(idEncontrado)
+        
       }
-  }).catch(function (resposta) {
-      
-  });
+    })
+    .catch(function (resposta) {});
+}
+
+function buscarOutrosFeriados(idEncontrado) {
+  fetch("/clima/buscarOutrosFeriados", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ids: idEncontrado
+    }),
+  })
+    .then((res) => res.json())
+    .then((resposta) => {
+      if (resposta.error) {
+        console.log("Aconteceu algum erro (res.error = true)");
+      } else {
+        let previsao = "Previsao boa"
+        console.log(resposta)
+        for (let i = 0; i < resposta.length; i++) {
+          todosFeriados.push(resposta[i]);
+
+            tabelaFeriado.innerHTML += `
+            <tr>
+            <td>
+              ${resposta[i].dia}
+            </td>
+            <td>
+            ${resposta[i].diaSemana}
+            </td>
+            <td>
+              ${obterNomeMes(parseInt(resposta[i].mes))} 
+            </td>
+            <td>
+              ${resposta[i].titulo}
+            </td>
+            <td>
+              ${previsao}
+            </td>
+          </tr>`;
+      }
+
+      kpiFeriado();
+
+    }})
+    .catch(function (resposta) {});
+}
+
+function kpiFeriado() {
+  var dataAtual = new Date();
+  var diaAtual = dataAtual.getDate();
+  var mesAtual = dataAtual.getMonth() + 1;
+
+  var proximoFeriado = null;
+
+  for (let i = 0; i < todosFeriados.length; i++) {
+    const feriado = todosFeriados[i];
+
+    if (
+      (feriado.mes > mesAtual) ||
+      (feriado.mes === mesAtual && feriado.dia >= diaAtual)
+    ) {
+      // Verifica se encontramos um feriado válido
+      if (!proximoFeriado || feriado.mes < proximoFeriado.mes || (feriado.mes === proximoFeriado.mes && feriado.dia < proximoFeriado.dia)) {
+        proximoFeriado = feriado;
+      }
+    }
+  }
+
+  if (proximoFeriado) {
+    let previsao;
+    if (proximoFeriado.previsao < 2.5) {
+      previsao="Previsão boa"
+    } else if (proximoFeriado.previsao < 10) {
+      previsao="Previsâo moderada"
+    } else if (proximoFeriado.previsao < 50) {
+      previsao="Previsão preocupante"
+    } else {
+      previsao="Voos cancelados"
+    }
+    dataFeriado.innerHTML = proximoFeriado.dia + " / " + proximoFeriado.mes
+    if(previsao == "Previsão boa"){
+      mesFeriado.innerHTML = previsao
+      mesFeriado.style = "color: green"
+    } else if (previsao == "Previsão moderada"){
+      mesFeriado.innerHTML = previsao
+      mesFeriado.style = "color: yellow"
+    } else if(previsao == "Previsão preocupante"){
+      mesFeriado.innerHTML = previsao
+      mesFeriado.style = "color: orange"
+    } else{
+      mesFeriado.innerHTML = previsao
+      mesFeriado.style = "color: red"
+    }
+    console.log('Próximo feriado:', proximoFeriado);
+  } else {
+    console.log('Não há feriados futuros neste ano.');
+  }
+}
+
+
+function buscarFeriados() {
+  var mesEscrito = meses[mesAtual];
+
+  fetch("/clima/buscarFeriados", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.error) {
+        console.log("Aconteceu algum erro (res.error = true)");
+      } else {
+        for (let i = 0; i < res.length; i++) {
+          tabelaFeriado.innerHTML += `
+          <tr>
+          <td>
+            ${res[i].dia}
+          </td>
+          <td>
+          ${res[i].diaSemana}
+          </td>
+          <td>
+            ${meses[res[i].mes]}
+          </td>
+          <td>
+            ${res[i].titulo}
+          </td>
+          <td>
+            ${clima[i]}
+          </td>
+        </tr>`;
+        }
+
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].mes == mesEscrito) {
+            if (diaAtual < res[i].dia) {
+              dataFeriado.innerHTML = ` ${meses[res[i].mes]} - ${res[i].dia}`;
+            }
+          } else {
+            // mesNumero += 1
+            dataFeriado.innerHTML = ` ${meses[res[i].mes]} - ${res[i].dia}`;
+          }
+        }
+      }
+    })
+    .catch(function (resposta) {});
 }
 
 buscarVoos();
 
-var chamadosAnuais = [];
-
 function buscarVoos() {
-  siglaAeroporto = sessionStorage.SIGLA_AEROPORTO
-  
+  qtdVoo = [];
 
   fetch("/clima/buscarVoos", {
     method: "POST",
@@ -84,7 +293,7 @@ function buscarVoos() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      siglaAeroporto: siglaAeroporto
+      siglaAeroporto: sessionStorage.getItem("SIGLA_AEROPORTO"),
     }),
   })
     .then((res) => res.json())
@@ -92,117 +301,105 @@ function buscarVoos() {
       if (res.error) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
-        chamadosAnuais[0] = parseInt(res[0].Janeiro);
-        chamadosAnuais[1] = parseInt(res[0].Fevereiro);
-        chamadosAnuais[2] = parseInt(res[0].Marco);
-        chamadosAnuais[3] = parseInt(res[0].Abril);
-        chamadosAnuais[4] = parseInt(res[0].Maio);
-        chamadosAnuais[5] = parseInt(res[0].Junho);
-        chamadosAnuais[6] = parseInt(res[0].Julho);
-        chamadosAnuais[7] = parseInt(res[0].Agosto);
-        chamadosAnuais[8] = parseInt(res[0].Setembro);
-        chamadosAnuais[9] = parseInt(res[0].Outubro);
-        chamadosAnuais[10] = parseInt(res[0].Novembro);
-        chamadosAnuais[11] = parseInt(res[0].Dezembro);
+        qtdVoo[0] = res[0].quantidade;
+        qtdVoo[1] = res[1].quantidade;
 
-        let qtdTotal = 0;
+        media = ((res[0].quantidade + res[1].quantidade) * 1.63) / 100;
 
-        for (i in chamadosAnuais) {
-          qtdTotal += chamadosAnuais[i];
+        if (media < qtdVoo[1]) {
+          qtdVoosCancelados.innerHTML = res[1].quantidade;
+          qtdVoosCancelados.style = "color: red";
+        } else {
+          qtdVoosCancelados.innerHTML = res[1].quantidade;
+          qtdVoosCancelados.style = "color: green";
         }
 
-        myChart.destroy();
-        ctx = document.getElementById("analiseSistema").getContext("2d");
+        const topLine = {
+          id: "topLine",
+          afterDatasetsDraw(chart, args, plugins) {
+            const { ctx, data } = chart;
+
+            ctx.save();
+            chart.getDatasetMeta(0).data.forEach((datapoint, index) => {
+              ctx.beginPath();
+              ctx.strokeStyle = data.datasets[0].borderColor[index];
+              ctx.lineWidth = 3;
+              const halfWidth = datapoint.width / 2;
+              ctx.moveTo(datapoint.x - halfWidth, datapoint.y - 6);
+              ctx.lineTo(datapoint.x + halfWidth, datapoint.y - 6);
+              ctx.stroke();
+
+              // texto
+
+              ctx.font = "bold 12px sans-serif";
+              ctx.fillStyle = data.datasets[0].borderColor[index];
+              ctx.textAlign = "center";
+              ctx.fillText(
+                data.datasets[0].data[index],
+                datapoint.x,
+                datapoint.y - 15
+              );
+            });
+          },
+        };
+
+        // myChart.destroy();
+        ctx = document.getElementById("analiseVoos");
+
         myChart = new Chart(ctx, {
-          type: "line",
+          type: "bar",
           data: {
-            labels: [
-              "Janeiro",
-              "Fevereiro",
-              "Março",
-              "Abril",
-              "Maio",
-              "Junho",
-              "Julho",
-              "Agosto",
-              "Setembro",
-              "Outubro",
-              "Novembro",
-              "Dezembro",
-            ],
+            labels: ["Cancelados", "Realizados"],
             datasets: [
               {
-                label: "Chamados abertos",
-                borderColor: "#000000",
-                backgroundColor: "#6bd098",
-                pointRadius: 8,
-                pointHoverRadius: 15,
-                borderWidth: 0.1,
-                data: [
-                  chamadosAnuais[0],
-                  chamadosAnuais[1],
-                  chamadosAnuais[2],
-                  chamadosAnuais[3],
-                  chamadosAnuais[4],
-                  chamadosAnuais[5],
-                  chamadosAnuais[6],
-                  chamadosAnuais[7],
-                  chamadosAnuais[8],
-                  chamadosAnuais[9],
-                  chamadosAnuais[10],
-                  chamadosAnuais[11],
-                ],
+                label: "Cancelados",
+                data: [qtdVoo[1], qtdVoo[0]],
+                backgroundColor: ["#dc3545", "#28a745"],
+                borderColor: ["#dc3545", "#28a745"],
               },
             ],
           },
           options: {
-            legend: {
-              //display: false
-              position: "top",
-            },
-
-            /*  tooltips: {
-                          enabled: false
-                        }, */
-
             scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    fontColor: "#9f9f9f",
-                    beginAtZero: false,
-                    maxTicksLimit: 5,
-                    //padding: 20
-                  },
-                  gridLines: {
-                    drawBorder: false,
-                    zeroLineColor: "#ccc",
-                    color: "rgba(255,255,255,0.05)",
-                  },
+              x: {
+                grid: {
+                  display: false,
                 },
-              ],
-
-              xAxes: [
-                {
-                  barPercentage: 1.6,
-                  gridLines: {
-                    drawBorder: false,
-                    color: "rgba(255,255,255,0.1)",
-                    zeroLineColor: "transparent",
-                    display: false,
-                  },
-                  ticks: {
-                    padding: 20,
-                    fontColor: "#9f9f9f",
-                  },
+              },
+              y: {
+                beginAtZero: true,
+                grace: "10%",
+                border: {
+                  display: false,
                 },
-              ],
+                // grid: {
+                //   display: false
+                // }
+                afterTickToLabelConversion: (ctx) => {
+                  ctx.ticks = [];
+                  ctx.ticks.push({
+                    value: media,
+                    label: "Média de voos cancelados: " + media.toFixed(0),
+                  });
+                },
+              },
             },
           },
+          plugins: [topLine],
         });
-
-        qtdChamados.innerHTML = qtdTotal;
       }
     })
     .catch(function (resposta) {});
+}
+rodarTempo();
+function rodarTempo() {
+  tempo = 0;
+  tempoClima3.innerHTML = tempo;
+  tempoClima1.innerHTML = tempo;
+  tempoClima2.innerHTML = tempo;
+
+  setTimeout(() => {
+    tempo++;
+    rodarTempo();
+  }, 60000);
 }

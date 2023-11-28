@@ -4,25 +4,25 @@ VALUES
 ('98765432000120', 'LATAM Airlines Brasil', 'LATAM Airlines Group S.A.', 'SGAS Quadra 515, s/n');
 
 
-INSERT INTO tbAeroporto (nomeAeroporto, siglaAeroporto, pais, cidade, endereco, fkEmpresa) VALUES
-('Aeroporto Internacional de São Paulo', 'GRU', 'Brasil', 'Guarulhos', 'Rodovia Hélio Smidt, s/n', 2),
-('Galeão', 'GIG', 'Brasil', 'Rio de Janeiro', 'Av. Vinte de Janeiro, s/n', 2),
-('Juscelino Kubitschek', 'BSB', 'Brasil', 'Brasília', 'SGAS Quadra 515, s/n', 2),
-('Eduardo Gomes', 'MAO', 'Brasil', 'Manaus', 'Rodovia AM-070, km 11', 2),
-('Deputado Luís Eduardo Magalhães', 'SSA', 'Brasil', 'Salvador', 'Av. Tancredo Neves, s/n', 2),
-('Pinto Martins', 'FOR', 'Brasil', 'Fortaleza', 'Av. Senador Carlos Jereissati, 3155', 2),
-('Gilberto Freyre', 'REC', 'Brasil', 'Recife', 'Av. Marechal Mascarenhas de Moraes, s/n', 2),
-('Salgado Filho', 'POA', 'Brasil', 'Porto Alegre', 'Av. Severo Dullius, s/n', 2),
-('Afonso Pena', 'CWB', 'Brasil', 'Curitiba', 'Av. Afonso Pena, km 33, s/n', 2),
-('Confins', 'CNF', 'Brasil', 'Belo Horizonte', 'Rodovia BR-356, km 464, s/n', 1),
-('Congonhas', 'CGH', 'Brasil', 'São Paulo', 'Av. Washington Luís, s/n', 1),
-('Hercílio Luz', 'FLN', 'Brasil', 'Florianópolis', 'Rodovia SC-401, km 49, s/n', 1),
-('Augusto Severo', 'NAT', 'Brasil', 'Natal', 'Av. Capitão-aviador Alberto Santos Dumont', 1),
-('Castro Pinto', 'JPA', 'Brasil', 'João Pessoa', 'Av. Marechal Eurico Gaspar Dutra, s/n', 1),
-('Júlio Cezar Ribeiro', 'BEL', 'Brasil', 'Belém', 'Rodovia BR-316, km 8, s/n', 1),
-('Marechal Rondon', 'CGB', 'Brasil', 'Cuiabá', 'Rodovia BR-163, km 294, s/n', 1),
-('Zumbi dos Palmares', 'MCZ', 'Brasil', 'Maceió', 'Av. Menino Marcelo, s/n', 1),
-('Eurico de Aguiar Salles', 'VIX', 'Brasil', 'Vitória', 'Rodovia BR-101, km 39, s/n', 1);
+INSERT INTO tbAeroporto (nomeAeroporto, siglaAeroporto, pais, cidade, regiao, endereco, fkEmpresa) VALUES
+('Aeroporto Internacional de São Paulo', 'SBGR', 'Brasil', 'Guarulhos', 'SP','Rodovia Hélio Smidt, s/n', 2),
+('Galeão', 'SBGL', 'Brasil', 'Rio de Janeiro', 'RJ','Av. Vinte de Janeiro, s/n', 2),
+('Juscelino Kubitschek', 'SBBR', 'Brasil', 'Brasília','GO', 'SGAS Quadra 515, s/n', 2),
+('Eduardo Gomes', 'SBEG', 'Brasil', 'Manaus','AM', 'Rodovia AM-070, km 11', 2),
+('Deputado Luís Eduardo Magalhães', 'SBSV', 'Brasil', 'Salvador','BA', 'Av. Tancredo Neves, s/n', 2),
+('Pinto Martins', 'SBFZ', 'Brasil', 'Fortaleza','BA', 'Av. Senador Carlos Jereissati, 3155', 2),
+('Gilberto Freyre', 'SBRF', 'Brasil', 'Recife','PE', 'Av. Marechal Mascarenhas de Moraes, s/n', 2),
+('Salgado Filho', 'SBPA', 'Brasil', 'Porto Alegre', 'RS', 'Av. Severo Dullius, s/n', 2),
+('Afonso Pena', 'SBCT', 'Brasil', 'Curitiba','PR', 'Av. Afonso Pena, km 33, s/n', 2),
+('Confins', 'SBCF', 'Brasil', 'Belo Horizonte','BH', 'Rodovia BR-356, km 464, s/n', 1),
+('Congonhas', 'SBSP', 'Brasil', 'São Paulo', 'SP','Av. Washington Luís, s/n', 1),
+('Hercílio Luz', 'SBFL', 'Brasil', 'Florianópolis', 'SC','Rodovia SC-401, km 49, s/n', 1),
+('Augusto Severo', 'SBNT', 'Brasil', 'Natal', 'RN','Av. Capitão-aviador Alberto Santos Dumont', 1),
+('Castro Pinto', 'SBJP', 'Brasil', 'João Pessoa','PB', 'Av. Marechal Eurico Gaspar Dutra, s/n', 1),
+('Júlio Cezar Ribeiro', 'SBBE', 'Brasil', 'Belém', 'PA','Rodovia BR-316, km 8, s/n', 1),
+('Marechal Rondon', 'SBCY', 'Brasil', 'Cuiabá','MT', 'Rodovia BR-163, km 294, s/n', 1),
+('Zumbi dos Palmares', 'SBMO', 'Brasil', 'Maceió','AL', 'Av. Menino Marcelo, s/n', 1),
+('Eurico de Aguiar Salles', 'SBVT', 'Brasil', 'Vitória', 'ES','Rodovia BR-101, km 39, s/n', 1);
 
 INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSuperior)
 VALUES
