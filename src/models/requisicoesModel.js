@@ -49,7 +49,7 @@ function enviarResposta(pedido, resposta, respondente) {
 
 function sianlizar(idComp, motivo, idResposta) {
     const sql = `
-    INSERT INTO tbComponentesSinalizados VALUES (${idResposta}, ${idComp}, '${motivo}') 
+    INSERT INTO tbComponenteSinalizados VALUES (${idResposta}, ${idComp}, '${motivo}') 
     `
     console.log(sql)
     return database.executar(sql)
