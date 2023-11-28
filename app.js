@@ -21,7 +21,8 @@ const servidorRouter = require("./src/routes/servidor");
 const registrosRouter = require("./src/routes/registros");
 const componenteRouter = require("./src/routes/componente");
 const climaRouter = require("./src/routes/clima");
-
+const cronogramaRouter = require("./src/routes/cronograma");
+const requisicoesRouter = require("./src/routes/requisicoes");
 
 
 app.use(express.json());
@@ -44,9 +45,8 @@ app.use("/alertas", alertasRouter)
 app.use("/registros", registrosRouter);
 app.use("/componente", componenteRouter);
 app.use("/clima", climaRouter);
-
-
-
+app.use("/cronograma", cronogramaRouter);
+app.use("/requisicoes", requisicoesRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

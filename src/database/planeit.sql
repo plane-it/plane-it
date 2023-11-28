@@ -4,9 +4,10 @@ USE planeit;
 
 create table tbFaleConosco(
 	idFaleConosco int primary key,
+	nome varchar(60),
+	assunto varchar(60),
 	mensagem varchar(255),
 	email varchar(255),
-	tefelone varchar(11)
 );
 
 create table tbEmpresa(
@@ -172,6 +173,7 @@ create table tbSpecs (
 		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
 );
 
+
 drop table if exists tbSul; 
 drop table if exists tbNorte; 
 drop table if exists tbCentroOeste; 
@@ -239,24 +241,8 @@ create table tbClimaEstado(
     dataCompleta date,
     previsao double
 );
-select * from tbClimaEstado;
--- SELECT COUNT(id) as quantidade_registros
--- FROM tbNorte;
-
--- SELECT dataCompleta, MAX(precipitacao) as maior_precipitacao
--- FROM tbNorte
--- GROUP BY dataCompleta;
-
--- SELECT localizacao, dataCompleta, precipitacao
--- FROM tbSudeste
--- ORDER BY localizacao, MONTH(dataCompleta), DAY(dataCompleta);
 
 
-SELECT * FROM tbSudeste ORDER BY dataCompleta DESC;
-SELECT * FROM tbSul ORDER BY id;
--- SELECT * FROM tbCentroOeste ORDER BY id DESC;
--- SELECT * FROM tbNordeste ORDER BY id DESC;
--- SELECT * FROM tbNorte ORDER BY id DESC;
 
 create table voos(
 	id int primary key auto_increment,
@@ -271,33 +257,13 @@ create table voos(
     situacao varchar(30)
 );
 
-
-
-select * from voos;
--- drop table voos;
--- SELECT MONTH(horaPartidaPrevista) AS mes
--- FROM voos;
-
--- select AVG(quantidade) AS media from ( 
--- 	select COUNT(*) as quantidade from voos where situacao = 'CANCELADO') as subconsulta;
---     
--- SELECT AVG(total_cancelado) AS media_cancelado
--- FROM (
---     SELECT siglaAeroportoOrigem, COUNT(*) AS total_cancelado
---     FROM voos
---     WHERE situacao = 'cancelado'
---     GROUP BY siglaAeroportoOrigem
--- ) AS subconsulta;
-
 create table tbFeriados(
 	idFeriado int primary key auto_increment,
     dia varchar(2),
-    diaSemana varchar(20),
     mes varchar (10),
     titulo varchar(50)
 );
 
-select * from tbFeriados;
 
 drop procedure if exists deleteByMonth;
 DROP TEMPORARY TABLE if exists TEMP;
@@ -314,15 +280,3 @@ BEGIN
 
     DROP TEMPORARY TABLE temp;
 END $$
-
-
-SELECT 
-    dia,
-    mes,
-    previsao, 
-    regiao
-FROM 
-    tbFeriados
-JOIN 
-    tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta);
-

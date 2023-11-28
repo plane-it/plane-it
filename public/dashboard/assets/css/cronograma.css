@@ -1,0 +1,181 @@
+.rowNoWrap{
+    flex-wrap: nowrap;
+}
+.rowGap{
+    gap: 1rem;
+}
+.rowPadding{
+    padding: 0 1rem;
+}
+.noPadding{
+    padding: 0;
+}
+.noMargin{
+    margin: 0;
+}
+.cardMonth{
+    width: 30%;
+    min-width: calc(300px );
+}
+.card-record{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.15);
+    border-radius: 5px;
+}
+.card-record *{
+    margin: 0;
+    padding: 0;
+}
+.card-record .card-record-title{
+    font-size: 1rem;
+    font-weight: 800;
+}
+.card-record .card-record-value{
+    font-size: 1rem;
+    font-weight: 500;
+}
+#dash{
+    max-height: 250px;
+    min-width: 100%;
+}
+#dashHist{
+    max-height: 250px;
+    min-width: 100%;
+    max-width: 100%;
+}
+.calendar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+}
+
+.calendar::after, .calendar::before{
+    content: '';
+    display: block;
+    clear: both;
+    width: 10px;
+    height: 25px;
+    border-radius: 30px;
+    background: #fff;
+    border: 1px solid #ccc;
+    position: absolute;
+}
+
+.calendar::after{
+    top: -10px;
+    left: 20px;
+}
+
+.calendar::before{
+    top: -10px;
+    right: 20px;
+}
+
+.calendar * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.calendar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 0 0;
+    padding: 0.2rem;
+    background-color: #DC2626;
+    border-bottom: 1px solid #ccc;
+}
+
+.calendar-header h4{
+    color: #fff;
+    font-weight: 500;
+}
+
+.calendar-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    height: 100%;
+}
+
+.calendar-body .day{
+    font-size: 3rem;
+    font-weight: 500;
+}
+.calendar-body .name{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.selectParts{
+    min-width: 120px;
+    height: 35px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #3A7D44;
+    background: transparent;
+}
+
+.selectParts option{
+    background: #fff;
+    color: #3A7D44;
+}
+
+.inputDate{
+    height: 35px;
+    padding: 0 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #3A7D44;
+    background: transparent;
+
+}
+
+#bar{
+    appearance: none;
+    width: 90%;
+    height: 5px;
+    background: #ccc;
+    border-radius: 5px;
+}
+#bar::-webkit-slider-thumb{
+    appearance: none;
+    width: var(--scrollbar);
+    height: 5px;
+    background: #333;
+    border-radius: 5px;
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.green{
+    background: #28a745
+}
+.yellow{
+    background: #ffc107
+}
+.red{
+    background: #dc3545
+}
+
+.txt-bold{
+    font-weight: 800 !important;
+}
+.txt-normal{
+    text-align: center;
+}

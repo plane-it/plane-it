@@ -1,254 +1,3 @@
-DROP DATABASE IF EXISTS planeit;
-CREATE DATABASE planeit;
-USE planeit;
-
-create table tbFaleConosco(
-	idFaleConosco int primary key,
-	mensagem varchar(255),
-	email varchar(255),
-	tefelone varchar(11)
-);
-
-create table tbEmpresa(
-	idEmpr int primary key auto_increment,
-	cnpj char(14) not null unique,
-	nomeEmpresa varchar(70) not null,
-	razaoSocial varchar(50) not null,
-	endereco varchar(100) not null -- Criação do Endereço da empresa
-);
-
-create table tbAeroporto(
-	idAeroporto int primary key auto_increment,
-	nomeAeroporto varchar(45),
-	pais varchar(45),
-	cidade varchar(45),
-	endereco varchar(45),
-	fkEmpresa int,
-        foreign key (fkEmpresa) references tbEmpresa(idEmpr)
-);
-
-create table tbColaborador(
-	idColab int primary key auto_increment,
-	cpf char(11) not null unique,
-	nome varchar(70) not null,
-	email varchar(100) not null unique,
-	senha varchar(15) not null,
-	cargo varchar(35),
-	administracao boolean,
-	fkSuperior int,
-		foreign key (fkSuperior) references tbColaborador(idColab),
-	telefone varchar(11),
-	fkEmpr int not null, -- REDUNDANTE
-		foreign key (fkEmpr) references tbEmpresa(idEmpr),
-	fkAeroporto int,
-		foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
-);
-
-create table tbServidor(
-	idServ int primary key auto_increment,
-	codAutentic char(6) not null, -- Cerca de 1 milhão e 300 mil possibilidades
-	apelido varchar(50) not null,
-	sistemaOp varchar(25),
-	ip varchar(12),	
-	funcao varchar(40),
-	fkAeroporto int not null,
-        foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
-);
-
-CREATE TABLE tbManutencao(
-	idManutencao INT PRIMARY KEY,
-	dataHota DATETIME NOT NULL,
-	fkResponsavel INT NOT NULL,
-		FOREIGN KEY (fkResponsavel) REFERENCES tbColaborador(idColab),
-	fkServidor INT NOT NULL,
-		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ),	
-	descricaoManutencao VARCHAR(255) NOT NULL
-);
-
-
-CREATE TABLE tbTipoComponente(
-	idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
-	tipo VARCHAR(45)
-);
-
-create table tbComponente(
-	idComp int primary key auto_increment,
-	nome VARCHAR(100) NOT NULL, 
-	fktipoComponente INT NOT NULL, 
-	foreign key (fktipoComponente) REFERENCES tbTipoComponente(idTipoComponente),
-	preco decimal(9,2),
-	fkServ int,
-	foreign key (fkServ) references tbServidor(idServ)
-);
-
-
-create table tbUnidadeMedida(
-	idUnidadeMedida int primary key auto_increment,
-	nome varchar(50),
-	sinal varchar(5)
-);	
-
-create table tbMetrica(
-	idMetrica int primary key auto_increment,
-	valor decimal(10,2),
-	fkComponente int,
-		foreign key (fkComponente) references tbComponente(idComp),
-	fkUnidadeMedida int,
-		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)
-);	
-
-
-CREATE TABLE tbProcessos(
-	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
-	pid INT,
-	fkServidor INT,
-		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
-);
-
-create table tbRegistro(
-	idRegst int primary key auto_increment,
-	valor varchar(100) not null,
-	dataHora dateTime default now(),
-    alerta boolean,
-    fkServidor int,
-		foreign key (fkServidor) references tbServidor(idServ),
-	fkComp int,
-		foreign key (fkComp) references tbComponente(idComp),
-	fkMetrica int,
-		foreign key (fkMetrica) references tbMetrica(idMetrica)
-);
-
-create table tbChamados(
-	idChamados int primary key auto_increment,
-	nivel varchar(45),
-	sla VARCHAR(45), 
-	estado VARCHAR(45),
-	fkRegistro int,
-		foreign key (fkRegistro) references tbRegistro(idRegst)
-);
-
-create table tbPedidosInspecao(
-	idPedidoInspecao int primary key auto_increment,
-	motivo varchar(45) not null,
-	descricao varchar(500) not null,
-	fkServidor int not null,
-		foreign key (fkServidor) references tbServidor(idServ),
-	fkRequisitante int not null,
-		foreign key (fkRequisitante) references tbColaborador(idColab)
-);
-
-create table tbRespostaInspecao(
-	idRespostaInspecao int primary key auto_increment,
-	resposta varchar(500) not null,
-	fkRespondente int not null,
-		foreign key (fkRespondente) references tbColaborador(idColab),
-	fkPedido int not null,
-		foreign key (fkPedido) references tbPedidosInspecao(idPedidoInspecao)
-);
-
-create table tbComponentesSinalizados(
-	fkRespostaInspecao int,
-		foreign key (fkRespostaInspecao) references tbRespostaInspecao(idRespostaInspecao),
-	fkComponente int, 
-		foreign key (fkComponente) references tbComponente(idComp),
-	motivo varchar(100) not null,	
-	primary key (fkRespostaInspecao, fkComponente)
-);
-
-create table tbSpecs (
-	idSpec int primary key auto_increment,
-	valor char(20) not null,
-	fkComponente int,
-		foreign key (fkComponente) references tbComponente(idComp),
-	fkUnidadeMedida int,
-		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
-);
-
-DELIMITER //
-CREATE PROCEDURE buscarEstadoDeServidor(IN _fkServ INT)
-BEGIN
-    SELECT 
-        (SELECT SUM(cpu.alerta) FROM 
-            (SELECT * FROM tbServidor 
-                JOIN tbComponente ON fkServ = idServ 
-                JOIN tbRegistro ON fkComp = idComp 
-                    WHERE fkServ = _fkServ 
-                    AND fkTipoComponente = 1 
-                    ORDER BY idComp DESC 
-                    LIMIT 50
-            ) AS cpu
-        ) AS qtsAlertasCpu,
-        (SELECT SUM(ram.alerta) FROM 
-            (SELECT * FROM tbServidor    
-                JOIN tbComponente ON fkServ = idServ     
-                JOIN tbRegistro ON fkComp = idComp 
-                    WHERE fkServ = _fkServ 
-                    AND fkTipoComponente = 2 
-                    ORDER BY idComp DESC 
-                    LIMIT 50
-            ) AS ram
-        ) AS qtsAlertasRam,
-        (SELECT SUM(disco.alerta) FROM 
-            (SELECT * FROM tbServidor 
-                JOIN tbComponente ON fkServ = idServ 
-                JOIN tbRegistro ON fkComp = idComp 
-                    WHERE fkServ = _fkServ 
-                    AND fkTipoComponente = 3 
-                    ORDER BY idComp DESC 
-                    LIMIT 50
-            ) AS disco
-        ) AS qtsAlertasDisco;
-END //
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE MedianBeneficioByType(IN fkEmpresa INT)
-BEGIN
-    CREATE TEMPORARY TABLE medians AS
-    SELECT fktipoComponente, valor_preco_ratio,
-           ROW_NUMBER() OVER (
-               PARTITION BY fktipoComponente 
-               ORDER BY valor_preco_ratio
-           ) AS rn,
-           COUNT(*) OVER (
-               PARTITION BY fktipoComponente
-           ) AS cnt
-    FROM (
-        SELECT tbComponente.fktipoComponente, (tbSpecs.valor / tbComponente.preco) AS valor_preco_ratio
-        FROM tbSpecs
-        JOIN tbComponente ON tbSpecs.fkComponente = tbComponente.idComp
-        JOIN tbServidor ON tbComponente.fkServ = tbServidor.idServ
-        JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
-        WHERE tbAeroporto.fkEmpresa = fkEmpresa
-    ) subquery1;
-
-    SELECT fktipoComponente, AVG(valor_preco_ratio) AS median
-    FROM medians
-    WHERE rn BETWEEN cnt / 2.0 AND cnt / 2.0 + 1
-    GROUP BY fktipoComponente;
-    
-    DROP TEMPORARY TABLE medians;
-END//
-DELIMITER ;
-
-
-DELIMITER //
-CREATE PROCEDURE MedianPriceByComponentType(IN empresaID INT)
-BEGIN
-  SELECT fktipoComponente, AVG(preco) AS median_val
-  FROM
-  (
-    SELECT fktipoComponente, preco, COUNT(*) OVER (PARTITION BY fktipoComponente) AS cnt, ROW_NUMBER() OVER (PARTITION BY fktipoComponente ORDER BY preco) AS rn
-    FROM tbComponente
-    JOIN tbServidor ON idServ = fkServ
-    JOIN tbAeroporto ON idAeroporto = fkAeroporto
-    WHERE fkEmpresa = empresaID
-  ) AS subquery
-  WHERE rn IN (FLOOR((cnt + 1) / 2), FLOOR((cnt + 2) / 2))
-  GROUP BY fktipoComponente;
-END //
-DELIMITER ;
-
 INSERT INTO tbEmpresa (cnpj, nomeEmpresa, razaoSocial, endereco)
 VALUES
 ('12345678900110', 'Azul Linhas Aéreas', 'Azul S.A.', 'Rodovia Hélio Smidt, s/n'),
@@ -450,25 +199,27 @@ UPDATE tbRegistro SET alerta = 1 WHERE idRegst in
 (1, 2, 30, 32, 40, 41, 42, 43, 44, 45, 46, 47, 3, 34, 35, 36, 37, 38, 39, 9, 10, 11, 16, 24, 26, 18, 28);
 
 INSERT INTO tbChamados VALUES 
-(null, "Alto", "4 horas", "Aberto", 32),
-(null, "Médio", "8 horas", "Aberto", 43),
-(null, "Baixo", "24 horas", "Aberto", 48);
+('Alto', '4 horas', 'Aberto', 32),
+( 'Médio', '8 horas', 'Aberto', 43),
+('Baixo', '24 horas', 'Aberto', 48);
 
 
-INSERT INTO tbRegistro VALUES 
-(NULL, "155", '2023-10-30 16:22:49', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:50', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:51', 1, 1, 3, 3),
-(NULL, "185", '2023-10-30 16:22:52', 1, 1, 3, 3),
-(NULL, "185", '2023-10-30 16:22:53', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:54', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:55', 1, 1, 3, 3),
-(NULL, "155", '2023-10-30 16:22:56', 1, 1, 3, 3),
-(NULL, "155", '2023-10-30 16:22:57', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:58', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:59', 1, 1, 3, 3);
+
+INSERT INTO tbRegistro (valor, dataHora, fkComp, alerta, fkServidor, fkMetrica) VALUES 
+('155', '2023-10-30T16:22:49', 1, 1, 3, 3),
+('165', '2023-10-30T16:22:50', 1, 1, 3, 3),
+('175', '2023-10-30T16:22:51', 1, 1, 3, 3),
+('185', '2023-10-30T16:22:52', 1, 1, 3, 3),
+('185', '2023-10-30T16:22:53', 1, 1, 3, 3),
+('175', '2023-10-30T16:22:54', 1, 1, 3, 3),
+('165', '2023-10-30T16:22:55', 1, 1, 3, 3),
+('155', '2023-10-30T16:22:56', 1, 1, 3, 3),
+('155', '2023-10-30T16:22:57', 1, 1, 3, 3),
+('165', '2023-10-30T16:22:58', 1, 1, 3, 3),
+('175', '2023-10-30T16:22:59', 1, 1, 3, 3);
 
 
+select * from tbRegistro;
 
 
 update tbRegistro set dataHora = '2023-01-10 17:12:55' WHERE idRegst in (48,49,50,51);
@@ -480,6 +231,3 @@ update tbRegistro set dataHora = '2023-06-10 17:12:55' WHERE idRegst in (28,29,3
 update tbRegistro set dataHora = '2023-07-10 17:12:55' WHERE idRegst in (24,25,26,27);
 update tbRegistro set dataHora = '2023-08-10 17:12:55' WHERE idRegst in (20,21,22,23);
 update tbRegistro set dataHora = '2023-09-10 17:12:55' WHERE idRegst in (16,17,18,19);
-
-UPDATE tbMetrica SET fkComponente = 1 WHERE idMetrica = 17;
-INSERT INTO tbMetrica VALUES (NULL, 80, 1, 2);

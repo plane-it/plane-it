@@ -1,4 +1,4 @@
-const database = require("../database/config")
+const database = require('../database/config')
 
 function buscarAeroporto(fkEmpresa) {
     const sql = `
@@ -15,7 +15,7 @@ function cadastrarAeroporto(nomeAeroportoVar, paisVar, cidadeVar, enderecoVar, f
 function pegarDadosEmpresa(idUsuario) {
 
     var instrucao = `Select * FROM tbColaborador JOIN tbEmpresa on fkEmpr = idEmpr WHERE idColab = ${idUsuario};`;
-    console.log("Executando a instrução SQL: \n" + instrucao);
+    console.log('Executando a instrução SQL: \n' + instrucao);
     return database.executar(instrucao);
 
 }

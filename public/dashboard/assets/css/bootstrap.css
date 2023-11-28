@@ -5970,7 +5970,7 @@ a.badge-dark:focus {
 .alert-warning {
     color: #856404;
     background-color: #fd7e14;
-    border-color: #ffeeba
+    border-color: #ffeeba;
 }
 
 .alert-warning hr {
@@ -6016,9 +6016,9 @@ a.badge-dark:focus {
 }
 
 .alert-seguro {
-    color: #1b1e21;
-    background-color: #e9ba93;
-    border-color: #c6c8ca
+    color: #1b1e21 !important;
+    background-color: #e9ba93 !important;
+    border-color: #c6c8ca !important;
 }
 
 .alert-dark hr {
@@ -6138,6 +6138,47 @@ a.badge-dark:focus {
 .media-body {
     -ms-flex: 1;
     flex: 1
+}
+
+.alinhado-final {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7px;
+}
+
+.flex-justify-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.check-size{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.margin-right-5 {
+    margin-right: -5px !important;
+}
+
+.card-no-min-height{
+    min-height: 0px !important;
+}
+
+.padding-left-1 {
+    padding-left: 1rem;
+}
+.padding-right-1 {
+    padding-right: 1rem;
+}
+
+.text-complete-width{
+    width: 100%;
 }
 
 .list-group {
@@ -17421,9 +17462,9 @@ a.badge-dark:focus {
 }
 
 .alert-warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border-color: #ffeeba !important;
 }
 
 .alert-warning hr {
