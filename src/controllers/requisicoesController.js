@@ -85,7 +85,7 @@ function sianlizar(req, res) {
     else {
         requisicoesModel.sianlizar(idComp, motivo, idResposta).then(
             function (resultado) {
-                res.json(resultado);
+                res.json({res: resultado});
             }
         ).catch(
             function (erro) {

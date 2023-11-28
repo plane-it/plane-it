@@ -182,9 +182,9 @@ function enviarSinalizado(idComp, motivo, idResposta) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "idComp": idComp,
-                "motivo": motivo,
-                "idResposta": idResposta
+                idComp: idComp,
+                motivo: motivo,
+                idResposta: idResposta
             })
         }).then((res) => res.json())
             .then((res) => {
@@ -194,7 +194,7 @@ function enviarSinalizado(idComp, motivo, idResposta) {
                     reject(res.error);
                 }
             }).catch(function (error) {
-                console.error("Error:", error);
+                console.error( error);
                 reject(error);
             });
     });
