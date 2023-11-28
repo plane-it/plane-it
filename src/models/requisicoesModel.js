@@ -35,7 +35,7 @@ function buscarSolicitacoes(aeroporto) {
 
 function enviarResposta(pedido, resposta, respondente) {
     const sqlInsert = `
-    INSERT INTO tbRespostaInspecao (resposta, respondente, fkPedido) VALUES ('${resposta}', ${respondente}, ${pedido})
+    INSERT INTO tbRespostaInspecao (resposta, fkRespondente, fkPedido) VALUES ('${resposta}', ${respondente}, ${pedido})
     `
     return database.executar(sqlInsert).then(() => {
         const sqlSelect = `SELECT idRespostaInspecao FROM tbRespostaInspecao 
