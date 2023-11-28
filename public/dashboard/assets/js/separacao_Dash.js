@@ -1,4 +1,4 @@
-if (sessionStorage.ADM == 0) {
+if (sessionStorage.ADM == 0 || sessionStorage.ADM == false) {
     esconderElementosComClasseAdm()
 } else {
     esconderElementosComClasseAnalista()
