@@ -21,12 +21,17 @@ create table tbEmpresa(
 create table tbAeroporto(
 	idAeroporto int primary key auto_increment,
 	nomeAeroporto varchar(45),
+    regiao varchar(10),
+    siglaAeroporto varchar(10),
 	pais varchar(45),
 	cidade varchar(45),
 	endereco varchar(45),
 	fkEmpresa int,
         foreign key (fkEmpresa) references tbEmpresa(idEmpr)
 );
+
+-- select * from tbAeroporto;
+
 
 create table tbColaborador(
 	idColab int primary key auto_increment,
@@ -55,6 +60,8 @@ create table tbServidor(
 	fkAeroporto int not null,
         foreign key (fkAeroporto) references tbAeroporto(idAeroporto)
 );
+
+-- select * from tbServidor;
 
 CREATE TABLE tbManutencao(
 	idManutencao INT PRIMARY KEY,
@@ -166,14 +173,76 @@ create table tbSpecs (
 		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
 );
 
-create table tbClima(
-	id int primary key auto_increment,
-	localizacao varchar(255),
-	regiao char(2),
-	dataCompleta date,
-	hora longtext,
-	precipitacao double
+
+drop table if exists tbSul; 
+drop table if exists tbNorte; 
+drop table if exists tbCentroOeste; 
+drop table if exists tbNordeste; 
+drop table if exists tbSudeste; 
+
+create table tbSudeste(
+id int primary key auto_increment,
+localizacao varchar(255),
+regiao char(2),
+dataCompleta date,
+hora longtext,
+precipitacao double,
+previsao double
 );
+
+
+create table tbSul(
+id int primary key auto_increment,
+localizacao varchar(255),
+regiao char(2),
+dataCompleta date,
+hora longtext,
+precipitacao double,
+previsao double
+);
+
+
+create table tbCentroOeste(
+id int primary key auto_increment,
+localizacao varchar(255),
+regiao char(2),
+dataCompleta date,
+precipitacao double,
+previsao double
+);
+
+
+
+create table tbNordeste(
+id int primary key auto_increment,
+localizacao varchar(255),
+regiao char(2),
+dataCompleta date,
+hora longtext,
+precipitacao double,
+previsao double
+);
+
+
+
+create table tbNorte(
+id int primary key auto_increment,
+localizacao varchar(255),
+regiao char(2),
+dataCompleta date,
+hora longtext,
+precipitacao double,
+previsao double
+);
+
+create table tbClimaEstado(
+	id int primary key auto_increment,
+    regiao char(2),
+    dataCompleta date,
+    previsao double
+);
+
+
 
 create table voos(
 	id int primary key auto_increment,
@@ -187,12 +256,6 @@ create table voos(
     horaChegadaReal datetime,
     situacao varchar(30)
 );
-create table tbFeriados(
-	idFeriado int primary key auto_increment,
-    dia varchar(2),
-    mes varchar (10),
-    titulo varchar(50)
-);
 
 create table tbFeriados(
 	idFeriado int primary key auto_increment,
@@ -200,6 +263,7 @@ create table tbFeriados(
     mes varchar (10),
     titulo varchar(50)
 );
+
 
 drop procedure if exists deleteByMonth;
 DROP TEMPORARY TABLE if exists TEMP;

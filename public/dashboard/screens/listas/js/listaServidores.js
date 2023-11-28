@@ -35,6 +35,7 @@ function buscarServidor() {
                 }
                 else {
                     console.log(res)
+                    
 
                     for(let i = 0; i < res.length; i++) {
                         servers.innerHTML += `                      
@@ -60,6 +61,8 @@ function buscarServidor() {
             });
     }
 }
+
+
 
 function acessarServidor(valor, nome) {
     sessionStorage.setItem('ID_SERVIDOR_ESCOLHIDO', valor);

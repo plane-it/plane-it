@@ -3,6 +3,7 @@ function cadastrarAeroporto() {
     var paisVar = ipt_pais.value;
     var cidadeVar = ipt_cidade.value;
     var enderecoVar = ipt_endereco.value;
+    var siglaVar = ipt_sigla.value;
     var fkEmpresaVar = sessionStorage.FK_EMPRESA;
     var erro = false;
 

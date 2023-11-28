@@ -18,6 +18,7 @@ var sqlServerConfig = {
 }
 
 // CONEXÃO DO MYSQL WORKBENCH
+
 // var mySqlConfig = {
 //     host: "localhost",
 //     database: "planeit",
