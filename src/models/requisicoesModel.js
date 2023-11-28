@@ -57,7 +57,7 @@ function sianlizar(idComp, motivo, idResposta) {
 
 function buscarSinalizados(idResposta) {
     const sql = `
-    SELECT * FROM tbComponentesSinalizados
+    SELECT * FROM tbComponenteSinalizados
     JOIN tbComponente ON idComp = fkComponente
     JOIN tbTipoComponente ON idTipoComponente = fktipoComponente
     WHERE fkRespostaInspecao = ${idResposta}; 
@@ -68,7 +68,7 @@ function buscarSinalizados(idResposta) {
 
 function revogarSinalizacao(idResposta, idComponente) {
     const sql = `
-    DELETE FROM tbComponentesSinalizados WHERE fkRespostaInspecao = ${idResposta} AND fkComponente = ${idComponente}
+    DELETE FROM tbComponenteSinalizados WHERE fkRespostaInspecao = ${idResposta} AND fkComponente = ${idComponente}
     `
     console.log(sql)
     return database.executar(sql)
