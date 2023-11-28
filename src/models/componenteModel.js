@@ -32,16 +32,23 @@ function buscarSpecs(idComp) {
 }
 
 function buscarMedianPreco(idEmpresa) {
+    // const sql = `
+    // CALL MedianPriceByComponentType(${idEmpresa});
+    // `
     const sql = `
-    CALL MedianPriceByComponentType(${idEmpresa});
+        exec MedianPriceByComponentType @empresaID${idEmpresa}
     `
     console.log(sql)
     return database.executar(sql)
 }
 
 function buscarMedianBeneficio(idEmpresa) {
+    // const sql = `
+    // CALL MedianBeneficioByType(${idEmpresa});
+    // `
+
     const sql = `
-    CALL MedianBeneficioByType(${idEmpresa});
+        exec MedianBeneficioByType @fkEmpras = ${idEmpresa}
     `
     console.log(sql)
     return database.executar(sql)
