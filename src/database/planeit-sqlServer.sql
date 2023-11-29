@@ -169,6 +169,62 @@ CREATE TABLE tbSpecs (
 	FOREIGN KEY (fkUnidadeMedida) REFERENCES tbUnidadeMedida(idUnidadeMedida)    
 );
 
+create table tbSudeste(
+	id int primary key identity(1,1),
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora varchar(max),
+	precipitacao float,
+	previsao float
+);
+
+create table tbSul(
+	id int primary key identity(1,1),
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora varchar(max),
+	precipitacao float,
+	previsao float
+);
+
+create table tbCentroOeste(
+	id int primary key identity(1,1),
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	precipitacao float,
+	previsao float
+);
+
+create table tbNordeste(
+	id int primary key identity(1,1),
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora varchar(max),
+	precipitacao float,
+	previsao float
+);
+
+create table tbNorte(
+	id int primary key identity(1,1),
+	localizacao varchar(255),
+	regiao char(2),
+	dataCompleta date,
+	hora varchar(max),
+	precipitacao float,
+	previsao float
+);
+
+create table tbClimaEstado(
+	id int primary key identity(1,1),
+	regiao char(2),
+	dataCompleta date,
+	previsao float
+)
+
 CREATE TABLE voos(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	siglaEmpresaAerea VARCHAR(20),
@@ -186,7 +242,8 @@ CREATE TABLE tbFeriados(
 	idFeriado INT PRIMARY KEY IDENTITY(1,1),
 	dia VARCHAR(2),
 	mes VARCHAR(10),
-	titulo VARCHAR(50)
+	titulo VARCHAR(50),
+	diaSemana VARCHAR(50)
 );
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'deleteByMonth') AND type in (N'P', N'PC'))
