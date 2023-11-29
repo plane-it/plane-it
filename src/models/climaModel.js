@@ -7,6 +7,20 @@ function buscarFeriados() {
   return database.executar(sql);
 }
 function buscarVoos(siglaAeroportoOrigem) {
+  // const sql = `
+  //           SELECT
+  //           situacao,
+  //           MONTH(horaPartidaPrevista) AS mes,
+  //           COUNT(*) AS quantidade
+  //       FROM
+  //           voos
+  //       WHERE
+  //           situacao IN ('REALIZADO', 'CANCELADO')
+  //           AND siglaAeroportoOrigem = '${siglaAeroportoOrigem}'
+  //       GROUP BY
+  //           situacao, mes;
+  //   `;
+
   const sql = `
             SELECT
             situacao,
@@ -26,17 +40,17 @@ function buscarVoos(siglaAeroportoOrigem) {
 function buscarClimaTabela(regiao) {
   const sql = `
     SELECT 
-    dia,
-    mes,
-    previsao, 
-    regiao,
-    diaSemana,
-    titulo,
-    idFeriado
-FROM 
-    tbFeriados
-JOIN 
-    tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta) where regiao = '${regiao}';
+      dia,
+      mes,
+      previsao, 
+      regiao,
+      diaSemana,
+      titulo,
+      idFeriado
+  FROM 
+      tbFeriados
+  JOIN 
+      tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta) where regiao = '${regiao}';
     `;
   return database.executar(sql);
 }
