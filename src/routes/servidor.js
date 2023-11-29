@@ -50,4 +50,8 @@ router.post("/buscarAlertasComponente",function(req,res){
 router.post("/buscarKpis",function(req,res){
     servidorController.buscarKpis(req,res)
 })
+
+router.get("/atualizarComponente/:fkAeroporto",function(req,res){
+    servidorController.atualizarComponente(req,res)
+})
 module.exports = router

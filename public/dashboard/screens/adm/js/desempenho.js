@@ -1,7 +1,4 @@
 fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO;
-console.log(fkAeroporto);
-buscarAlerta();
-desempenhoComponente();
 dados = "";
 graficoAlertComp = ''
 container.style.display = 'none'
@@ -37,7 +34,6 @@ function buscarAlerta() {
             resposta = res[i];
             alertas.push(resposta.qtdAlerta);
             nomes.push(resposta.apelido);
-            alertaServidores.innerHTML = resposta.alertaTotal
             servidorCritico = i +1
           }
           console.log(servidorCritico)
@@ -176,7 +172,6 @@ function alterarEstadoServidores(value) {
             resposta = res[i];
             nomesAlvo.push(resposta.apelido);
             alertasAlvo.push(resposta.qtdAlerta);
-            alertaServidores.innerHTML = resposta.alertaTotal
             servidorBom =+ i+1
           }
           console.log(servidorBom)
@@ -224,7 +219,6 @@ function alterarEstadoServidores(value) {
             resposta = res[i];
             nomesAlvo.push(resposta.apelido);
             alertasAlvo.push(resposta.qtdAlerta);
-            alertaServidores.innerHTML = resposta.alertaTotal
             servidorAlerta = i+1
           }
           console.log(servidorAlerta)
@@ -395,10 +389,18 @@ function desempenhoComponente() {
         }
         dados = {
           "Componente": tipoComponente,
-          "Alertas": alertaComponente,
+          "Alertas": [10,5,47],
           "Servidores": qtdServidores
         };
-        const quantidadeAlerta = dados.Alertas;
+        plotarGraficoComponente(dados);
+      }
+    })
+    .catch(function (res) {
+      console.log(res);
+    });
+}
+function plotarGraficoComponente(dados) {
+  const quantidadeAlerta = dados.Alertas;
         corGrafico = [];
         for (i = 0; i < quantidadeAlerta.length; i++) {
           if( quantidadeAlerta[i] > 0 && quantidadeAlerta[i] < dados.Servidores * 3){
@@ -409,14 +411,6 @@ function desempenhoComponente() {
             corGrafico.push("#861A22");
           }
         }
-        plotarGraficoComponente(dados, corGrafico);
-      }
-    })
-    .catch(function (res) {
-      console.log(res);
-    });
-}
-function plotarGraficoComponente(dados, corGrafico) {
   ctx = document.getElementById("chartComponente").getContext("2d");
   graficoComp = new Chart(ctx, {
     type: "doughnut",
@@ -433,6 +427,8 @@ function plotarGraficoComponente(dados, corGrafico) {
       ],
     },
   });
+  info = [graficoComp.data.datasets[0].data]
+  setTimeout(() => atualizarComponente(fkAeroporto,graficoComp,info), 2000);
 }
 //Exibir kpis
 function mostrarKPI(){
@@ -453,13 +449,18 @@ function mostrarKPI(){
         servidorCritico = []
         servidorAlerta = []
         servidorBom = []
+        alertaTotal = []
+        qtdServidores = ''
         console.log(res)
         for(i=0 ; i < res.length; i++){
           resposta = res[i]
           servidorCritico.push(resposta.critico)
           servidorAlerta.push(resposta.alerta)
           servidorBom.push(resposta.bom)
+          alertaTotal.push(resposta.qtdAlerta)
+          qtdServidores = resposta.servidores
         }
+        //Modificando kpis de estados de servidor
         somaBom = 0
         for(i=0; i< servidorBom.length;i++){
           somaBom += servidorBom[i]
@@ -480,11 +481,23 @@ function mostrarKPI(){
         iconeAlerta.style.color = '#F7D917'
         if(somaCritico > 0 ){
           statusCritico.innerHTML = Number(somaCritico)
-
           iconeCritico.style.color = '#dc3545'
         }else{
           iconeCritico.style.color = '#dc3545'
           statusCritico.innerHTML = Number(somaCritico)
+        }
+        //Modificando kpi de alertas gerais
+        somaAlertasGerais = 0
+        for(i=0;i < alertaTotal.length;i++){
+          somaAlertasGerais += Number(alertaTotal[i])
+        }
+        qtdAlertaGeral.innerHTML = Number(somaAlertasGerais)
+        if(somaAlertasGerais > 0 && somaAlertasGerais <= qtdServidores * 3){
+          alertaServidores.style.color = '#07521d'
+        }else if(somaAlertasGerais > qtdServidores * 3 && somaAlertasGerais <= qtdServidores * 6){
+          alertaServidores.style.color = '#F7D917'
+        }else{
+          alertaServidores.style.color =  '#dc3545'
         }
       }
     })
@@ -492,5 +505,35 @@ function mostrarKPI(){
       console.log(res);
     });
 }
-mostrarKPI()
+//Atualizando gráficos com novos dados
+function atualizarComponente(fkAeroporto,nomeGrafico,info){
+  console.log(info)
+  fetch(`/servidor/atualizarComponente/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (novoRegistro) {
+            alertasNovos = []
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            for(i=0;i<novoRegistro.length;i++){
+              resposta = novoRegistro[i]
+              alertasNovos.push(resposta.qtdAlerta)
+            }
+            info[0].shift()
+            info.push(alertasNovos[0])
+            info[1].shift()
+            info.push(alertasNovos[1])
+            info[2].shift()
+            info.push(alertasNovos[2])
+            nomeGrafico.update()
+        });
+        proximaAtualizacao = setTimeout(() => atualizarComponente(fkAeroporto,nomeGrafico), 2000);
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
 

@@ -20,7 +20,7 @@
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body onload="buscarAlerta(),mostrarKPI(),desempenhoComponente()">
   <div class="wrapper">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
@@ -84,7 +84,7 @@
           </li>
           <li>
             <a href="./infoDesempenho.html">
-              <i class="nc-icon nc-pin-3"></i>
+              <i class="nc-icon nc-alert-circle-i"></i>
               <p>Informações</p>
             </a>
           </li>
@@ -177,14 +177,14 @@
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
                       <div class="text-cpi">
-                        <i class="nc-icon nc-chart-bar-32"></i>
+                        <i class="nc-icon nc-chart-bar-32" id="alertaServidores"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Alertas gerais</p>
-                      <p class="card-title" id="alertaServidores">--</p>
+                      <p class="card-title" id="qtdAlertaGeral">--</p>
                       <p></p>
                     </div>
                   </div>
@@ -305,7 +305,7 @@
           <div class="col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-title">Estado dos componentes</h5>
+                <h5 class="card-title">Alertas por componentes</h5>
                 <p class="card-category">
                   Do aeroporto
                 </p>
