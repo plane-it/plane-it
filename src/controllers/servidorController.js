@@ -331,6 +331,89 @@ function atualizarComponente(req,res){
     }
 }
 
+function atualizarServidorAlerta(req,res){
+    var fkAeroporto = req.params.fkAeroporto
+    if(!fkAeroporto){
+        res.status(400).json({error: "Existem parametros faltando"})
+    }else{
+        servidorModel.atualizarServidor(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        ); 
+    }
+}
+
+function atualizarServidorBom(req,res){
+    var fkAeroporto = req.params.fkAeroporto
+    if(!fkAeroporto){
+        res.status(400).json({error: "Existem parametros faltando"})
+    }else{
+        servidorModel.atualizarServidorBom(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        ); 
+    }
+}
+
+function atualizarServidorCritico(req,res){
+    var fkAeroporto = req.params.fkAeroporto
+    if(!fkAeroporto){
+        res.status(400).json({error: "Existem parametros faltando"})
+    }else{
+        servidorModel.atualizarServidorCritico(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        ); 
+    }
+}
+
+function atualizarCompServidor(req,res){
+    var fkAeroporto = req.params.fkAeroporto
+    if(!fkAeroporto){
+        res.status(400).json({error: "Existem parametros faltando"})
+    }else{
+        servidorModel.atualizarServidor(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        ); 
+    }
+}
 module.exports = {
     buscarServidor,
     cadastrarServidor,
@@ -346,5 +429,8 @@ module.exports = {
     alertasEstadoBom,
     buscarAlertasComponente,
     buscarKpis,
-    atualizarComponente
+    atualizarComponente,
+    atualizarServidorAlerta,
+    atualizarServidorBom,
+    atualizarServidorCritico
 }

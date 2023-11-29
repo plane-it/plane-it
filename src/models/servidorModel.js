@@ -186,6 +186,47 @@ function atualizarComponente(fkAeroporto){
     return database.executar(sql) 
 }
 
+function atualizarServidorAlerta(fkAeroporto){
+    const sql = `
+    SELECT SUM(alerta) AS 'qtdAlerta',apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
+    JOIN tbServidor 
+    ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+    AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto} 
+    GROUP BY idserv HAVING SUM(alerta) > 6 && SUM(alerta) < 18 LIMIT 5;`
+    console.log(sql)
+    return database.executar(sql)
+}
+function atualizarServidorBom(fkAeroporto){
+    const sql = `
+    SELECT sum(alerta) AS 'qtdAlerta',funcao,apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
+    JOIN tbServidor 
+    ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+    AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
+    GROUP BY idserv
+    HAVING SUM(alerta) > 0 && SUM(alerta) <= 6 LIMIT 5;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+function atualizarServidorCritico(fkAeroporto){
+    const sql = `
+    SELECT sum(alerta) AS 'qtdAlerta',funcao,apelido,(SELECT sum(alerta) AS 'Qtd de alerta' FROM tbRegistro
+    JOIN tbServidor 
+    ON fkServidor = idServ
+    JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+    AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+    JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkAeroporto = ${fkAeroporto}
+    GROUP BY idserv
+    HAVING SUM(alerta) >= 18 LIMIT 5;
+    `
+    console.log(sql)
+    return database.executar(sql)
+}
+
 module.exports = {
     buscarServidor,
     cadastrarServidor,
@@ -201,5 +242,8 @@ module.exports = {
     alertasEstadoBom,
     buscarAlertasComponente,
     buscarKpis,
-    atualizarComponente
+    atualizarComponente,
+    atualizarServidorAlerta,
+    atualizarServidorBom,
+    atualizarServidorCritico
 }

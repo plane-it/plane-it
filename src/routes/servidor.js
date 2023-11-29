@@ -54,4 +54,20 @@ router.post("/buscarKpis",function(req,res){
 router.get("/atualizarComponente/:fkAeroporto",function(req,res){
     servidorController.atualizarComponente(req,res)
 })
+
+router.get("/atualizarServidorAlerta/:fkAeroporto",function(req,res){
+    servidorController.atualizarServidorAlerta(req,res)
+})
+
+router.get("/atualizarServidorBom/:fkAeroporto",function(req,res){
+    servidorController.atualizarServidorAlerta(req,res)
+})
+
+router.get("/atualizarServidorCritico/:fkAeroporto",function(req,res){
+    servidorController.atualizarServidorAlerta(req,res)
+})
+
+router.get("/atualizarCompServidor/:fkAeroporto",function(req,res){
+    servidorController.atualizarCompServidor(req,res)
+})
 module.exports = router
