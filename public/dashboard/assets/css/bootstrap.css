@@ -5925,9 +5925,9 @@ a.badge-dark:focus {
 }
 
 .alert-warning {
-    color: #856404;
+    /* color: #856404;
     background-color: #fd7e14;
-    border-color: #ffeeba
+    border-color: #ffeeba */
 }
 
 .alert-warning hr {
@@ -5939,9 +5939,9 @@ a.badge-dark:focus {
 }
 
 .alert-danger {
-    color: #721c24;
+    /* color: #721c24;
     background-color: rgba(244, 69, 69, 0.604) !important;
-    border-color: #f5c6cb
+    border-color: #f5c6cb */
 }
 
 .alert-danger hr {
@@ -5973,9 +5973,7 @@ a.badge-dark:focus {
 }
 
 .alert-seguro {
-    color: #1b1e21;
-    background-color: #e9ba93;
-    border-color: #c6c8ca
+    /* background-color: #95999c */
 }
 
 .alert-dark hr {
@@ -17347,11 +17345,11 @@ a.badge-dark:focus {
     color: #062c33
 }
 
-.alert-warning {
+/* .alert-warning {
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba
-}
+} */
 
 .alert-warning hr {
     border-top-color: #ffe8a1
@@ -17362,9 +17360,9 @@ a.badge-dark:focus {
 }
 
 .alert-danger {
-    color: #721c24;
+    /* color: #721c24;
     background-color: #f8d7da;
-    border-color: #f5c6cb
+    border-color: #f5c6cb */
 }
 
 .alert-danger hr {

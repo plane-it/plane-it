@@ -23,16 +23,20 @@ router.post("/buscarErrosMensais", function (req,res) {
     servidorController.buscarErrosMensais(req,res)
 })
 
-router.post("/alertasEstadoRuim",function(req,res){
-    servidorController.alertasEstadoRuim(req,res)
+router.post("/alertasCriticos",function(req,res){
+    servidorController.alertasCriticos(req,res)
+})
+
+router.post("/alertasEstadoAlerta",function(req,res){
+    servidorController.alertasEstadoAlerta(req,res)
+})
+
+router.post("/buscarComponente/",function(req,res){
+    servidorController.buscarComponente(req,res)
 })
 
 router.post("/alertasEstadoBom",function(req,res){
     servidorController.alertasEstadoBom(req,res)
-})
-
-router.post("/alertasEstadoMedio",function(req,res){
-    servidorController.alertasEstadoMedio(req,res)
 })
 
 router.post("/buscarDesempenho",function(req,res){
@@ -41,5 +45,9 @@ router.post("/buscarDesempenho",function(req,res){
 
 router.post("/buscarAlertasComponente",function(req,res){
     servidorController.buscarAlertasComponente(req,res)
+})
+
+router.post("/buscarKpis",function(req,res){
+    servidorController.buscarKpis(req,res)
 })
 module.exports = router

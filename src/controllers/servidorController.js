@@ -151,13 +151,13 @@ function buscarErrosMensais(req, res) {
             }
         )
 }
-function alertasEstadoRuim(req,res){
+function alertasCriticos(req,res){
     const {fkAeroporto} = req.body
     if (!fkAeroporto) {
         res.status(400).json({ error: "Existem parametros faltando" })
     }
     else {
-        servidorModel.alertasEstadoRuim(fkAeroporto).then(
+        servidorModel.alertasCriticos(fkAeroporto).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
@@ -169,6 +169,54 @@ function alertasEstadoRuim(req,res){
             function (erro) {
                 res.status(500).json(erro.sqlMessage);
             }
+        );
+    }
+}
+
+function alertasEstadoAlerta(req,res){
+    const {fkAeroporto} = req.body
+    if (!fkAeroporto) {
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else {
+        servidorModel.alertasEstadoAlerta(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+function buscarComponente(req,res){
+    const {fkAeroporto} = req.body
+    const {servidor} = req.body
+
+    if(!fkAeroporto){
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }else if(!servidor){
+        res.status(400).json({ error: "Existem parametros faltando" })
+    }
+    else{
+        servidorModel.buscarComponente(fkAeroporto,servidor).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);        }
         );
     }
 }
@@ -194,30 +242,6 @@ function alertasEstadoBom(req,res){
         );
     }
 }
-
-function alertasEstadoMedio(req,res){
-    const{fkAeroporto} = req.body
-    if (!fkAeroporto) {
-        res.status(400).json({ error: "Existem parametros faltando" })
-    }
-    else {
-        servidorModel.alertasEstadoMedio(fkAeroporto).then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.json(resultado);
-                } else {
-                    res.status(403).json({ error: "Sem Servidores!" });
-                }
-            }
-        ).catch(
-            function (erro) {
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-    }
-}
-
-
 
 function buscarDesempenho(req,res){
     const {fkAeroporto} = req.body
@@ -265,6 +289,27 @@ function buscarAlertasComponente(req,res){
     }
 }
 
+function buscarKpis(req,res){
+    const {fkAeroporto} = req.body;
+    if(!fkAeroporto){
+        res.status(400).json({error: "Existem parametros faltando"})
+    }else{
+        servidorModel.buscarKpis(fkAeroporto).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        ); 
+    }
+}
+
 module.exports = {
     buscarServidor,
     cadastrarServidor,
@@ -274,8 +319,10 @@ module.exports = {
     buscarEstadoServidor,
     buscarErrosMensais,
     buscarDesempenho,
-    alertasEstadoRuim,
+    alertasCriticos,
+    alertasEstadoAlerta,
+    buscarComponente,
     alertasEstadoBom,
-    alertasEstadoMedio,
-    buscarAlertasComponente
+    buscarAlertasComponente,
+    buscarKpis
 }
