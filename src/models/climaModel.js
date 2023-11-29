@@ -22,7 +22,7 @@ function buscarVoos(siglaAeroportoOrigem) {
   //   `;
 
   const sql = `
-            SELECT
+        SELECT
             situacao,
             MONTH(horaPartidaPrevista) AS mes,
             COUNT(*) AS quantidade
@@ -32,7 +32,7 @@ function buscarVoos(siglaAeroportoOrigem) {
             situacao IN ('REALIZADO', 'CANCELADO')
             AND siglaAeroportoOrigem = '${siglaAeroportoOrigem}'
         GROUP BY
-            situacao, mes;
+            situacao, MONTH(horaPartidaPrevista);
     `;
   return database.executar(sql);
 }

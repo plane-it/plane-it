@@ -22,7 +22,9 @@ function buscarDataIgual() {
         }
       }
     })
-    .catch(function (resposta) {});
+    .catch(function (resposta) {
+      console.log(resposta);
+    });
 }
 
 buscarClimaTabela()
@@ -69,10 +71,10 @@ var idEncontrado = [];
 var todosFeriados = [];
 
 function buscarClimaTabela() {
-  var naoAchouDia = [];
-  var naoAchouMes = [];
   regiao = sessionStorage.getItem("REGIAO_AEROPORTO");
   diaMostrado = "";
+
+  console.log(regiao);
 
   fetch("/clima/buscarClimaTabela", {
     method: "POST",
@@ -80,7 +82,7 @@ function buscarClimaTabela() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      regiao: sessionStorage.getItem("REGIAO_AEROPORTO"),
+      regiao
     }),
   })
     .then((res) => res.json())
@@ -129,7 +131,8 @@ function buscarClimaTabela() {
         
       }
     })
-    .catch(function (resposta) {});
+    .catch(function (resposta) {
+    });
 }
 
 function buscarOutrosFeriados(idEncontrado) {
@@ -389,7 +392,9 @@ function buscarVoos() {
         });
       }
     })
-    .catch(function (resposta) {});
+    .catch(function (resposta) {
+      console.log(resposta);
+    });
 }
 rodarTempo();
 function rodarTempo() {

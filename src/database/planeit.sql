@@ -261,7 +261,8 @@ create table tbFeriados(
 	idFeriado int primary key auto_increment,
     dia varchar(2),
     mes varchar (10),
-    titulo varchar(50)
+    titulo varchar(50),
+	diaSemana varchar(50)
 );
 
 
