@@ -1,3 +1,5 @@
+
+
 buscarAeroporto()
 
 var idAeroportoSelecionado;
@@ -19,14 +21,15 @@ function buscarAeroporto() {
             })
         }).then((res) => res.json())
             .then((res) => {
+                console.log(res)
                 if (res.error) {
                     console.log("Aconteceu algum erro (res.error = true)")
                 }
                 else {
-
                     for (let i = 0; i < res.length; i++) {
+                        console.log(res[i].idAeroporto)
                         inputAeroporto.innerHTML += `                      
-                        <option><a onclick="selecionarAeroporto(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">${res[i].nomeAeroporto}</a></option>
+                        <option value="${res[i].idAeroporto}">${res[i].nomeAeroporto}</option>
                         `
                     }
 
@@ -40,6 +43,7 @@ function buscarAeroporto() {
 function selecionarAeroporto(id, nome) {
     idAeroportoSelecionado = id;
     spanAeroporto.innerHTML = nome;
+    confirm.log("teste")
 }
 
 function verifCampos() {
@@ -53,55 +57,48 @@ function verifCampos() {
     cpf = iptCPF.value;
     idCadastrador = sessionStorage.ID_COLAB;
     idEmpresa = sessionStorage.FK_EMPRESA;
-    idAeroportoSelecionado = idAeroportoSelecionado;
+    idAeroportoSelecionado = inputAeroporto.value;
 
 
     erro = false
 
     if (nome == undefined || nome == "") {
-        alert('Preencha o campo Nome');
         iptNome.style = "border: 1px solid RED"
         erro = true;
     } else {
         iptNome.style = "border: 1px solid #DDDDDD;";
     }
     if (sobrenome == undefined || sobrenome == "") {
-        alert('Preencha o campo Sobrenome')
         iptSobrenome.style = "border: 1px solid RED"
         erro = true;
     } else {
         iptSobrenome.style = "border: 1px solid #DDDDDD;"
     }
     if (cargo == undefined || cargo == "") {
-        alert('Preencha o campo Cargo')
         iptCargo.style = "border: 1px solid RED"
         erro = true;
     } else {
         iptCargo.style = "border: 1px solid #DDDDD";
     }
     if (email == undefined || email == "") {
-        alert('Preencha o campo Email')
         iptEmail.style = "border: 1px solid RED"
         erro = true;
     } else {
         iptEmail.style = "border: 1px solid #DDDDD";
     }
     if (senha == undefined || senha == '') {
-        alert('Preencha a Senha')
         iptSenha.style = "border: 1px solid RED"
         erro = true;
     } else {
         iptSenha.style = "border: 1px solid #DDDDD";
     }
     if (confirmacaoSenha == undefined || confirmacaoSenha == "") {
-        alert("Confirme sua senha")
         iptConfirmacaoSenha.style = "border: 1px solid red"
         erro = true;
     } else {
         iptConfirmacaoSenha.style = "border: 1px solid #DDDDD";
     }
     if (confirmacaoSenha != senha) {
-        alert("As senhas não são iguais");
         iptConfirmacaoSenha.style = "border: 1px solid red;"
         iptSenha.style = "border: 1px solid red;"
         erro = true;
@@ -109,30 +106,38 @@ function verifCampos() {
         iptConfirmacaoSenha.style = "border: 1px solid #DDDDD;"
     }
     if (telefone == undefined || telefone == '') {
-        alert('Preencha o Telefone')
         iptTelefone.style = 'border: 1px solid red'
         erro = true;
     } else {
         iptTelefone.style = 'border: 1px solid #DDDDD;';
     }
     if (cpf == undefined || cpf == "") {
-        alert('Preencha o cpf')
         iptCPF.style = 'border: 1px solid red';
         erro = true;
     } else {
         iptCPF.style = 'border: 1px solid #DDDDD;';
     }
+
+
     if (idCadastrador == undefined || idEmpresa == undefined) {
         alert("Você não esta logado!")
         window.location.href = "../../../../login.html";
         erro = true;
     }
     if (idAeroportoSelecionado == undefined) {
+        console.log(idAeroportoSelecionado)
         alert("Escolha um Aéroporto!");
-        slctAero.style = 'border: 1px solid red;';
+        // slctAero.style = 'border: 1px solid red;';
         erro = true;
     } else {
-        selctAero.style = 'border: none;'
+        // selctAero.style = 'border: none;'
+    }
+    if (erro) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro ao tentar fazer o cadastro",
+            text: "Campos inválidos"
+        });
     }
     if (!erro) {
         fetch("/usuarios/buscarCPF", {
@@ -150,7 +155,21 @@ function verifCampos() {
                 }
                 else {
                     if (res.length > 0) {
-                        alert("CPF já registrado")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: "CPF já cadastrado!"
+                        });
                         iptCPF.style = "border: 1px solid RED"
                     } else {
                         fetch("/usuarios/buscarEmail", {
@@ -164,11 +183,27 @@ function verifCampos() {
                         }).then((res) => res.json())
                             .then((res) => {
                                 if (res.error) {
+                                    console.log(res)
                                     console.log("Aconteceu algum erro (res.error = true)")
                                 }
                                 else {
                                     if (res.length > 0) {
-                                        alert("Email já registrado")
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: "top-end",
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.onmouseenter = Swal.stopTimer;
+                                                toast.onmouseleave = Swal.resumeTimer;
+                                            }
+                                        });
+                                        Toast.fire({
+                                            icon: "error",
+                                            title: "Email já registrado!"
+                                        });
+                                        
                                         iptEmail.style = "border: 1px solid RED"
                                     } else {
                                         cadastrarFunc(nome, sobrenome, cargo, email, senha, telefone, cpf, idCadastrador, idAeroportoSelecionado, idEmpresa);
@@ -211,7 +246,10 @@ function cadastrarFunc(nome, sobrenome, cargo, email, senha, telefone, cpf, idCa
                 console.log("Aconteceu algum erro (res.error = true)")
             }
             else {
-                alert("Usuario cadastrado!")
+                Swal.fire({
+                    title: "Usuário cadastrado",
+                    icon: "success"
+                });
                 iptNome.value = "";
                 iptSobrenome.value = "";
                 iptCargo.value = "";

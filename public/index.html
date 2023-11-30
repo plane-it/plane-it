@@ -821,8 +821,22 @@
             .then(res => {
                 if (res.status == 200) {
                     res.json().then(res => {
-                        
-                        alert("Mensagem enviada com sucesso")
+
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "success",
+                            title: "Mensagem enviada com sucesso"
+                        });
 
                         contactName.value = '';
                         contactEmail.value = '';
@@ -836,3 +850,6 @@
     }
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
