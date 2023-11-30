@@ -36,7 +36,22 @@ function buscarMedianPreco(idEmpresa) {
     // CALL MedianPriceByComponentType(${idEmpresa});
     // `
     const sql = `
-        exec MedianPriceByComponentType @empresaID = ${idEmpresa}
+    SELECT fktipoComponente, AVG(preco) AS median_val
+    FROM (
+        SELECT fktipoComponente, preco, 
+               ROW_NUMBER() OVER (
+                   PARTITION BY fktipoComponente ORDER BY preco
+               ) AS rn, 
+               COUNT(*) OVER (
+                   PARTITION BY fktipoComponente
+               ) AS cnt
+        FROM tbComponente
+        JOIN tbServidor ON idServ = fkServ
+        JOIN tbAeroporto ON idAeroporto = fkAeroporto
+        WHERE fkEmpresa = ${idEmpresa}
+    ) AS subquery
+    WHERE rn IN ((cnt + 1) / 2, (cnt + 2) / 2)
+    GROUP BY fktipoComponente;
     `
     console.log(sql)
     return database.executar(sql)
@@ -48,7 +63,28 @@ function buscarMedianBeneficio(idEmpresa) {
     // `
 
     const sql = `
-        exec MedianBeneficioByType @fkEmpresa = ${idEmpresa}
+    WITH medians AS (
+        SELECT fktipoComponente, valor_preco_ratio,
+               ROW_NUMBER() OVER (
+                   PARTITION BY fktipoComponente 
+                   ORDER BY valor_preco_ratio
+               ) AS rn,
+               COUNT(*) OVER (
+                   PARTITION BY fktipoComponente
+               ) AS cnt
+        FROM (
+            SELECT tbComponente.fktipoComponente, (tbSpecs.valor / tbComponente.preco) AS valor_preco_ratio
+            FROM tbSpecs
+            JOIN tbComponente ON tbSpecs.fkComponente = tbComponente.idComp
+            JOIN tbServidor ON tbComponente.fkServ = tbServidor.idServ
+            JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
+            WHERE tbAeroporto.fkEmpresa = ${idEmpresa}
+        ) subquery1
+    )
+    SELECT fktipoComponente, AVG(valor_preco_ratio) AS median
+    FROM medians
+    WHERE rn BETWEEN cnt / 2.0 AND cnt / 2.0 + 1
+    GROUP BY fktipoComponente;
     `
     console.log(sql)
     return database.executar(sql)
