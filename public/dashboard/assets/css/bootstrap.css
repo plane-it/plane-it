@@ -601,6 +601,49 @@ pre code {
     margin-left: auto
 }
 
+.li-dropdown-content {
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px;
+    font-size: 12px;
+    transition: all 1s linear;
+  }
+  
+  .li-dropdown-content a {
+    color: black;
+    padding: 9px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1.3rem;
+  }
+  
+  .li-dropdown-content a:hover {
+    color: #3A7D44 !important;
+  }
+  
+  
+  li:hover .li-dropdown-content {
+    display: block;
+    transition: all 1s linear !important;
+  }
+
+  .blackFont {
+    color: #000 !important;
+  }
+
+  .pilha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 1.2rem;
+  }
+
+  .kpiViva {
+    padding-bottom: 0.5rem;
+  }
+
 @media (min-width:576px) {
     .container {
         max-width: 540px
@@ -5925,9 +5968,7 @@ a.badge-dark:focus {
 }
 
 .alert-warning {
-    /* color: #856404;
-    background-color: #fd7e14;
-    border-color: #ffeeba */
+    border-color: #ffeeba;
 }
 
 .alert-warning hr {
@@ -5973,7 +6014,9 @@ a.badge-dark:focus {
 }
 
 .alert-seguro {
-    /* background-color: #95999c */
+    color: #1b1e21 !important;
+    background-color: #e9ba93 !important;
+    border-color: #c6c8ca !important;
 }
 
 .alert-dark hr {
@@ -5982,6 +6025,37 @@ a.badge-dark:focus {
 
 .alert-dark .alert-link {
     color: #040505
+}
+
+.alert-acima-media {
+    background-color: #cdeabe !important;
+    color: #491217;
+    border-color: #cdeabe;
+}
+
+.alinhador-botao {
+    height: 1.2rem;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.empurrar-cima {
+    margin-top: 2rem;
+}
+
+.two-graphics {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sem-margem {
+    margin: 0 !important;
+}
+
+.padding-little-card {
+    padding: 15px 15px 10px 15px !important;   
 }
 
 @-webkit-keyframes progress-bar-stripes {
@@ -6062,6 +6136,47 @@ a.badge-dark:focus {
 .media-body {
     -ms-flex: 1;
     flex: 1
+}
+
+.alinhado-final {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7px;
+}
+
+.flex-justify-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.check-size{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.margin-right-5 {
+    margin-right: -5px !important;
+}
+
+.card-no-min-height{
+    min-height: 0px !important;
+}
+
+.padding-left-1 {
+    padding-left: 1rem;
+}
+.padding-right-1 {
+    padding-right: 1rem;
+}
+
+.text-complete-width{
+    width: 100%;
 }
 
 .list-group {
@@ -17345,11 +17460,11 @@ a.badge-dark:focus {
     color: #062c33
 }
 
-/* .alert-warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba
-} */
+.alert-warning {
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border-color: #ffeeba !important;
+}
 
 .alert-warning hr {
     border-top-color: #ffe8a1

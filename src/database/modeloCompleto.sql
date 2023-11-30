@@ -101,7 +101,6 @@ create table tbMetrica(
 CREATE TABLE tbProcessos(
 	idProcesso INT PRIMARY KEY AUTO_INCREMENT,
 	pid INT,
-	totalProcessos INT,
 	fkServidor INT,
 		FOREIGN KEY (fkServidor) REFERENCES tbServidor(idServ)
 );
@@ -109,7 +108,7 @@ CREATE TABLE tbProcessos(
 create table tbRegistro(
 	idRegst int primary key auto_increment,
 	valor varchar(100) not null,
-	dataHora dateTime default(now()),
+	dataHora dateTime default now(),
     alerta boolean,
     fkServidor int,
 		foreign key (fkServidor) references tbServidor(idServ),
@@ -128,6 +127,42 @@ create table tbChamados(
 		foreign key (fkRegistro) references tbRegistro(idRegst)
 );
 
+create table tbPedidosInspecao(
+	idPedidoInspecao int primary key auto_increment,
+	motivo varchar(45) not null,
+	descricao varchar(500) not null,
+	fkServidor int not null,
+		foreign key (fkServidor) references tbServidor(idServ),
+	fkRequisitante int not null,
+		foreign key (fkRequisitante) references tbColaborador(idColab)
+);
+
+create table tbRespostaInspecao(
+	idRespostaInspecao int primary key auto_increment,
+	resposta varchar(500) not null,
+	fkRespondente int not null,
+		foreign key (fkRespondente) references tbColaborador(idColab),
+	fkPedido int not null,
+		foreign key (fkPedido) references tbPedidosInspecao(idPedidoInspecao)
+);
+
+create table tbComponentesSinalizados(
+	fkRespostaInspecao int,
+		foreign key (fkRespostaInspecao) references tbRespostaInspecao(idRespostaInspecao),
+	fkComponente int, 
+		foreign key (fkComponente) references tbComponente(idComp),
+	motivo varchar(100) not null,	
+	primary key (fkRespostaInspecao, fkComponente)
+);
+
+create table tbSpecs (
+	idSpec int primary key auto_increment,
+	valor char(20) not null,
+	fkComponente int,
+		foreign key (fkComponente) references tbComponente(idComp),
+	fkUnidadeMedida int,
+		foreign key (fkUnidadeMedida) references tbUnidadeMedida(idUnidadeMedida)	
+);
 
 DELIMITER //
 CREATE PROCEDURE buscarEstadoDeServidor(IN _fkServ INT)
@@ -163,6 +198,54 @@ BEGIN
                     LIMIT 50
             ) AS disco
         ) AS qtsAlertasDisco;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE MedianBeneficioByType(IN fkEmpresa INT)
+BEGIN
+    CREATE TEMPORARY TABLE medians AS
+    SELECT fktipoComponente, valor_preco_ratio,
+           ROW_NUMBER() OVER (
+               PARTITION BY fktipoComponente 
+               ORDER BY valor_preco_ratio
+           ) AS rn,
+           COUNT(*) OVER (
+               PARTITION BY fktipoComponente
+           ) AS cnt
+    FROM (
+        SELECT tbComponente.fktipoComponente, (tbSpecs.valor / tbComponente.preco) AS valor_preco_ratio
+        FROM tbSpecs
+        JOIN tbComponente ON tbSpecs.fkComponente = tbComponente.idComp
+        JOIN tbServidor ON tbComponente.fkServ = tbServidor.idServ
+        JOIN tbAeroporto ON tbServidor.fkAeroporto = tbAeroporto.idAeroporto
+        WHERE tbAeroporto.fkEmpresa = fkEmpresa
+    ) subquery1;
+
+    SELECT fktipoComponente, AVG(valor_preco_ratio) AS median
+    FROM medians
+    WHERE rn BETWEEN cnt / 2.0 AND cnt / 2.0 + 1
+    GROUP BY fktipoComponente;
+    
+    DROP TEMPORARY TABLE medians;
+END//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE MedianPriceByComponentType(IN empresaID INT)
+BEGIN
+  SELECT fktipoComponente, AVG(preco) AS median_val
+  FROM
+  (
+    SELECT fktipoComponente, preco, COUNT(*) OVER (PARTITION BY fktipoComponente) AS cnt, ROW_NUMBER() OVER (PARTITION BY fktipoComponente ORDER BY preco) AS rn
+    FROM tbComponente
+    JOIN tbServidor ON idServ = fkServ
+    JOIN tbAeroporto ON idAeroporto = fkAeroporto
+    WHERE fkEmpresa = empresaID
+  ) AS subquery
+  WHERE rn IN (FLOOR((cnt + 1) / 2), FLOOR((cnt + 2) / 2))
+  GROUP BY fktipoComponente;
 END //
 DELIMITER ;
 
@@ -397,3 +480,6 @@ update tbRegistro set dataHora = '2023-06-10 17:12:55' WHERE idRegst in (28,29,3
 update tbRegistro set dataHora = '2023-07-10 17:12:55' WHERE idRegst in (24,25,26,27);
 update tbRegistro set dataHora = '2023-08-10 17:12:55' WHERE idRegst in (20,21,22,23);
 update tbRegistro set dataHora = '2023-09-10 17:12:55' WHERE idRegst in (16,17,18,19);
+
+UPDATE tbMetrica SET fkComponente = 1 WHERE idMetrica = 17;
+INSERT INTO tbMetrica VALUES (NULL, 80, 1, 2);

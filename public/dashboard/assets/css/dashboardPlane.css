@@ -20,6 +20,16 @@ Licensed under the MIT license - http://opensource.org/licenses/MIT
 
 Copyright (c) 2015 Daniel Eden
 */
+.max-h-100{
+  max-height: 350px !important;
+}
+.no-margin{
+  margin: 0 !important;
+}
+.gap-1{
+  gap: 1rem
+}
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;

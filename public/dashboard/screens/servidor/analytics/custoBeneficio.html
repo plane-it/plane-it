@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/planeIt/logoSemNome.ico">
+<link rel="icon" type="image/png" href="../../../assets/img/planeIt/logoSemNome.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>
+    Custo | Plane It
+</title>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+<!--     Fonts and icons     -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<!-- CSS Files -->
+<link href="../../../assets/css/bootstrap.css" rel="stylesheet" />
+<link href="../../../assets/css/dashboardPlane.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../assets/css/descriptionAll.css">
+<!-- <link rel="stylesheet" href="../../../assets/css/bootstrap.css"> -->
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="../../../assets/demo/demo.css" rel="stylesheet" />
+
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="white" data-active-color="danger">
+            <div class="logo">
+                <a href="/index.html" class="simple-text logo-mini">
+                    <div class="logo-image-small">
+                        <img src="../../../assets/img/planeIt/logoSemNome.ico">
+                    </div>
+                </a>
+                <a href="/dashboard/screens/index.html" class="simple-text logo-normal"> Plane - it</a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li>
+                        <a href="../principalDash.html">
+                            <i class="nc-icon nc-layout-11"></i>
+                            <p>Geral</p>
+                        </a>
+                    </li>
+                    <li class="adm active">
+                        <a href="#" class="dropbtn adm">
+                            <i class="nc-icon nc-chart-pie-36"></i>
+                            <p>Analytics</p>
+                        </a>
+                        <div class="li-dropdown-content">
+                            <a class="adm">Custo-benefício</a>
+                            <a href="../cronograma.html" class="adm">Histórico</a>
+                            <a href="clima.html">
+                                <p>Clima</p>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="../especificacoes.html">
+                            <i class="nc-icon nc-tile-56"></i>
+                            <p>Especificações</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../../listas/listaServidores.html" id="btnVoltar">
+                            <i class="nc-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                </svg>
+                            </i>
+                            <p>Voltar</p>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" id="nomeServ">--</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item btn-rotate dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="nc-icon nc-bell-55"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/dashboard/screens/alertas.html">Alertas</a>
+
+                                    <a class="dropdown-item" href="#">Ajuda - Jira</a>
+                                    <a class="dropdown-item"
+                                        href="https://app.slack.com/huddle/T05KQAZC693/C05L5TKJ0D7">Comunicação -
+                                        Slack</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link dropdown-toggle" href="http://example.com"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/dashboard/screens/perfil.html">Perfil</a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content" id="fundo" style="z-index: 0;">
+                <div class="row" style="display: flex; justify-content: space-between;">
+                    <div class="col-md-5 pr-1 blackFont">
+                        <div class="form-group">
+                            <label>Moeda: </label>
+                                <select type="text" class="form-control" placeholder="Aeroporto" id="slctMoeda"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-5 pr-1 blackFont">
+                        <div class="form-group pilha" style="display: none;">
+                            <label>Quantidade de chamados abertos no último mês: </label>
+                            <a>23</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="display: flex; justify-content: space-evenly;">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats" id="cardCPU">
+                            <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">CPU</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5 col-md-4 kpiViva">
+                                        <div class="icon-big text-center icon-warning">
+                                            <div class="text-cpi">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50"
+                                                    fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Mhz por <a class="nomeMoeda"></a></p>
+                                            <p class="card-category">gasto</p>
+                                            <p class="card-title" id="cpuEstado">--</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats" id="cardRAM">
+                            <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">RAM</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5 col-md-4 kpiViva">
+                                        <div class="icon-big text-center icon-warning">
+                                            <div class="text-cpi">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50"
+                                                    fill="currentColor" class="bi bi-memory" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.586a1 1 0 0 0 .707-.293l.353-.353a.5.5 0 0 1 .708 0l.353.353a1 1 0 0 0 .707.293H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1Zm.5 1h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5Zm5 0h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5Zm4.5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-4ZM2 10v2H1v-2h1Zm2 0v2H3v-2h1Zm2 0v2H5v-2h1Zm3 0v2H8v-2h1Zm2 0v2h-1v-2h1Zm2 0v2h-1v-2h1Zm2 0v2h-1v-2h1Z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Gb por <a class="nomeMoeda"></a></p>
+                                            <p class="card-category">gasto</p>
+                                            <p class="card-title" id="ramEstado">--</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats" id="cardDISCO">
+                            <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">Disco</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5 col-md-4 kpiViva">
+                                        <div class="icon-big text-center icon-warning">
+                                            <div class="text-cpi">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50"
+                                                    fill="currentColor" class="bi bi-hdd" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M4.5 11a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                                                    <path
+                                                        d="M16 11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V9.51c0-.418.105-.83.305-1.197l2.472-4.531A1.5 1.5 0 0 1 4.094 3h7.812a1.5 1.5 0 0 1 1.317.782l2.472 4.53c.2.368.305.78.305 1.198V11zM3.655 4.26 1.592 8.043C1.724 8.014 1.86 8 2 8h12c.14 0 .276.014.408.042L12.345 4.26a.5.5 0 0 0-.439-.26H4.094a.5.5 0 0 0-.44.26zM1 10v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Gb por <a class="nomeMoeda"></a></p>
+                                            <p class="card-category">gasto</p>
+                                            <p class="card-title" id="discoEstado">--</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats" id="cardTOTAL">
+                            <div class="card-body">
+                                <div class="numbers left">
+                                    <p class="card-category">Geral</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5 col-md-4 kpiViva">
+                                        <div class="icon-big text-center icon-warning">
+                                            <div class="text-cpi">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50"
+                                                    fill="currentColor" class="bi bi-hdd" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M4.5 11a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                                                    <path
+                                                        d="M16 11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V9.51c0-.418.105-.83.305-1.197l2.472-4.531A1.5 1.5 0 0 1 4.094 3h7.812a1.5 1.5 0 0 1 1.317.782l2.472 4.53c.2.368.305.78.305 1.198V11zM3.655 4.26 1.592 8.043C1.724 8.014 1.86 8 2 8h12c.14 0 .276.014.408.042L12.345 4.26a.5.5 0 0 0-.439-.26H4.094a.5.5 0 0 0-.44.26zM1 10v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Custo Total</p>
+                                            <p class="card-category">de componentes</p>
+                                            <p class="card-title" id="custoTotal">--</p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                                <div class="stats"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="description empurrar-cima">Gráficos</h3>
+                <div class="row" style="display: flex; justify-content: space-between;">
+                    <div class="col-md-5 pr-1 blackFont">
+                        <div class="form-group">
+                            <label>Componente: </label>
+                            <select type="text" class="form-control" placeholder="--Selecione--" id="slctComponente" onchange="mudarComponente()">
+                                <option value="1">CPU</option>
+                                <option value="2">RAM</option>
+                                <option value="3">Disco</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="alinhador-botao"></div>
+                        <div class="update px-3">
+                            <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                onclick="aparecerTela()">Solicitar Análise</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Inicio dos gráficos-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h5 class="card-title">Desempenho / Gasto</h5>
+                                <p class="card-category"><a class="medidaComponente"></a></p>
+                            </div>
+                            <div class="card-body two-graphics">
+                                <div style="height: 300px; width: 550px;">
+                                    <canvas id="func"></canvas>
+                                </div>
+                                <div style="height: 300px; width: 380px; display: flex; justify-content: space-around;">
+                                    <canvas id="barras"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h5 class="card-title">Distribuição de orçamento</h5>
+                            </div>
+                            <div class="card-body two-graphics">
+                                <div style="height: 300px; width: 420px;">
+                                    <canvas id="graficoRadar"></canvas>
+                                </div>
+                                <div style="height: 300px; width: 420px;">
+                                    <canvas id="graficoPizza"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Análises</h5>
+                                <p class="card-category">Já possuí uma solicitação de análise?</p>
+                            </div>
+                            <div class="card-body">
+                                    <div class="update px-3 alinhado-final">
+                                        <button class="btn btn-primary btn-round" style="background-color: #254D32;" onclick="verRespostas()">Verificar respostas</button>
+                                    </div>
+                            </div>
+                            <div class="card-footer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 p-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Métricas</h5>
+                                <p class="card-category">O que as cores representam</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-center justify-content-center p-4">
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="card card-stats">
+                                            <div class="card-body alert-danger card sem-margem padding-little-card">
+                                                <div class="row">
+                                                    <div class="col-5 col-md-4">
+                                                        <div class="icon-big text-center">
+                                                            <div class="text-cpi">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="60"
+                                                                    height="50" fill="currentColor"
+                                                                    class="bi bi-x-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 col-md-8">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Example</p>
+                                                            <p class="card-title" id="">
+                                                                --
+                                                            </p>
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="card card-stats">
+                                            <div class="card-body card alert-acima-media sem-margem padding-little-card">
+                                                <div class="row">
+                                                    <div class="col-5 col-md-4">
+                                                        <div class="icon-big text-center icon-warning">
+                                                            <div class="text-cpi">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="60"
+                                                                    height="50" fill="currentColor"
+                                                                    class="bi bi-x-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7 col-md-8">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Example</p>
+                                                            <p class="card-title" id="">
+                                                                --
+                                                            </p>
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row justify-content-center">
+                                        <div class="alert alert-danger col-lg-11 text-center blackFont">Cor
+                                            <b>vermelha</b>
+                                            indica-se que o componente em questão apresenta um desempenho inferior à
+                                            mediana dos seus servidores, porém a um custo mais elevado.
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="alert alert-acima-media col-lg-11 text-center blackFont">Cor
+                                            <b>verde</b>
+                                            sugere-se que o componente em questão oferece um desempenho superior à
+                                            mediana
+                                            dos seus servidores a um custo mais baixo.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="footer footer-black  footer-white ">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <nav class="footer-nav">
+                                <ul>
+                                    <li><a href="https://www.creative-tim.com" target="_blank">Suporte</a></li>
+                                    <li><a href="https://www.creative-tim.com/blog" target="_blank">Comunicação</a></li>
+                                    <li><a href="https://www.creative-tim.com/license" target="_blank">Site
+                                            institucional</a></li>
+                                </ul>
+                            </nav>
+                            <div class="credits ml-auto">
+                                <span class="copyright">
+                                    ©
+                                    <script>
+                                        document.write(new Date().getFullYear())
+                                    </script>, made with Plane - it.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <div class="content" id="frente" style="z-index: 1; display: none;">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h5 class="card-title">Solicitar análise de servidor</h5>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row" style="display: flex; justify-content: center;">
+                                <div class="col-md-11 pr-3">
+                                    <div class="form-group">
+                                        <label>Insira o motivo da análise: </label>
+                                        <input type="text" class="form-control" placeholder="Motivo" value=""
+                                            id="iptMotivo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="display: flex; justify-content: center;">
+                                <div class="col-md-11 pr-3">
+                                    <div class="form-group">
+                                        <label>Descreva o problema: </label>
+                                        <textarea type="text" class="form-control" placeholder="Problema" value=""
+                                            id="iptProblema"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="update px-3">
+                                    <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                        onclick="sumirTela()">Voltar</button>
+                                </div>
+                                <div class="update px-3">
+                                    <button class="btn btn-primary btn-round" style="background-color: #254D32;"
+                                        onclick="enviarAnalise()">Enviar solicitação</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../../assets/js/core/jquery.min.js"></script>
+        <script src="../../../assets/js/core/popper.min.js"></script>
+        <script src="../../../assets/js/core/bootstrap.min.js"></script>
+        <script src="../../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- Chart JS -->
+        <script src="../../../assets/js/plugins/chartjs.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="../../../assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="../../../assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+        <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+        <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+        <!-- <script src="../../../assets/demo/demo.js"></script> -->
+        <script src="js/custoBeneficio.js"></script>
+        <script>
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+
+</script>
+</body>
+
+</html>

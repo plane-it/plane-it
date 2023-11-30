@@ -3,40 +3,41 @@ VALUES
 ('12345678900110', 'Azul Linhas Aéreas', 'Azul S.A.', 'Rodovia Hélio Smidt, s/n'),
 ('98765432000120', 'LATAM Airlines Brasil', 'LATAM Airlines Group S.A.', 'SGAS Quadra 515, s/n');
 
-insert into tbAeroporto (nomeAeroporto, pais, cidade, endereco, fkEmpresa) values
-('Aeroporto Internacional de São Paulo', 'Brasil', 'Guarulhos', 'Rodovia Hélio Smidt, s/n', 2),
-('Galeão', 'Brasil', 'Rio de Janeiro', 'Av. Vinte de Janeiro, s/n', 2),
-('Juscelino Kubitschek', 'Brasil', 'Brasília', 'SGAS Quadra 515, s/n', 2),
-('Eduardo Gomes', 'Brasil', 'Manaus', 'Rodovia AM-070, km 11', 2),
-('Deputado Luís Eduardo Magalhães', 'Brasil', 'Salvador', 'Av. Tancredo Neves, s/n', 2),
-('Pinto Martins', 'Brasil', 'Fortaleza', 'Av. Senador Carlos Jereissati, 3155', 2),
-('Gilberto Freyre', 'Brasil', 'Recife', 'Av. Marechal Mascarenhas de Moraes, s/n', 2),
-('Salgado Filho', 'Brasil', 'Porto Alegre', 'Av. Severo Dullius, s/n', 2),
-('Afonso Pena', 'Brasil', 'Curitiba', 'Av. Afonso Pena, km 33, s/n', 2),
-('Confins', 'Brasil', 'Belo Horizonte', 'Rodovia BR-356, km 464, s/n', 1),
-('Congonhas', 'Brasil', 'São Paulo', 'Av. Washington Luís, s/n', 1),
-('Hercílio Luz', 'Brasil', 'Florianópolis', 'Rodovia SC-401, km 49, s/n', 1),
-('Augusto Severo', 'Brasil', 'Natal', 'Av. Capitão-aviador Alberto Santos Dumont', 1),
-('Castro Pinto', 'Brasil', 'João Pessoa', 'Av. Marechal Eurico Gaspar Dutra, s/n', 1),
-('Júlio Cezar Ribeiro', 'Brasil', 'Belém', 'Rodovia BR-316, km 8, s/n', 1),
-('Marechal Rondon', 'Brasil', 'Cuiabá', 'Rodovia BR-163, km 294, s/n', 1),
-('Zumbi dos Palmares', 'Brasil', 'Maceió', 'Av. Menino Marcelo, s/n', 1),
-('Eurico de Aguiar Salles', 'Brasil', 'Vitória', 'Rodovia BR-101, km 39, s/n', 1);
 
-INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSuperior, administracao)
+INSERT INTO tbAeroporto (nomeAeroporto, siglaAeroporto, pais, cidade, regiao, endereco, fkEmpresa) VALUES
+('Aeroporto Internacional de São Paulo', 'SBGR', 'Brasil', 'Guarulhos', 'SP','Rodovia Hélio Smidt, s/n', 2),
+('Galeão', 'SBGL', 'Brasil', 'Rio de Janeiro', 'RJ','Av. Vinte de Janeiro, s/n', 2),
+('Juscelino Kubitschek', 'SBBR', 'Brasil', 'Brasília','GO', 'SGAS Quadra 515, s/n', 2),
+('Eduardo Gomes', 'SBEG', 'Brasil', 'Manaus','AM', 'Rodovia AM-070, km 11', 2),
+('Deputado Luís Eduardo Magalhães', 'SBSV', 'Brasil', 'Salvador','BA', 'Av. Tancredo Neves, s/n', 2),
+('Pinto Martins', 'SBFZ', 'Brasil', 'Fortaleza','BA', 'Av. Senador Carlos Jereissati, 3155', 2),
+('Gilberto Freyre', 'SBRF', 'Brasil', 'Recife','PE', 'Av. Marechal Mascarenhas de Moraes, s/n', 2),
+('Salgado Filho', 'SBPA', 'Brasil', 'Porto Alegre', 'RS', 'Av. Severo Dullius, s/n', 2),
+('Afonso Pena', 'SBCT', 'Brasil', 'Curitiba','PR', 'Av. Afonso Pena, km 33, s/n', 2),
+('Confins', 'SBCF', 'Brasil', 'Belo Horizonte','BH', 'Rodovia BR-356, km 464, s/n', 1),
+('Congonhas', 'SBSP', 'Brasil', 'São Paulo', 'SP','Av. Washington Luís, s/n', 1),
+('Hercílio Luz', 'SBFL', 'Brasil', 'Florianópolis', 'SC','Rodovia SC-401, km 49, s/n', 1),
+('Augusto Severo', 'SBNT', 'Brasil', 'Natal', 'RN','Av. Capitão-aviador Alberto Santos Dumont', 1),
+('Castro Pinto', 'SBJP', 'Brasil', 'João Pessoa','PB', 'Av. Marechal Eurico Gaspar Dutra, s/n', 1),
+('Júlio Cezar Ribeiro', 'SBBE', 'Brasil', 'Belém', 'PA','Rodovia BR-316, km 8, s/n', 1),
+('Marechal Rondon', 'SBCY', 'Brasil', 'Cuiabá','MT', 'Rodovia BR-163, km 294, s/n', 1),
+('Zumbi dos Palmares', 'SBMO', 'Brasil', 'Maceió','AL', 'Av. Menino Marcelo, s/n', 1),
+('Eurico de Aguiar Salles', 'SBVT', 'Brasil', 'Vitória', 'ES','Rodovia BR-101, km 39, s/n', 1);
+
+INSERT INTO tbColaborador (cpf, nome, email, senha, cargo, telefone, fkEmpr, fkAeroporto, fkSuperior)
 VALUES
-('12345678900', 'Jurandir Ribeiro', 'jurandir.ribeiro@example.com', '123456789', 'Desenvolvedor', '99999999999', 1, 1, null, 1),
-('98765432100', 'Flávio da Silva', 'flavio.silva@example.com', '123456789', 'Analista de Sistemas', '88888888888', 1, 11, 1, 0),
-('09876543210', 'Pedro Souza', 'pedro.souza@example.com', '123456789', 'Engenheiro de Software', '77777777777', 1, 3, 1, 0),
-('10987654320', 'Ana Costa', 'ana.costa@example.com', '123456789', 'Arquiteta de Soluções', '66666666666', 1, 4, 1, 0),
-('21098765430', 'Carlos Oliveira', 'carlos.oliveira@example.com', '123456789', 'Gerente de Projetos', '55555555555', 1, 5, 1, 0),
-('54321098700', 'José Pereira', 'jose.pereira@example.com', '123456789', 'Desenvolvedor', '44444444444', 2, 6, null, 1),
-('65432109800', 'Luciana Silva', 'luciana.silva@example.com', '123456789', 'Analista de Sistemas', '33333333333', 2, 7, 6, 0),
-('76543210900', 'Marcos Santos', 'marcos.santos@example.com', '123456789', 'Engenheiro de Software', '22222222222', 2, 8, 6, 0),
-('87654321000', 'Patrícia Oliveira', 'patricia.oliveira@example.com', '123456789', 'Arquiteta de Soluções', '11111111111', 2, 9, 6, 0),
-('98765432110', 'Roberto Costa', 'roberto.costa@example.com', '123456789', 'Gerente de Projetos', '00000000000', 2, 10, 6, 0),
-('90876543216', 'Vinícius Silva', 'vinicius.silva@example.com', '123456789', 'Desenvolvedor', '00001000100', 1, 16, 1, 0),
-('09876543217', 'Zilda Santos', 'zilda.santos@example.com', '123456789', 'Analista de Sistemas', '00002000200', 1, 17, 1, 0);
+('12345678900', 'João da Silva', 'joao.silva@example.com', '123456789', 'Desenvolvedor', '99999999999', 1, 1, null),
+('98765432100', 'Maria Santos', 'maria.santos@example.com', '123456789', 'Analista de Sistemas', '88888888888', 1, 2, 1),
+('09876543210', 'Pedro Souza', 'pedro.souza@example.com', '123456789', 'Engenheiro de Software', '77777777777', 1, 3, 1),
+('10987654320', 'Ana Costa', 'ana.costa@example.com', '123456789', 'Arquiteta de Soluções', '66666666666', 1, 4, 1),
+('21098765430', 'Carlos Oliveira', 'carlos.oliveira@example.com', '123456789', 'Gerente de Projetos', '55555555555', 1, 5, 1),
+('54321098700', 'José Pereira', 'jose.pereira@example.com', '123456789', 'Desenvolvedor', '44444444444', 2, 6, null),
+('65432109800', 'Luciana Silva', 'luciana.silva@example.com', '123456789', 'Analista de Sistemas', '33333333333', 2, 7, 6),
+('76543210900', 'Marcos Santos', 'marcos.santos@example.com', '123456789', 'Engenheiro de Software', '22222222222', 2, 8, 6),
+('87654321000', 'Patrícia Oliveira', 'patricia.oliveira@example.com', '123456789', 'Arquiteta de Soluções', '11111111111', 2, 9, 6),
+('98765432110', 'Roberto Costa', 'roberto.costa@example.com', '123456789', 'Gerente de Projetos', '00000000000', 2, 10, 6),
+('90876543216', 'Vinícius Silva', 'vinicius.silva@example.com', '123456789', 'Desenvolvedor', '00001000100', 1, 16, 1),
+('09876543217', 'Zilda Santos', 'zilda.santos@example.com', '123456789', 'Analista de Sistemas', '00002000200', 1, 17, 1);
 
 INSERT INTO tbServidor (codAutentic, apelido, sistemaOp, ip, funcao, fkAeroporto)
 VALUES
@@ -48,13 +49,14 @@ VALUES
 ('U12345', 'Servidor 21', 'Gentoo', '192.168.1.21', 'Servidor web', 18),
 ('V12345', 'Servidor 22', 'Debian', '192.168.1.22', 'Servidor de aplicação', 11),
 ('W12345', 'Servidor 23', 'Red Hat Enterprise Linux', '192.168.1.23', 'Servidor de banco de dados', 1),
+('W12345', 'Servidor 23', 'Red Hat Enterprise Linux', '192.168.1.23', 'Servidor de banco de dados', 1),
 ('X12345', 'Servidor 24', 'SUSE Linux Enterprise', '192.168.1.24', 'Servidor de arquivos', 2),
 ('Y12345', 'Servidor 25', 'CentOS', '192.168.1.25', 'Servidor de impressão', 11),
 ('Z12345', 'Servidor 32', 'OpenSUSE', '192.168.1.32', 'Servidor web', 18);
 
 INSERT INTO tbTipoComponente (tipo) VALUES 
 ('CPU'),
-('RAM'),
+('Memória RAM'),
 ('Disco');
  
 INSERT INTO tbComponente (nome, preco, fkServ, fkTipoComponente) VALUES
@@ -136,6 +138,15 @@ VALUES
 (75.2, 32, 3),
 (150.0, 33, 3);
 
+
+INSERT INTO tbRegistro (valor, fkComp, alerta, fkServidor, fkMetrica)
+VALUES
+(5.5, 1, 1, 1, 1),
+(15.5, 1, 1, 1, 1);
+
+
+
+
 INSERT INTO tbRegistro (valor, fkComp, alerta, fkServidor, fkMetrica)
 VALUES
 (45.5, 1, 0, 1, 1),
@@ -152,8 +163,6 @@ VALUES
 (150.0, 12, 1, 6, 12),
 (45.5, 13, 0, 6, 13),
 (75.2, 14, 0, 6, 14),
-(150.0, 15, 1, 7, 15),
-(150.0, 15, 1, 7, 15),
 (150.0, 15, 1, 7, 15),
 (45.5, 16, 0, 7, 16),
 (75.2, 17, 0, 7, 17),
@@ -190,35 +199,7 @@ VALUES
 (45.5, 1, 1, 5, 1),
 (75.2, 2, 1, 5, 2),
 (45.5, 1, 1, 5, 1),
-(75.2, 2, 1, 5, 2),
-(150.0, 27, 1, 11,27),
-(45.5, 28, 0, 11, 28),
-(75.2, 29, 0, 11, 29);
-
-UPDATE tbRegistro SET alerta = 1 WHERE idRegst in 
-(1, 2, 30, 32, 40, 41, 42, 43, 44, 45, 46, 47, 3, 34, 35, 36, 37, 38, 39, 9, 10, 11, 16, 24, 26, 18, 28);
-
-INSERT INTO tbChamados VALUES 
-(null, "Alto", "4 horas", "Aberto", 32),
-(null, "Médio", "8 horas", "Aberto", 43),
-(null, "Baixo", "24 horas", "Aberto", 48);
-
-
-INSERT INTO tbRegistro VALUES 
-(NULL, "155", '2023-10-30 16:22:49', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:50', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:51', 1, 1, 3, 3),
-(NULL, "185", '2023-10-30 16:22:52', 1, 1, 3, 3),
-(NULL, "185", '2023-10-30 16:22:53', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:54', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:55', 1, 1, 3, 3),
-(NULL, "155", '2023-10-30 16:22:56', 1, 1, 3, 3),
-(NULL, "155", '2023-10-30 16:22:57', 1, 1, 3, 3),
-(NULL, "165", '2023-10-30 16:22:58', 1, 1, 3, 3),
-(NULL, "175", '2023-10-30 16:22:59', 1, 1, 3, 3);
-
-
-
+(75.2, 2, 1, 5, 2);
 
 update tbRegistro set dataHora = '2023-01-10 17:12:55' WHERE idRegst in (48,49,50,51);
 update tbRegistro set dataHora = '2023-02-10 17:12:55' WHERE idRegst in (44,45,46,47);
@@ -229,3 +210,17 @@ update tbRegistro set dataHora = '2023-06-10 17:12:55' WHERE idRegst in (28,29,3
 update tbRegistro set dataHora = '2023-07-10 17:12:55' WHERE idRegst in (24,25,26,27);
 update tbRegistro set dataHora = '2023-08-10 17:12:55' WHERE idRegst in (20,21,22,23);
 update tbRegistro set dataHora = '2023-09-10 17:12:55' WHERE idRegst in (16,17,18,19);
+
+INSERT INTO tbChamados (nivel, sla, estado, fkRegistro)
+VALUES
+('Alto', '4 horas', 'Aberto', 3),
+('Médio', '8 horas', 'Aberto', 6),
+('Baixo', '24 horas', 'Aberto', 9),
+('Alto', '4 horas', 'Aberto', 12),
+('Médio', '8 horas', 'Aberto', 15),
+('Baixo', '24 horas', 'Aberto', 18),
+('Alto', '4 horas', 'Aberto', 21),
+('Médio', '8 horas', 'Aberto', 24),
+('Baixo', '24 horas', 'Aberto', 27),
+('Alto', '4 horas', 'Aberto', 30),
+('Alto', '4 horas', 'Aberto', 31);
