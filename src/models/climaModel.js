@@ -65,8 +65,10 @@ function buscarOutrosFeriados(ids) {
             marcadores += `${ids[i]},`;
         }
     }
+    // if(ids.length == 0){
+    //     marcadores = `null`;
+    // }
     
-    console.log(marcadores)
     const sql = `
       SELECT * FROM tbFeriados WHERE idFeriado NOT IN (${marcadores});
     `;

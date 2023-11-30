@@ -6,6 +6,7 @@ var climaModel = require("../models/climaModel");
 
 function buscarFeriados(req, res) {
     
+                    console.log("feridos")
         climaModel.buscarFeriados().then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -25,6 +26,7 @@ function buscarVoos(req, res) {
 
     var siglaAeroportoOrigem = req.body.siglaAeroporto;
     
+                    console.log("voos")
         climaModel.buscarVoos(siglaAeroportoOrigem).then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -45,6 +47,7 @@ function buscarClimaTabela(req, res) {
 
     var regiao = req.body.regiao;
     
+    console.log("clima")
     climaModel.buscarClimaTabela(regiao).then(
         function (resultado) {
             if (resultado.length > 0) {
@@ -64,7 +67,7 @@ function buscarClimaTabela(req, res) {
 function buscarOutrosFeriados(req, res) {
 
     var ids = req.body.ids;
-    
+
     climaModel.buscarOutrosFeriados(ids).then(
         function (resultado) {
             if (resultado.length > 0) {

@@ -310,10 +310,10 @@ function buscarVoos() {
         media = ((res[0].quantidade + res[1].quantidade) * 1.63) / 100;
 
         if (media < qtdVoo[1]) {
-          qtdVoosCancelados.innerHTML = res[1].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].quantidade;
           qtdVoosCancelados.style = "color: red";
         } else {
-          qtdVoosCancelados.innerHTML = res[1].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].quantidade;
           qtdVoosCancelados.style = "color: green";
         }
 
@@ -352,11 +352,11 @@ function buscarVoos() {
         myChart = new Chart(ctx, {
           type: "bar",
           data: {
-            labels: ["Cancelados", "Realizados"],
+            labels: [res[0].situacao, res[1].situacao],
             datasets: [
               {
-                label: "Cancelados",
-                data: [qtdVoo[1], qtdVoo[0]],
+                label: res[0].situacao,
+                data: [res[0].quantidade, res[1].quantidade],
                 backgroundColor: ["#dc3545", "#28a745"],
                 borderColor: ["#dc3545", "#28a745"],
               },
