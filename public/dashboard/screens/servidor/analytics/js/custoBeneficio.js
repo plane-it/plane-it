@@ -245,13 +245,14 @@ function buscarMedianBeneficio() {
             }).then((res) => res.json())
                 .then((res) => {
                     if (!res.error) {
-                        for (let i = 0; i < res[0].length; i++) {
-                            if (res[0][i].fktipoComponente == 1) {
-                                medianBeneficioCpuBRL = res[0][i].median;
-                            } else if (res[0][i].fktipoComponente == 2) {
-                                medianBeneficioRamBRL = res[0][i].median;
-                            } else if (res[0][i].fktipoComponente == 3) {
-                                medianBeneficioDiscoBRL = res[0][i].median;
+                        console.log(res)
+                        for (let i = 0; i < res.length; i++) {
+                            if (res[i].fktipoComponente == 1) {
+                                medianBeneficioCpuBRL = res[i].median;
+                            } else if (res[i].fktipoComponente == 2) {
+                                medianBeneficioRamBRL = res[i].median;
+                            } else if (res[i].fktipoComponente == 3) {
+                                medianBeneficioDiscoBRL = res[i].median;
                             }
                         }
                         resolve();
@@ -277,6 +278,7 @@ function mudarComponente() {
     var elements = document.getElementsByClassName('medidaComponente');
     var medianaCompSelected;
     var valorCompSelected;
+    var medidaComponente;
 
     switch (slctComponente.value) {
         case "1":
@@ -371,7 +373,7 @@ function atualizarMoeda(moeda, valor) {
         }
         coresAtualizadas = true;
     }
-
+    console.log(medianBeneficioCpuBRL)
     medianBeneficioCpuAtual = medianBeneficios.cpu;
     medianBeneficioRamAtual = medianBeneficios.ram;
     medianBeneficioDiscoAtual = medianBeneficios.disco;
@@ -482,6 +484,7 @@ function garficoFunc(moeda, medidaComponente, medianaCompSelected, valorCompSele
 
     // Calcula os valores da mediana
     var valoresMediana = valoresX.map(x => x * medianaCompSelected);
+    console.log(valoresMediana, valoresX, medianaCompSelected);
 
     var ctx = document.getElementById('func').getContext('2d');
     var chart = new Chart(ctx, {
