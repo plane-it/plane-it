@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
+  <link rel="icon" type="image/png" href="../../assets/img/planeIt/logo.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Desemepenho dos servidores</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+    name="viewport" />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <!-- <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="../../assets/css/bootstrap.css" />
+  <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../../assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <div class="logo">
+        <a href="/index.html" class="simple-text logo-mini">
+          <div class="logo-image-small">
+            <img src="../../assets/img/planeIt/logoSemNome.ico">
+          </div>
+          <!-- <p>CT</p> -->
+        </a>
+        <a href="/dashboard/screens/index.html" class="simple-text logo-normal">
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="../../assets/img/apple-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../../assets/img/planeIt/logo.png"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Plane - it.</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/dashboardPlane.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/bootstrap.css" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../../assets/demo/demo.css" rel="stylesheet" />
+  </head>
+  
+          Plane - it
+          <!-- <div class="logo-image-big">
+            <img src="../../assets/img/logo-big.png">
+          </div> -->
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class=>
+            <a href="./desempenhoServidor.html">
+              <i class="nc-icon nc-layout-11"></i>
+              <p>Medidor de desempenho</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="./infoDesempenho.html">
+              <i class="nc-icon nc-alert-circle-i"></i>
+              <p>Informações</p>
+            </a>
+          </li>
+          <li>
+            <a href="../listas/listaServidores.html">
+              <i class="nc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                  class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                </svg>
+              </i>
+              <p>Voltar</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" id="nomeAeroporto">--</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form>
+            </form>
+            <ul class="navbar-nav">
+              
+              <li class="nav-item btn-rotate dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="nc-icon nc-bell-55"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../../inicio/sininho.html">Notificação</a>
+                  <a class="dropdown-item" href="#">Ajuda - Jira</a>
+                  <a class="dropdown-item" href="#">Comunicação - Slack</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+            <div class="col-md-12 p-2">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Métricas</h5>
+                    <p class="card-category">Como calculamos as métricas</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row align-center justify-content-center p-4">
+                      <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats" style="color: #07521d;">
+                          <div class="card-body alert-warning">
+                            <div class="row">
+                              <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                  <div class="text-cpi">
+                                    <i class="nc-icon nc-sound-wave" style="color: #07521d;"></i>
+                                </div>
+                                </div>
+                              </div>
+                              <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                  <p class="card-category">Estado Bom</p>
+                                  <p class="card-title" id="">
+                                    5
+                                  </p>
+                                  <p></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats" style="color: #dc3545;">
+                          <div class="card-body alert-seguro">
+                            <div class="row">
+                              <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                  <div class="text-cpi">
+                                    <i class="nc-icon nc-sound-wave" style="color: #dc3545;"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                  <p class="card-category">Estado Crítico</p>
+                                  <p class="card-title" id="">
+                                    25
+                                  </p>
+                                  <p></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats" style="color: #ffc107;">
+                          <div class="card-body alert-danger">
+                            <div class="row">
+                              <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                  <div class="text-cpi">
+                                    <i class="nc-icon nc-sound-wave" style="color: #ffc107;"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                  <p class="card-category">Estado Alerta</p>
+                                  <p class="card-title">
+                                    15
+                                  </p>
+                                  <p></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="row justify-content-center">
+                        <div class="alert alert-warning col-lg-11 text-center" style="background-color: #28a745;">Cor <b>verde</b> para
+                          servidores bons</div>
+                      </div>
+                      <div class="row justify-content-center">
+                        <div class="alert alert-warning col-lg-11 text-center" style="background-color: #ffc107;">Cor <b>amarela</b> para
+                            servidores em alerta</div>
+                        </div>
+                      <div class="row justify-content-center">
+                        <div class="alert alert-warning col-lg-11 text-center" style="background-color: #dc3545;">Cor <b>vermelha</b> para
+                            servidores críticos</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                  </div>
+                    </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Estado dos servidores</h5>
+                    <p class="card-category"> Crítico| Alerta | Bom </p>
+                  </div>
+                  <div class="card-body">
+                    <p>Servidores <b style="color: #dc3545;">CRÍTICOS</b> com 18 ou mais alertas.</p>
+                    <p>Servidores em <b style="color: #ffc107;">ALERTAS</b> com mais do que 6 e menos que 18 alertas.</p>
+                    <p>Servidores <b style="color: #28a745;">BONS</b> com menos ou igual 6 alertas.</p>
+      
+                  </div>
+                  <div class="card-footer">
+                    <hr />
+      
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Estado dos componentes</h5>
+                    <p class="card-category"> Crítico| Alerta | Bom </p>
+                  </div>
+                  <div class="card-body">
+                    <p>Componentes <b style="color: #dc3545;">CRÍTICOS</b> com 18 ou mais alertas.</p>
+                    <p>Componentes em <b style="color: #ffc107;">ALERTAS</b> com mais do que 6 e menos que 18 alertas.</p>
+                    <p>Componentes <b style="color: #28a745;">BONS</b> com menos ou igual 6 alertas.</p>
+                  </div>
+                  <div class="card-footer">
+                    <hr />
+      
+                  </div>
+                </div>
+              </div>
+            </div>  
+        </div>
+      <footer class="footer footer-black footer-white">
+        <div class="container-fluid">
+          <div class="row">
+            <nav class="footer-nav">
+              <ul>
+                <li>
+                  <a href="https://www.creative-tim.com" target="_blank">Suporte</a>
+                </li>
+                <li>
+                  <a href="https://www.creative-tim.com/blog" target="_blank">Comunicação</a>
+                </li>
+                <li>
+                  <a href="https://www.creative-tim.com/license" target="_blank">Site institucional</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                , made with Plane - it.
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  
+  <!--Core JS Files-->
+  <script src="../../assets/js/core/jquery.min.js"></script>
+  <script src="../../assets/js/core/popper.min.js"></script>
+  <script src="../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../../assets/js/graficos/demo.js"></script>
+  <script src="../adm/js/desempenho.js"></script>
+
+  <script>
+
+    nomeAeroporto.innerHTML = sessionStorage.NOME_AEROPORTO;
+
+    // $(document).ready(function () {
+    //   // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+    //   demo.initChartsPages();
+    // });
+  </script>
+</body>
+
+
+</html>

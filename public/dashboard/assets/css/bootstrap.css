@@ -5968,8 +5968,6 @@ a.badge-dark:focus {
 }
 
 .alert-warning {
-    color: #856404;
-    background-color: #fd7e14;
     border-color: #ffeeba;
 }
 
@@ -5982,9 +5980,9 @@ a.badge-dark:focus {
 }
 
 .alert-danger {
-    color: #721c24;
+    /* color: #721c24;
     background-color: rgba(244, 69, 69, 0.604) !important;
-    border-color: #f5c6cb
+    border-color: #f5c6cb */
 }
 
 .alert-danger hr {
@@ -16852,7 +16850,8 @@ input[type=submit].btn-block {
 }
 
 .card-title {
-    margin-bottom: .75rem
+    margin-bottom: .75rem;
+    justify-content: center;
 }
 
 .card-subtitle {
@@ -17476,9 +17475,9 @@ a.badge-dark:focus {
 }
 
 .alert-danger {
-    color: #721c24;
+    /* color: #721c24;
     background-color: #f8d7da;
-    border-color: #f5c6cb
+    border-color: #f5c6cb */
 }
 
 .alert-danger hr {
