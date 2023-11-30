@@ -353,20 +353,20 @@ function handleScrollSize(size){
 }
 
 async function getHolidays(){
-  const months = {
-    "Janeiro": 1,
-    "Fevereiro": 2,
-    "Março": 3,
-    "Abril": 4,
-    "Maio": 5,
-    "Junho": 6,
-    "Julho": 7,
-    "Agosto": 8,
-    "Setembro": 9,
-    "Outubro": 10,
-    "Novembro": 11,
-    "Dezembro": 12,
-  }
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ]
 
   const data = await fetch("/cronograma/feriados")
   const res = await data.json()
@@ -374,9 +374,9 @@ async function getHolidays(){
  
   for(let i = 0; i < res.length; i++){
     if(
-      months[res[i].mes] > today.getMonth()+1 ||
+      res[i].mes > today.getMonth()+1 ||
       (
-        months[res[i].mes] == today.getMonth()+1 &&
+       res[i].mes == today.getMonth()+1 &&
         Number(res[i].dia) >= today.getDate()
       ) ||
       (
@@ -395,7 +395,7 @@ async function getHolidays(){
         : today.getFullYear()
 
       holidayName.innerText = res[i].titulo
-      holidayMonthYear.innerText = year + " - " + res[i].mes
+      holidayMonthYear.innerText = year + " - " + months[Number(res[i].mes)-1]
       holiday.innerText = res[i].dia
       break
     }
