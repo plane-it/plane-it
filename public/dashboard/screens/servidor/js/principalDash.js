@@ -245,6 +245,7 @@ function buscarUltimosRegistrosLive(tipo) {
             var dadosObtidosValor = [];
             metrica = res[0].sinal;
             textMetrica.innerHTML = metrica
+            res.reverse();
 
             for(const i in res){
               dadosObtidosHora.push(formataHora(res[i].dataHora));
