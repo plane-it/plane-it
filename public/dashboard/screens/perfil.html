@@ -86,19 +86,24 @@
             </div>
 
 
-            <li class="analista">
-              <a href="servidor/analytics/requisicao.html">
-                  <i class="nc-icon nc-send"></i>
-                  <p>Requisições</p>
-              </a>
+          <li class="analista">
+            <a href="servidor/analytics/requisicao.html">
+              <i class="nc-icon nc-send"></i>
+              <p>Requisições</p>
+            </a>
           </li>
 
-            <li class="analista">
-              <a href="/dashboard/screens/listas/listaServidores.html">
-                <i class="nc-icon nc-tile-56"></i>
-                <p>Lista de servidores</p>
-              </a>
-            </li>
+          <li class="analista">
+            <a href="/dashboard/screens/listas/listaServidores.html">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Lista de servidores</p>
+            </a>
+          </li>
+          <li class="analista">
+            <a href="manutencao/manutencao.html">
+              <i class="nc-icon nc-zoom-split"></i>
+              <p>Manutenção</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -425,14 +430,14 @@
 
       }
 
-      
+
     }
-    
+
     if (!erro) {
-        email = inputEmail.value
-        senha = inputSenha.value;
-        telefone = inputTelefone.value
-      
+      email = inputEmail.value
+      senha = inputSenha.value;
+      telefone = inputTelefone.value
+
       fetch(`/perfil/atualizarPerfil/${idUsuario}`, {
         method: "POST",
         headers: {

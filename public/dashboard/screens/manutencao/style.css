@@ -1,0 +1,72 @@
+#manutencao-search-bar{    
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(39, 115, 128, 0.774)
+ 
+}
+
+.oi{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-secondary{
+    background-color: #2d4586;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: rgba(0, 90, 39, 0.822);
+    color: #FFFFFF;
+    
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success:active:focus, .btn-success:active:hover, .btn-success.active:focus, 
+.btn-success.active:hover, .show > .btn-success.dropdown-toggle, .show > .btn-success.dropdown-toggle:focus, .show > .btn-success.dropdown-toggle:hover, 
+.navbar .navbar-nav > a.btn-success:hover, .navbar .navbar-nav > a.btn-success:focus, .navbar .navbar-nav > a.btn-success:active, 
+.navbar .navbar-nav > a.btn-success.active, .navbar .navbar-nav > a.btn-success:active:focus, .navbar .navbar-nav > a.btn-success:active:hover, 
+.navbar .navbar-nav > a.btn-success.active:focus, .navbar .navbar-nav > a.btn-success.active:hover,
+ .show > .navbar .navbar-nav > a.btn-success.dropdown-toggle, .show > .navbar .navbar-nav > a.btn-success.dropdown-toggle:focus, 
+ .show > .navbar .navbar-nav > a.btn-success.dropdown-toggle:hover {
+    background-color:rgb(44, 80, 68) !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+
+#cabecalho{
+    border-bottom: 1px solid #1a1f68 !important;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .btn-secondary:active:focus, .btn-secondary:active:hover, .btn-secondary.active:focus, 
+.btn-secondary.active:hover, .show > .btn-secondary.dropdown-toggle, .show > .btn-secondary.dropdown-toggle:focus, .show > .btn-secondary.dropdown-toggle:hover, 
+.navbar .navbar-nav > a.btn-secondary:hover, .navbar .navbar-nav > a.btn-secondary:focus, .navbar .navbar-nav > a.btn-secondary:active, 
+.navbar .navbar-nav > a.btn-secondary.active, .navbar .navbar-nav > a.btn-secondary:active:focus, .navbar .navbar-nav > a.btn-secondary:active:hover, 
+.navbar .navbar-nav > a.btn-secondary.active:focus, .navbar .navbar-nav > a.btn-secondary.active:hover,
+ .show > .navbar .navbar-nav > a.btn-secondary.dropdown-toggle, .show > .navbar .navbar-nav > a.btn-secondary.dropdown-toggle:focus, 
+ .show > .navbar .navbar-nav > a.btn-secondary.dropdown-toggle:hover {
+    background-color:#fff !important;
+    border: 1px solid #1a1f68;
+    color: #2d4586 !important;
+    box-shadow: none !important;
+}
+
+.btn-link{
+    background-color: #ffffff !important;
+    color: #2d4586 !important;
+
+}
+
+.btn-link:hover, .btn-link:focus, .btn-link:active, .btn-link.active, .btn-link:active:focus, .btn-link:active:hover, .btn-link.active:focus, 
+.btn-link.active:hover, .show > .btn-link.dropdown-toggle, .show > .btn-link.dropdown-toggle:focus, .show > .btn-link.dropdown-toggle:hover, 
+.navbar .navbar-nav > a.btn-link:hover, .navbar .navbar-nav > a.btn-link:focus, .navbar .navbar-nav > a.btn-link:active, 
+.navbar .navbar-nav > a.btn-link.active, .navbar .navbar-nav > a.btn-link:active:focus, .navbar .navbar-nav > a.btn-link:active:hover, 
+.navbar .navbar-nav > a.btn-link.active:focus, .navbar .navbar-nav > a.btn-link.active:hover,
+ .show > .navbar .navbar-nav > a.btn-link.dropdown-toggle, .show > .navbar .navbar-nav > a.btn-link.dropdown-toggle:focus, 
+ .show > .navbar .navbar-nav > a.btn-link.dropdown-toggle:hover {
+    background-color:#f3f1f1 !important;
+    color: #2d4586 !important;
+    box-shadow: none !important;
+}
