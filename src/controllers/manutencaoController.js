@@ -95,11 +95,50 @@ function buscarDadosDepoisController(req, res) {
     });
 }
 
+function buscarDadosAntesRelatorioController(req, res) {
+    const fkServidor = req.params.fkServidor
+    const dataReferencia = req.params.dataReferencia
+
+    console.log(`buscando dados`);
+
+    manutencaoModel.buscarDadosAntesModel(fkServidor,dataReferencia).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas manutenções.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarDadosDepoisRelatorioController(req, res) {
+    const fkServidor = req.params.fkServidor
+    const dataReferencia = req.params.dataReferencia
+
+    console.log(`buscando dados`);
+
+    manutencaoModel.buscarDadosDepoissModel(fkServidor,dataReferencia).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas manutenções.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
     buscarServidorController,
     buscarManutencaoController,
     buscarUltimaManutencaoController,
     buscarDadosAntesController,
-    buscarDadosDepoisController
+    buscarDadosDepoisController,
+    buscarDadosAntesRelatorioController,
+    buscarDadosDepoisRelatorioController
  }

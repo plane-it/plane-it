@@ -22,4 +22,12 @@ router.get("/buscarDadosDepois/:fkServidor/:unidadeMedida/:dataReferencia/:tipoC
     manutencaoController.buscarDadosDepoisController(req,res)
 })
 
+router.get("/buscarDadosAntes/:fkServidor/:dataReferencia" , (req,res) => {
+    manutencaoController.buscarDadosAntesRelatorioController(req,res)
+})
+
+router.get("/buscarDadosDepois/:fkServidor/:dataReferencia" , (req,res) => {
+    manutencaoController.buscarDadosDepoisRelatorioController(req,res)
+})
+
 module.exports = router
