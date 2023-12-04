@@ -4,8 +4,6 @@ var graficoAnual;
 var dataAtual = new Date();
 var anoAtual = dataAtual.getFullYear();
 
-var dadosObtidosHora = [];
-var dadosObtidosValor = [];
 var ultimoIdInserido;
 
 var qtdAlertas = 0;
@@ -222,13 +220,11 @@ function plotarGraficoAnual(labels, data) {
 function buscarUltimosRegistrosLive(tipo) {
   fkServidor = sessionStorage.ID_SERVIDOR_ESCOLHIDO;
   fkTipoComponente = tipo;
-  let valorAnterior = null;
 
   if (fkServidor == "" || fkServidor == undefined) {
     alert("Servidor não encontrado!")
   } else {
     if (interval != undefined) clearInterval(interval)
-    interval = setInterval(() => {
       fetch("/registros/buscarUltimosRegistrosLive", {
         method: "POST",
         headers: {
@@ -245,51 +241,26 @@ function buscarUltimosRegistrosLive(tipo) {
             console.log("Aconteceu algum erro (res.error = true)")
           }
           else {
+            var dadosObtidosHora = [];
+            var dadosObtidosValor = [];
             metrica = res[0].sinal;
             textMetrica.innerHTML = metrica
-            for (let i = 0; i < res.length; i++) {
-              hora = formataHora(res[i].dataHora);
-              dadosObtidosHora[i] = hora;
 
-              if (fkTipoComponente == 1) {
-                if (res[i].sinal == 'MHz') {
-                  valor = res[i].valorRegistro;
-                  dadosObtidosValor[i] = valor;
-                }
-              } else {
-                valor = res[i].valorRegistro;
-                dadosObtidosValor[i] = valor;
-              }
-
-              if (res[i].alerta == 1) {
-                qtdAlertas += 1;
-              }
-              if (i == res.length - 1) {
-                ultimoCapturado = res[i].idRegst;
-              }
+            for(const i in res){
+              dadosObtidosHora.push(formataHora(res[i].dataHora));
+              dadosObtidosValor.push(res[i].valorRegistro);
             }
 
-            // Invertendo os arrays
-            dadosObtidosHora.reverse();
-            dadosObtidosValor.reverse();
-
-            // Atualizando o gráfico apenas se o valor for diferente do valor anterior
-            if (valor !== valorAnterior) {
-              if (graficoPlotado) {
-                graficoPlotado.destroy();
-              }
-              graficoPlotado = plotarGrafico(dadosObtidosHora, dadosObtidosValor);
-              ultimoIdInserido = res[res.length - 1].idRegst;
-
-              atualizarKPI(metrica);
+            if (graficoPlotado) {
+              graficoPlotado.destroy();
             }
+            graficoPlotado = plotarGrafico(dadosObtidosHora, dadosObtidosValor);
 
-            valorAnterior = valor;
+            atualizarKPI(metrica);
           }
         })
         .catch(function (res) {
         });
-    }, 1000)
   }
 }
 
@@ -443,6 +414,7 @@ function selectUpdate(tipo) {
   buscarLimite(tipo);
   buscarEstadoServidor();
 
+  buscarUltimosRegistrosLive(tipo);
   intervalId = setInterval(function() {
     buscarUltimosRegistrosLive(tipo);
   }, 3000);
