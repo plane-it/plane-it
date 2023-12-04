@@ -35,7 +35,6 @@ function buscarAlerta() {
             nomes.push(resposta.apelido);
             servidorCritico = i +1
           }
-          console.log(servidorCritico)
           dados = {
             "Nome": nomes,
             "Alertas": alertas,
@@ -61,9 +60,8 @@ function buscarAlerta() {
 function plotarAlertasServidores(dados) {
   dadosCor = "";
   dadosStatus = "";
-  const dadosAlertas = dados.Alertas;
+  dadosAlertas = dados.Alertas;
   dadosGrafico = [];
-  console.log(dadosAlertas);
   for (i = 0; i < dadosAlertas.length; i++) {
     //Alerta baixo
     if (dadosAlertas[i] > 0 && dadosAlertas[i] <= 6) {
@@ -71,14 +69,14 @@ function plotarAlertasServidores(dados) {
       dadosCor = "#0d4f1e";
       dadosStatus = "Estado bom";
       //Alerta médio
-    } else if (dadosAlertas[i] > 6 && dadosAlertas[i] < 18) {
+    } else if (dadosAlertas[i] > 6 && dadosAlertas[i] <= 18) {
       dadosGrafico.push(dadosAlertas[i]);
       dadosCor = "#b0b519";
       dadosStatus = "Estado de alerta";
       //Alerta alto
-    } else if (dadosAlertas[i] >= 18) {
+    } else if (dadosAlertas[i] > 18) {
       dadosGrafico.push(dadosAlertas[i]);
-      dadosCor = "#eb4034";
+      dadosCor = "#861A22"
       dadosStatus = "Estado crítico";
     }
     statusServidor = document
@@ -142,13 +140,18 @@ function plotarAlertasServidores(dados) {
         },
       },
     });
-  }
-  if(dadosStatus == 'Estado de alerta'){
-    proximaAtualizacao = setTimeout(() => atualizarServidoresAlertas(fkAeroporto), 5000);
-  }else if(dadosStatus == 'Estado bom'){
-    proximaAtualizacao = setTimeout(() => atualizarServidoresBons(fkAeroporto), 5000);
-  }else if(dadosStatus == 'Estado crítico'){
-    proximaAtualizacao = setTimeout(() => atualizarServidoresCriticos(fkAeroporto), 5000);
+    if(dadosStatus == 'Estado de alerta'){
+      alert(1)
+      setTimeout(()=> atualizarServidoresAlertas(fkAeroporto,graficoAlerta),5000)
+    }
+    if(dadosStatus == 'Estado de bom'){
+      alert(2)
+      setTimeout(()=> atualizarServidoresBons(fkAeroporto,graficoAlerta),5000)
+    }
+    if(dadosStatus == 'Estado crítico'){
+      setTimeout(()=> atualizarServidoresCriticos(fkAeroporto,graficoAlerta),5000)
+    }
+    
   }
 }
 function alterarEstadoServidores(value) {
@@ -224,7 +227,6 @@ function alterarEstadoServidores(value) {
             alertasAlvo.push(resposta.qtdAlerta);
             servidorAlerta = i+1
           }
-          console.log(servidorAlerta)
           dados = {
             Nome: nomesAlvo,
             Alertas: alertasAlvo,
@@ -259,8 +261,8 @@ function servidorDados(servidor) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      fkAeroporto: fkAeroporto,
-      servidor: servidor,
+      "fkAeroporto": fkAeroporto,
+      "servidor": servidor,
     }),
   })
     .then((res) => res.json())
@@ -272,33 +274,36 @@ function servidorDados(servidor) {
         corGrafico = []
         alerta = [];
         nome = [];
+        tipoComponente = []
         qtdServidores = "";
         for (i = 0; i < res.length; i++) {
           resposta = res[i];
           alerta.push(resposta.qtdAlerta);
           nome.push(resposta.nome);
+          tipoComponente.push(resposta.tipo)
           qtdServidores = resposta.servidores;
         }
         dados = {
           "Alertas": alerta,
           "Nome": nome,
           "Servidores": qtdServidores,
+          "Componente": tipoComponente
         };
         corGrafico = []
         for(i=0;i < dados.Alertas.length;i++){
           if( dados.Alertas[i] > 0 && dados.Alertas[i] < dados.Servidores * 3){
             corGrafico.push("#0c701a");
-          }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] < dados.Servidores * 6){
+          }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] <= dados.Servidores * 6){
             corGrafico.push("#F7D917");
           }else if(dados.Alertas[i] > dados.Servidores * 6){
             corGrafico.push("#861A22");
           }
         }
         if(ctx == ''){
-          plotarAlertasComp(dados,corGrafico);
+          plotarAlertasComp(dados,corGrafico,servidor);
         }else{
           ctx = ''
-          plotarAlertasComp(dados,corGrafico);
+          plotarAlertasComp(dados,corGrafico,servidor);
         }
       }
     })
@@ -306,18 +311,18 @@ function servidorDados(servidor) {
       console.log(res);
     });
 }
-function plotarAlertasComp(dados,corGrafico) {
+function plotarAlertasComp(dados,corGrafico,servidor) {
   container.style.display = 'block'
   ctx = document.getElementById("chartAnaliseComp").getContext("2d");
-  if(graficoAlertComp != ''){
-    graficoAlertComp.destroy()
-  }
   graficoAlertComp = new Chart(ctx, {
     type: "bar",
     data: {
       labels: dados.Nome,
       datasets: [
         {
+          label:dados.Componente[0], 
+          label:dados.Componente[1],
+          label:dados.Componente[2],
           backgroundColor: corGrafico,
           data: dados.Alertas,
         },
@@ -362,6 +367,7 @@ function plotarAlertasComp(dados,corGrafico) {
       },
     },
   });
+  // setTimeout(() => atualizarComponenteServidor(fkAeroporto,graficoAlertComp,servidor), 5000);
 }
 //Busca de alerta por componente no aeroporto
 function desempenhoComponente() {
@@ -408,7 +414,7 @@ function plotarGraficoComponente(dados) {
         for (i = 0; i < quantidadeAlerta.length; i++) {
           if( quantidadeAlerta[i] > 0 && quantidadeAlerta[i] < dados.Servidores * 3){
             corGrafico.push("#0c701a");
-          }if(quantidadeAlerta[i] >= dados.Servidores * 3 && quantidadeAlerta[i] < dados.Servidores * 6){
+          }if(quantidadeAlerta[i] >= dados.Servidores * 3 && quantidadeAlerta[i] <= dados.Servidores * 6){
             corGrafico.push("#F7D917");
           }else if(quantidadeAlerta[i] > dados.Servidores * 6){
             corGrafico.push("#861A22");
@@ -527,7 +533,7 @@ function atualizarComponente(fkAeroporto,nomeGrafico){
             plotarGraficoComponente(dados)
         });
         nomeGrafico.update()
-        proximaAtualizacao = setTimeout(() => atualizarComponente(fkAeroporto), 10000);
+        mostrarKPI()
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // proximaAtualizacao = setTimeout(() => atualizarComponente(fkAeroporto), 8000);
@@ -539,7 +545,8 @@ function atualizarComponente(fkAeroporto,nomeGrafico){
     });
 
 }
-function atualizarServidoresAlertas(fkAeroporto){
+function atualizarServidoresAlertas(fkAeroporto,nomeGrafico){
+  alert(1)
   fetch(`/servidor/atualizarServidorAlerta/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
     if (response.ok) {
         response.json().then(function (novoRegistro) {
@@ -551,23 +558,18 @@ function atualizarServidoresAlertas(fkAeroporto){
               servidorNovo.push(resposta.apelido);
               alertasNovo.push(resposta.qtdAlerta);
             }
-            dados = {
-              "Nome": servidorNovo,
-              "Alertas": alertasNovo,
-            };
-          alertasServ = dados.Alertas;
-          for (i = 0; i < alertasServ.length; i++) {
-             if (alertasServ[i] > 6 && alertasServ[i] < 18) {
-              estadoServidor.innerHTML += `
-        <option value= "Alerta">Alerta</option value>
-        <option value= "Crítico">Crítico</option value>
-        <option value= "Bom">Bom</option value>`;
-              break;
-            } 
-          }
-          plotarAlertasServidores(dados);
+            for(i=0;i < servidorNovo.length;i++){
+              if(servidorNovo[i] != nomeGrafico.data.labels){
+                nomeGrafico.data.labels.push(servidorNovo[i])
+              }
+            }            
+            for(i=0;i < alertasNovo.length;i++){
+              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+              }
+            }            
+            nomeGrafico.update()
         });
-        proximaAtualizacao = setTimeout(() => atualizarServidoresAlerta(fkAeroporto), 5000);
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
@@ -577,7 +579,8 @@ function atualizarServidoresAlertas(fkAeroporto){
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     });
 }
-function atualizarServidoresBons(fkAeroporto){
+function atualizarServidoresBons(fkAeroporto,nomeGrafico){
+  alert(2)
   fetch(`/servidor/atualizarServidorBom/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
     if (response.ok) {
         response.json().then(function (novoRegistro) {
@@ -589,23 +592,18 @@ function atualizarServidoresBons(fkAeroporto){
               servidorNovo.push(resposta.apelido);
               alertasNovo.push(resposta.qtdAlerta);
             }
-            dados = {
-              "Nome": servidorNovo,
-              "Alertas": alertasNovo,
-            };
-          alertasServ = dados.Alertas;
-          for (i = 0; i < alertasServ.length; i++) {
-            if (alertasServ[i] > 0 && alertasServ[i] <= 6) {
-              estadoServidor.innerHTML += `
-            <option value= "Bom">Bom</option value>
-            <option value= "Alerta">Alerta</option value>
-            <option value= "Critico">Crítico</option value>`;
-              break;
-            }
-          }
-          plotarAlertasServidores(dados);
+            for(i=0;i < servidorNovo.length;i++){
+              if(servidorNovo[i] != nomeGrafico.data.labels){
+                nomeGrafico.data.labels.push(servidorNovo[i])
+              }
+            }            
+            for(i=0;i < alertasNovo.length;i++){
+              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+              }
+            }            
+            nomeGrafico.update()
         });
-        proximaAtualizacao = setTimeout(() => atualizarServidoresBons(fkAeroporto), 5000);
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
@@ -615,7 +613,8 @@ function atualizarServidoresBons(fkAeroporto){
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     });
 }
-function atualizarServidoresCriticos(fkAeroporto){
+function atualizarServidoresCriticos(fkAeroporto,nomeGrafico){
+  alert(3)
   fetch(`/servidor/atualizarServidorCritico/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
     if (response.ok) {
         response.json().then(function (novoRegistro) {
@@ -627,23 +626,18 @@ function atualizarServidoresCriticos(fkAeroporto){
               servidorNovo.push(resposta.apelido);
               alertasNovo.push(resposta.qtdAlerta);
             }
-            dados = {
-              "Nome": servidorNovo,
-              "Alertas": alertasNovo,
-            };
-          alertasServ = dados.Alertas;
-          for (i = 0; i < alertasServ.length; i++) {
-            if (alertasServ[i] >= 18) {
-              estadoServidor.innerHTML += `
-              <option value= "Crítico">Crítico</option value>
-              <option value= "Alerta">Alerta</option value>
-              <option value= "Bom">Bom</option value>`;
-              break;
-            }
-          }
-          plotarAlertasServidores(dados);
+            for(i=0;i < servidorNovo.length;i++){
+              if(servidorNovo[i] != nomeGrafico.data.labels){
+                nomeGrafico.data.labels.push(servidorNovo[i])
+              }
+            }            
+            for(i=0;i < alertasNovo.length;i++){
+              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+              }
+            }            
+            nomeGrafico.update()
         });
-        proximaAtualizacao = setTimeout(() => atualizarServidoresCritico(fkAeroporto), 5000);
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
@@ -653,50 +647,56 @@ function atualizarServidoresCriticos(fkAeroporto){
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     });
 }
-
 function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
-  fetch(`/servidor/atualizarCompServidor/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (novoRegistro) {
-          corGrafico = []
-          alerta = [];
-          nome = [];
-          qtdServidores = "";
-          for (i = 0; i < novoRegistro.length; i++) {
-            resposta = novoRegistro[i];
-            alerta.push(resposta.qtdAlerta);
-            nome.push(resposta.nome);
-            qtdServidores = resposta.servidores;
+  alert(5)
+  fetch("/servidor/atualizarCompServidor", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "fkAeroporto": fkAeroporto,
+      "servidor": servidor,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      if (res.error) {
+        console.log("Aconteceu algum erro");
+      } else {
+        corGrafico = []
+        alerta = [];
+        nome = [];
+        qtdServidores = "";
+        for (i = 0; i < res.length; i++) {
+          resposta = res[i];
+          alerta.push(resposta.qtdAlerta);
+          nome.push(resposta.nome);
+          qtdServidores = resposta.servidores;
+        }
+        dados = {
+          "Alertas": alerta,
+          "Nome": nome,
+          "Servidores": qtdServidores,
+        };
+        corGrafico = []
+        for(i=0;i < dados.Alertas.length;i++){
+          if( dados.Alertas[i] > 0 && dados.Alertas[i] < dados.Servidores * 3){
+            corGrafico.push("#0c701a");
+          }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] < dados.Servidores * 6){
+            corGrafico.push("#F7D917");
+          }else if(dados.Alertas[i] > dados.Servidores * 6){
+            corGrafico.push("#861A22");
           }
-          dados = {
-            "Alertas": alerta,
-            "Nome": nome,
-            "Servidores": qtdServidores,
-          };
-          for(i=0;i < dados.Alertas.length;i++){
-            if( dados.Alertas[i] > 0 && dados.Alertas[i] < dados.Servidores * 3){
-              corGrafico.push("#0c701a");
-            }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] < dados.Servidores * 6){
-              corGrafico.push("#F7D917");
-            }else if(dados.Alertas[i] > dados.Servidores * 6){
-              corGrafico.push("#861A22");
-            }
-          }
-          if(ctx == ''){
-            plotarAlertasComp(dados,corGrafico);
-          }else{
-            ctx = ''
-            plotarAlertasComp(dados,corGrafico);
-          }
-        });
+        }
+        alert(nomeGrafico.data.datasets[0].data)
+        plotarAlertasComp(dados,corGrafico,servidor)
         nomeGrafico.update()
-        proximaAtualizacao = setTimeout(() => atualizarComponenteServidor(fkAeroporto), 5000);
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        mostrarKPI()
+      }
+    })
+    .catch(function (res) {
+      console.log(res);
     });
 }

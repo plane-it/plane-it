@@ -336,7 +336,7 @@ function atualizarServidorAlerta(req,res){
     if(!fkAeroporto){
         res.status(400).json({error: "Existem parametros faltando"})
     }else{
-        servidorModel.atualizarServidor(fkAeroporto).then(
+        servidorModel.atualizarServidorAlerta(fkAeroporto).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
@@ -395,11 +395,12 @@ function atualizarServidorCritico(req,res){
 }
 
 function atualizarCompServidor(req,res){
-    var fkAeroporto = req.params.fkAeroporto
-    if(!fkAeroporto){
-        res.status(400).json({error: "Existem parametros faltando"})
+    const {fkAeroporto} = req.body
+    const {servidor} = req.body
+    if(!fkAeroporto || !servidor){
+        res.status(400).json({error:"Existem parametros faltando"})
     }else{
-        servidorModel.atualizarServidor(fkAeroporto).then(
+        servidorModel.atualizarCompServidor(fkAeroporto,servidor).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
@@ -408,11 +409,12 @@ function atualizarCompServidor(req,res){
                 }
             }
         ).catch(
-            function (erro) {
-                res.status(500).json(erro.sqlMessage);
+            function(erro){
+                res.status(500).json(erro.sqlMessage)
             }
-        ); 
-    }
+        )
+           
+}
 }
 module.exports = {
     buscarServidor,
@@ -432,5 +434,6 @@ module.exports = {
     atualizarComponente,
     atualizarServidorAlerta,
     atualizarServidorBom,
-    atualizarServidorCritico
+    atualizarServidorCritico,
+    atualizarCompServidor
 }
