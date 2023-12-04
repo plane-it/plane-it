@@ -23,6 +23,8 @@ function buscarAeroporto() {
                 }
                 else {
 
+                    // sessionStorage.SIGLA_AEROPORTO = res[0].siglaAeroporto;
+
                     console.log(res)
 
                     for(let i = 0; i < res.length; i++) {
@@ -38,7 +40,13 @@ function buscarAeroporto() {
                           ${res[i].cidade}
                         </td>
                         <td>
-                        <a class="a-td" onclick="listaServidores(${res[i].idAeroporto}, '${res[i].nomeAeroporto}')">Acessar</a>
+                          ${res[i].regiao}
+                        </td>
+                        <td>
+                          ${res[i].siglaAeroporto}
+                        </td>
+                        <td>
+                        <a class="a-td" onclick="listaServidores(${res[i].idAeroporto}, '${res[i].nomeAeroporto}', '${res[i].siglaAeroporto}', '${res[i].regiao}')">Acessar</a>
                         </td>
                       </tr>`
                     }
@@ -50,8 +58,10 @@ function buscarAeroporto() {
     }
 }
 
-function listaServidores(valor, nomeAeroporto) {
+function listaServidores(valor, nomeAeroporto, sigla, regiao) {
     sessionStorage.ID_AEROPORTO_SELECIONADO = valor;
     sessionStorage.NOME_AEROPORTO = nomeAeroporto;
+    sessionStorage.SIGLA_AEROPORTO = sigla;
+    sessionStorage.REGIAO_AEROPORTO = regiao;
     window.location.href="listaServidores.html";
 }

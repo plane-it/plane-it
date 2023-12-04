@@ -1,4 +1,4 @@
-const database = require("../database/config")
+const database = require('../database/config')
 
 function buscarAlertas(fkEmpresa, anoAtual) {
     const sql = `
@@ -8,7 +8,7 @@ function buscarAlertas(fkEmpresa, anoAtual) {
     JOIN tbAeroporto on fkAeroporto = idAeroporto
     JOIN tbEmpresa on fkEmpresa = idEmpr 
     WHERE idEmpr = ${fkEmpresa}
-        AND alerta = true
+        AND alerta = 1
         AND YEAR(dataHora) = ${anoAtual};
     `
     return database.executar(sql)
@@ -61,7 +61,7 @@ function buscarEstadoServidores(fk, adm) {
         AlertasPorServidor AS (
             SELECT fkServidor, COUNT(*) as alertasGerados
             FROM UltimosRegistros
-            WHERE alerta = true
+            WHERE alerta = 1
             GROUP BY fkServidor
         )
         SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
@@ -89,7 +89,7 @@ function buscarEstadoServidores(fk, adm) {
         AlertasPorServidor AS (
             SELECT fkServidor, COUNT(*) as alertasGerados
             FROM UltimosRegistros
-            WHERE alerta = true
+            WHERE alerta = 1
             GROUP BY fkServidor
         )
         SELECT s.idServ, COALESCE(a.alertasGerados, 0) as alertasGerados
@@ -103,17 +103,58 @@ function buscarEstadoServidores(fk, adm) {
 }
 
 function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
-    const sql = `
-    SELECT * FROM (
-        SELECT * 
-        FROM tbRegistro 
-        JOIN tbComponente ON fkComp = idComp 
-        WHERE fktipoComponente = ${fkTipoComponente} AND fkServ = ${fkServidor}
-        ORDER BY idRegst DESC
-        LIMIT 10
-    ) AS sub
-    ORDER BY idRegst ASC;
-    `
+    if (fkTipoComponente == 1) {
+        var sql = `
+        SELECT top 10
+        tbUnidadeMedida.sinal, 
+        tbRegistro.idRegst,
+        tbRegistro.dataHora,
+        tbRegistro.alerta,
+        tbRegistro.valor AS valorRegistro, 
+        tbMetrica.valor AS valorMetrica,
+        tbUnidadeMedida.sinal
+    FROM 
+        tbRegistro 
+    JOIN 
+        tbMetrica ON fkMetrica = idMetrica 
+    JOIN 
+        tbUnidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    WHERE 
+        fkServidor = ${fkServidor}
+    AND 
+        sinal = 'MHz'
+    ORDER BY 
+        tbRegistro.idRegst DESC;
+        `
+    } else {
+        var sql = `
+        SELECT top 10
+        tbUnidadeMedida.sinal, 
+        tbRegistro.idRegst,
+        tbRegistro.dataHora,
+        tbRegistro.alerta,
+        tbRegistro.valor AS valorRegistro, 
+        tbMetrica.valor AS valorMetrica,
+        tbUnidadeMedida.sinal
+    FROM 
+        tbRegistro 
+    JOIN 
+        tbMetrica ON fkMetrica = idMetrica 
+    JOIN 
+        tbUnidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    JOIN 
+        tbComponente ON idComp = fkComp
+    WHERE 
+        fkServidor = ${fkServidor}
+    AND 
+        sinal = 'Gb'
+    AND 
+        fktipoComponente = ${fkTipoComponente}
+    ORDER BY 
+        tbRegistro.idRegst DESC  
+        `
+    }
+
     return database.executar(sql)
 }
 

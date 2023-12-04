@@ -21,6 +21,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
+  <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
 </head>
 
 <body class="" onload="validarSessao()">
@@ -154,97 +155,95 @@
               <div class="card-body">
                 <form>
                   <div class="row">
-                    <div class="col-md-5 pr-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Empresa: </label>
                         <input type="text" class="form-control" disabled="" placeholder="Empresa" id="inputEmpresa">
                       </div>
                     </div>
-                    <div class="col-md-5 pr-1">
+                    <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Aeroporto: </label>
                         <select type="text" class="form-control" placeholder="Aeroporto" id="inputAeroporto"></select>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Nome do Servidor:</label>
                         <input type="text" class="form-control" placeholder="AC-290874" id="inputNome">
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 pr-1">
                       <div class="form-group">
                         <label>IP:</label>
-                        <input type="number" class="form-control" placeholder="IP" id="inputIp">
+                        <input type="number" class="form-control" placeholder="111.111.11.111" id="inputIp">
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
-                        <label>Código de autenticação: </label>
-                        <input type="text" class="form-control" placeholder="987654" id="inputCodAutenticacao">
+                        <label>Digite o Mac Address: </label>
+                        <input type="text" class="form-control" placeholder="aa-aa-aa-aa-aa-aa" id="inputCodAutenticacao">
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-7 pr-1">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Função: </label>
                           <input type="text" class="form-control" placeholder="controle de tráfego aéreo"
                             id="inputFuncao">
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Sistema Operacional: </label>
                         <input type="text" class="form-control" placeholder="" id="inputSo">
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Modelo de processador: </label>
-                        <input type="text" class="form-control" placeholder="Processador" id="inputCpu">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Temperatura máx em ºC:</label>
-                        <input type="number" class="form-control" placeholder="25°C" id="inputTemperaturaCpu">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Limite máx em Mhz:</label>
-                        <input type="number" class="form-control" placeholder="" id="inputLimiteCpu">
-                      </div>
-                    </div>
-                    <div class="col-md-2 pr-1">
-                      <div class="form-group">
-                        <label>Preço</label>
-                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoCpu">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Modelo de memória RAM: </label>
                         <input type="text" class="form-control" placeholder="" id="inputRam">
                       </div>
                     </div>
-                    <div class="col-md-3 pr-1">
+                    <div class="col-md-2 pr-1">
                       <div class="form-group">
-                        <label>Limite máx de Gb:</label>
+                        <label>Limite máximo (Gb):</label>
                         <input type="number" class="form-control" placeholder="" id="inputLimiteRam">
                       </div>
                     </div>
                     <div class="col-md-2 pr-1">
                       <div class="form-group">
-                        <label>Preço</label>
+                        <label>Preço: </label>
                         <input type="number" class="form-control" placeholder="2.567" id="inputPrecoRam">
+                      </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Modelo de processador: </label>
+                        <input type="text" class="form-control" placeholder="Processador" id="inputCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Temperatura máxima(ºC):</label>
+                        <input type="number" class="form-control" placeholder="25" id="inputTemperaturaCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Limite máximo (Mhz):</label>
+                        <input type="number" class="form-control" placeholder="" id="inputLimiteCpu">
+                      </div>
+                    </div>
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Preço: </label>
+                        <input type="number" class="form-control" placeholder="2.567" id="inputPrecoCpu">
                       </div>
                     </div>
                   </div>
@@ -257,13 +256,13 @@
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
-                        <label>Limite máx de Gb:</label>
+                        <label>Limite máximo (Gb):</label> 
                         <input type="number" class="form-control" placeholder="" id="inputLimiteDisco">
                       </div>
                     </div>
-                    <div class="col-md-2 pr-1">
+                    <div class="col-md-3 pr-1">
                       <div class="form-group">
-                        <label>Preço</label>
+                        <label>Preço: </label>
                         <input type="number" class="form-control" placeholder="2.567" id="inputPrecoDisco">
                       </div>
                     </div>
@@ -363,6 +362,7 @@
         resposta.json().then(function (resposta) {
 
           inputEmpresa.value = resposta[0].nomeEmpresa;
+          // sessionStorage.SIGLA_AEROPORTO = resposta[0].siglaAeroporto;
 
           for (var i = 0; i < resposta.length; i++) {
 

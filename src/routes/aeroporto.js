@@ -16,4 +16,9 @@ router.get("/pegarDadosEmpresa/:idUsuario", function (req, res) {
     console.log("erro");
 });
 
+router.get("/guardarAeroporto/:fkAeroporto", function (req, res) {
+    aeroportoController.guardarAeroporto(req, res);
+    console.log("erro");
+});
+
 module.exports = router
