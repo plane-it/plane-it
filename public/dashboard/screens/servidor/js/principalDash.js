@@ -250,6 +250,7 @@ function buscarUltimosRegistrosLive(tipo) {
             for(const i in res){
               dadosObtidosHora.push(formataHora(res[i].dataHora));
               dadosObtidosValor.push(res[i].valorRegistro);
+              qtdAlertas += res[i].alerta;
             }
 
             if (graficoPlotado) {
@@ -257,7 +258,7 @@ function buscarUltimosRegistrosLive(tipo) {
             }
             graficoPlotado = plotarGrafico(dadosObtidosHora, dadosObtidosValor);
 
-            atualizarKPI(metrica);
+            atualizarKPI(metrica, dadosObtidosValor);
           }
         })
         .catch(function (res) {
@@ -266,12 +267,12 @@ function buscarUltimosRegistrosLive(tipo) {
 }
 
 
-function atualizarKPI(metrica) {
+function atualizarKPI(metrica, values) {
   let valores = [];
 
-  for (let i = 0; i < dadosObtidosValor.length; i++) {
-    if (!isNaN(parseFloat(dadosObtidosValor[i]))) {
-      let numeroConvertido = parseFloat(dadosObtidosValor[i]);
+  for (let i = 0; i < values.length; i++) {
+    if (!isNaN(parseFloat(values[i]))) {
+      let numeroConvertido = parseFloat(values[i]);
       valores.push(numeroConvertido);
     }
   }
@@ -326,13 +327,8 @@ function buscarLimite(tipo) {
         else {
           for (let i = 0; i < res.length; i++) {
             if (res[i].tipo == tipo) {
-              if (tipo == 1 && res[i].fkUnidadeMedida == 4) {
-                limite = res[i].valor;
-                kpiLimite.innerHTML = limite + " " + res[i].sinal
-              } else if (tipo != 1) {
-                limite = res[i].valor;
-                kpiLimite.innerHTML = limite + " " + res[i].sinal
-              }
+              limite = res[i].valor;
+              kpiLimite.innerHTML = limite + " " + res[i].sinal
             }
           }
         }
