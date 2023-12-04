@@ -23,6 +23,7 @@ const componenteRouter = require("./src/routes/componente");
 const climaRouter = require("./src/routes/clima");
 const cronogramaRouter = require("./src/routes/cronograma");
 const requisicoesRouter = require("./src/routes/requisicoes");
+const manutencoesRouter = require("./src/routes/manutencao");
 
 
 app.use(express.json());
@@ -34,11 +35,11 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
-app.use("/dadosCpu",cpuRouter);
+app.use("/dadosCpu", cpuRouter);
 // app.use("/medidas", medidasRouter);
 app.use("/empresa", empresaRouter);
-app.use("/contato",contatoRouter);
-app.use("/perfil",perfilRouter);
+app.use("/contato", contatoRouter);
+app.use("/perfil", perfilRouter);
 app.use("/aeroporto", aeroportoRouter);
 app.use("/servidor", servidorRouter);
 app.use("/alertas", alertasRouter)
@@ -47,6 +48,7 @@ app.use("/componente", componenteRouter);
 app.use("/clima", climaRouter);
 app.use("/cronograma", cronogramaRouter);
 app.use("/requisicoes", requisicoesRouter);
+app.use("/manutencao", manutencoesRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
