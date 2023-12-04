@@ -63,7 +63,7 @@ function getValores(idServidor, data, tipoComponente){
     //     ORDER BY hour, minute;
     
     const sql = `
-        SELECT AVG(CAST(r.valor AS FLOAT)) value,  DATEPART(HOUR,r.dataHora) hour, (CAST(DATEPART(MINUTE,r.datahora)AS FLOAT)/5)*5 minute, m.valor AS metrica, um.sinal AS uni, um.nome AS uniName
+    SELECT AVG(CAST(r.valor AS FLOAT)) value,  DATEPART(HOUR,r.dataHora) hour, round(CAST(DATEPART(MINUTE,r.datahora)AS FLOAT)/5,0)*5 minute, m.valor AS metrica, um.sinal AS uni, um.nome AS uniName
             FROM tbRegistro r
             JOIN tbMetrica m ON r.fkMetrica = m.idMetrica
             JOIN tbUnidadeMedida um ON m.fkUnidadeMedida = um.idUnidadeMedida
@@ -74,7 +74,7 @@ function getValores(idServidor, data, tipoComponente){
             um.sinal,
             m.valor,
             DATEPART(HOUR,r.dataHora),
-			(CAST(DATEPART(MINUTE,r.datahora)AS FLOAT)/5)*5
+			round(CAST(DATEPART(MINUTE,r.datahora)AS FLOAT)/5,0)*5
         ORDER BY hour, minute;
     `
 
