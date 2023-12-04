@@ -106,7 +106,6 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     if (fkTipoComponente == 1) {
         var sql = `
         SELECT top 10
-        tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
         tbRegistro.alerta,
@@ -129,7 +128,6 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     } else {
         var sql = `
         SELECT top 10
-        tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
         tbRegistro.alerta,
