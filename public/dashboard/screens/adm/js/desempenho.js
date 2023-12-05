@@ -1,11 +1,11 @@
 fkAeroporto = sessionStorage.ID_AEROPORTO_SELECIONADO;
 dados = "";
-graficoAlertComp = ''
-container.style.display = 'none'
-servidorBom = ''
-servidorAlerta = ''
-servidorCritico = ''
-ctx = ''
+graficoAlertComp = '';
+container.style.display = 'none';
+servidorBom = '';
+servidorAlerta = '';
+servidorCritico = '';
+ctx = '';
 //Busca de alerta por servidor
 function buscarAlerta() {
   estadoServidor.innerHTML = "";
@@ -306,6 +306,9 @@ function plotarAlertasComp(dados,servidor) {
           }
         }
   ctx = document.getElementById("chartAnaliseComp").getContext("2d");
+  if(graficoAlertComp != ''){
+    graficoAlertComp.destroy()
+  }
     graficoAlertComp = new Chart(ctx, {
       type: "bar",
       data: {
@@ -525,8 +528,6 @@ function atualizarComponente(fkAeroporto,nomeGrafico){
         mostrarKPI()
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
-        // proximaAtualizacao = setTimeout(() => atualizarComponente(fkAeroporto), 8000);
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
     }
 })
     .catch(function (error) {
@@ -541,7 +542,7 @@ function atualizarServidoresAlertas(fkAeroporto,nomeGrafico,dadosStatus){
           response.json().then(function (novoRegistro) {
             servidorNovo = [];
             alertasNovo = [];
-            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
             for(i=0;i<novoRegistro.length;i++){
                 resposta = novoRegistro[i]
                 servidorNovo.push(resposta.apelido);
@@ -564,7 +565,6 @@ function atualizarServidoresAlertas(fkAeroporto,nomeGrafico,dadosStatus){
           });
       } else {
           console.error('Nenhum dado encontrado ou erro na API');
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
       }
   })
       .catch(function (error) {
@@ -580,7 +580,7 @@ function atualizarServidoresBons(fkAeroporto,nomeGrafico,dadosStatus){
           response.json().then(function (novoRegistro) {
             servidorNovo = [];
             alertasNovo = [];
-            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
             for(i=0;i<novoRegistro.length;i++){
                 resposta = novoRegistro[i]
                 servidorNovo.push(resposta.apelido);
@@ -595,7 +595,8 @@ function atualizarServidoresBons(fkAeroporto,nomeGrafico,dadosStatus){
                 if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
                   nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
                 }
-              }            
+              }    
+              nomeGrafico.clear()        
               nomeGrafico.update()
           });
       } else {
@@ -616,7 +617,7 @@ function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
           response.json().then(function (novoRegistro) {
             servidorNovo = [];
             alertasNovo = [];
-            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
             for(i=0;i<novoRegistro.length;i++){
                 resposta = novoRegistro[i]
                 servidorNovo.push(resposta.apelido);
@@ -631,7 +632,8 @@ function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
                 if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
                   nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
                 }
-              }            
+              }   
+              nomeGrafico.clear()         
               nomeGrafico.update()
           });
       } else {
@@ -646,6 +648,7 @@ function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
   
 }
 function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
+  alert(servidor)
   fetch("/servidor/atualizarCompServidor", {
     method: "POST",
     headers: {
@@ -681,6 +684,7 @@ function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
           "Nome": nome 
         }
         plotarAlertasComp(dados,servidor)
+        nomeGrafico.clear()
         nomeGrafico.update()
         mostrarKPI()
       }
