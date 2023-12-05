@@ -43,9 +43,9 @@ router.post("/buscarDesempenho",function(req,res){
     servidorController.buscarDesempenho(req,res)
 })
 
-router.post("/buscarAlertasComponente",function(req,res){
-    servidorController.buscarAlertasComponente(req,res)
-})
+// router.post("/buscarAlertasComponente",function(req,res){
+//     servidorController.buscarAlertasComponente(req,res)
+// })
 
 router.post("/buscarKpis",function(req,res){
     servidorController.buscarKpis(req,res)

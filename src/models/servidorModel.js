@@ -121,12 +121,12 @@ function buscarComponente(fkAeroporto,servidor){
     const sql = `
     SELECT 
     (SELECT COUNT(apelido) FROM tbservidor JOIN tbaeroporto ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto}) 
-    AS 'servidores',SUM(alerta) AS 'qtdAlerta',apelido,nome FROM tbRegistro 
+    AS 'servidores',SUM(alerta) AS 'qtdAlerta',apelido,nome,tipo FROM tbRegistro 
     JOIN tbComponente ON fkComp = idComp
     JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente JOIN tbServidor 
     ON fkServidor = idServ JOIN tbAeroporto
     ON fkAeroporto = fkAeroporto WHERE idAeroporto = ${fkAeroporto} AND apelido = '${servidor}' GROUP BY 
-    apelido,nome HAVING SUM(alerta) > 0;  
+    apelido,nome,tipo HAVING SUM(alerta) > 0;  
     `
     console.log(sql)
     return database.executar(sql)
@@ -146,18 +146,18 @@ function buscarDesempenho(fkAeroporto){
     return database.executar(sql)
 }
 
-function buscarAlertasComponente(fkAeroporto,componente){
-    const sql = `
-    SELECT SUM(alerta) AS 'qtdAlerta',tipo,apelido,nome,tipo FROM tbRegistro JOIN tbComponente ON fkComp = idComp
-    JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente JOIN tbServidor 
-    ON fkServidor = idServ JOIN tbAeroporto
-    ON fkAeroporto = fkAeroporto WHERE idAeroporto = ${fkAeroporto} AND tipo = '${componente}' GROUP BY 
-    tipo,apelido,nome,tipo
-    HAVING SUM(alerta) > 0 LIMIT 4; 
-    `
-    console.log(sql)
-    return database.executar(sql)
-}
+// function buscarAlertasComponente(fkAeroporto,componente){
+//     const sql = `
+//     SELECT SUM(alerta) AS 'qtdAlerta',tipo,apelido,nome,tipo FROM tbRegistro JOIN tbComponente ON fkComp = idComp
+//     JOIN tbTipoComponente ON idTipoComponente = fkTipoComponente JOIN tbServidor 
+//     ON fkServidor = idServ JOIN tbAeroporto
+//     ON fkAeroporto = fkAeroporto WHERE idAeroporto = ${fkAeroporto} AND tipo = '${componente}' GROUP BY 
+//     tipo,apelido,nome,tipo
+//     HAVING SUM(alerta) > 0 LIMIT 4; 
+//     `
+//     console.log(sql)
+//     return database.executar(sql)
+// }
 
 function buscarKpis(fkAeroporto){
     const sql = `
@@ -195,7 +195,7 @@ function atualizarServidorAlerta(fkAeroporto){
     JOIN tbAeroporto ON fkAeroporto = idAeroporto 
     AND idAeroporto = ${fkAeroporto}) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
     JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto}
-    GROUP BY idserv HAVING SUM(alerta) > 6 && SUM(alerta) <= 18 ORDER BY SUM(alerta) DESC LIMIT 1;`
+    GROUP BY apelido HAVING SUM(alerta) > 6 && SUM(alerta) <= 18 ORDER BY SUM(alerta) DESC LIMIT 5;`
     console.log(sql)
     return database.executar(sql)
 }
@@ -256,7 +256,7 @@ module.exports = {
     alertasEstadoAlerta,
     buscarComponente,
     alertasEstadoBom,
-    buscarAlertasComponente,
+    // buscarAlertasComponente,
     buscarKpis,
     atualizarComponente,
     atualizarServidorAlerta,

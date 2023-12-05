@@ -265,29 +265,29 @@ function buscarDesempenho(req,res){
     }
 }
 
-function buscarAlertasComponente(req,res){
-    const {fkAeroporto} = req.body;
-    const {componente} = req.body;
-    if(!fkAeroporto){
-        res.status(400).json({ error: "Existem parametros faltando" })  
-    }else if(!componente){
-        res.status(400).json({ error: "Existem parametros faltando" })
-    }else{
-        servidorModel.buscarAlertasComponente(fkAeroporto,componente).then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.json(resultado);
-                } else {
-                    res.status(403).json({ error: "Sem Servidores!" });
-                }
-            }
-        ).catch(
-            function (erro) {
-                res.status(500).json(erro.sqlMessage);
-            }
-        ); 
-    }
-}
+// function buscarAlertasComponente(req,res){
+//     const {fkAeroporto} = req.body;
+//     const {componente} = req.body;
+//     if(!fkAeroporto){
+//         res.status(400).json({ error: "Existem parametros faltando" })  
+//     }else if(!componente){
+//         res.status(400).json({ error: "Existem parametros faltando" })
+//     }else{
+//         servidorModel.buscarAlertasComponente(fkAeroporto,componente).then(
+//             function (resultado) {
+//                 if (resultado.length > 0) {
+//                     res.json(resultado);
+//                 } else {
+//                     res.status(403).json({ error: "Sem Servidores!" });
+//                 }
+//             }
+//         ).catch(
+//             function (erro) {
+//                 res.status(500).json(erro.sqlMessage);
+//             }
+//         ); 
+//     }
+// }
 
 function buscarKpis(req,res){
     const {fkAeroporto} = req.body;
@@ -429,7 +429,7 @@ module.exports = {
     alertasEstadoAlerta,
     buscarComponente,
     alertasEstadoBom,
-    buscarAlertasComponente,
+    // buscarAlertasComponente,
     buscarKpis,
     atualizarComponente,
     atualizarServidorAlerta,

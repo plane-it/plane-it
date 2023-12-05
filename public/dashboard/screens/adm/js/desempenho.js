@@ -5,6 +5,7 @@ container.style.display = 'none'
 servidorBom = ''
 servidorAlerta = ''
 servidorCritico = ''
+ctx = ''
 //Busca de alerta por servidor
 function buscarAlerta() {
   estadoServidor.innerHTML = "";
@@ -141,17 +142,14 @@ function plotarAlertasServidores(dados) {
       },
     });
     if(dadosStatus == 'Estado de alerta'){
-      alert(1)
-      setTimeout(()=> atualizarServidoresAlertas(fkAeroporto,graficoAlerta),5000)
+      setTimeout(()=> atualizarServidoresAlertas(fkAeroporto,graficoAlerta,dadosStatus),5000)
     }
-    if(dadosStatus == 'Estado de bom'){
-      alert(2)
-      setTimeout(()=> atualizarServidoresBons(fkAeroporto,graficoAlerta),5000)
+    if(dadosStatus == 'Estado bom'){
+      setTimeout(()=> atualizarServidoresBons(fkAeroporto,graficoAlerta,dadosStatus),5000)
     }
     if(dadosStatus == 'Estado crítico'){
-      setTimeout(()=> atualizarServidoresCriticos(fkAeroporto,graficoAlerta),5000)
+      setTimeout(()=> atualizarServidoresCriticos(fkAeroporto,graficoAlerta,dadosStatus),5000)
     }
-    
   }
 }
 function alterarEstadoServidores(value) {
@@ -253,8 +251,6 @@ function alterarEstadoServidores(value) {
 }
 //Busca de alerta por componente do servidor
 function servidorDados(servidor) {
-  console.log(servidor);
-  dados = "";
   fetch("/servidor/buscarComponente", {
     method: "POST",
     headers: {
@@ -288,86 +284,79 @@ function servidorDados(servidor) {
           "Nome": nome,
           "Servidores": qtdServidores,
           "Componente": tipoComponente
-        };
-        corGrafico = []
-        for(i=0;i < dados.Alertas.length;i++){
-          if( dados.Alertas[i] > 0 && dados.Alertas[i] < dados.Servidores * 3){
-            corGrafico.push("#0c701a");
-          }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] <= dados.Servidores * 6){
-            corGrafico.push("#F7D917");
-          }else if(dados.Alertas[i] > dados.Servidores * 6){
-            corGrafico.push("#861A22");
-          }
         }
-        if(ctx == ''){
-          plotarAlertasComp(dados,corGrafico,servidor);
-        }else{
-          ctx = ''
-          plotarAlertasComp(dados,corGrafico,servidor);
-        }
+        plotarAlertasComp(dados,servidor);
       }
     })
     .catch(function (res) {
       console.log(res);
     });
 }
-function plotarAlertasComp(dados,corGrafico,servidor) {
+function plotarAlertasComp(dados,servidor) {
   container.style.display = 'block'
+    const quantidadeAlerta = dados.Alertas;
+        corGrafico = [];
+        for (i = 0; i < quantidadeAlerta.length; i++) {
+          if( quantidadeAlerta[i] > 0 && quantidadeAlerta[i] < dados.Servidores * 3){
+            corGrafico.push("#0c701a");
+          }if(quantidadeAlerta[i] >= dados.Servidores * 3 && quantidadeAlerta[i] <= dados.Servidores * 6){
+            corGrafico.push("#F7D917");
+          }else if(quantidadeAlerta[i] > dados.Servidores * 6){
+            corGrafico.push("#861A22");
+          }
+        }
   ctx = document.getElementById("chartAnaliseComp").getContext("2d");
-  graficoAlertComp = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: dados.Nome,
-      datasets: [
-        {
-          label:dados.Componente[0], 
-          label:dados.Componente[1],
-          label:dados.Componente[2],
-          backgroundColor: corGrafico,
-          data: dados.Alertas,
+    graficoAlertComp = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: dados.Nome,
+        datasets: [
+          {
+            backgroundColor: corGrafico,
+            data: dados.Alertas,
+          },
+        ],
+      },
+      options: {
+        legend: {
+          display: false,
+          position: "top",
         },
-      ],
-    },
-    options: {
-      legend: {
-        display: false,
-        position: "top",
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "#9f9f9f",
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                adding: 20,
+              },
+              gridLines: {
+                drawBorder: true,
+                zeroLineColor: "#fff",
+                color: "transparent",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              barPercentage: 1,
+              gridLines: {
+                drawBorder: false,
+                color: "rgba(0,0,0)",
+                zeroLineColor: "transparent",
+                display: false,
+              },
+              ticks: {
+                padding: 8,
+                fontColor: "#9f9f9f",
+              },
+            },
+          ],
+        },
       },
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              fontColor: "#9f9f9f",
-              beginAtZero: true,
-              maxTicksLimit: 5,
-              adding: 20,
-            },
-            gridLines: {
-              drawBorder: true,
-              zeroLineColor: "#fff",
-              color: "transparent",
-            },
-          },
-        ],
-        xAxes: [
-          {
-            barPercentage: 1,
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(0,0,0)",
-              zeroLineColor: "transparent",
-              display: false,
-            },
-            ticks: {
-              padding: 8,
-              fontColor: "#9f9f9f",
-            },
-          },
-        ],
-      },
-    },
-  });
-  // setTimeout(() => atualizarComponenteServidor(fkAeroporto,graficoAlertComp,servidor), 5000);
+    });
+    setTimeout(() => atualizarComponenteServidor(fkAeroporto,graficoAlertComp,servidor), 10000);
 }
 //Busca de alerta por componente no aeroporto
 function desempenhoComponente() {
@@ -545,110 +534,118 @@ function atualizarComponente(fkAeroporto,nomeGrafico){
     });
 
 }
-function atualizarServidoresAlertas(fkAeroporto,nomeGrafico){
-  alert(1)
-  fetch(`/servidor/atualizarServidorAlerta/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (novoRegistro) {
-          servidorNovo = [];
-          alertasNovo = [];
-          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-          for(i=0;i<novoRegistro.length;i++){
-              resposta = novoRegistro[i]
-              servidorNovo.push(resposta.apelido);
-              alertasNovo.push(resposta.qtdAlerta);
-            }
-            for(i=0;i < servidorNovo.length;i++){
-              if(servidorNovo[i] != nomeGrafico.data.labels){
-                nomeGrafico.data.labels.push(servidorNovo[i])
+function atualizarServidoresAlertas(fkAeroporto,nomeGrafico,dadosStatus){
+  if(dadosStatus == "Estado de alerta"){
+    fetch(`/servidor/atualizarServidorAlerta/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            servidorNovo = [];
+            alertasNovo = [];
+            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            for(i=0;i<novoRegistro.length;i++){
+                resposta = novoRegistro[i]
+                servidorNovo.push(resposta.apelido);
+                if(resposta.qtdAlerta > 6 && resposta.qtdAlerta <= 18){
+                  alertasNovo.push(resposta.qtdAlerta);
+                }
               }
-            }            
-            for(i=0;i < alertasNovo.length;i++){
-              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
-                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
-              }
-            }            
-            nomeGrafico.update()
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
+              for(i=0;i < servidorNovo.length;i++){
+                if(servidorNovo[i] != nomeGrafico.data.labels[0]){
+                  nomeGrafico.data.labels.push(servidorNovo[i])
+                }
+              }            
+              for(i=0;i < alertasNovo.length;i++){
+                if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                  nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+                }
+              }   
+              nomeGrafico.clear()      
+              nomeGrafico.update()
+          });
+      } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+      }
+  })
+      .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+ 
 }
-function atualizarServidoresBons(fkAeroporto,nomeGrafico){
-  alert(2)
-  fetch(`/servidor/atualizarServidorBom/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (novoRegistro) {
-          servidorNovo = [];
-          alertasNovo = [];
-          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-          for(i=0;i<novoRegistro.length;i++){
-              resposta = novoRegistro[i]
-              servidorNovo.push(resposta.apelido);
-              alertasNovo.push(resposta.qtdAlerta);
-            }
-            for(i=0;i < servidorNovo.length;i++){
-              if(servidorNovo[i] != nomeGrafico.data.labels){
-                nomeGrafico.data.labels.push(servidorNovo[i])
+function atualizarServidoresBons(fkAeroporto,nomeGrafico,dadosStatus){
+  if(dadosStatus == "Estado bom"){
+    fetch(`/servidor/atualizarServidorBom/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            servidorNovo = [];
+            alertasNovo = [];
+            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            for(i=0;i<novoRegistro.length;i++){
+                resposta = novoRegistro[i]
+                servidorNovo.push(resposta.apelido);
+                alertasNovo.push(resposta.qtdAlerta);
               }
-            }            
-            for(i=0;i < alertasNovo.length;i++){
-              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
-                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
-              }
-            }            
-            nomeGrafico.update()
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
+              for(i=0;i < servidorNovo.length;i++){
+                if(servidorNovo[i] != nomeGrafico.data.labels){
+                  nomeGrafico.data.labels.push(servidorNovo[i])
+                }
+              }            
+              for(i=0;i < alertasNovo.length;i++){
+                if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                  nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+                }
+              }            
+              nomeGrafico.update()
+          });
+      } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+      }
+  })
+      .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+  
 }
-function atualizarServidoresCriticos(fkAeroporto,nomeGrafico){
-  alert(3)
-  fetch(`/servidor/atualizarServidorCritico/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (novoRegistro) {
-          servidorNovo = [];
-          alertasNovo = [];
-          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-          for(i=0;i<novoRegistro.length;i++){
-              resposta = novoRegistro[i]
-              servidorNovo.push(resposta.apelido);
-              alertasNovo.push(resposta.qtdAlerta);
-            }
-            for(i=0;i < servidorNovo.length;i++){
-              if(servidorNovo[i] != nomeGrafico.data.labels){
-                nomeGrafico.data.labels.push(servidorNovo[i])
+function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
+  if(dadosStatus == "Estado crítico"){
+    fetch(`/servidor/atualizarServidorCritico/${fkAeroporto}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            servidorNovo = [];
+            alertasNovo = [];
+            alert(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            for(i=0;i<novoRegistro.length;i++){
+                resposta = novoRegistro[i]
+                servidorNovo.push(resposta.apelido);
+                alertasNovo.push(resposta.qtdAlerta);
               }
-            }            
-            for(i=0;i < alertasNovo.length;i++){
-              if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
-                nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
-              }
-            }            
-            nomeGrafico.update()
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
+              for(i=0;i < servidorNovo.length;i++){
+                if(servidorNovo[i] != nomeGrafico.data.labels){
+                  nomeGrafico.data.labels.push(servidorNovo[i])
+                }
+              }            
+              for(i=0;i < alertasNovo.length;i++){
+                if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
+                  nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
+                }
+              }            
+              nomeGrafico.update()
+          });
+      } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+      }
+  })
+      .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });  
+  }
+  
 }
 function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
-  alert(5)
   fetch("/servidor/atualizarCompServidor", {
     method: "POST",
     headers: {
@@ -669,29 +666,21 @@ function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
         alerta = [];
         nome = [];
         qtdServidores = "";
+        tipoComponente = []
         for (i = 0; i < res.length; i++) {
           resposta = res[i];
           alerta.push(resposta.qtdAlerta);
           nome.push(resposta.nome);
           qtdServidores = resposta.servidores;
+          tipoComponente.push(resposta.tipo)
         }
         dados = {
+          "Componente": tipoComponente,
           "Alertas": alerta,
-          "Nome": nome,
           "Servidores": qtdServidores,
-        };
-        corGrafico = []
-        for(i=0;i < dados.Alertas.length;i++){
-          if( dados.Alertas[i] > 0 && dados.Alertas[i] < dados.Servidores * 3){
-            corGrafico.push("#0c701a");
-          }else if(dados.Alertas[i] >= dados.Servidores * 3 && dados.Alertas[i] < dados.Servidores * 6){
-            corGrafico.push("#F7D917");
-          }else if(dados.Alertas[i] > dados.Servidores * 6){
-            corGrafico.push("#861A22");
-          }
+          "Nome": nome 
         }
-        alert(nomeGrafico.data.datasets[0].data)
-        plotarAlertasComp(dados,corGrafico,servidor)
+        plotarAlertasComp(dados,servidor)
         nomeGrafico.update()
         mostrarKPI()
       }
