@@ -89,9 +89,26 @@ function getFeriados(){
     return database.executar(sql)
 }
 
+function getValoresFeriado(idServidor, data){
+    const sql = `
+        select AVG(CAST(r.valor as FLOAT)) as value, tc.idTipoComponente as type, um.sinal as uni
+        from tbRegistro r
+        join tbMetrica m on m.idMetrica = r.fkMetrica
+        join tbUnidadeMedida um on um.idUnidadeMedida = m.fkUnidadeMedida
+        join tbComponente c on c.idComp = r.fkComp
+        join tbTipoComponente tc on tc.idTipoComponente = c.fktipoComponente
+        where r.fkServidor = ${idServidor} and cast(r.dataHora as date) = cast('${data}' as date)
+        group by
+            tc.idTipoComponente,
+            um.sinal;
+    `
+    return database.executar(sql)
+}
+
 module.exports = {
     getMedidaSemanal,
     getMediaDiaria,
     getValores,
-    getFeriados
+    getFeriados,
+    getValoresFeriado
 }

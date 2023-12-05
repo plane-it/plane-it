@@ -50,9 +50,23 @@ async function getFeriados(req, res) {
     }
 }
 
+async function getValoresFeriado(req, res) {
+    try{
+        const { idServidor, data } = req.body
+
+        const medida = await model.getValoresFeriado(idServidor, data)
+
+        res.status(200).json(medida)
+    }
+    catch(error){
+        res.status(500).json({message: error})
+    }
+}
+
 module.exports = {
     getMedidaSemanal,
     getMediaDiaria,
     getValores,
-    getFeriados
+    getFeriados,
+    getValoresFeriado
 }

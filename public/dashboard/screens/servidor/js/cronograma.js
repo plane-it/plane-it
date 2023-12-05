@@ -397,6 +397,7 @@ async function getHolidays(){
       holidayName.innerText = res[i].titulo
       holidayMonthYear.innerText = year + " - " + months[Number(res[i].mes)-1]
       holiday.innerText = res[i].dia
+      moreInfo((year-1)+"-"+res[i].mes+"-"+res[i].dia)
       break
     }
   }
@@ -411,4 +412,42 @@ function updateTimeline(date){
 function updateComponent(type){
   getWeekly(type)
   getHistory(type, timeline.value)
+}
+
+function moreInfo(data){
+  const cpuHoliday = document.querySelector("#cpuHoliday")
+  const ramHoliday = document.querySelector("#ramHoliday")
+  const diskHoliday = document.querySelector("#diskHoliday")
+
+  fetch('/cronograma/feriadosValores', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      idServidor: sessionStorage.ID_SERVIDOR_ESCOLHIDO,
+      data: data,
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data, sessionStorage.ID_SERVIDOR_ESCOLHIDO)
+    cpuHoliday.innerText = ""
+    ramHoliday.innerText = ""
+    diskHoliday.innerText = ""
+
+    if(data.length > 0){
+      data.map((item) => {
+        if(item.type == 1){
+          cpuHoliday.innerText = item.value.toFixed(1)+item.uni
+        }
+        else if(item.type == 2){
+          ramHoliday.innerText = item.value.toFixed(1)+item.uni
+        }
+        else if(item.type == 3){
+          diskHoliday.innerText = item.value.toFixed(1)+item.uni
+        }
+      })
+    }
+  })
 }
