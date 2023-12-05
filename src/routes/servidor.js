@@ -43,9 +43,9 @@ router.post("/buscarDesempenho",function(req,res){
     servidorController.buscarDesempenho(req,res)
 })
 
-router.post("/buscarAlertasComponente",function(req,res){
-    servidorController.buscarAlertasComponente(req,res)
-})
+// router.post("/buscarAlertasComponente",function(req,res){
+//     servidorController.buscarAlertasComponente(req,res)
+// })
 
 router.post("/buscarKpis",function(req,res){
     servidorController.buscarKpis(req,res)
@@ -60,14 +60,14 @@ router.get("/atualizarServidorAlerta/:fkAeroporto",function(req,res){
 })
 
 router.get("/atualizarServidorBom/:fkAeroporto",function(req,res){
-    servidorController.atualizarServidorAlerta(req,res)
+    servidorController.atualizarServidorBom(req,res)
 })
 
 router.get("/atualizarServidorCritico/:fkAeroporto",function(req,res){
-    servidorController.atualizarServidorAlerta(req,res)
+    servidorController.atualizarServidorCritico(req,res)
 })
 
-router.get("/atualizarCompServidor/:fkAeroporto",function(req,res){
+router.post("/atualizarCompServidor",function(req,res){
     servidorController.atualizarCompServidor(req,res)
 })
 module.exports = router

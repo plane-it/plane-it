@@ -88,6 +88,7 @@ function alertasCriticos(fkAeroporto){
     // JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = ${fkAeroporto} 
     // GROUP BY idserv HAVING SUM(alerta) >= 18 LIMIT 5;`
     const sql = `
+
         SELECT 
             top 5 SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',
             apelido,
@@ -115,6 +116,7 @@ function alertasEstadoAlerta(fkAeroporto){
     // GROUP BY idserv HAVING SUM(alerta) > 6 && SUM(alerta) < 18 LIMIT 5;`
 
     const sql = `
+
         SELECT 
         top 5 SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',
         apelido,
@@ -167,6 +169,7 @@ function buscarComponente(fkAeroporto,servidor){
     // apelido,nome HAVING SUM(alerta) > 0;  
     // `
     const sql = `
+
         SELECT 
         (SELECT COUNT(apelido) FROM tbservidor JOIN tbaeroporto ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto}) 
         AS 'servidores',SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',apelido,nome FROM tbRegistro 
@@ -192,6 +195,7 @@ function buscarDesempenho(fkAeroporto){
     // GROUP BY tipo;
     // `
     const sql = `
+
         SELECT SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',tipo,(SELECT COUNT(apelido) FROM tbservidor JOIN 
         tbaeroporto ON fkAeroporto = idAeroporto WHERE idAeroporto = ${fkAeroporto}) AS 'servidores' FROM tbRegistro JOIN 
         tbComponente ON fkComp = idComp
@@ -202,6 +206,7 @@ function buscarDesempenho(fkAeroporto){
     console.log(sql)
     return database.executar(sql)
 }
+
 
 function buscarAlertasComponente(fkAeroporto,componente){
     const sql = `
@@ -320,6 +325,9 @@ function atualizarServidorCritico(fkAeroporto){
     // GROUP BY idserv
     // HAVING SUM(alerta) >= 18 LIMIT 5;
     // `
+
+
+function atualizarCompServidor(fkAeroporto,servidor){
     const sql = `
         SELECT top 5 SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',apelido,(SELECT sum(case when alerta = 1 then 1 else 0 end) AS 'Qtd de alerta' FROM tbRegistro
         JOIN tbServidor 
@@ -346,10 +354,11 @@ module.exports = {
     alertasEstadoAlerta,
     buscarComponente,
     alertasEstadoBom,
-    buscarAlertasComponente,
+    // buscarAlertasComponente,
     buscarKpis,
     atualizarComponente,
     atualizarServidorAlerta,
     atualizarServidorBom,
-    atualizarServidorCritico
+    atualizarServidorCritico,
+    atualizarCompServidor
 }

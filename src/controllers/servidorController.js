@@ -265,29 +265,29 @@ function buscarDesempenho(req,res){
     }
 }
 
-function buscarAlertasComponente(req,res){
-    const {fkAeroporto} = req.body;
-    const {componente} = req.body;
-    if(!fkAeroporto){
-        res.status(400).json({ error: "Existem parametros faltando" })  
-    }else if(!componente){
-        res.status(400).json({ error: "Existem parametros faltando" })
-    }else{
-        servidorModel.buscarAlertasComponente(fkAeroporto,componente).then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.json(resultado);
-                } else {
-                    res.status(403).json({ error: "Sem Servidores!" });
-                }
-            }
-        ).catch(
-            function (erro) {
-                res.status(500).json(erro.sqlMessage);
-            }
-        ); 
-    }
-}
+// function buscarAlertasComponente(req,res){
+//     const {fkAeroporto} = req.body;
+//     const {componente} = req.body;
+//     if(!fkAeroporto){
+//         res.status(400).json({ error: "Existem parametros faltando" })  
+//     }else if(!componente){
+//         res.status(400).json({ error: "Existem parametros faltando" })
+//     }else{
+//         servidorModel.buscarAlertasComponente(fkAeroporto,componente).then(
+//             function (resultado) {
+//                 if (resultado.length > 0) {
+//                     res.json(resultado);
+//                 } else {
+//                     res.status(403).json({ error: "Sem Servidores!" });
+//                 }
+//             }
+//         ).catch(
+//             function (erro) {
+//                 res.status(500).json(erro.sqlMessage);
+//             }
+//         ); 
+//     }
+// }
 
 function buscarKpis(req,res){
     const {fkAeroporto} = req.body;
@@ -336,7 +336,7 @@ function atualizarServidorAlerta(req,res){
     if(!fkAeroporto){
         res.status(400).json({error: "Existem parametros faltando"})
     }else{
-        servidorModel.atualizarServidor(fkAeroporto).then(
+        servidorModel.atualizarServidorAlerta(fkAeroporto).then(
             function (resultado) {
                 if (resultado.length > 0) {
                     res.json(resultado);
@@ -394,26 +394,28 @@ function atualizarServidorCritico(req,res){
     }
 }
 
-// function atualizarCompServidor(req,res){
-//     var fkAeroporto = req.params.fkAeroporto
-//     if(!fkAeroporto){
-//         res.status(400).json({error: "Existem parametros faltando"})
-//     }else{
-//         servidorModel.atualizarServidor(fkAeroporto).then(
-//             function (resultado) {
-//                 if (resultado.length > 0) {
-//                     res.json(resultado);
-//                 } else {
-//                     res.status(403).json({ error: "Sem Servidores!" });
-//                 }
-//             }
-//         ).catch(
-//             function (erro) {
-//                 res.status(500).json(erro.sqlMessage);
-//             }
-//         ); 
-//     }
-// }
+function atualizarCompServidor(req,res){
+    const {fkAeroporto} = req.body
+    const {servidor} = req.body
+    if(!fkAeroporto || !servidor){
+        res.status(400).json({error:"Existem parametros faltando"})
+    }else{
+        servidorModel.atualizarCompServidor(fkAeroporto,servidor).then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado);
+                } else {
+                    res.status(403).json({ error: "Sem Servidores!" });
+                }
+            }
+        ).catch(
+            function(erro){
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+           
+}
+
 module.exports = {
     buscarServidor,
     cadastrarServidor,
@@ -427,10 +429,11 @@ module.exports = {
     alertasEstadoAlerta,
     buscarComponente,
     alertasEstadoBom,
-    buscarAlertasComponente,
+    // buscarAlertasComponente,
     buscarKpis,
     atualizarComponente,
     atualizarServidorAlerta,
     atualizarServidorBom,
-    atualizarServidorCritico
+    atualizarServidorCritico,
+    atualizarCompServidor
 }
