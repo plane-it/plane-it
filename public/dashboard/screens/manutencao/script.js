@@ -26,8 +26,8 @@ function buscarServidores(fkAeroporto) {
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                             <button onclick="baixarRelatorioManuntencao(${i.idServ})" class="dropdown-item" href="#">Histórico de Manutenções</button>
-                                            <button onclick="baixarRelatorioAntesManuntencao(${i.idServ})" class="dropdown-item" href="#">Resgistros Antes da Manutenção</button>
-                                            <button onclick="baixarRelatorioDepoisManuntencao(${i.idServ})" class="dropdown-item" href="#">Resgistros Após a Manutenção</button>
+                                            <button onclick="relatorioAntesManutencao(${i.idServ})" class="dropdown-item" href="#">Resgistros Antes da Manutenção</button>
+                                            <button onclick="relatorioDepoisManutencao(${i.idServ})" class="dropdown-item" href="#">Resgistros Após a Manutenção</button>
                                         </div>
                                     </div>
                                 </li>

@@ -61,7 +61,7 @@ function buscarDadosAntesController(req, res) {
 
     console.log(`buscando dados`);
 
-    manutencaoModel.buscarDadosAntesModel(fkServidor,unidadeMedida,dataReferencia,tipoComponente).then(function (resultado) {
+    manutencaoModel.buscarDadosAntesModel(fkServidor, unidadeMedida, dataReferencia, tipoComponente).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -82,7 +82,7 @@ function buscarDadosDepoisController(req, res) {
 
     console.log(`buscando dados`);
 
-    manutencaoModel.buscarDadosDepoisModel(fkServidor,unidadeMedida,dataReferencia,tipoComponente).then(function (resultado) {
+    manutencaoModel.buscarDadosDepoisModel(fkServidor, unidadeMedida, dataReferencia, tipoComponente).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -95,13 +95,13 @@ function buscarDadosDepoisController(req, res) {
     });
 }
 
-function buscarDadosAntesRelatorioController(req, res) {
+function antesDaManutencaoRelatorioController(req, res) {
     const fkServidor = req.params.fkServidor
     const dataReferencia = req.params.dataReferencia
 
     console.log(`buscando dados`);
 
-    manutencaoModel.buscarDadosAntesModel(fkServidor,dataReferencia).then(function (resultado) {
+    manutencaoModel.antesDaManutencaoRelatorioModel(fkServidor, dataReferencia).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -114,13 +114,13 @@ function buscarDadosAntesRelatorioController(req, res) {
     });
 }
 
-function buscarDadosDepoisRelatorioController(req, res) {
+function depoisDaManutencaoRelatorioController(req, res) {
     const fkServidor = req.params.fkServidor
     const dataReferencia = req.params.dataReferencia
 
-    console.log(`buscando dados`);
+    console.log(`buscando dados para relatorio`);
 
-    manutencaoModel.buscarDadosDepoissModel(fkServidor,dataReferencia).then(function (resultado) {
+    manutencaoModel.depoisDaManutencaoRelatorioModel(fkServidor, dataReferencia).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -139,6 +139,6 @@ module.exports = {
     buscarUltimaManutencaoController,
     buscarDadosAntesController,
     buscarDadosDepoisController,
-    buscarDadosAntesRelatorioController,
-    buscarDadosDepoisRelatorioController
- }
+    antesDaManutencaoRelatorioController,
+    depoisDaManutencaoRelatorioController
+}
