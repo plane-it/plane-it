@@ -203,13 +203,13 @@ function buscarMedianPreco() {
             }).then((res) => res.json())
                 .then((res) => {
                     if (!res.error) {
-                        for (let i = 0; i < res[0].length; i++) {
-                            if (res[0][i].fktipoComponente == 1) {
-                                medianPriceForEachCpuBRL = parseFloat(res[0][i].median_val);
-                            } else if (res[0][i].fktipoComponente == 2) {
-                                medianPriceForEachRamBRL = parseFloat(res[0][i].median_val);
-                            } else if (res[0][i].fktipoComponente == 3) {
-                                medianPriceForEachDiscoBRL = parseFloat(res[0][i].median_val);
+                        for (let i = 0; i < res.length; i++) {
+                            if (res[i].fktipoComponente == 1) {
+                                medianPriceForEachCpuBRL = parseFloat(res[i].median_val);
+                            } else if (res[i].fktipoComponente == 2) {
+                                medianPriceForEachRamBRL = parseFloat(res[i].median_val);
+                            } else if (res[i].fktipoComponente == 3) {
+                                medianPriceForEachDiscoBRL = parseFloat(res[i].median_val);
                             }
                         }
                         medianCustoTotalBRL = medianPriceForEachCpuBRL + medianPriceForEachRamBRL + medianPriceForEachDiscoBRL;

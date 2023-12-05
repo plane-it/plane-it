@@ -415,7 +415,7 @@ function atualizarCompServidor(req,res){
         )
            
 }
-}
+
 module.exports = {
     buscarServidor,
     cadastrarServidor,

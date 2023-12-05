@@ -38,19 +38,34 @@ function buscarVoos(siglaAeroportoOrigem) {
 }
 
 function buscarClimaTabela(regiao) {
-  const sql = `
-    SELECT 
-      dia,
-      mes,
-      previsao, 
-      regiao,
-      diaSemana,
-      titulo,
-      idFeriado
-  FROM 
-      tbFeriados
-  JOIN 
-      tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta) where regiao = '${regiao}';
+  // const sql = `
+  //   SELECT 
+  //     dia,
+  //     mes,
+  //     previsao, 
+  //     regiao,
+  //     diaSemana,
+  //     titulo,
+  //     idFeriado
+  // FROM 
+  //     tbFeriados
+  // JOIN 
+  //     tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta) where regiao = '${regiao}';
+  //   `;
+    const sql = `
+      SELECT 
+        dia,
+        mes,
+        avg(previsao) previsao, 
+        regiao,
+        diaSemana,
+        titulo,
+        idFeriado
+      FROM 
+        tbFeriados
+      JOIN 
+        tbClimaEstado ON dia = DAY(dataCompleta) AND mes = MONTH(dataCompleta) where regiao = 'SP'
+      group by idFeriado, dia, mes, regiao, diaSemana, titulo; 
     `;
   return database.executar(sql);
 }

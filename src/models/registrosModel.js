@@ -103,33 +103,31 @@ function buscarEstadoServidores(fk, adm) {
 }
 
 function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
-    if (fkTipoComponente == 1) {
+    // if (fkTipoComponente == 1) {
+    //     var sql = `
+    //     SELECT top 10
+    //     tbRegistro.idRegst,
+    //     tbRegistro.dataHora,
+    //     tbRegistro.alerta,
+    //     tbRegistro.valor AS valorRegistro, 
+    //     tbMetrica.valor AS valorMetrica,
+    //     tbUnidadeMedida.sinal
+    // FROM 
+    //     tbRegistro 
+    // JOIN 
+    //     tbMetrica ON fkMetrica = idMetrica 
+    // JOIN 
+    //     tbUnidadeMedida ON idUnidadeMedida = fkUnidadeMedida
+    // WHERE 
+    //     fkServidor = ${fkServidor}
+    // AND 
+    //     sinal = 'MHz'
+    // ORDER BY 
+    //     tbRegistro.idRegst DESC;
+    //     `
+    // } else {
         var sql = `
         SELECT top 10
-        tbUnidadeMedida.sinal, 
-        tbRegistro.idRegst,
-        tbRegistro.dataHora,
-        tbRegistro.alerta,
-        tbRegistro.valor AS valorRegistro, 
-        tbMetrica.valor AS valorMetrica,
-        tbUnidadeMedida.sinal
-    FROM 
-        tbRegistro 
-    JOIN 
-        tbMetrica ON fkMetrica = idMetrica 
-    JOIN 
-        tbUnidadeMedida ON idUnidadeMedida = fkUnidadeMedida
-    WHERE 
-        fkServidor = ${fkServidor}
-    AND 
-        sinal = 'MHz'
-    ORDER BY 
-        tbRegistro.idRegst DESC;
-        `
-    } else {
-        var sql = `
-        SELECT top 10
-        tbUnidadeMedida.sinal, 
         tbRegistro.idRegst,
         tbRegistro.dataHora,
         tbRegistro.alerta,
@@ -147,13 +145,11 @@ function buscarUltimosRegistrosLive(fkServidor, fkTipoComponente) {
     WHERE 
         fkServidor = ${fkServidor}
     AND 
-        sinal = 'Gb'
-    AND 
         fktipoComponente = ${fkTipoComponente}
     ORDER BY 
         tbRegistro.idRegst DESC  
         `
-    }
+    // }
 
     return database.executar(sql)
 }

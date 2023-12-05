@@ -54,6 +54,7 @@
           <div class="li-dropdown-content">
               <a href="analytics/custoBeneficio.html" class="adm">Custo-benefício</a>
               <a href="./cronograma.html" class="adm">Histórico</a>
+              <a href="./analytics/clima.html" class="adm">Clima</a>
           </div>
         </li>
         <li>
@@ -215,19 +216,35 @@
             </div>
           </div>
           <div class="card cardMonth">
-            <div class="card-header">
-              <h5>Proximo Feriado</h5>
-            </div>
-            <div class="card-body d-flex justify-content-center ">
-              <div class="calendar">
-                <div class="calendar-header">
-                  <h4 id="holidayMonthYear">2023 - Agosto</h4>
+            <div class="card-body d-flex flex-column justify-content-center ">
+                <div id="holidayContainer">
+                  <h5 style="margin: 0;">Feriado</h5>
+                  <div class="calendar">
+                    <div class="calendar-header">
+                      <h4 id="holidayMonthYear">2023 - Agosto</h4>
+                    </div>
+                    <div class="calendar-body">
+                      <p class="day" id="holiday">24</p>
+                      <p class="name"id="holidayName" style="text-align: center;">Natal</p>
+                    </div>
+                  </div>
+                  <p style="margin: 0; font-size: 18px">Dados ano passado</p>
+                  <div class="d-flex rowGap">
+                    <div class="card-record card-record-w">
+                      <p class="card-record-title">Cpu</p>
+                      <p class="card-record-value" id="cpuHoliday"></p>
+                    </div>
+
+                    <div class="card-record card-record-w">
+                      <p class="card-record-title">Ram</p>
+                      <p class="card-record-value" id="ramHoliday"></p>
+                    </div>
+                    <div class="card-record card-record-w">
+                      <p class="card-record-title">Disco</p>
+                      <p class="card-record-value" id="diskHoliday"></p>
+                    </div>
+                  </div>
                 </div>
-                <div class="calendar-body">
-                  <p class="day" id="holiday">24</p>
-                  <p class="name"id="holidayName" style="text-align: center;">Natal</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

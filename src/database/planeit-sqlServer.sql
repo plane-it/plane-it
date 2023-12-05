@@ -64,7 +64,7 @@ CREATE TABLE tbServidor(
 
 CREATE TABLE tbManutencao(
 	idManutencao INT PRIMARY KEY,
-	dataHota DATETIME NOT NULL,
+	dataHora DATETIME NOT NULL,
 	fkResponsavel INT NOT NULL,
 	fkServidor INT NOT NULL,
 	descricaoManutencao VARCHAR(255) NOT NULL,

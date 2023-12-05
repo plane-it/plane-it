@@ -90,7 +90,6 @@ function buscarClimaTabela() {
       if (resposta.error) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
-        console.log(resposta)
         for (let i = 0; i < resposta.length; i++) {
           todosFeriados.push(resposta[i]);
           idEncontrado.push(resposta[i].idFeriado); 
@@ -151,7 +150,6 @@ function buscarOutrosFeriados(idEncontrado) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
         let previsao = "Previsao boa"
-        console.log(resposta)
         for (let i = 0; i < resposta.length; i++) {
           todosFeriados.push(resposta[i]);
 
@@ -193,10 +191,10 @@ function kpiFeriado() {
 
     if (
       (feriado.mes > mesAtual) ||
-      (feriado.mes === mesAtual && feriado.dia >= diaAtual)
+      (feriado.mes == mesAtual && feriado.dia >= diaAtual)
     ) {
       // Verifica se encontramos um feriado válido
-      if (!proximoFeriado || feriado.mes < proximoFeriado.mes || (feriado.mes === proximoFeriado.mes && feriado.dia < proximoFeriado.dia)) {
+      if (!proximoFeriado || feriado.mes < proximoFeriado.mes || (feriado.mes == proximoFeriado.mes && feriado.dia >= proximoFeriado.dia)) {
         proximoFeriado = feriado;
       }
     }
@@ -207,7 +205,7 @@ function kpiFeriado() {
     if (proximoFeriado.previsao < 2.5) {
       previsao="Previsão boa"
     } else if (proximoFeriado.previsao < 10) {
-      previsao="Previsâo moderada"
+      previsao="Previsão moderada"
     } else if (proximoFeriado.previsao < 50) {
       previsao="Previsão preocupante"
     } else {
@@ -310,10 +308,10 @@ function buscarVoos() {
         media = ((res[0].quantidade + res[1].quantidade) * 1.63) / 100;
 
         if (media < qtdVoo[1]) {
-          qtdVoosCancelados.innerHTML = res[0].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].situacao == "CANCELADO" ? res[0].quantidade : res[1].quantidade;
           qtdVoosCancelados.style = "color: red";
         } else {
-          qtdVoosCancelados.innerHTML = res[0].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].quantidade == "CANCELADO" ? res[0].quantidade : res[1].quantidade;
           qtdVoosCancelados.style = "color: green";
         }
 
@@ -346,7 +344,6 @@ function buscarVoos() {
           },
         };
 
-        // myChart.destroy();
         ctx = document.getElementById("analiseVoos");
 
         myChart = new Chart(ctx, {
@@ -357,8 +354,8 @@ function buscarVoos() {
               {
                 label: res[0].situacao,
                 data: [res[0].quantidade, res[1].quantidade],
-                backgroundColor: ["#dc3545", "#28a745"],
-                borderColor: ["#dc3545", "#28a745"],
+                backgroundColor: res[0].situacao == "CANCELADO" ? ["#dc3545", "#28a745"] : ["#28a745", "#dc3545"],
+                borderColor: res[0].situacao == "CANCELADO" ? ["#dc3545", "#28a745"] : ["#28a745", "#dc3545"]
               },
             ],
           },

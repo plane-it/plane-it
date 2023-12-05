@@ -10,6 +10,8 @@
   "author": "Site desenvolvido para o projeto de Pesquisa e Inovação",
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^4.4.1",
+    "chartjs-plugin-annotation": "^3.0.1",
     "cors": "^2.8.5",
     "date-utils": "^1.2.21",
     "express": "^4.17.1",
