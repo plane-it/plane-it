@@ -308,10 +308,10 @@ function buscarVoos() {
         media = ((res[0].quantidade + res[1].quantidade) * 1.63) / 100;
 
         if (media < qtdVoo[1]) {
-          qtdVoosCancelados.innerHTML = res[0].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].situacao == "CANCELADO" ? res[0].quantidade : res[1].quantidade;
           qtdVoosCancelados.style = "color: red";
         } else {
-          qtdVoosCancelados.innerHTML = res[0].quantidade;
+          qtdVoosCancelados.innerHTML = res[0].quantidade == "CANCELADO" ? res[0].quantidade : res[1].quantidade;
           qtdVoosCancelados.style = "color: green";
         }
 
@@ -344,7 +344,6 @@ function buscarVoos() {
           },
         };
 
-        // myChart.destroy();
         ctx = document.getElementById("analiseVoos");
 
         myChart = new Chart(ctx, {
@@ -355,8 +354,8 @@ function buscarVoos() {
               {
                 label: res[0].situacao,
                 data: [res[0].quantidade, res[1].quantidade],
-                backgroundColor: ["#dc3545", "#28a745"],
-                borderColor: ["#dc3545", "#28a745"],
+                backgroundColor: res[0].situacao == "CANCELADO" ? ["#dc3545", "#28a745"] : ["#28a745", "#dc3545"],
+                borderColor: res[0].situacao == "CANCELADO" ? ["#dc3545", "#28a745"] : ["#28a745", "#dc3545"]
               },
             ],
           },
