@@ -325,7 +325,17 @@ function atualizarServidorCritico(fkAeroporto){
     // GROUP BY idserv
     // HAVING SUM(alerta) >= 18 LIMIT 5;
     // `
-
+    const sql = `
+        SELECT top 5 SUM(case when alerta = 1 then 1 else 0 end) AS 'qtdAlerta',apelido,(SELECT sum(case when alerta = 1 then 1 else 0 end) AS 'Qtd de alerta' FROM tbRegistro
+        JOIN tbServidor 
+        ON fkServidor = idServ
+        JOIN tbAeroporto ON fkAeroporto = idAeroporto 
+        AND idAeroporto = 1) AS 'alertaTotal' FROM tbRegistro JOIN tbServidor ON idServ = fkServidor
+        JOIN tbaeroporto ON fkaeroporto = idaeroporto WHERE fkaeroporto = 1 
+        GROUP BY idserv, apelido HAVING SUM(case when alerta = 1 then 1 else 0 end) > 18;
+    `
+    return database.executar(sql)
+}
 
 function atualizarCompServidor(fkAeroporto,servidor){
     const sql = `
