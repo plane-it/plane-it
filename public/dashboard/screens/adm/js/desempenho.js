@@ -551,8 +551,12 @@ function atualizarServidoresAlertas(fkAeroporto,nomeGrafico,dadosStatus){
                 }
               }
               for(i=0;i < servidorNovo.length;i++){
-                if(servidorNovo[i] != nomeGrafico.data.labels[0]){
-                  nomeGrafico.data.labels.push(servidorNovo[i])
+                if(nomeGrafico.data.labels.length <= 5){
+                  if(servidorNovo[i] != nomeGrafico.data.labels[0]){
+                    nomeGrafico.data.labels.push(servidorNovo[i])
+                  }
+                }else{
+                  nomeGrafico.data.labels.shift()
                 }
               }            
               for(i=0;i < alertasNovo.length;i++){
@@ -585,12 +589,19 @@ function atualizarServidoresBons(fkAeroporto,nomeGrafico,dadosStatus){
                 resposta = novoRegistro[i]
                 servidorNovo.push(resposta.apelido);
                 alertasNovo.push(resposta.qtdAlerta);
+                if(resposta.qtdAlerta > 0 && resposta.qtdAlerta <= 6){
+                  alertasNovo.push(resposta.qtdAlerta);
+                }
               }
               for(i=0;i < servidorNovo.length;i++){
-                if(servidorNovo[i] != nomeGrafico.data.labels){
-                  nomeGrafico.data.labels.push(servidorNovo[i])
+                if(nomeGrafico.data.labels.length <= 5){
+                  if(servidorNovo[i] != nomeGrafico.data.labels[0]){
+                    nomeGrafico.data.labels.push(servidorNovo[i])
+                  }
+                }else{
+                  nomeGrafico.data.labels.shift()
                 }
-              }            
+              }             
               for(i=0;i < alertasNovo.length;i++){
                 if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
                   nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
@@ -622,12 +633,19 @@ function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
                 resposta = novoRegistro[i]
                 servidorNovo.push(resposta.apelido);
                 alertasNovo.push(resposta.qtdAlerta);
+                if(resposta.qtdAlerta > 18){
+                  alertasNovo.push(resposta.qtdAlerta);
+                }
               }
               for(i=0;i < servidorNovo.length;i++){
-                if(servidorNovo[i] != nomeGrafico.data.labels){
-                  nomeGrafico.data.labels.push(servidorNovo[i])
+                if(nomeGrafico.data.labels.length <= 5){
+                  if(servidorNovo[i] != nomeGrafico.data.labels[0]){
+                    nomeGrafico.data.labels.push(servidorNovo[i])
+                  }
+                }else{
+                  nomeGrafico.data.labels.shift()
                 }
-              }            
+              }           
               for(i=0;i < alertasNovo.length;i++){
                 if(alertasNovo[i] != nomeGrafico.data.datasets[0].data){
                   nomeGrafico.data.datasets[0].data.push(alertasNovo[i])
