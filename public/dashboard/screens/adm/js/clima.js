@@ -90,7 +90,6 @@ function buscarClimaTabela() {
       if (resposta.error) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
-        console.log(resposta)
         for (let i = 0; i < resposta.length; i++) {
           todosFeriados.push(resposta[i]);
           idEncontrado.push(resposta[i].idFeriado); 
@@ -151,7 +150,6 @@ function buscarOutrosFeriados(idEncontrado) {
         console.log("Aconteceu algum erro (res.error = true)");
       } else {
         let previsao = "Previsao boa"
-        console.log(resposta)
         for (let i = 0; i < resposta.length; i++) {
           todosFeriados.push(resposta[i]);
 
@@ -193,10 +191,10 @@ function kpiFeriado() {
 
     if (
       (feriado.mes > mesAtual) ||
-      (feriado.mes === mesAtual && feriado.dia >= diaAtual)
+      (feriado.mes == mesAtual && feriado.dia >= diaAtual)
     ) {
       // Verifica se encontramos um feriado válido
-      if (!proximoFeriado || feriado.mes < proximoFeriado.mes || (feriado.mes === proximoFeriado.mes && feriado.dia < proximoFeriado.dia)) {
+      if (!proximoFeriado || feriado.mes < proximoFeriado.mes || (feriado.mes == proximoFeriado.mes && feriado.dia >= proximoFeriado.dia)) {
         proximoFeriado = feriado;
       }
     }
@@ -207,7 +205,7 @@ function kpiFeriado() {
     if (proximoFeriado.previsao < 2.5) {
       previsao="Previsão boa"
     } else if (proximoFeriado.previsao < 10) {
-      previsao="Previsâo moderada"
+      previsao="Previsão moderada"
     } else if (proximoFeriado.previsao < 50) {
       previsao="Previsão preocupante"
     } else {
