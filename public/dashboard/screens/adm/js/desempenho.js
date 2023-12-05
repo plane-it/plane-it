@@ -10,7 +10,7 @@ ctx = '';
 function buscarAlerta() {
   estadoServidor.innerHTML = "";
   if (fkAeroporto == "" || fkAeroporto == undefined) {
-    alert("Servidores não encontrados!");
+    alert("Servidores não encontrados!");   
   } else {
     fetch("/servidor/alertasCriticos", {
       method: "POST",
@@ -666,7 +666,6 @@ function atualizarServidoresCriticos(fkAeroporto,nomeGrafico,dadosStatus){
   
 }
 function atualizarComponenteServidor(fkAeroporto,nomeGrafico,servidor){
-  alert(servidor)
   fetch("/servidor/atualizarCompServidor", {
     method: "POST",
     headers: {
