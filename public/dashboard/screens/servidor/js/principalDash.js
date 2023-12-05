@@ -293,9 +293,12 @@ function atualizarKPI(metrica, values) {
     cardMed.style = "background-color: #cdeabe !important;"
   }
 
-  if (qtdAlertas >= 5) {
+  if (qtdAlertas >= 50) {
     cardQtd.style = "background-color: rgba(244, 69, 69, 0.604) !important;"
-  } else {
+  } else if (qtdAlertas < 50 && qtdAlertas >= 25) {
+    cardQtd.style = "background-color: rgb(233, 186, 147);"
+  }
+  else {
     cardQtd.style = "background-color: #cdeabe !important;"
   }
 
