@@ -48,8 +48,17 @@ function getValores(idServidor, data, tipoComponente){
     return database.executar(sql)
 }
 
+function getFeriados(){
+    const sql = `
+        SELECT * FROM tbFeriados;
+    `
+
+    return database.executar(sql)
+}
+
 module.exports = {
     getMedidaSemanal,
     getMediaDiaria,
-    getValores
+    getValores,
+    getFeriados
 }
