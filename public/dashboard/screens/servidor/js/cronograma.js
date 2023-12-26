@@ -352,6 +352,58 @@ function handleScrollSize(size){
     bar.style.setProperty("--scrollbar", barsize+"%")
 }
 
+async function getHolidays(){
+  const months = {
+    "Janeiro": 1,
+    "Fevereiro": 2,
+    "Março": 3,
+    "Abril": 4,
+    "Maio": 5,
+    "Junho": 6,
+    "Julho": 7,
+    "Agosto": 8,
+    "Setembro": 9,
+    "Outubro": 10,
+    "Novembro": 11,
+    "Dezembro": 12,
+  }
+
+  const data = await fetch("/cronograma/feriados")
+  const res = await data.json()
+  const today = new Date()
+ 
+  console.log(today)
+  for(let i = 0; i < res.length; i++){
+    if(
+      months[res[i].mes] > today.getMonth()+1 ||
+      (
+        months[res[i].mes] == today.getMonth()+1 &&
+        Number(res[i].dia) >= today.getDate()
+      ) ||
+      (
+        Number(res[res.length-1].dia) < today.getDate() &&
+        today.getMonth()+1 == 12
+      )
+    ){
+      const holiday = document.querySelector("#holiday")
+      const holidayName = document.querySelector("#holidayName")
+      const holidayMonthYear = document.querySelector("#holidayMonthYear")
+
+      const year = 
+        Number(res[res.length-1].dia) < today.getDate() &&
+        today.getMonth()+1 == 12
+        ? today.getFullYear()+1
+        : today.getFullYear()
+
+      holidayName.innerText = res[i].titulo
+      holidayMonthYear.innerText = year + " - " + res[i].mes
+      holiday.innerText = res[i].dia
+      break
+    }
+  }
+}
+getHolidays()
+
 function updateTimeline(date){
   getDaily(date)
   getHistory(component.value, date)
