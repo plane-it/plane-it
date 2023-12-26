@@ -15,4 +15,8 @@ router.post("/valores", (req,res) => {
     cronogramaController.getValores(req,res)
 })
 
+router.get("/feriados", (req,res) => {
+    cronogramaController.getFeriados(req,res)
+})
+
 module.exports = router
